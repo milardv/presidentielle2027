@@ -8,7 +8,7 @@ import {
 import {
   getCandidatesFromDatabase,
   seedCandidatesIfEmpty,
-  syncCandidatePhotosInDatabase,
+  syncCandidateInsightsInDatabase,
 } from '../services/candidateRepository'
 
 const statusBadgeStyles: Record<CandidateStatus, string> = {
@@ -35,6 +35,16 @@ function formatSourceDate(date: string): string {
   return new Date(`${date}T12:00:00Z`).toLocaleDateString('fr-FR')
 }
 
+function isCandidateInsightsIncomplete(candidate: Candidate): boolean {
+  return (
+    candidate.photoUrl.trim().length === 0 ||
+    (candidate.themeHighlights?.length ?? 0) === 0 ||
+    (candidate.network?.length ?? 0) === 0 ||
+    (candidate.parcours?.length ?? 0) === 0 ||
+    (candidate.style?.length ?? 0) === 0
+  )
+}
+
 export default function Home() {
   const [candidates, setCandidates] = useState<Candidate[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
@@ -55,15 +65,17 @@ export default function Home() {
         }
 
         if (dbCandidates.length > 0) {
-          if (dbCandidates.some((candidate) => candidate.photoUrl.trim().length === 0)) {
+          if (dbCandidates.some((candidate) => isCandidateInsightsIncomplete(candidate))) {
             try {
-              await syncCandidatePhotosInDatabase()
+              await syncCandidateInsightsInDatabase()
               const refreshedCandidates = await getCandidatesFromDatabase()
               if (!active) {
                 return
               }
               setCandidates(refreshedCandidates)
-              setLoadWarning('Photos Wikipedia synchronisees en base de donnees.')
+              setLoadWarning(
+                'Profils detailles (photos, themes, reseaux, parcours, style) synchronises en base.',
+              )
               return
             } catch (syncError) {
               if (!active) {
@@ -71,9 +83,9 @@ export default function Home() {
               }
               setCandidates(dbCandidates)
               setLoadWarning(
-                'Des photos Wikipedia manquent en base et la synchronisation a echoue (droits d ecriture requis).',
+                'Des champs detailles manquent en base et la synchronisation a echoue (droits d ecriture requis).',
               )
-              console.error('Failed to sync candidate photo URLs in Firestore', syncError)
+              console.error('Failed to sync candidate insights in Firestore', syncError)
               return
             }
           }

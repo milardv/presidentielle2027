@@ -19,6 +19,33 @@ export interface CandidateTimelineEvent {
   source: CandidateSource
 }
 
+export interface CandidateThemeHighlight {
+  theme: string
+  analysis: string
+  source: CandidateSource
+}
+
+export interface CandidateNetworkRelation {
+  actor: string
+  role: string
+  relation: string
+  source: CandidateSource
+}
+
+export interface CandidateParcoursStep {
+  period: string
+  role: string
+  institution: string
+  summary: string
+  source: CandidateSource
+}
+
+export interface CandidateStyleSignal {
+  axis: string
+  description: string
+  source: CandidateSource
+}
+
 export interface Candidate {
   id: string
   name: string
@@ -34,6 +61,10 @@ export interface Candidate {
   biography: string[]
   keyPositions: CandidatePosition[]
   timeline: CandidateTimelineEvent[]
+  themeHighlights?: CandidateThemeHighlight[]
+  network?: CandidateNetworkRelation[]
+  parcours?: CandidateParcoursStep[]
+  style?: CandidateStyleSignal[]
   sources: CandidateSource[]
 }
 

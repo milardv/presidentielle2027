@@ -13,11 +13,17 @@ import {
   candidateDataLastUpdated,
   knownCandidates2027,
   type Candidate,
+  type CandidateNetworkRelation,
+  type CandidateParcoursStep,
   type CandidatePosition,
   type CandidateSource,
+  type CandidateStyleSignal,
   type CandidateStatus,
+  type CandidateThemeHighlight,
   type CandidateTimelineEvent,
 } from '../data/candidates'
+import { candidateInsightsById } from '../data/candidateInsights'
+import { candidateStyleById } from '../data/candidateStyle'
 
 const CANDIDATES_COLLECTION = 'candidates_2027'
 
@@ -137,6 +143,151 @@ function parseTimeline(value: unknown): CandidateTimelineEvent[] {
     .filter((event): event is CandidateTimelineEvent => event !== null)
 }
 
+function parseThemeHighlights(value: unknown): CandidateThemeHighlight[] {
+  if (!Array.isArray(value)) {
+    return []
+  }
+
+  return value
+    .map((entry) => {
+      if (typeof entry !== 'object' || entry === null) {
+        return null
+      }
+
+      const maybeEntry = entry as {
+        theme?: unknown
+        analysis?: unknown
+        source?: unknown
+      }
+      const source = parseSource(maybeEntry.source)
+      if (
+        typeof maybeEntry.theme !== 'string' ||
+        typeof maybeEntry.analysis !== 'string' ||
+        source === null
+      ) {
+        return null
+      }
+
+      return {
+        theme: maybeEntry.theme,
+        analysis: maybeEntry.analysis,
+        source,
+      }
+    })
+    .filter((entry): entry is CandidateThemeHighlight => entry !== null)
+}
+
+function parseNetwork(value: unknown): CandidateNetworkRelation[] {
+  if (!Array.isArray(value)) {
+    return []
+  }
+
+  return value
+    .map((entry) => {
+      if (typeof entry !== 'object' || entry === null) {
+        return null
+      }
+
+      const maybeEntry = entry as {
+        actor?: unknown
+        role?: unknown
+        relation?: unknown
+        source?: unknown
+      }
+      const source = parseSource(maybeEntry.source)
+      if (
+        typeof maybeEntry.actor !== 'string' ||
+        typeof maybeEntry.role !== 'string' ||
+        typeof maybeEntry.relation !== 'string' ||
+        source === null
+      ) {
+        return null
+      }
+
+      return {
+        actor: maybeEntry.actor,
+        role: maybeEntry.role,
+        relation: maybeEntry.relation,
+        source,
+      }
+    })
+    .filter((entry): entry is CandidateNetworkRelation => entry !== null)
+}
+
+function parseParcours(value: unknown): CandidateParcoursStep[] {
+  if (!Array.isArray(value)) {
+    return []
+  }
+
+  return value
+    .map((entry) => {
+      if (typeof entry !== 'object' || entry === null) {
+        return null
+      }
+
+      const maybeEntry = entry as {
+        period?: unknown
+        role?: unknown
+        institution?: unknown
+        summary?: unknown
+        source?: unknown
+      }
+      const source = parseSource(maybeEntry.source)
+      if (
+        typeof maybeEntry.period !== 'string' ||
+        typeof maybeEntry.role !== 'string' ||
+        typeof maybeEntry.institution !== 'string' ||
+        typeof maybeEntry.summary !== 'string' ||
+        source === null
+      ) {
+        return null
+      }
+
+      return {
+        period: maybeEntry.period,
+        role: maybeEntry.role,
+        institution: maybeEntry.institution,
+        summary: maybeEntry.summary,
+        source,
+      }
+    })
+    .filter((entry): entry is CandidateParcoursStep => entry !== null)
+}
+
+function parseStyle(value: unknown): CandidateStyleSignal[] {
+  if (!Array.isArray(value)) {
+    return []
+  }
+
+  return value
+    .map((entry) => {
+      if (typeof entry !== 'object' || entry === null) {
+        return null
+      }
+
+      const maybeEntry = entry as {
+        axis?: unknown
+        description?: unknown
+        source?: unknown
+      }
+      const source = parseSource(maybeEntry.source)
+      if (
+        typeof maybeEntry.axis !== 'string' ||
+        typeof maybeEntry.description !== 'string' ||
+        source === null
+      ) {
+        return null
+      }
+
+      return {
+        axis: maybeEntry.axis,
+        description: maybeEntry.description,
+        source,
+      }
+    })
+    .filter((entry): entry is CandidateStyleSignal => entry !== null)
+}
+
 function parseCandidate(id: string, data: DocumentData): Candidate | null {
   if (
     typeof data.name !== 'string' ||
@@ -160,6 +311,10 @@ function parseCandidate(id: string, data: DocumentData): Candidate | null {
 
   const keyPositions = parseKeyPositions(data.keyPositions)
   const timeline = parseTimeline(data.timeline)
+  const themeHighlights = parseThemeHighlights(data.themeHighlights)
+  const network = parseNetwork(data.network)
+  const parcours = parseParcours(data.parcours)
+  const style = parseStyle(data.style)
 
   return {
     id,
@@ -176,6 +331,10 @@ function parseCandidate(id: string, data: DocumentData): Candidate | null {
     biography: biography.length > 0 ? biography : [data.summary],
     keyPositions,
     timeline,
+    themeHighlights,
+    network,
+    parcours,
+    style,
     sources,
   }
 }
@@ -188,12 +347,17 @@ export async function seedCandidatesIfEmpty(): Promise<void> {
   }
 
   await Promise.all(
-    knownCandidates2027.map((candidate) =>
-      setDoc(doc(db, CANDIDATES_COLLECTION, candidate.id), {
+    knownCandidates2027.map((candidate) => {
+      const insights = candidateInsightsById[candidate.id]
+      return setDoc(doc(db, CANDIDATES_COLLECTION, candidate.id), {
         ...candidate,
+        themeHighlights: insights?.themeHighlights ?? [],
+        network: insights?.network ?? [],
+        parcours: insights?.parcours ?? [],
+        style: candidateStyleById[candidate.id] ?? [],
         dataLastUpdated: candidateDataLastUpdated,
-      }),
-    ),
+      })
+    }),
   )
 }
 
@@ -215,13 +379,17 @@ export async function getCandidateByIdFromDatabase(candidateId: string): Promise
   return parseCandidate(snapshot.id, snapshot.data())
 }
 
-export async function syncCandidatePhotosInDatabase(): Promise<void> {
+export async function syncCandidateInsightsInDatabase(): Promise<void> {
   await Promise.all(
     knownCandidates2027.map((candidate) =>
       setDoc(
         doc(db, CANDIDATES_COLLECTION, candidate.id),
         {
           photoUrl: candidate.photoUrl,
+          themeHighlights: candidateInsightsById[candidate.id]?.themeHighlights ?? [],
+          network: candidateInsightsById[candidate.id]?.network ?? [],
+          parcours: candidateInsightsById[candidate.id]?.parcours ?? [],
+          style: candidateStyleById[candidate.id] ?? [],
           dataLastUpdated: candidateDataLastUpdated,
         },
         { merge: true },
