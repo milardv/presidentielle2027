@@ -9,6 +9,7 @@ import { ProfileErrorState } from '../features/candidates/profile/components/Pro
 import { ProfileHeroSection } from '../features/candidates/profile/components/ProfileHeroSection'
 import { ProfileInterventionsSection } from '../features/candidates/profile/components/ProfileInterventionsSection'
 import { ProfileLoadingState } from '../features/candidates/profile/components/ProfileLoadingState'
+import { ProfileMediaAttentionSection } from '../features/candidates/profile/components/ProfileMediaAttentionSection'
 import { ProfileNetworkSection } from '../features/candidates/profile/components/ProfileNetworkSection'
 import { ProfilePageHeader } from '../features/candidates/profile/components/ProfilePageHeader'
 import { ProfileParcoursSection } from '../features/candidates/profile/components/ProfileParcoursSection'
@@ -16,12 +17,18 @@ import { ProfileSourcesSection } from '../features/candidates/profile/components
 import { ProfileStyleSection } from '../features/candidates/profile/components/ProfileStyleSection'
 import { ProfileThemeHighlightsSection } from '../features/candidates/profile/components/ProfileThemeHighlightsSection'
 import { ProfileTimelineSection } from '../features/candidates/profile/components/ProfileTimelineSection'
+import { useCandidateMediaAttention } from '../features/candidates/profile/hooks/useCandidateMediaAttention'
 import { useCandidateProfile } from '../features/candidates/profile/hooks/useCandidateProfile'
 import { buildProfileCandidateViewModel } from '../features/candidates/profile/utils/profileCandidateViewModel'
 
 export default function Profile() {
   const { candidateId } = useParams<{ candidateId: string }>()
   const { candidate, isLoading, loadError } = useCandidateProfile(candidateId)
+  const {
+    mediaAttention,
+    isLoading: isMediaAttentionLoading,
+    loadError: mediaAttentionLoadError,
+  } = useCandidateMediaAttention(candidateId)
   const { user, signIn, isSigningIn } = useAuthSession()
   const {
     favoriteCandidateIds,
@@ -88,8 +95,13 @@ export default function Profile() {
 
         <div className="p-4 sm:p-6 space-y-8">
           <ProfileBioSection candidate={candidate} />
-          <ProfileInterventionsSection candidateId={candidate.id} entries={candidate.interventions ?? []} />
           <ProfileTimelineSection candidateId={candidate.id} timeline={viewModel.timeline} />
+          <ProfileMediaAttentionSection
+            mediaAttention={mediaAttention}
+            isLoading={isMediaAttentionLoading}
+            loadError={mediaAttentionLoadError}
+          />
+          <ProfileInterventionsSection candidateId={candidate.id} entries={candidate.interventions ?? []} />
           <ProfileThemeHighlightsSection candidateId={candidate.id} entries={viewModel.themeHighlights} />
           <ProfileNetworkSection candidateId={candidate.id} entries={viewModel.networkEntries} />
           <ProfileParcoursSection candidateId={candidate.id} entries={viewModel.parcoursEntries} />

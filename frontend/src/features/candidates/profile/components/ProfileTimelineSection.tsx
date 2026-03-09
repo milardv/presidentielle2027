@@ -9,7 +9,7 @@ interface ProfileTimelineSectionProps {
 
 export function ProfileTimelineSection({ candidateId, timeline }: ProfileTimelineSectionProps) {
   return (
-    <section className="scroll-mt-40">
+    <section id="evolution" className="scroll-mt-40">
       <ProfileSectionHeading icon="timeline" title="Évolution des positions" />
 
       <div className="space-y-6 relative before:absolute before:inset-0 before:ml-4 sm:before:ml-5 before:-translate-x-px before:h-full before:w-0.5 before:bg-gradient-to-b before:from-primary/50 before:via-primary/20 before:to-transparent">

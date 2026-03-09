@@ -57,7 +57,39 @@ function ScenarioTopThree({ scenario }: { scenario: PollScenario }) {
   )
 }
 
+function CompactScenarioCard({ scenario }: { scenario: PollScenario }) {
+  return (
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-950/30 p-3">
+      <div className="flex flex-wrap items-start justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold text-slate-900 dark:text-white">{scenario.label}</p>
+          <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">{scenario.id}</p>
+        </div>
+        {scenario.leader ? (
+          <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary">
+            {scenario.leader.candidateName} {formatScore(scenario.leader.score)}%
+          </span>
+        ) : null}
+      </div>
+
+      <div className="mt-3 flex flex-wrap gap-2">
+        {scenario.scores.slice(0, 3).map((score, index) => (
+          <span
+            key={`${scenario.id}-${score.candidateId}`}
+            className="inline-flex rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 px-2.5 py-1 text-xs font-medium text-slate-600 dark:text-slate-300"
+          >
+            #{index + 1} {score.candidateName} {formatScore(score.score)}%
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function PollStudyCard({ poll }: { poll: VotingIntentPoll }) {
+  const featuredScenario = poll.scenarios[0] ?? null
+  const secondaryScenarios = poll.scenarios.slice(1)
+
   return (
     <article className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm">
       <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
@@ -84,9 +116,25 @@ function PollStudyCard({ poll }: { poll: VotingIntentPoll }) {
       </div>
 
       <div className="mt-5 grid gap-4">
-        {poll.scenarios.map((scenario) => (
-          <ScenarioTopThree key={`${poll.id}-${scenario.id}`} scenario={scenario} />
-        ))}
+        {featuredScenario ? <ScenarioTopThree key={`${poll.id}-${featuredScenario.id}`} scenario={featuredScenario} /> : null}
+
+        {secondaryScenarios.length > 0 ? (
+          <div className="rounded-xl border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/25 p-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">
+                Autres scénarios résumés
+              </p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                {secondaryScenarios.length} scenario{secondaryScenarios.length > 1 ? 's' : ''} compacté{secondaryScenarios.length > 1 ? 's' : ''}
+              </p>
+            </div>
+            <div className="mt-4 grid gap-3 lg:grid-cols-2">
+              {secondaryScenarios.map((scenario) => (
+                <CompactScenarioCard key={`${poll.id}-${scenario.id}`} scenario={scenario} />
+              ))}
+            </div>
+          </div>
+        ) : null}
       </div>
     </article>
   )
@@ -134,6 +182,9 @@ function LatestStudySpotlight({ poll }: { poll: VotingIntentPoll | null }) {
     return null
   }
 
+  const featuredScenario = poll.scenarios[0] ?? null
+  const secondaryScenarios = poll.scenarios.slice(1)
+
   return (
     <section className="rounded-2xl border border-emerald-200 dark:border-emerald-900/40 bg-emerald-50 dark:bg-emerald-950/20 p-5 shadow-sm">
       <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">Dernier terrain disponible</p>
@@ -143,23 +194,33 @@ function LatestStudySpotlight({ poll }: { poll: VotingIntentPoll | null }) {
       <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
         {poll.scenarios.length} scenarios en base, avec un echantillon de {poll.sampleSize.toLocaleString('fr-FR')} personnes.
       </p>
-      <div className="mt-4 grid gap-3 lg:grid-cols-2">
-        {poll.scenarios.slice(0, 2).map((scenario) => (
-          <div key={`${poll.id}-${scenario.id}`} className="rounded-xl border border-emerald-200/70 dark:border-emerald-900/50 bg-white/80 dark:bg-slate-900/70 p-4">
-            <p className="text-sm font-semibold text-slate-900 dark:text-white">{scenario.label}</p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {scenario.scores.slice(0, 3).map((score) => (
-                <span
-                  key={`${scenario.id}-${score.candidateId}`}
-                  className="inline-flex rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-3 py-1 text-xs font-bold text-emerald-700 dark:text-emerald-300"
-                >
-                  {score.candidateName} {formatScore(score.score)}%
-                </span>
-              ))}
-            </div>
+      {featuredScenario ? (
+        <div className="mt-4 rounded-xl border border-emerald-200/70 dark:border-emerald-900/50 bg-white/80 dark:bg-slate-900/70 p-4">
+          <p className="text-sm font-semibold text-slate-900 dark:text-white">{featuredScenario.label}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {featuredScenario.scores.slice(0, 3).map((score) => (
+              <span
+                key={`${featuredScenario.id}-${score.candidateId}`}
+                className="inline-flex rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-3 py-1 text-xs font-bold text-emerald-700 dark:text-emerald-300"
+              >
+                {score.candidateName} {formatScore(score.score)}%
+              </span>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ) : null}
+      {secondaryScenarios.length > 0 ? (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {secondaryScenarios.map((scenario) => (
+            <span
+              key={`${poll.id}-${scenario.id}`}
+              className="inline-flex rounded-full border border-emerald-200/80 dark:border-emerald-900/50 bg-white/80 dark:bg-slate-900/70 px-3 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300"
+            >
+              {scenario.label}
+            </span>
+          ))}
+        </div>
+      ) : null}
     </section>
   )
 }
@@ -251,12 +312,8 @@ export default function Polls() {
             <section className="space-y-4">
               <div className="flex flex-wrap items-end justify-between gap-3">
                 <div>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Base detaillee</p>
-                  <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-900 dark:text-white">Etudes stockees</h2>
+                  <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-900 dark:text-white">Scénarios</h2>
                 </div>
-                <p className="max-w-2xl text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-                  Chaque carte correspond a un document Firestore `polls_2027`, avec ses scenarios et les trois premiers candidats visibles directement.
-                </p>
               </div>
 
               {polls.map((poll) => (

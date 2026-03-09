@@ -74,9 +74,6 @@ export function ProfileInterventionsSection({
             <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
               {entry.excerpt}
             </p>
-            <p className="mt-3 rounded-lg bg-slate-50 dark:bg-slate-950/40 px-3 py-2 text-sm text-slate-600 dark:text-slate-400">
-              {entry.context}
-            </p>
 
             <div className="mt-4">
               <a

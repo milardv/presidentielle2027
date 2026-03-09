@@ -80,7 +80,7 @@ function FavoriteCandidateCard({
           <span className="material-symbols-outlined text-[18px]">
             {isRemoving ? 'hourglass_top' : 'delete'}
           </span>
-          {isRemoving ? 'Retrait...' : 'Retirer'}
+          {isRemoving ? 'Retrait...' : ''}
         </button>
       </div>
 

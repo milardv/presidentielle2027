@@ -1,8 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
-import { FileText, LoaderCircle, Newspaper, RefreshCw, ShieldCheck, Video } from 'lucide-react'
+import { ChartSpline, FileText, LoaderCircle, Newspaper, RefreshCw, ShieldCheck, Video } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { Candidate } from '../../../data/candidateTypes'
-import { refreshCandidateGdelt, refreshCandidateVideos } from '../../../services/adminVideoSyncService'
+import {
+  getCandidateMediaCounts,
+  refreshCandidateMediaAttention,
+  refreshCandidateGdelt,
+  refreshCandidateVideos,
+  type CandidateMediaCounts,
+} from '../../../services/adminVideoSyncService'
 import { getCandidatesFromDatabase } from '../../../services/candidateRepository'
 
 interface AdminVideoRefreshPanelProps {
@@ -13,9 +19,12 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
   const [candidates, setCandidates] = useState<Candidate[]>([])
   const [selectedCandidateId, setSelectedCandidateId] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [refreshingProvider, setRefreshingProvider] = useState<'youtube' | 'gdelt' | null>(null)
+  const [refreshingProvider, setRefreshingProvider] = useState<'youtube' | 'gdelt' | 'mediacloud' | null>(null)
+  const [mediaCounts, setMediaCounts] = useState<CandidateMediaCounts>({ youtube: 0, gdelt: 0 })
+  const [isCountsLoading, setIsCountsLoading] = useState<boolean>(false)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [refreshMessage, setRefreshMessage] = useState<string | null>(null)
+  const hasMediaCloudKey = Boolean(import.meta.env.VITE_MEDIA_CLOUD_API_KEY?.trim())
 
   useEffect(() => {
     let active = true
@@ -50,6 +59,43 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
     [candidates, selectedCandidateId],
   )
 
+  useEffect(() => {
+    if (!selectedCandidateId) {
+      setMediaCounts({ youtube: 0, gdelt: 0 })
+      setIsCountsLoading(false)
+      return
+    }
+
+    let active = true
+    setIsCountsLoading(true)
+
+    void getCandidateMediaCounts(selectedCandidateId)
+      .then((counts) => {
+        if (!active) {
+          return
+        }
+
+        setMediaCounts(counts)
+      })
+      .catch((error) => {
+        if (!active) {
+          return
+        }
+
+        console.error('Failed to load candidate media counts', error)
+        setMediaCounts({ youtube: 0, gdelt: 0 })
+      })
+      .finally(() => {
+        if (active) {
+          setIsCountsLoading(false)
+        }
+      })
+
+    return () => {
+      active = false
+    }
+  }, [selectedCandidateId])
+
   const handleRefreshVideos = async () => {
     if (!selectedCandidate) {
       return
@@ -61,6 +107,8 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
 
     try {
       const result = await refreshCandidateVideos(selectedCandidate, adminEmail)
+      const counts = await getCandidateMediaCounts(selectedCandidate.id)
+      setMediaCounts(counts)
       setRefreshMessage(
         `${result.importedCount} video${result.importedCount > 1 ? 's' : ''} importee${result.importedCount > 1 ? 's' : ''} pour ${result.candidateName}.`,
       )
@@ -83,12 +131,36 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
 
     try {
       const result = await refreshCandidateGdelt(selectedCandidate, adminEmail)
+      const counts = await getCandidateMediaCounts(selectedCandidate.id)
+      setMediaCounts(counts)
       setRefreshMessage(
         `${result.importedCount} entree${result.importedCount > 1 ? 's' : ''} GDELT importee${result.importedCount > 1 ? 's' : ''} pour ${result.candidateName}.`,
       )
     } catch (error) {
       console.error('Failed to refresh candidate GDELT entries from admin panel', error)
       setLoadError(error instanceof Error ? error.message : 'Impossible de rafraichir les donnees GDELT.')
+    } finally {
+      setRefreshingProvider(null)
+    }
+  }
+
+  const handleRefreshMediaAttention = async () => {
+    if (!selectedCandidate) {
+      return
+    }
+
+    setRefreshingProvider('mediacloud')
+    setLoadError(null)
+    setRefreshMessage(null)
+
+    try {
+      const result = await refreshCandidateMediaAttention(selectedCandidate, adminEmail)
+      setRefreshMessage(
+        `${result.pointCount} point${result.pointCount > 1 ? 's' : ''} Media Cloud mis a jour pour ${result.candidateName}.`,
+      )
+    } catch (error) {
+      console.error('Failed to refresh candidate Media Cloud attention from admin panel', error)
+      setLoadError(error instanceof Error ? error.message : 'Impossible de rafraichir la courbe Media Cloud.')
     } finally {
       setRefreshingProvider(null)
     }
@@ -109,7 +181,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
           </div>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-          Lance un refresh YouTube ou GDELT cible pour un candidat, puis verifie la fiche ou la page videos juste apres l’import.
+          Lance un refresh cible pour un candidat: YouTube pour les videos, GDELT pour les articles, Media Cloud pour la courbe d’attention.
         </p>
       </div>
 
@@ -129,6 +201,28 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
             ))}
           </select>
         </label>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div className="rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 dark:border-slate-800 dark:bg-slate-950/50">
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Videos YouTube</span>
+              <Video className="h-[16px] w-[16px] text-primary" />
+            </div>
+            <p className="mt-2 text-2xl font-black tracking-tight text-slate-950 dark:text-white">
+              {isCountsLoading ? '…' : mediaCounts.youtube}
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 dark:border-slate-800 dark:bg-slate-950/50">
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Articles GDELT</span>
+              <Newspaper className="h-[16px] w-[16px] text-primary" />
+            </div>
+            <p className="mt-2 text-2xl font-black tracking-tight text-slate-950 dark:text-white">
+              {isCountsLoading ? '…' : mediaCounts.gdelt}
+            </p>
+          </div>
+        </div>
 
         <div className="flex flex-wrap items-center gap-3">
           <button
@@ -163,6 +257,22 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
             {refreshingProvider === 'gdelt' ? 'Rafraichissement...' : 'Rafraichir GDELT'}
           </button>
 
+          <button
+            type="button"
+            onClick={() => {
+              void handleRefreshMediaAttention()
+            }}
+            disabled={!selectedCandidate || isLoading || refreshingProvider !== null || !hasMediaCloudKey}
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-200 dark:disabled:border-slate-700 dark:disabled:bg-slate-900 dark:disabled:text-slate-500"
+          >
+            {refreshingProvider === 'mediacloud' ? (
+              <LoaderCircle className="h-[18px] w-[18px] animate-spin" />
+            ) : (
+              <ChartSpline className="h-[18px] w-[18px]" />
+            )}
+            {refreshingProvider === 'mediacloud' ? 'Rafraichissement...' : 'Rafraichir Media Cloud'}
+          </button>
+
           {selectedCandidate ? (
             <Link
               to={`/candidats/${selectedCandidate.id}`}
@@ -187,6 +297,12 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
         {refreshMessage ? (
           <p className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700 dark:border-emerald-900/40 dark:bg-emerald-950/30 dark:text-emerald-300">
             {refreshMessage}
+          </p>
+        ) : null}
+
+        {!hasMediaCloudKey ? (
+          <p className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-400">
+            Media Cloud n’est pas configure dans le front admin. Ajoute `VITE_MEDIA_CLOUD_API_KEY` en local si tu veux lancer ce refresh depuis l’interface.
           </p>
         ) : null}
 

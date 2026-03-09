@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { CalendarDays, ExternalLink, PlayCircle, SquarePlay, TvMinimalPlay, Video } from 'lucide-react'
+import { ExternalLink, PlayCircle, SquarePlay, Video } from 'lucide-react'
 import { useParams } from 'react-router-dom'
 import { CandidateProfileTabs } from '../features/candidates/profile/components/CandidateProfileTabs'
 import { ProfileErrorState } from '../features/candidates/profile/components/ProfileErrorState'
@@ -31,8 +31,6 @@ export default function CandidateVideos() {
   const playerSectionRef = useRef<HTMLElement | null>(null)
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null)
 
-  const latestVideoDate = useMemo(() => (videos[0] ? formatFrenchDate(videos[0].publishedAt) : 'Aucune'), [videos])
-  const channelCount = useMemo(() => new Set(videos.map((video) => video.channelTitle)).size, [videos])
   const playableVideos = useMemo(() => videos.filter((video) => video.videoId), [videos])
   const selectedVideo = useMemo(
     () => playableVideos.find((video) => video.id === selectedVideoId) ?? playableVideos[0] ?? null,
@@ -99,8 +97,6 @@ export default function CandidateVideos() {
 
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               <VideoStat label="Vidéos" value={`${videos.length}`} icon={<SquarePlay className="h-[18px] w-[18px]" />} />
-              <VideoStat label="Dernière" value={latestVideoDate} icon={<CalendarDays className="h-[18px] w-[18px]" />} />
-              <VideoStat label="Chaînes" value={`${channelCount}`} icon={<TvMinimalPlay className="h-[18px] w-[18px]" />} />
             </div>
           </div>
         </section>

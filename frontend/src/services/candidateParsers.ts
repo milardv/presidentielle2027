@@ -10,6 +10,7 @@ import type {
   CandidateThemeHighlight,
   CandidateTimelineEvent,
 } from '../data/candidateTypes'
+import { decodeHtmlEntities } from '../utils/htmlEntities'
 
 const validStatuses: CandidateStatus[] = ['declared', 'declared_primary', 'intent', 'conditional']
 
@@ -307,8 +308,8 @@ function parseInterventions(value: unknown): CandidateIntervention[] {
       return {
         id: maybeEntry.id,
         type: maybeEntry.type,
-        title: maybeEntry.title,
-        excerpt: maybeEntry.excerpt,
+        title: decodeHtmlEntities(maybeEntry.title),
+        excerpt: decodeHtmlEntities(maybeEntry.excerpt),
         context: maybeEntry.context,
         source,
       }

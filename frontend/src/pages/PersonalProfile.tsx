@@ -1,9 +1,12 @@
+import { useMemo } from 'react'
 import { DesktopAppTabs } from '../components/DesktopAppTabs'
 import { MobileAppNav } from '../components/MobileAppNav'
 import { isAdminEmail } from '../config/admin'
 import { AdminVideoRefreshPanel } from '../features/auth/components/AdminVideoRefreshPanel'
 import { FavoriteCandidatesSection } from '../features/auth/components/FavoriteCandidatesSection'
+import { FavoriteMediaAttentionSection } from '../features/auth/components/FavoriteMediaAttentionSection'
 import { useAuthSession } from '../features/auth/hooks/useAuthSession'
+import { useFavoriteCandidateMediaAttention } from '../features/auth/hooks/useFavoriteCandidateMediaAttention'
 import { useFavoriteCandidates } from '../features/auth/hooks/useFavoriteCandidates'
 import { ProfileAuthCard } from '../features/candidates/profile/components/ProfileAuthCard'
 import { appNavItems } from '../navigation/appNavItems'
@@ -25,6 +28,15 @@ export default function PersonalProfile() {
     togglingCandidateId,
     toggleFavoriteCandidate,
   } = useFavoriteCandidates(user?.uid)
+  const favoriteCandidateIds = useMemo(
+    () => favoriteCandidates.map((candidate) => candidate.id),
+    [favoriteCandidates],
+  )
+  const {
+    mediaAttentions: favoriteMediaAttentions,
+    isLoading: isFavoriteMediaAttentionLoading,
+    loadError: favoriteMediaAttentionError,
+  } = useFavoriteCandidateMediaAttention(favoriteCandidateIds)
   const isAdmin = isAdminEmail(user?.email)
 
   return (
@@ -53,6 +65,15 @@ export default function PersonalProfile() {
           onSignIn={signIn}
           onSignOut={signOut}
         />
+
+        {user ? (
+          <FavoriteMediaAttentionSection
+            candidates={favoriteCandidates}
+            mediaAttentions={favoriteMediaAttentions}
+            isLoading={isFavoritesLoading || isFavoriteMediaAttentionLoading}
+            errorMessage={favoriteMediaAttentionError}
+          />
+        ) : null}
 
         {user ? (
           <FavoriteCandidatesSection

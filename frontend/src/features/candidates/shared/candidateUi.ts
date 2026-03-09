@@ -7,6 +7,104 @@ export const candidateStatusBadgeStyles: Record<CandidateStatus, string> = {
   conditional: 'bg-amber-500 text-white border border-amber-400/50',
 }
 
+function normalizePartyName(party: string): string {
+  return party
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+}
+
+export function getCandidatePartyGradientClasses(party: string): string {
+  const normalizedParty = normalizePartyName(party)
+
+  if (normalizedParty.includes('rassemblement national')) {
+    return 'from-sky-600 via-blue-700 to-indigo-900'
+  }
+
+  if (normalizedParty.includes('renaissance')) {
+    return 'from-amber-300 via-orange-400 to-blue-500'
+  }
+
+  if (normalizedParty.includes('horizons')) {
+    return 'from-cyan-400 via-sky-600 to-indigo-700'
+  }
+
+  if (normalizedParty.includes('republicains')) {
+    return 'from-blue-500 via-indigo-600 to-blue-900'
+  }
+
+  if (normalizedParty.includes('france insoumise')) {
+    return 'from-red-500 via-orange-500 to-amber-400'
+  }
+
+  if (
+    normalizedParty.includes('place publique') ||
+    normalizedParty.includes('populaires') ||
+    normalizedParty.includes('lutte ouvriere')
+  ) {
+    return 'from-rose-500 via-red-500 to-orange-500'
+  }
+
+  if (
+    normalizedParty.includes('ecologistes') ||
+    normalizedParty.includes('generation ecologie')
+  ) {
+    return 'from-emerald-400 via-green-500 to-lime-500'
+  }
+
+  if (normalizedParty.includes('debout')) {
+    return 'from-blue-600 via-slate-800 to-red-500'
+  }
+
+  return 'from-slate-300 via-slate-200 to-slate-400 dark:from-slate-700 dark:via-slate-600 dark:to-slate-800'
+}
+
+export function getCandidatePartyAccentColor(party: string): string {
+  const normalizedParty = normalizePartyName(party)
+
+  if (normalizedParty.includes('rassemblement national')) {
+    return '#2563eb'
+  }
+
+  if (normalizedParty.includes('renaissance')) {
+    return '#f59e0b'
+  }
+
+  if (normalizedParty.includes('horizons')) {
+    return '#0891b2'
+  }
+
+  if (normalizedParty.includes('republicains')) {
+    return '#1d4ed8'
+  }
+
+  if (normalizedParty.includes('france insoumise')) {
+    return '#ef4444'
+  }
+
+  if (
+    normalizedParty.includes('place publique') ||
+    normalizedParty.includes('populaires') ||
+    normalizedParty.includes('lutte ouvriere')
+  ) {
+    return '#f43f5e'
+  }
+
+  if (
+    normalizedParty.includes('ecologistes') ||
+    normalizedParty.includes('generation ecologie')
+  ) {
+    return '#10b981'
+  }
+
+  if (normalizedParty.includes('debout')) {
+    return '#475569'
+  }
+
+  return '#64748b'
+}
+
 export function getCandidateInitials(fullName: string): string {
   return fullName
     .split(' ')

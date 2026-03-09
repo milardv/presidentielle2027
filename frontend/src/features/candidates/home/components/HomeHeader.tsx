@@ -11,11 +11,8 @@ export function HomeHeader() {
           </div>
 
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/10 bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-primary">
-              Presidentielle 2027
-            </div>
             <h1 className="mt-2 text-lg font-extrabold tracking-tight text-slate-950 dark:text-white sm:text-xl">
-              La Boussole <span className="text-slate-500 dark:text-slate-400">des candidatures</span>
+              Presidentielles 2027
             </h1>
           </div>
         </div>

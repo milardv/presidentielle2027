@@ -1,6 +1,7 @@
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import type { CandidateVideo } from '../data/candidateVideoTypes'
 import { db } from '../firebase'
+import { decodeHtmlEntities } from '../utils/htmlEntities'
 
 const RAW_INTERVENTIONS_COLLECTION = 'candidate_interventions_2027'
 
@@ -67,13 +68,13 @@ function parseCandidateVideo(id: string, data: Record<string, unknown>): Candida
   return {
     id,
     candidateId: data.candidateId,
-    title: data.title,
-    excerpt: typeof data.excerpt === 'string' ? data.excerpt : '',
+    title: decodeHtmlEntities(data.title),
+    excerpt: typeof data.excerpt === 'string' ? decodeHtmlEntities(data.excerpt) : '',
     context: typeof data.context === 'string' ? data.context : '',
     url: source.url,
-    sourceLabel: source.label,
+    sourceLabel: decodeHtmlEntities(source.label),
     publishedAt: source.date,
-    channelTitle,
+    channelTitle: decodeHtmlEntities(channelTitle),
     thumbnailUrl,
     videoId,
   }

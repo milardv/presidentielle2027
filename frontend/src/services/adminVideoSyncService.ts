@@ -1,14 +1,26 @@
-import { doc, writeBatch } from 'firebase/firestore'
+import { collection, doc, getDocs, query, where, writeBatch } from 'firebase/firestore'
+import type {
+  CandidateMediaAttentionPeakContext,
+  CandidateMediaAttentionPeakStory,
+  CandidateMediaAttentionPoint,
+} from '../data/candidateMediaAttentionTypes'
 import type { Candidate, CandidateIntervention } from '../data/candidateTypes'
 import { ADMIN_EMAIL, isAdminEmail } from '../config/admin'
 import { db } from '../firebase'
+import { decodeHtmlEntities } from '../utils/htmlEntities'
 
 const CANDIDATES_COLLECTION = 'candidates_2027'
 const RAW_INTERVENTIONS_COLLECTION = 'candidate_interventions_2027'
+const MEDIA_ATTENTION_COLLECTION = 'candidate_media_attention_2027'
 const LOOKBACK_DAYS = 45
+const MEDIA_ATTENTION_TIMESPAN = '3months'
+const MEDIA_CLOUD_BASE_API_URL = 'https://search.mediacloud.org/api/'
+const MEDIA_CLOUD_PROVIDER = 'onlinenews-mediacloud'
+const DEFAULT_MEDIA_CLOUD_COLLECTION_IDS = [34412146]
 const MAX_YOUTUBE_RESULTS = 6
 const MAX_GDELT_ARTICLES = 4
 const MAX_CANDIDATE_INTERVENTIONS = 8
+const MAX_MEDIA_ATTENTION_PEAK_STORIES = 3
 
 const commonStopWords = new Set(['de', 'du', 'des', 'la', 'le', 'les', 'et', 'a', 'au', 'aux'])
 
@@ -36,6 +48,18 @@ export interface RefreshCandidateGdeltResult {
   updatedAt: string
 }
 
+export interface RefreshCandidateMediaAttentionResult {
+  candidateName: string
+  candidateId: string
+  pointCount: number
+  updatedAt: string
+}
+
+export interface CandidateMediaCounts {
+  youtube: number
+  gdelt: number
+}
+
 function getYouTubeApiKey(): string {
   const youtubeApiKey = import.meta.env.VITE_YOUTUBE_API_KEY?.trim()
   const firebaseApiKey = import.meta.env.VITE_FIREBASE_API_KEY?.trim()
@@ -48,8 +72,35 @@ function getYouTubeApiKey(): string {
   return apiKey
 }
 
+function getMediaCloudApiKey(): string {
+  const apiKey = import.meta.env.VITE_MEDIA_CLOUD_API_KEY?.trim()
+
+  if (!apiKey) {
+    throw new Error('Missing Media Cloud API key in Vite environment.')
+  }
+
+  return apiKey
+}
+
+function getMediaCloudCollectionIds(): number[] {
+  const rawValue = import.meta.env.VITE_MEDIA_CLOUD_COLLECTION_IDS?.trim()
+
+  if (!rawValue) {
+    return DEFAULT_MEDIA_CLOUD_COLLECTION_IDS
+  }
+
+  return rawValue
+    .split(',')
+    .map((entry) => Number.parseInt(entry.trim(), 10))
+    .filter((entry) => Number.isInteger(entry) && entry > 0)
+}
+
 function sanitizeWhitespace(value: unknown): string {
   return String(value ?? '').replace(/\s+/g, ' ').trim()
+}
+
+function sanitizeText(value: unknown): string {
+  return decodeHtmlEntities(sanitizeWhitespace(value))
 }
 
 function normalizeText(value: unknown): string {
@@ -115,6 +166,46 @@ function toIsoDate(value: string | null | undefined): string {
   return parsedDate.toISOString().slice(0, 10)
 }
 
+function toIsoDateFromUnknown(value: unknown): string | null {
+  if (typeof value !== 'string') {
+    return null
+  }
+
+  const trimmedValue = value.trim()
+  if (!trimmedValue) {
+    return null
+  }
+
+  if (/^\d{4}-\d{2}-\d{2}$/.test(trimmedValue)) {
+    return trimmedValue
+  }
+
+  const compactDateMatch = trimmedValue.match(/^(\d{4})(\d{2})(\d{2})/)
+  if (compactDateMatch) {
+    return `${compactDateMatch[1]}-${compactDateMatch[2]}-${compactDateMatch[3]}`
+  }
+
+  const parsedDate = new Date(trimmedValue)
+  if (Number.isNaN(parsedDate.getTime())) {
+    return null
+  }
+
+  return parsedDate.toISOString().slice(0, 10)
+}
+
+function parseNumericValue(value: unknown): number | null {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return value
+  }
+
+  if (typeof value === 'string' && value.trim().length > 0) {
+    const parsedNumber = Number.parseFloat(value)
+    return Number.isFinite(parsedNumber) ? parsedNumber : null
+  }
+
+  return null
+}
+
 function toIsoDateTimeDaysAgo(days: number): string {
   const target = new Date(Date.now() - days * 24 * 60 * 60 * 1000)
   return target.toISOString()
@@ -175,6 +266,36 @@ function buildGdeltQuery(candidateName: string): string {
   return `near${nearDistance}:"${normalizedName}" sourcecountry:france sourcelang:french`
 }
 
+function buildMediaCloudQuery(candidateName: string): string {
+  const exactName = sanitizeWhitespace(candidateName)
+  const accentlessName = sanitizeWhitespace(
+    candidateName.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
+  )
+  const spaceNormalizedName = sanitizeWhitespace(
+    candidateName
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^A-Za-z0-9]+/g, ' '),
+  )
+
+  const variants = [...new Set([exactName, accentlessName, spaceNormalizedName])].filter(
+    (entry) => entry.length > 2,
+  )
+
+  return variants.map((entry) => `"${entry.replace(/"/g, '\\"')}"`).join(' OR ')
+}
+
+function getMediaAttentionDateRange(): { start: string; end: string } {
+  const endDate = new Date()
+  const startDate = new Date(endDate)
+  startDate.setUTCMonth(startDate.getUTCMonth() - 3)
+
+  return {
+    start: startDate.toISOString().slice(0, 10),
+    end: endDate.toISOString().slice(0, 10),
+  }
+}
+
 async function fetchCandidateYouTubeVideos(candidateName: string): Promise<YouTubeIntervention[]> {
   const params = new URLSearchParams({
     part: 'snippet',
@@ -210,16 +331,16 @@ async function fetchCandidateYouTubeVideos(candidateName: string): Promise<YouTu
   return items
     .filter((item) => {
       const videoId = item.id?.videoId
-      const title = sanitizeWhitespace(item.snippet?.title)
-      const description = sanitizeWhitespace(item.snippet?.description)
+      const title = sanitizeText(item.snippet?.title)
+      const description = sanitizeText(item.snippet?.description)
 
       return Boolean(videoId) && matchesCandidate(candidateName, `${title} ${description}`)
     })
     .map((item) => {
       const videoId = item.id?.videoId ?? ''
-      const title = sanitizeWhitespace(item.snippet?.title)
-      const description = sanitizeWhitespace(item.snippet?.description)
-      const channelTitle = sanitizeWhitespace(item.snippet?.channelTitle || 'YouTube')
+      const title = sanitizeText(item.snippet?.title)
+      const description = sanitizeText(item.snippet?.description)
+      const channelTitle = sanitizeText(item.snippet?.channelTitle || 'YouTube')
       const publishedAt = toIsoDate(item.snippet?.publishedAt)
 
       return {
@@ -300,6 +421,142 @@ async function fetchCandidateGdeltEntries(candidateName: string): Promise<Candid
     })
 }
 
+async function fetchMediaCloudJson<T>(url: string): Promise<T> {
+  const response = await fetch(url, {
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Token ${getMediaCloudApiKey()}`,
+    },
+  })
+
+  const payload = await response.json()
+
+  if (!response.ok) {
+    const detail =
+      typeof payload === 'object' && payload !== null && 'detail' in payload
+        ? String((payload as { detail?: string }).detail ?? 'Unknown error')
+        : 'Unknown error'
+
+    throw new Error(detail)
+  }
+
+  return payload as T
+}
+
+async function fetchCandidateMediaCloudAttention(
+  candidateName: string,
+): Promise<CandidateMediaAttentionPoint[]> {
+  const { start, end } = getMediaAttentionDateRange()
+
+  const params = new URLSearchParams({
+    q: buildMediaCloudQuery(candidateName),
+    start,
+    end,
+    platform: MEDIA_CLOUD_PROVIDER,
+  })
+
+  const collectionIds = getMediaCloudCollectionIds()
+  if (collectionIds.length > 0) {
+    params.set('cs', collectionIds.join(','))
+  }
+
+  const payload = await fetchMediaCloudJson<{
+    count_over_time?: {
+      counts?: Array<{
+        date?: string
+        count?: number
+        ratio?: number
+      }>
+    }
+  }>(`${MEDIA_CLOUD_BASE_API_URL}search/count-over-time?${params.toString()}`)
+
+  const counts = Array.isArray(payload.count_over_time?.counts) ? payload.count_over_time.counts : []
+
+  const points: CandidateMediaAttentionPoint[] = []
+
+  for (const entry of counts) {
+    const date = toIsoDateFromUnknown(entry.date)
+    const count = parseNumericValue(entry.count)
+    const ratio = parseNumericValue(entry.ratio)
+
+    if (!date || count === null) {
+      continue
+    }
+
+    points.push({
+      date,
+      value: count,
+      normalizedValue: ratio === null ? null : ratio * 100,
+    })
+  }
+
+  return points.sort((first, second) => first.date.localeCompare(second.date))
+}
+
+function getPeakPoint(points: CandidateMediaAttentionPoint[]): CandidateMediaAttentionPoint | null {
+  return (
+    points.reduce<CandidateMediaAttentionPoint | null>((currentPeak, point) => {
+      if (currentPeak === null || point.value > currentPeak.value) {
+        return point
+      }
+
+      return currentPeak
+    }, null) ?? null
+  )
+}
+
+async function fetchMediaCloudPeakStories(
+  candidateName: string,
+  date: string,
+): Promise<CandidateMediaAttentionPeakStory[]> {
+  const nextDate = new Date(`${date}T12:00:00Z`)
+  nextDate.setUTCDate(nextDate.getUTCDate() + 1)
+
+  const params = new URLSearchParams({
+    q: buildMediaCloudQuery(candidateName),
+    start: date,
+    end: nextDate.toISOString().slice(0, 10),
+    platform: MEDIA_CLOUD_PROVIDER,
+    page_size: String(MAX_MEDIA_ATTENTION_PEAK_STORIES),
+  })
+
+  const collectionIds = getMediaCloudCollectionIds()
+  if (collectionIds.length > 0) {
+    params.set('cs', collectionIds.join(','))
+  }
+
+  const payload = await fetchMediaCloudJson<{
+    stories?: Array<{
+      title?: string
+      url?: string
+      media_name?: string
+      publish_date?: string
+    }>
+  }>(`${MEDIA_CLOUD_BASE_API_URL}search/story-list?${params.toString()}`)
+
+  const stories = Array.isArray(payload.stories) ? payload.stories : []
+
+  return stories
+    .map((story) => {
+      const title = sanitizeText(story.title)
+      const url = sanitizeWhitespace(story.url)
+      const mediaName = sanitizeText(story.media_name)
+      const publishDate = toIsoDate(story.publish_date)
+
+      if (!title || !url || !mediaName) {
+        return null
+      }
+
+      return {
+        title,
+        url,
+        mediaName,
+        publishDate,
+      }
+    })
+    .filter((story): story is CandidateMediaAttentionPeakStory => story !== null)
+}
+
 async function writeImportedInterventions(
   candidate: Candidate,
   importedEntries: CandidateIntervention[],
@@ -359,6 +616,44 @@ async function writeImportedInterventions(
   await batch.commit()
 }
 
+async function writeCandidateMediaAttention(
+  candidate: Candidate,
+  provider: 'gdelt' | 'mediacloud',
+  queryLabel: string,
+  mediaAttentionPoints: CandidateMediaAttentionPoint[],
+  peakContext?: CandidateMediaAttentionPeakContext | null,
+): Promise<void> {
+  const nowIso = new Date().toISOString()
+  const todayIso = nowIso.slice(0, 10)
+  const latestPoint =
+      mediaAttentionPoints.length > 0 ? mediaAttentionPoints[mediaAttentionPoints.length - 1] : null
+  const peakPoint = getPeakPoint(mediaAttentionPoints)
+
+  await writeBatch(db)
+    .set(
+      doc(db, MEDIA_ATTENTION_COLLECTION, candidate.id),
+      {
+        candidateId: candidate.id,
+        candidateName: candidate.name,
+        provider,
+        query: queryLabel,
+        timeSpan: MEDIA_ATTENTION_TIMESPAN,
+        points: mediaAttentionPoints,
+        pointCount: mediaAttentionPoints.length,
+        latestDate: latestPoint?.date ?? null,
+        latestValue: latestPoint?.value ?? null,
+        peakDate: peakPoint?.date ?? null,
+        peakValue: peakPoint?.value ?? null,
+        peakContext: peakContext ?? null,
+        dataLastUpdated: todayIso,
+        updatedAt: nowIso,
+        autoGenerated: true,
+      },
+      { merge: true },
+    )
+    .commit()
+}
+
 function getRefreshErrorMessage(error: unknown): string {
   if (typeof error === 'object' && error !== null && 'code' in error) {
     const code = String(error.code)
@@ -369,6 +664,14 @@ function getRefreshErrorMessage(error: unknown): string {
   }
 
   if (error instanceof Error) {
+    if (error.message.includes('Missing Media Cloud API key')) {
+      return 'La cle Media Cloud n’est pas configuree dans le front admin.'
+    }
+
+    if (error.message.toLowerCase().includes('token')) {
+      return 'La cle Media Cloud semble invalide ou refusee.'
+    }
+
     if (error.message.includes('API_KEY_SERVICE_BLOCKED')) {
       return 'La YouTube Data API n’est pas active pour cette cle.'
     }
@@ -436,5 +739,63 @@ export async function refreshCandidateGdelt(
     }
   } catch (error) {
     throw new Error(getRefreshErrorMessage(error))
+  }
+}
+
+export async function refreshCandidateMediaAttention(
+  candidate: Candidate,
+  userEmail: string | null | undefined,
+): Promise<RefreshCandidateMediaAttentionResult> {
+  if (!isAdminEmail(userEmail)) {
+    throw new Error(`Admin access required for ${ADMIN_EMAIL}.`)
+  }
+
+  try {
+    const mediaAttentionPoints = await fetchCandidateMediaCloudAttention(candidate.name)
+    const peakPoint = getPeakPoint(mediaAttentionPoints)
+    const peakStories = peakPoint ? await fetchMediaCloudPeakStories(candidate.name, peakPoint.date) : []
+    await writeCandidateMediaAttention(
+      candidate,
+      'mediacloud',
+      buildMediaCloudQuery(candidate.name),
+      mediaAttentionPoints,
+      peakPoint
+        ? {
+            date: peakPoint.date,
+            value: peakPoint.value,
+            normalizedValue: peakPoint.normalizedValue,
+            stories: peakStories,
+          }
+        : null,
+    )
+
+    return {
+      candidateName: candidate.name,
+      candidateId: candidate.id,
+      pointCount: mediaAttentionPoints.length,
+      updatedAt: new Date().toISOString(),
+    }
+  } catch (error) {
+    throw new Error(getRefreshErrorMessage(error))
+  }
+}
+
+export async function getCandidateMediaCounts(candidateId: string): Promise<CandidateMediaCounts> {
+  const youtubeQuery = query(
+    collection(db, RAW_INTERVENTIONS_COLLECTION),
+    where('candidateId', '==', candidateId),
+    where('provider', '==', 'youtube'),
+  )
+  const gdeltQuery = query(
+    collection(db, RAW_INTERVENTIONS_COLLECTION),
+    where('candidateId', '==', candidateId),
+    where('provider', '==', 'gdelt'),
+  )
+
+  const [youtubeSnapshot, gdeltSnapshot] = await Promise.all([getDocs(youtubeQuery), getDocs(gdeltQuery)])
+
+  return {
+    youtube: youtubeSnapshot.size,
+    gdelt: gdeltSnapshot.size,
   }
 }
