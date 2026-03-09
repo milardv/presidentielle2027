@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getAnalytics, isSupported, type Analytics } from 'firebase/analytics'
-import { getAuth } from 'firebase/auth'
+import { GoogleAuthProvider, getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -16,6 +16,12 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig)
 export const auth = getAuth(firebaseApp)
 export const db = getFirestore(firebaseApp)
+export const googleAuthProvider = new GoogleAuthProvider()
+
+auth.useDeviceLanguage()
+googleAuthProvider.setCustomParameters({
+  prompt: 'select_account',
+})
 
 export let analytics: Analytics | null = null
 void isSupported().then((supported) => {

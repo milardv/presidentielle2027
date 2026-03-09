@@ -2,7 +2,7 @@ import type {
   CandidateNetworkRelation,
   CandidateParcoursStep,
   CandidateThemeHighlight,
-} from './candidates'
+} from './candidateTypes'
 
 interface CandidateInsights {
   themeHighlights: CandidateThemeHighlight[]
@@ -16,7 +16,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         theme: 'Institutions',
         analysis:
-          'Il assume une offre institutionnelle de rupture avec des changements qu il qualifie de systemiques pour 2027.',
+          'Il assume une offre institutionnelle de rupture avec des changements qu’il qualifie de systémiques pour 2027.',
         source: {
           label: 'TF1 Info',
           url: 'https://www.tf1info.fr/politique/elections-crise-politique-2027-edouard-philippe-se-declare-candidat-a-la-prochaine-election-presidentielle-2317754.html',
@@ -24,9 +24,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         },
       },
       {
-        theme: 'Reindustrialisation',
+        theme: 'Réindustrialisation',
         analysis:
-          'Son discours de campagne met en avant une relance economique appuyee sur les territoires et la capacite de production nationale.',
+          'Son discours de campagne met en avant une relance économique appuyée sur les territoires et la capacité de production nationale.',
         source: {
           label: 'TF1 Info',
           url: 'https://www.tf1info.fr/politique/elections-crise-politique-2027-edouard-philippe-se-declare-candidat-a-la-prochaine-election-presidentielle-2317754.html',
@@ -36,7 +36,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         theme: 'Coalition de centre-droit',
         analysis:
-          'Il construit une ligne autonome vis a vis du macronisme pour agreger une coalition differenciee.',
+          'Il construit une ligne autonome vis-à-vis du macronisme pour agréger une coalition différenciée.',
         source: {
           label: 'Le Monde',
           url: 'https://www.lemonde.fr/politique/article/2024/06/21/edouard-philippe-acte-la-rupture-avec-emmanuel-macron-le-president-de-la-republique-a-tue-la-majorite_6242156_823448.html',
@@ -47,8 +47,8 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
     network: [
       {
         actor: 'Horizons',
-        role: 'President du parti',
-        relation: 'Pointe d appui organisationnelle nationale pour la preparation de 2027.',
+        role: 'Président du parti',
+        relation: 'Pointe d’appui organisationnelle nationale pour la préparation de 2027.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Horizons_(parti_politique)',
@@ -58,7 +58,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         actor: 'Ville du Havre',
         role: 'Maire',
-        relation: 'Ancrage local historique utilise comme vitrine de gestion executive.',
+        relation: 'Ancrage local historique utilisé comme vitrine de gestion exécutive.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/%C3%89douard_Philippe',
@@ -68,7 +68,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         actor: 'Etat (Matignon)',
         role: 'Ancien Premier ministre',
-        relation: 'Capital d experience gouvernementale revendique dans son positionnement presidentiel.',
+        relation: 'Capital d’expérience gouvernementale revendiqué dans son positionnement présidentiel.',
         source: {
           label: 'info.gouv.fr',
           url: 'https://www.info.gouv.fr/les-anciens-premiers-et-premieres-ministres-de-la-ve-republique/edouard-philippe',
@@ -81,7 +81,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         period: '2010-2017',
         role: 'Maire',
         institution: 'Ville du Havre',
-        summary: 'Premiere phase de mandat municipal avant son entree a Matignon.',
+        summary: 'Première phase de mandat municipal avant son entrée à Matignon.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/%C3%89douard_Philippe',
@@ -91,8 +91,8 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         period: '2017-2020',
         role: 'Premier ministre',
-        institution: 'Gouvernement francais',
-        summary: 'Dirige le gouvernement durant le premier quinquennat d Emmanuel Macron.',
+        institution: 'Gouvernement français',
+        summary: 'Dirige le gouvernement durant le premier quinquennat d’Emmanuel Macron.',
         source: {
           label: 'info.gouv.fr',
           url: 'https://www.info.gouv.fr/les-anciens-premiers-et-premieres-ministres-de-la-ve-republique/edouard-philippe',
@@ -100,10 +100,10 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         },
       },
       {
-        period: '2020-aujourd hui',
+        period: '2020-aujourd’hui',
         role: 'Maire / chef de parti',
         institution: 'Le Havre et Horizons',
-        summary: 'Retour local et structuration nationale avec declaration de candidature en 2024.',
+        summary: 'Retour local et structuration nationale avec déclaration de candidature en 2024.',
         source: {
           label: 'TF1 Info',
           url: 'https://www.tf1info.fr/politique/elections-crise-politique-2027-edouard-philippe-se-declare-candidat-a-la-prochaine-election-presidentielle-2317754.html',
@@ -117,7 +117,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         theme: 'Droite gouvernementale',
         analysis:
-          'Il revendique une offre de droite de gouvernement et refuse l idee d un candidat LR designe d avance.',
+          'Il revendique une offre de droite de gouvernement et refuse l’idée d’un candidat LR désigné d’avance.',
         source: {
           label: 'BFMTV',
           url: 'https://www.bfmtv.com/politique/les-republicains/presidentielle-2027-xavier-bertrand-estime-que-laurent-wauquiez-n-est-pas-le-candidat-naturel-de-lr_AV-202402040392.html',
@@ -127,7 +127,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         theme: 'Ancrage territorial',
         analysis:
-          'La presidence des Hauts-de-France est centrale dans son argumentaire de proximite et de gestion.',
+          'La présidence des Hauts-de-France est centrale dans son argumentaire de proximité et de gestion.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Xavier_Bertrand',
@@ -135,9 +135,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         },
       },
       {
-        theme: 'Rapport de force interne a droite',
+        theme: 'Rapport de force interne à droite',
         analysis:
-          'La competition avec Laurent Wauquiez structure deja la pre-campagne de la droite pour 2027.',
+          'La compétition avec Laurent Wauquiez structure déjà la pré-campagne de la droite pour 2027.',
         source: {
           label: 'Le Monde',
           url: 'https://www.lemonde.fr/politique/article/2024/03/29/chez-les-republicains-le-match-pour-la-presidentielle-de-2027-est-deja-lance-entre-wauquiez-et-bertrand_6224794_823448.html',
@@ -147,9 +147,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
     ],
     network: [
       {
-        actor: 'Region Hauts-de-France',
-        role: 'President',
-        relation: 'Base electorale et institutionnelle majeure de son positionnement national.',
+        actor: 'Région Hauts-de-France',
+        role: 'Président',
+        relation: 'Base électorale et institutionnelle majeure de son positionnement national.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Xavier_Bertrand',
@@ -157,9 +157,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         },
       },
       {
-        actor: 'Les Republicains',
+        actor: 'Les Républicains',
         role: 'Figure de la primaire potentielle',
-        relation: 'Positionne face a d autres leaders LR pour l investiture ou la legitimite de candidature.',
+        relation: 'Positionné face à d’autres leaders LR pour l’investiture ou la légitimité de candidature.',
         source: {
           label: 'BFMTV',
           url: 'https://www.bfmtv.com/politique/les-republicains/presidentielle-2027-xavier-bertrand-estime-que-laurent-wauquiez-n-est-pas-le-candidat-naturel-de-lr_AV-202402040392.html',
@@ -169,7 +169,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         actor: 'Anciens gouvernements',
         role: 'Ex-ministre',
-        relation: 'Ressource de credibilite sur l experience d Etat dans sa projection 2027.',
+        relation: 'Ressource de crédibilité sur l’expérience d’Etat dans sa projection 2027.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Xavier_Bertrand',
@@ -181,8 +181,8 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         period: '2004-2012',
         role: 'Ministre',
-        institution: 'Gouvernements francais',
-        summary: 'Occupe plusieurs portefeuilles ministeriels, dont Sante et Travail.',
+        institution: 'Gouvernements français',
+        summary: 'Occupe plusieurs portefeuilles ministériels, dont Santé et Travail.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Xavier_Bertrand',
@@ -190,10 +190,10 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         },
       },
       {
-        period: '2016-aujourd hui',
-        role: 'President de region',
+        period: '2016-aujourd’hui',
+        role: 'Président de région',
         institution: 'Hauts-de-France',
-        summary: 'Consolide un profil d executif local avec reelection en 2021.',
+        summary: 'Consolide un profil d’exécutif local avec réélection en 2021.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Xavier_Bertrand',
@@ -202,9 +202,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       },
       {
         period: '2024-2027',
-        role: 'Pretendant a la presidentielle',
+        role: 'Prétendant à la présidentielle',
         institution: 'Camp de droite',
-        summary: 'Annonce son intention de candidature et ouvre la bataille interne a droite.',
+        summary: 'Annonce son intention de candidature et ouvre la bataille interne à droite.',
         source: {
           label: 'BFMTV',
           url: 'https://www.bfmtv.com/politique/les-republicains/presidentielle-2027-xavier-bertrand-estime-que-laurent-wauquiez-n-est-pas-le-candidat-naturel-de-lr_AV-202402040392.html',
@@ -218,7 +218,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         theme: 'Salaires et emploi',
         analysis:
-          'Elle pousse une ligne de hausse des salaires et d interdiction des licenciements au nom du monde du travail.',
+          'Elle pousse une ligne de hausse des salaires et d’interdiction des licenciements au nom du monde du travail.',
         source: {
           label: 'TF1 Info',
           url: 'https://www.tf1info.fr/politique/presidentielle-2027-nathalie-arthaud-officiellement-candidate-pour-la-4e-fois-2411489.html',
@@ -228,7 +228,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         theme: 'Anticapitalisme',
         analysis:
-          'Elle maintient une orientation anticapitaliste avec des propositions de rupture sur la propriete du capital.',
+          'Elle maintient une orientation anticapitaliste avec des propositions de rupture sur la propriété du capital.',
         source: {
           label: 'Le Parisien',
           url: 'https://www.leparisien.fr/elections/presidentielle/presidentielle-2027-nathalie-arthaud-annonce-sa-candidature-08-12-2025-CVGIMSFYS5CYDEFDIYUM2AW6FM.php',
@@ -236,9 +236,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         },
       },
       {
-        theme: 'Representation des travailleurs',
+        theme: 'Représentation des travailleurs',
         analysis:
-          'Elle justifie sa candidature comme une representation explicite des classes populaires et salariees.',
+          'Elle justifie sa candidature comme une représentation explicite des classes populaires et salariées.',
         source: {
           label: 'Le Parisien',
           url: 'https://www.leparisien.fr/elections/presidentielle/presidentielle-2027-nathalie-arthaud-annonce-sa-candidature-08-12-2025-CVGIMSFYS5CYDEFDIYUM2AW6FM.php',
@@ -248,9 +248,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
     ],
     network: [
       {
-        actor: 'Lutte Ouvriere',
+        actor: 'Lutte Ouvrière',
         role: 'Porte-parole nationale',
-        relation: 'Figure nationale du parti apres Arlette Laguiller.',
+        relation: 'Figure nationale du parti après Arlette Laguiller.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Nathalie_Arthaud',
@@ -260,7 +260,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         actor: 'Militantisme syndical et ouvrier',
         role: 'Base militante',
-        relation: 'Ancrage continu dans les reseaux militants de LO.',
+        relation: 'Ancrage continu dans les réseaux militants de LO.',
         source: {
           label: 'Le Parisien',
           url: 'https://www.leparisien.fr/elections/presidentielle/presidentielle-2027-nathalie-arthaud-annonce-sa-candidature-08-12-2025-CVGIMSFYS5CYDEFDIYUM2AW6FM.php',
@@ -268,9 +268,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         },
       },
       {
-        actor: 'Campagnes presidentielles LO',
-        role: 'Candidate recurrente',
-        relation: 'Continuites de candidature 2012, 2017, 2022 puis 2027.',
+        actor: 'Campagnes présidentielles LO',
+        role: 'Candidate récurrente',
+        relation: 'Continuités de candidature 2012, 2017, 2022 puis 2027.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Nathalie_Arthaud',
@@ -283,7 +283,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         period: 'Avant 2008',
         role: 'Enseignante / militante',
         institution: 'Education nationale et LO',
-        summary: 'Combine activite professionnelle et engagement politique trotskiste.',
+        summary: 'Combine activité professionnelle et engagement politique trotskiste.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Nathalie_Arthaud',
@@ -293,8 +293,8 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         period: 'Depuis 2008',
         role: 'Porte-parole',
-        institution: 'Lutte Ouvriere',
-        summary: 'Succede a Arlette Laguiller comme visage national du mouvement.',
+        institution: 'Lutte Ouvrière',
+        summary: 'Succède a Arlette Laguiller comme visage national du mouvement.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Nathalie_Arthaud',
@@ -303,9 +303,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       },
       {
         period: '2012-2027',
-        role: 'Candidate presidentielle',
-        institution: 'Elections nationales',
-        summary: 'Quatrieme cycle presidentiel annonce pour 2027.',
+        role: 'Candidate présidentielle',
+        institution: 'Élections nationales',
+        summary: 'Quatrième cycle présidentiel annonce pour 2027.',
         source: {
           label: 'TF1 Info',
           url: 'https://www.tf1info.fr/politique/presidentielle-2027-nathalie-arthaud-officiellement-candidate-pour-la-4e-fois-2411489.html',
@@ -317,29 +317,29 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
   'delphine-batho': {
     themeHighlights: [
       {
-        theme: 'Ecologie de gouvernement',
+        theme: 'Écologie de gouvernement',
         analysis:
-          'Elle revendique une ecologie qui gouverne avec une plateforme programmatique autonome.',
+          'Elle revendique une écologie qui gouverne avec une plateforme programmatique autonome.',
         source: {
-          label: 'Generation Ecologie',
+          label: 'Génération Écologie',
           url: 'https://www.generationecologie.fr/2025/11/26/je-suis-candidate-a-lelection-presidentielle-pour-reconstruire-une-ecologie-capable-de-gouverner/',
           date: '2025-11-26',
         },
       },
       {
-        theme: 'Decroissance et sobriete',
+        theme: 'Décroissance et sobriété',
         analysis:
-          'Elle articule l ecologie politique autour d une transformation economique de long terme.',
+          'Elle articule l’écologie politique autour d’une transformation économique de long terme.',
         source: {
-          label: 'Generation Ecologie',
+          label: 'Génération Écologie',
           url: 'https://www.generationecologie.fr/2025/11/26/je-suis-candidate-a-lelection-presidentielle-pour-reconstruire-une-ecologie-capable-de-gouverner/',
           date: '2025-11-26',
         },
       },
       {
-        theme: 'Transition energetique',
+        theme: 'Transition énergétique',
         analysis:
-          'Son profil conserve une forte coloration energie-environnement issue de son passage ministeriel.',
+          'Son profil conserve une forte coloration énergie-environnement issue de son passage ministériel.',
         source: {
           label: 'Legifrance',
           url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000027650341',
@@ -349,29 +349,29 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
     ],
     network: [
       {
-        actor: 'Generation Ecologie',
+        actor: 'Génération Écologie',
         role: 'Coordinatrice nationale',
         relation: 'Structure partisane de sa candidature autonome pour 2027.',
         source: {
-          label: 'Generation Ecologie',
+          label: 'Génération Écologie',
           url: 'https://www.generationecologie.fr/2025/11/26/je-suis-candidate-a-lelection-presidentielle-pour-reconstruire-une-ecologie-capable-de-gouverner/',
           date: '2025-11-26',
         },
       },
       {
-        actor: 'Assemblee nationale',
-        role: 'Deputee des Deux-Sevres',
-        relation: 'Ancrage parlementaire actif dans le groupe Ecologiste et Social.',
+        actor: 'Assemblée nationale',
+        role: 'Députée des Deux-Sèvres',
+        relation: 'Ancrage parlementaire actif dans le groupe Écologiste et Social.',
         source: {
-          label: 'Assemblee nationale',
+          label: 'Assemblée nationale',
           url: 'https://www.assemblee-nationale.fr/dyn/deputes/PA335999',
           date: '2026-02-15',
         },
       },
       {
-        actor: 'Ancien ministere de l Ecologie',
+        actor: 'Ancien ministère de l’Écologie',
         role: 'Ex-ministre',
-        relation: 'Experience executive revendiquee dans sa credibilite de candidate.',
+        relation: 'Expérience exécutive revendiquée dans sa crédibilité de candidate.',
         source: {
           label: 'Legifrance',
           url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000027650341',
@@ -382,20 +382,20 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
     parcours: [
       {
         period: '2007-2024',
-        role: 'Deputee',
-        institution: 'Assemblee nationale',
-        summary: 'Cycle parlementaire long, interrompu puis relance avec retour au Palais Bourbon.',
+        role: 'Députée',
+        institution: 'Assemblée nationale',
+        summary: 'Cycle parlementaire long, interrompu puis relancé avec retour au Palais Bourbon.',
         source: {
-          label: 'Assemblee nationale',
+          label: 'Assemblée nationale',
           url: 'https://www.assemblee-nationale.fr/dyn/deputes/PA335999',
           date: '2026-02-15',
         },
       },
       {
         period: '2012-2013',
-        role: 'Ministre de l Ecologie',
-        institution: 'Gouvernement francais',
-        summary: 'Passee par l executif national sur les dossiers energetiques et environnementaux.',
+        role: 'Ministre de l’Écologie',
+        institution: 'Gouvernement français',
+        summary: 'Passée par l’exécutif national sur les dossiers énergétiques et environnementaux.',
         source: {
           label: 'Legifrance',
           url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000027650341',
@@ -404,11 +404,11 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       },
       {
         period: '2025-2027',
-        role: 'Candidate presidentielle',
-        institution: 'Generation Ecologie',
-        summary: 'Annonce une candidature ecologiste autonome pour la presidentielle.',
+        role: 'Candidate présidentielle',
+        institution: 'Génération Écologie',
+        summary: 'Annonce une candidature écologiste autonome pour la présidentielle.',
         source: {
-          label: 'Generation Ecologie',
+          label: 'Génération Écologie',
           url: 'https://www.generationecologie.fr/2025/11/26/je-suis-candidate-a-lelection-presidentielle-pour-reconstruire-une-ecologie-capable-de-gouverner/',
           date: '2025-11-26',
         },
@@ -418,9 +418,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
   'marine-tondelier': {
     themeHighlights: [
       {
-        theme: 'Ecologie politique',
+        theme: 'Écologie politique',
         analysis:
-          'Elle presente la candidature ecologiste comme porte d entree d un projet de transformation nationale.',
+          'Elle présente la candidature écologiste comme porte d’entrée d’un projet de transformation nationale.',
         source: {
           label: 'TF1 Info',
           url: 'https://www.tf1info.fr/politique/l-ecologiste-marine-tondelier-annonce-sa-candidature-a-la-presidentielle-2027-2402175.html',
@@ -430,7 +430,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         theme: 'Union de la gauche',
         analysis:
-          'Sa strategie assume un passage par la primaire unitaire de la gauche en 2026.',
+          'Sa stratégie assume un passage par la primaire unitaire de la gauche en 2026.',
         source: {
           label: 'TF1 Info',
           url: 'https://www.tf1info.fr/politique/presidentielle-2027-on-connait-la-date-de-la-primaire-de-la-gauche-unitaire-2420603.html',
@@ -438,11 +438,11 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         },
       },
       {
-        theme: 'Legitimite democratique interne',
+        theme: 'Légitimité democratique interne',
         analysis:
-          'Sa designation interne tres large consolide son statut de candidate ecologiste pour la sequence 2027.',
+          'Sa désignation interne très large consolide son statut de candidate écologiste pour la sequence 2027.',
         source: {
-          label: 'Les Ecologistes',
+          label: 'Les Écologistes',
           url: 'https://lesecologistes.fr/posts/4DGpyusxBAU4xQPexfncsx/marine-tondelier-designee-pour-representer-les-ecologistes-a-l-election-presidentielle',
           date: '2025-12-08',
         },
@@ -450,19 +450,19 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
     ],
     network: [
       {
-        actor: 'Les Ecologistes',
-        role: 'Secretaire nationale',
+        actor: 'Les Écologistes',
+        role: 'Secrétaire nationale',
         relation: 'Direction du parti et maillage militant national.',
         source: {
-          label: 'Les Ecologistes',
+          label: 'Les Écologistes',
           url: 'https://lesecologistes.fr/posts/4DGpyusxBAU4xQPexfncsx/marine-tondelier-designee-pour-representer-les-ecologistes-a-l-election-presidentielle',
           date: '2025-12-08',
         },
       },
       {
         actor: 'Primaire de la gauche',
-        role: 'Candidate declaree',
-        relation: 'Inscription dans une architecture d alliance au-dela du seul parti ecologiste.',
+        role: 'Candidate déclarée',
+        relation: 'Inscription dans une architecture d’alliance au-dela du seul parti écologiste.',
         source: {
           label: 'TF1 Info',
           url: 'https://www.tf1info.fr/politique/presidentielle-2027-on-connait-la-date-de-la-primaire-de-la-gauche-unitaire-2420603.html',
@@ -471,7 +471,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       },
       {
         actor: 'Ancrage local (Pas-de-Calais)',
-        role: 'Elue locale',
+        role: 'Élue locale',
         relation: 'Base territoriale historique qui nourrit son profil national.',
         source: {
           label: 'Wikipedia',
@@ -483,9 +483,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
     parcours: [
       {
         period: 'Avant 2022',
-        role: 'Elue locale et cadre ecologiste',
+        role: 'Élue locale et cadre écologiste',
         institution: 'Pas-de-Calais',
-        summary: 'Parcours territorial et militant dans un contexte local tres polarise.',
+        summary: 'Parcours territorial et militant dans un contexte local très polarisé.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Marine_Tondelier',
@@ -494,9 +494,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       },
       {
         period: 'Depuis 2022',
-        role: 'Secretaire nationale',
-        institution: 'Les Ecologistes',
-        summary: 'Prend la tete du parti au congres de decembre 2022.',
+        role: 'Secrétaire nationale',
+        institution: 'Les Écologistes',
+        summary: 'Prend la tête du parti au congrès de décembre 2022.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Marine_Tondelier',
@@ -505,11 +505,11 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       },
       {
         period: '2025-2027',
-        role: 'Candidate ecologiste',
-        institution: 'Sequence presidentielle',
-        summary: 'Annonce sa candidature puis obtient la designation interne avant la primaire 2026.',
+        role: 'Candidate écologiste',
+        institution: 'Sequence présidentielle',
+        summary: 'Annonce sa candidature puis obtient la désignation interne avant la primaire 2026.',
         source: {
-          label: 'Les Ecologistes',
+          label: 'Les Écologistes',
           url: 'https://lesecologistes.fr/posts/4DGpyusxBAU4xQPexfncsx/marine-tondelier-designee-pour-representer-les-ecologistes-a-l-election-presidentielle',
           date: '2025-12-08',
         },
@@ -519,7 +519,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
   'francois-ruffin': {
     themeHighlights: [
       {
-        theme: 'Pouvoir d achat',
+        theme: 'Pouvoir d’achat',
         analysis:
           'Il axe sa candidature primaire sur les bas salaires et les travailleurs essentiels.',
         source: {
@@ -531,7 +531,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         theme: 'Union de la gauche',
         analysis:
-          'Il se positionne comme point de convergence d une offre de gauche unitaire pour 2027.',
+          'Il se positionne comme point de convergence d’une offre de gauche unitaire pour 2027.',
         source: {
           label: 'Le Monde',
           url: 'https://www.lemonde.fr/politique/article/2025/04/02/francois-ruffin-propose-d-incarner-une-union-de-la-gauche-pour-la-presidentielle-de-2027_6589773_823448.html',
@@ -541,7 +541,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         theme: 'Justice sociale',
         analysis:
-          'Son discours combine conflictualite sociale, redistribution et critique des inegalites.',
+          'Son discours combine conflictualité sociale, redistribution et critique des inégalités.',
         source: {
           label: 'Le Parisien',
           url: 'https://www.leparisien.fr/elections/presidentielle/election-presidentielle-2027-francois-ruffin-annonce-sa-candidature-a-la-primaire-de-la-gauche-26-01-2026-4C6463HLG5FYPODM3EGI5JSQBI.php',
@@ -551,11 +551,11 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
     ],
     network: [
       {
-        actor: 'Assemblee nationale',
-        role: 'Depute de la Somme',
-        relation: 'Base parlementaire de sa visibilite nationale.',
+        actor: 'Assemblée nationale',
+        role: 'Député de la Somme',
+        relation: 'Base parlementaire de sa visibilité nationale.',
         source: {
-          label: 'Assemblee nationale',
+          label: 'Assemblée nationale',
           url: 'https://www.assemblee-nationale.fr/dyn/deputes/PA722142',
           date: '2026-02-15',
         },
@@ -563,7 +563,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         actor: 'Mouvement Debout',
         role: 'Fondateur',
-        relation: 'Appareil militant et politique lance pour structurer sa campagne 2027.',
+        relation: 'Appareil militant et politique lancé pour structurer sa campagne 2027.',
         source: {
           label: 'RTL',
           url: 'https://www.rtl.fr/actu/politique/les-infos-de-6h-francois-ruffin-lance-son-nouveau-parti-debout-en-vue-de-la-presidentielle-de-2027-7900519942',
@@ -573,7 +573,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         actor: 'Primaire de la gauche',
         role: 'Candidat',
-        relation: 'Participation annoncee au processus de designation unitaire.',
+        relation: 'Participation annoncée au processus de désignation unitaire.',
         source: {
           label: 'TF1 Info',
           url: 'https://www.tf1info.fr/politique/presidentielle-2027-on-connait-la-date-de-la-primaire-de-la-gauche-unitaire-2420603.html',
@@ -586,7 +586,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         period: 'Avant 2017',
         role: 'Journaliste / auteur',
         institution: 'Presse et documentaire',
-        summary: 'Trajectoire mediatique et militante avant entree au Parlement.',
+        summary: 'Trajectoire médiatique et militante avant entrée au Parlement.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Fran%C3%A7ois_Ruffin',
@@ -595,11 +595,11 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       },
       {
         period: 'Depuis 2017',
-        role: 'Depute',
-        institution: 'Assemblee nationale',
+        role: 'Député',
+        institution: 'Assemblée nationale',
         summary: 'Mandats successifs dans la Somme, avec forte exposition parlementaire.',
         source: {
-          label: 'Assemblee nationale',
+          label: 'Assemblée nationale',
           url: 'https://www.assemblee-nationale.fr/dyn/deputes/PA722142',
           date: '2026-02-15',
         },
@@ -608,7 +608,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         period: '2025-2027',
         role: 'Chef de mouvement et candidat primaire',
         institution: 'Debout / gauche unitaire',
-        summary: 'Lance Debout puis officialise sa candidature a la primaire de gauche.',
+        summary: 'Lance Debout puis officialise sa candidature à la primaire de gauche.',
         source: {
           label: 'Le Parisien',
           url: 'https://www.leparisien.fr/elections/presidentielle/election-presidentielle-2027-francois-ruffin-annonce-sa-candidature-a-la-primaire-de-la-gauche-26-01-2026-4C6463HLG5FYPODM3EGI5JSQBI.php',
@@ -620,9 +620,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
   'marine-le-pen': {
     themeHighlights: [
       {
-        theme: 'Strategie judiciaire et electorale',
+        theme: 'Stratégie judiciaire et électorale',
         analysis:
-          'La priorite immediate est la bataille en appel qui conditionne sa capacite juridique a concourir en 2027.',
+          'La priorité immédiate est la bataille en appel qui conditionne sa capacité juridique à concourir en 2027.',
         source: {
           label: 'AP News',
           url: 'https://apnews.com/article/1f06183468c669d99093634ba7472c72',
@@ -632,17 +632,17 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         theme: 'Leadership RN sous contrainte',
         analysis:
-          'Elle maintient la ligne du RN mais integre un scenario de remplacement si l ineligibilite est confirmee.',
+          'Elle maintient la ligne du RN mais intègre un scénario de remplacement si l’inéligibilité est confirmée.',
         source: {
           label: 'Le Monde',
-          url: 'https://www.lemonde.fr/politique/article/2025/04/26/si-marine-le-pen-est-empechee-pour-la-presidentielle-2027-je-serai-son-candidat-assure-jordan-bardella_6600386_823448.html',
+          url: 'https://www.lemonde.fr/politique/article/2025/04/26/si-marine-le-pen-est-empêchée-pour-la-presidentielle-2027-je-serai-son-candidat-assure-jordan-bardella_6600386_823448.html',
           date: '2025-04-26',
         },
       },
       {
         theme: 'Condition de candidature 2027',
         analysis:
-          'Elle indique explicitement ses lignes rouges de campagne selon les modalites de peine eventuellement confirmees.',
+          'Elle indique explicitement ses lignes rouges de campagne selon les modalités de peine éventuellement confirmées.',
         source: {
           label: 'AP News',
           url: 'https://apnews.com/article/fa548e0280837fa277d9b5627846a93c',
@@ -654,7 +654,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         actor: 'Rassemblement national',
         role: 'Figure centrale historique',
-        relation: 'Pivot politique du parti, meme avec transfert potentiel de candidature.',
+        relation: 'Pivot politique du parti, même avec transfert potentiel de candidature.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Marine_Le_Pen',
@@ -662,8 +662,8 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         },
       },
       {
-        actor: 'Groupe RN a l Assemblee nationale',
-        role: 'Presidente de groupe',
+        actor: 'Groupe RN à l’Assemblée nationale',
+        role: 'Présidente de groupe',
         relation: 'Relais institutionnel principal de sa ligne politique nationale.',
         source: {
           label: 'Wikipedia',
@@ -673,11 +673,11 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       },
       {
         actor: 'Jordan Bardella',
-        role: 'Scenario de remplacement',
-        relation: 'Le tandem Le Pen-Bardella structure la gestion du risque d ineligibilite.',
+        role: 'Scénario de remplacement',
+        relation: 'Le tandem Le Pen-Bardella structure la gestion du risque d’inéligibilité.',
         source: {
           label: 'Le Monde',
-          url: 'https://www.lemonde.fr/politique/article/2025/04/26/si-marine-le-pen-est-empechee-pour-la-presidentielle-2027-je-serai-son-candidat-assure-jordan-bardella_6600386_823448.html',
+          url: 'https://www.lemonde.fr/politique/article/2025/04/26/si-marine-le-pen-est-empêchée-pour-la-presidentielle-2027-je-serai-son-candidat-assure-jordan-bardella_6600386_823448.html',
           date: '2025-04-26',
         },
       },
@@ -685,9 +685,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
     parcours: [
       {
         period: '2011-2022',
-        role: 'Presidente du FN puis du RN',
+        role: 'Présidente du FN puis du RN',
         institution: 'Rassemblement national',
-        summary: 'Prend la tete du parti, puis organise sa normalisation electorale.',
+        summary: 'Prend la tête du parti, puis organise sa normalisation électorale.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Marine_Le_Pen',
@@ -696,9 +696,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       },
       {
         period: '2017 et 2022',
-        role: 'Finaliste presidentielle',
-        institution: 'Election presidentielle',
-        summary: 'Accede a deux reprises au second tour face a Emmanuel Macron.',
+        role: 'Finaliste présidentielle',
+        institution: 'Élection présidentielle',
+        summary: 'Accède a deux reprises au second tour face a Emmanuel Macron.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Marine_Le_Pen',
@@ -707,9 +707,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       },
       {
         period: '2025-2026',
-        role: 'Sequence judiciaire decisive',
-        institution: 'Procedure penale et appel',
-        summary: 'Condamnee en premiere instance, appel en cours avec verdict attendu le 7 juillet 2026.',
+        role: 'Sequence judiciaire décisive',
+        institution: 'Procedure pénale et appel',
+        summary: 'Condamnée en première instance, appel en cours avec verdict attendu le 7 juillet 2026.',
         source: {
           label: 'AP News',
           url: 'https://apnews.com/article/7648655db3ec0db4cd8f70024382a3ff',
@@ -723,27 +723,27 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         theme: 'Succession conditionnelle RN',
         analysis:
-          'Il reaffirme que Marine Le Pen reste prioritaire, tout en actant sa disponibilite en cas d empechement.',
+          'Il réaffirme que Marine Le Pen reste prioritaire, tout en actant sa disponibilité en cas d’empêchement.',
         source: {
           label: 'Le Parisien',
-          url: 'https://www.leparisien.fr/politique/jordan-bardella-si-elle-est-empechee-je-serai-le-candidat-de-marine-le-pen-pour-2027-26-04-2025-NRBRMBWVBNAZNL6JR7JQWHZQQM.php',
+          url: 'https://www.leparisien.fr/politique/jordan-bardella-si-elle-est-empêchée-je-serai-le-candidat-de-marine-le-pen-pour-2027-26-04-2025-NRBRMBWVBNAZNL6JR7JQWHZQQM.php',
           date: '2025-04-26',
         },
       },
       {
-        theme: 'Projection presidentielle personnelle',
+        theme: 'Projection présidentielle personnelle',
         analysis:
-          'Sa communication combine loyautes internes et preparation explicite d une option Bardella pour 2027.',
+          'Sa communication combine loyautés internes et préparation explicite d’une option Bardella pour 2027.',
         source: {
           label: 'Le Monde',
-          url: 'https://www.lemonde.fr/politique/article/2025/04/26/si-marine-le-pen-est-empechee-pour-la-presidentielle-2027-je-serai-son-candidat-assure-jordan-bardella_6600386_823448.html',
+          url: 'https://www.lemonde.fr/politique/article/2025/04/26/si-marine-le-pen-est-empêchée-pour-la-presidentielle-2027-je-serai-son-candidat-assure-jordan-bardella_6600386_823448.html',
           date: '2025-04-26',
         },
       },
       {
-        theme: 'Dimension europeenne',
+        theme: 'Dimension européenne',
         analysis:
-          'Son profil est structure par son mandat d eurodepute et son exposition dans l arena europeenne.',
+          'Son profil est structure par son mandat d’eurodéputé et son exposition dans l’arena européenne.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Jordan_Bardella',
@@ -754,8 +754,8 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
     network: [
       {
         actor: 'Rassemblement national',
-        role: 'President du parti',
-        relation: 'Controle de l appareil partisan et de la strategie electorale RN.',
+        role: 'Président du parti',
+        relation: 'Contrôle de l’appareil partisan et de la stratégie électorale RN.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Jordan_Bardella',
@@ -763,7 +763,7 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
         },
       },
       {
-        actor: 'Parlement europeen',
+        actor: 'Parlement européen',
         role: 'Eurodepute',
         relation: 'Relais institutionnel cle dans sa trajectoire nationale.',
         source: {
@@ -775,10 +775,10 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         actor: 'Tandem avec Marine Le Pen',
         role: 'Plan B assume',
-        relation: 'L architecture de campagne RN prevoit son basculement possible en candidature principale.',
+        relation: 'L’architecture de campagne RN prévoit son basculement possible en candidature principale.',
         source: {
           label: 'Le Monde',
-          url: 'https://www.lemonde.fr/politique/article/2025/04/26/si-marine-le-pen-est-empechee-pour-la-presidentielle-2027-je-serai-son-candidat-assure-jordan-bardella_6600386_823448.html',
+          url: 'https://www.lemonde.fr/politique/article/2025/04/26/si-marine-le-pen-est-empêchée-pour-la-presidentielle-2027-je-serai-son-candidat-assure-jordan-bardella_6600386_823448.html',
           date: '2025-04-26',
         },
       },
@@ -787,8 +787,8 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         period: '2019',
         role: 'Eurodepute',
-        institution: 'Parlement europeen',
-        summary: 'Entre au Parlement europeen et gagne une forte exposition mediatique.',
+        institution: 'Parlement européen',
+        summary: 'Entre au Parlement européen et gagne une forte exposition médiatique.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Jordan_Bardella',
@@ -797,9 +797,9 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       },
       {
         period: 'Depuis 2022',
-        role: 'President du RN',
+        role: 'Président du RN',
         institution: 'Rassemblement national',
-        summary: 'Prend officiellement la direction du parti apres la phase d interim.',
+        summary: 'Prend officiellement la direction du parti après la phase d’intérim.',
         source: {
           label: 'Wikipedia',
           url: 'https://fr.wikipedia.org/wiki/Jordan_Bardella',
@@ -809,11 +809,11 @@ export const candidateInsightsById: Record<string, CandidateInsights> = {
       {
         period: '2025-2027',
         role: 'Candidat conditionnel',
-        institution: 'Sequence presidentielle RN',
-        summary: 'Affirme sa disponibilite si Marine Le Pen est ineligible apres appel.',
+        institution: 'Sequence présidentielle RN',
+        summary: 'Affirme sa disponibilité si Marine Le Pen est inéligible après appel.',
         source: {
           label: 'Le Parisien',
-          url: 'https://www.leparisien.fr/politique/jordan-bardella-si-elle-est-empechee-je-serai-le-candidat-de-marine-le-pen-pour-2027-26-04-2025-NRBRMBWVBNAZNL6JR7JQWHZQQM.php',
+          url: 'https://www.leparisien.fr/politique/jordan-bardella-si-elle-est-empêchée-je-serai-le-candidat-de-marine-le-pen-pour-2027-26-04-2025-NRBRMBWVBNAZNL6JR7JQWHZQQM.php',
           date: '2025-04-26',
         },
       },

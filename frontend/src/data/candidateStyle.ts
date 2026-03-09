@@ -1,10 +1,10 @@
-import type { CandidateStyleSignal } from './candidates'
+import type { CandidateStyleSignal } from './candidateTypes'
 
 export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
   'edouard-philippe': [
     {
       axis: 'Registre',
-      description: 'Style technocratique et institutionnel, avec vocabulaire de transformation systemique.',
+      description: 'Style technocratique et institutionnel, avec vocabulaire de transformation systémique.',
       source: {
         label: 'TF1 Info',
         url: 'https://www.tf1info.fr/politique/elections-crise-politique-2027-edouard-philippe-se-declare-candidat-a-la-prochaine-election-presidentielle-2317754.html',
@@ -13,7 +13,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
     },
     {
       axis: 'Posture politique',
-      description: 'Positionnement d autonomie par rapport a Emmanuel Macron, tout en restant sur une ligne de gouvernement.',
+      description: 'Positionnement d’autonomie par rapport a Emmanuel Macron, tout en restant sur une ligne de gouvernement.',
       source: {
         label: 'Le Monde',
         url: 'https://www.lemonde.fr/politique/article/2024/06/21/edouard-philippe-acte-la-rupture-avec-emmanuel-macron-le-president-de-la-republique-a-tue-la-majorite_6242156_823448.html',
@@ -22,7 +22,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
     },
     {
       axis: 'Cadence de campagne',
-      description: 'Preparation longue et methodique, avec annonces anticipees tres en amont du scrutin.',
+      description: 'Préparation longue et méthodique, avec annonces anticipées très en amont du scrutin.',
       source: {
         label: 'TF1 Info',
         url: 'https://www.tf1info.fr/politique/elections-crise-politique-2027-edouard-philippe-se-declare-candidat-a-la-prochaine-election-presidentielle-2317754.html',
@@ -33,7 +33,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
   'xavier-bertrand': [
     {
       axis: 'Registre',
-      description: 'Style direct et territorial, axe sur la proximite avec les classes moyennes et populaires.',
+      description: 'Style direct et territorial, axé sur la proximité avec les classes moyennes et populaires.',
       source: {
         label: 'BFMTV',
         url: 'https://www.bfmtv.com/politique/les-republicains/presidentielle-2027-xavier-bertrand-estime-que-laurent-wauquiez-n-est-pas-le-candidat-naturel-de-lr_AV-202402040392.html',
@@ -42,7 +42,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
     },
     {
       axis: 'Rapport au parti',
-      description: 'Refus d une designation d appareil automatique, avec mise en scene d une legitimite de terrain.',
+      description: 'Refus d’une désignation d’appareil automatique, avec mise en scène d’une légitimité de terrain.',
       source: {
         label: 'BFMTV',
         url: 'https://www.bfmtv.com/politique/les-republicains/presidentielle-2027-xavier-bertrand-estime-que-laurent-wauquiez-n-est-pas-le-candidat-naturel-de-lr_AV-202402040392.html',
@@ -51,7 +51,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
     },
     {
       axis: 'Narratif',
-      description: 'Narration d executif regional experimente pour incarner une alternative a la fois anti-RN et anti-macroniste.',
+      description: 'Narration d’exécutif régional expérimenté pour incarner une alternative à la fois anti-RN et anti-macroniste.',
       source: {
         label: 'Le Monde',
         url: 'https://www.lemonde.fr/politique/article/2024/03/29/chez-les-republicains-le-match-pour-la-presidentielle-de-2027-est-deja-lance-entre-wauquiez-et-bertrand_6224794_823448.html',
@@ -62,7 +62,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
   'nathalie-arthaud': [
     {
       axis: 'Registre',
-      description: 'Style de tribune militante, lexique de lutte des classes et conflictualite sociale assumee.',
+      description: 'Style de tribune militante, lexique de lutte des classes et conflictualité sociale assumée.',
       source: {
         label: 'Le Parisien',
         url: 'https://www.leparisien.fr/elections/presidentielle/presidentielle-2027-nathalie-arthaud-annonce-sa-candidature-08-12-2025-CVGIMSFYS5CYDEFDIYUM2AW6FM.php',
@@ -70,8 +70,8 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
       },
     },
     {
-      axis: 'Priorites discursives',
-      description: 'Messages repetes sur salaires, licenciements et expropriation des banques.',
+      axis: 'Priorités discursives',
+      description: 'Messages répétés sur les salaires, les licenciements et l’expropriation des banques.',
       source: {
         label: 'TF1 Info',
         url: 'https://www.tf1info.fr/politique/presidentielle-2027-nathalie-arthaud-officiellement-candidate-pour-la-4e-fois-2411489.html',
@@ -80,7 +80,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
     },
     {
       axis: 'Positionnement',
-      description: 'Refus d un lissage mediatique: maintien d une identite LO tres stable election apres election.',
+      description: 'Refus d’un lissage médiatique : maintien d’une identité LO très stable, élection après élection.',
       source: {
         label: 'Wikipedia',
         url: 'https://fr.wikipedia.org/wiki/Nathalie_Arthaud',
@@ -91,27 +91,27 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
   'delphine-batho': [
     {
       axis: 'Registre',
-      description: 'Style de plaidoyer programmatique, structure autour d une ecologie de gouvernement.',
+      description: 'Style de plaidoyer programmatique, structure autour d’une écologie de gouvernement.',
       source: {
-        label: 'Generation Ecologie',
+        label: 'Génération Écologie',
         url: 'https://www.generationecologie.fr/2025/11/26/je-suis-candidate-a-lelection-presidentielle-pour-reconstruire-une-ecologie-capable-de-gouverner/',
         date: '2025-11-26',
       },
     },
     {
       axis: 'Positionnement politique',
-      description: 'Combinaison d un ton doctrinal ecologiste et d une legitimite d experience ministerielle/parlementaire.',
+      description: 'Combinaison d’un ton doctrinal écologiste et d’une légitimité d’expérience ministérielle/parlementaire.',
       source: {
-        label: 'Assemblee nationale',
+        label: 'Assemblée nationale',
         url: 'https://www.assemblee-nationale.fr/dyn/deputes/PA335999',
         date: '2026-02-15',
       },
     },
     {
-      axis: 'Strategie',
-      description: 'Mise en avant d une ligne autonome pour peser au premier tour sans dilution dans une coalition large.',
+      axis: 'Stratégie',
+      description: 'Mise en avant d’une ligne autonome pour peser au premier tour sans dilution dans une coalition large.',
       source: {
-        label: 'Generation Ecologie',
+        label: 'Génération Écologie',
         url: 'https://www.generationecologie.fr/2025/11/26/je-suis-candidate-a-lelection-presidentielle-pour-reconstruire-une-ecologie-capable-de-gouverner/',
         date: '2025-11-26',
       },
@@ -120,7 +120,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
   'marine-tondelier': [
     {
       axis: 'Registre',
-      description: 'Style mobilisateur et empathique, souvent formule autour de recits collectifs ecologistes.',
+      description: 'Style mobilisateur et empathique, souvent formule autour de recits collectifs écologistes.',
       source: {
         label: 'TF1 Info',
         url: 'https://www.tf1info.fr/politique/l-ecologiste-marine-tondelier-annonce-sa-candidature-a-la-presidentielle-2027-2402175.html',
@@ -129,7 +129,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
     },
     {
       axis: 'Positionnement',
-      description: 'Discours d union avec insistance sur la primaire de gauche comme outil de legitimite.',
+      description: 'Discours d’union avec insistance sur la primaire de gauche comme outil de légitimité.',
       source: {
         label: 'TF1 Info',
         url: 'https://www.tf1info.fr/politique/presidentielle-2027-on-connait-la-date-de-la-primaire-de-la-gauche-unitaire-2420603.html',
@@ -138,9 +138,9 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
     },
     {
       axis: 'Leadership interne',
-      description: 'Ton de cheffe de parti consolide par une large designation militante.',
+      description: 'Ton de cheffe de parti consolide par une large désignation militante.',
       source: {
-        label: 'Les Ecologistes',
+        label: 'Les Écologistes',
         url: 'https://lesecologistes.fr/posts/4DGpyusxBAU4xQPexfncsx/marine-tondelier-designee-pour-representer-les-ecologistes-a-l-election-presidentielle',
         date: '2025-12-08',
       },
@@ -158,7 +158,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
     },
     {
       axis: 'Methode politique',
-      description: 'Mix entre militantisme de terrain et strategie d appareil via le lancement de Debout.',
+      description: 'Mix entre militantisme de terrain et stratégie d’appareil via le lancement de Debout.',
       source: {
         label: 'RTL',
         url: 'https://www.rtl.fr/actu/politique/les-infos-de-6h-francois-ruffin-lance-son-nouveau-parti-debout-en-vue-de-la-presidentielle-de-2027-7900519942',
@@ -167,7 +167,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
     },
     {
       axis: 'Positionnement gauche',
-      description: 'Style d interpellation des appareils traditionnels en revendiquant une union de gauche par le bas.',
+      description: 'Style d’interpellation des appareils traditionnels en revendiquant une union de gauche par le bas.',
       source: {
         label: 'Le Monde',
         url: 'https://www.lemonde.fr/politique/article/2025/04/02/francois-ruffin-propose-d-incarner-une-union-de-la-gauche-pour-la-presidentielle-de-2027_6589773_823448.html',
@@ -178,7 +178,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
   'marine-le-pen': [
     {
       axis: 'Registre',
-      description: 'Style de confrontation institutionnelle, avec mise en cause politique de la procedure judiciaire.',
+      description: 'Style de confrontation institutionnelle, avec mise en cause politique de la procédure judiciaire.',
       source: {
         label: 'AP News',
         url: 'https://apnews.com/article/83fb47af7aff36576c6a5f7caee141f2',
@@ -187,7 +187,7 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
     },
     {
       axis: 'Communication de crise',
-      description: 'Discours calibre entre victimisation judiciaire et maintien d autorite sur le RN.',
+      description: 'Discours calibre entre victimisation judiciaire et maintien d’autorite sur le RN.',
       source: {
         label: 'AP News',
         url: 'https://apnews.com/article/fa548e0280837fa277d9b5627846a93c',
@@ -195,11 +195,11 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
       },
     },
     {
-      axis: 'Cadre strategique',
-      description: 'Style de commandement sous contrainte, avec scenario Bardella explicite en arriere-plan.',
+      axis: 'Cadre stratégique',
+      description: 'Style de commandement sous contrainte, avec scénario Bardella explicite en arriere-plan.',
       source: {
         label: 'Le Monde',
-        url: 'https://www.lemonde.fr/politique/article/2025/04/26/si-marine-le-pen-est-empechee-pour-la-presidentielle-2027-je-serai-son-candidat-assure-jordan-bardella_6600386_823448.html',
+        url: 'https://www.lemonde.fr/politique/article/2025/04/26/si-marine-le-pen-est-empêchée-pour-la-presidentielle-2027-je-serai-son-candidat-assure-jordan-bardella_6600386_823448.html',
         date: '2025-04-26',
       },
     },
@@ -207,25 +207,25 @@ export const candidateStyleById: Record<string, CandidateStyleSignal[]> = {
   'jordan-bardella': [
     {
       axis: 'Registre',
-      description: 'Style de porte-parole nationalise, combinant discipline partisane et ambition personnelle.',
+      description: 'Style de porte-parole nationalisé, combinant discipline partisane et ambition personnelle.',
       source: {
         label: 'Le Parisien',
-        url: 'https://www.leparisien.fr/politique/jordan-bardella-si-elle-est-empechee-je-serai-le-candidat-de-marine-le-pen-pour-2027-26-04-2025-NRBRMBWVBNAZNL6JR7JQWHZQQM.php',
+        url: 'https://www.leparisien.fr/politique/jordan-bardella-si-elle-est-empêchée-je-serai-le-candidat-de-marine-le-pen-pour-2027-26-04-2025-NRBRMBWVBNAZNL6JR7JQWHZQQM.php',
         date: '2025-04-26',
       },
     },
     {
       axis: 'Positionnement RN',
-      description: 'Communication en binome avec Marine Le Pen: loyaute affichee mais capacite de remplacement assumee.',
+      description: 'Communication en binôme avec Marine Le Pen : loyauté affichée mais capacité de remplacement assumée.',
       source: {
         label: 'Le Monde',
-        url: 'https://www.lemonde.fr/politique/article/2025/04/26/si-marine-le-pen-est-empechee-pour-la-presidentielle-2027-je-serai-son-candidat-assure-jordan-bardella_6600386_823448.html',
+        url: 'https://www.lemonde.fr/politique/article/2025/04/26/si-marine-le-pen-est-empêchée-pour-la-presidentielle-2027-je-serai-son-candidat-assure-jordan-bardella_6600386_823448.html',
         date: '2025-04-26',
       },
     },
     {
       axis: 'Mediatisation',
-      description: 'Style tres mediatique et europeanise, construit autour de sa fonction d eurodepute et president du RN.',
+      description: 'Style très médiatique et européanisé, construit autour de sa fonction d’eurodéputé et président du RN.',
       source: {
         label: 'Wikipedia',
         url: 'https://fr.wikipedia.org/wiki/Jordan_Bardella',
