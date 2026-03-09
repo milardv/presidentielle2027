@@ -10,57 +10,78 @@ interface FavoriteCandidatesSectionProps {
   candidates: Candidate[]
   isLoading: boolean
   errorMessage: string | null
+  removingCandidateId: string | null
+  onRemoveFavorite: (candidateId: string) => void
 }
 
-function FavoriteCandidateCard({ candidate }: { candidate: Candidate }) {
+function FavoriteCandidateCard({
+  candidate,
+  isRemoving,
+  onRemoveFavorite,
+}: {
+  candidate: Candidate
+  isRemoving: boolean
+  onRemoveFavorite: (candidateId: string) => void
+}) {
   const age = candidate.birthDate ? getAgeFromBirthDate(candidate.birthDate) : null
 
   return (
-    <Link
-      to={`/candidats/${candidate.id}`}
-      className="group rounded-[1.6rem] border border-slate-200/80 bg-white/90 p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_18px_40px_rgba(26,34,127,0.16)] dark:border-slate-800 dark:bg-slate-900/85"
-    >
-      <div className="flex items-start gap-4">
-        {candidate.photoUrl ? (
-          <img
-            src={candidate.photoUrl}
-            alt={candidate.name}
-            className="h-16 w-16 rounded-2xl object-cover shadow-sm"
-            loading="lazy"
-          />
-        ) : (
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-800 to-slate-700 text-lg font-bold text-white shadow-sm">
-            {getCandidateInitials(candidate.name)}
-          </div>
-        )}
-
-        <div className="min-w-0 flex-1">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="text-base font-bold tracking-tight text-slate-950 dark:text-white">{candidate.name}</p>
-              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{candidate.currentRole}</p>
+    <article className="group rounded-[1.6rem] border border-slate-200/80 bg-white/90 p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_18px_40px_rgba(26,34,127,0.16)] dark:border-slate-800 dark:bg-slate-900/85">
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start gap-4">
+          {candidate.photoUrl ? (
+            <img
+              src={candidate.photoUrl}
+              alt={candidate.name}
+              className="h-16 w-16 rounded-2xl object-cover shadow-sm"
+              loading="lazy"
+            />
+          ) : (
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-800 to-slate-700 text-lg font-bold text-white shadow-sm">
+              {getCandidateInitials(candidate.name)}
             </div>
-            <span
-              className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] ${candidateStatusBadgeStyles[candidate.status]}`}
-            >
-              {candidate.statusLabel}
-            </span>
-          </div>
+          )}
 
-          <div className="mt-3 flex flex-wrap gap-2">
-            <span className="rounded-full bg-slate-950 px-2.5 py-1 text-[11px] font-semibold text-white dark:bg-white dark:text-slate-950">
-              {candidate.party}
-            </span>
-            <span className="rounded-full border border-slate-200 px-2.5 py-1 text-[11px] font-semibold text-slate-600 dark:border-slate-700 dark:text-slate-300">
-              {candidate.bloc}
-            </span>
-            {age !== null ? (
-              <span className="rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-700 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-300">
-                {age} ans
+          <div className="min-w-0 flex-1">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-base font-bold tracking-tight text-slate-950 dark:text-white">{candidate.name}</p>
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{candidate.currentRole}</p>
+              </div>
+              <span
+                className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] ${candidateStatusBadgeStyles[candidate.status]}`}
+              >
+                {candidate.statusLabel}
               </span>
-            ) : null}
+            </div>
+
+            <div className="mt-3 flex flex-wrap gap-2">
+              <span className="rounded-full bg-slate-950 px-2.5 py-1 text-[11px] font-semibold text-white dark:bg-white dark:text-slate-950">
+                {candidate.party}
+              </span>
+              <span className="rounded-full border border-slate-200 px-2.5 py-1 text-[11px] font-semibold text-slate-600 dark:border-slate-700 dark:text-slate-300">
+                {candidate.bloc}
+              </span>
+              {age !== null ? (
+                <span className="rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-700 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-300">
+                  {age} ans
+                </span>
+              ) : null}
+            </div>
           </div>
         </div>
+
+        <button
+          type="button"
+          onClick={() => onRemoveFavorite(candidate.id)}
+          disabled={isRemoving}
+          className="inline-flex shrink-0 items-center gap-2 rounded-full border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-rose-600 transition-colors hover:border-rose-300 hover:bg-rose-100 disabled:cursor-not-allowed disabled:opacity-70 dark:border-rose-900/40 dark:bg-rose-950/30 dark:text-rose-300"
+        >
+          <span className="material-symbols-outlined text-[18px]">
+            {isRemoving ? 'hourglass_top' : 'delete'}
+          </span>
+          {isRemoving ? 'Retrait...' : 'Retirer'}
+        </button>
       </div>
 
       <p className="mt-4 line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{candidate.summary}</p>
@@ -76,12 +97,15 @@ function FavoriteCandidateCard({ candidate }: { candidate: Candidate }) {
             </span>
           ))}
         </div>
-        <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary transition-transform group-hover:translate-x-0.5">
+        <Link
+          to={`/candidats/${candidate.id}`}
+          className="inline-flex items-center gap-1 text-sm font-semibold text-primary transition-transform hover:translate-x-0.5"
+        >
           Voir la fiche
           <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-        </span>
+        </Link>
       </div>
-    </Link>
+    </article>
   )
 }
 
@@ -102,6 +126,8 @@ export function FavoriteCandidatesSection({
   candidates,
   isLoading,
   errorMessage,
+  removingCandidateId,
+  onRemoveFavorite,
 }: FavoriteCandidatesSectionProps) {
   return (
     <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white/90 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/90 sm:p-8">
@@ -159,7 +185,12 @@ export function FavoriteCandidatesSection({
           {!isLoading && !errorMessage && candidates.length > 0 ? (
             <div className="grid gap-4 md:grid-cols-2">
               {candidates.map((candidate) => (
-                <FavoriteCandidateCard key={candidate.id} candidate={candidate} />
+                <FavoriteCandidateCard
+                  key={candidate.id}
+                  candidate={candidate}
+                  isRemoving={removingCandidateId === candidate.id}
+                  onRemoveFavorite={onRemoveFavorite}
+                />
               ))}
             </div>
           ) : null}

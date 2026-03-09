@@ -5,6 +5,7 @@ import Polls from './pages/Polls.tsx'
 import PersonalProfile from './pages/PersonalProfile.tsx'
 import Profile from './pages/Profile.tsx'
 import Analysis from './pages/analysis.tsx'
+import CandidateVideos from './pages/CandidateVideos.tsx'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/polls" element={<Polls />} />
         <Route path="/profile" element={<PersonalProfile />} />
         <Route path="/candidats/:candidateId" element={<Profile />} />
+        <Route path="/candidats/:candidateId/videos" element={<CandidateVideos />} />
         <Route path="/analysis" element={<Analysis />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

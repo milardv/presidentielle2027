@@ -1,15 +1,8 @@
 import { initializeApp } from 'firebase/app'
+import { getFirebaseConfig } from './firebaseConfig.mjs'
 import { doc, getDocs, collection, writeBatch, getFirestore } from 'firebase/firestore'
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyDjCugeUjARO7ObrcR4ao4_53rWSHGGYPQ',
-  authDomain: 'presidentielles-f0682.firebaseapp.com',
-  projectId: 'presidentielles-f0682',
-  storageBucket: 'presidentielles-f0682.firebasestorage.app',
-  messagingSenderId: '171363522127',
-  appId: '1:171363522127:web:4225ffc2fb1ac427807c3a',
-  measurementId: 'G-1V4MQDR9VX',
-}
+const firebaseConfig = getFirebaseConfig()
 
 const CANDIDATES_COLLECTION = 'candidates_2027'
 const DATA_LAST_UPDATED = '2026-03-09'

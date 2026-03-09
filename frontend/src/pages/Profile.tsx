@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAuthSession } from '../features/auth/hooks/useAuthSession'
 import { useFavoriteCandidates } from '../features/auth/hooks/useFavoriteCandidates'
+import { CandidateProfileTabs } from '../features/candidates/profile/components/CandidateProfileTabs'
 import { ProfileAnchorNav } from '../features/candidates/profile/components/ProfileAnchorNav'
 import { ProfileBioSection } from '../features/candidates/profile/components/ProfileBioSection'
 import { ProfileErrorState } from '../features/candidates/profile/components/ProfileErrorState'
@@ -68,6 +69,7 @@ export default function Profile() {
       <ProfilePageHeader />
 
       <main className="relative max-w-4xl mx-auto pb-16 sm:pb-24">
+        <CandidateProfileTabs candidateId={candidate.id} />
         <ProfileHeroSection
           candidate={candidate}
           isAuthenticated={Boolean(user)}

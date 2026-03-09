@@ -3,8 +3,14 @@ import { getAnalytics, isSupported, type Analytics } from 'firebase/analytics'
 import { GoogleAuthProvider, getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
+const firebaseApiKey = import.meta.env.VITE_FIREBASE_API_KEY?.trim()
+
+if (!firebaseApiKey) {
+  throw new Error('Missing VITE_FIREBASE_API_KEY environment variable for Firebase.')
+}
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyDjCugeUjARO7ObrcR4ao4_53rWSHGGYPQ',
+  apiKey: firebaseApiKey,
   authDomain: 'presidentielles-f0682.firebaseapp.com',
   projectId: 'presidentielles-f0682',
   storageBucket: 'presidentielles-f0682.firebasestorage.app',

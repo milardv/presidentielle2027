@@ -1,5 +1,7 @@
 import { DesktopAppTabs } from '../components/DesktopAppTabs'
 import { MobileAppNav } from '../components/MobileAppNav'
+import { isAdminEmail } from '../config/admin'
+import { AdminVideoRefreshPanel } from '../features/auth/components/AdminVideoRefreshPanel'
 import { FavoriteCandidatesSection } from '../features/auth/components/FavoriteCandidatesSection'
 import { useAuthSession } from '../features/auth/hooks/useAuthSession'
 import { useFavoriteCandidates } from '../features/auth/hooks/useFavoriteCandidates'
@@ -20,7 +22,10 @@ export default function PersonalProfile() {
     favoriteCandidates,
     isLoading: isFavoritesLoading,
     loadError: favoritesError,
+    togglingCandidateId,
+    toggleFavoriteCandidate,
   } = useFavoriteCandidates(user?.uid)
+  const isAdmin = isAdminEmail(user?.email)
 
   return (
     <div className="min-h-screen bg-background-light text-slate-900 font-display dark:bg-background-dark dark:text-slate-100">
@@ -54,8 +59,14 @@ export default function PersonalProfile() {
             candidates={favoriteCandidates}
             isLoading={isFavoritesLoading}
             errorMessage={favoritesError}
+            removingCandidateId={togglingCandidateId}
+            onRemoveFavorite={(candidateId) => {
+              void toggleFavoriteCandidate(candidateId)
+            }}
           />
         ) : null}
+
+        {isAdmin && user?.email ? <AdminVideoRefreshPanel adminEmail={user.email} /> : null}
 
         {profileSyncStatus === 'error' ? (
           <p className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-700 dark:border-amber-900/40 dark:bg-amber-950/30 dark:text-amber-300">

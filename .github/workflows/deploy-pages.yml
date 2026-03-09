@@ -35,6 +35,8 @@ jobs:
       - name: Build site
         working-directory: frontend
         run: npm run build
+        env:
+          VITE_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
 
       - name: Add SPA fallback
         run: cp frontend/dist/index.html frontend/dist/404.html

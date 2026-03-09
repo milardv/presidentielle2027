@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+import { AtSign, ExternalLink, Newspaper, PlayCircle } from 'lucide-react'
 import type { CandidateIntervention } from '../../../../data/candidateTypes'
 import { formatFrenchDate } from '../../shared/candidateUi'
 import { ProfileSectionHeading } from './ProfileSectionHeading'
@@ -13,10 +15,14 @@ const interventionTypeLabel: Record<CandidateIntervention['type'], string> = {
   post: 'Post',
 }
 
-const interventionTypeIcon: Record<CandidateIntervention['type'], string> = {
-  video: 'play_circle',
-  quote: 'format_quote',
-  post: 'alternate_email',
+const interventionTypeIcon: Record<CandidateIntervention['type'], ReactNode> = {
+  video: <PlayCircle className="h-[14px] w-[14px]" />,
+  quote: <Newspaper className="h-[14px] w-[14px]" />,
+  post: <AtSign className="h-[14px] w-[14px]" />,
+}
+
+function isGdeltIntervention(entry: CandidateIntervention): boolean {
+  return entry.id.startsWith('gdelt-')
 }
 
 export function ProfileInterventionsSection({
@@ -46,9 +52,16 @@ export function ProfileInterventionsSection({
           >
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-primary">
-                  <span className="material-symbols-outlined text-sm">{interventionTypeIcon[entry.type]}</span>
-                  {interventionTypeLabel[entry.type]}
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-primary">
+                    {interventionTypeIcon[entry.type]}
+                    {interventionTypeLabel[entry.type]}
+                  </div>
+                  {isGdeltIntervention(entry) ? (
+                    <span className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:border-slate-700 dark:bg-slate-950/60 dark:text-slate-400">
+                      Source: GDELT
+                    </span>
+                  ) : null}
                 </div>
                 <h4 className="mt-3 text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100">
                   {entry.title}
@@ -72,7 +85,7 @@ export function ProfileInterventionsSection({
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
               >
-                <span className="material-symbols-outlined text-sm">open_in_new</span>
+                <ExternalLink className="h-[16px] w-[16px]" />
                 {entry.source.label}
               </a>
             </div>
