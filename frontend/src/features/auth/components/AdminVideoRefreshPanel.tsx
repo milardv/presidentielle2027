@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
-import { LoaderCircle, RefreshCw, ShieldCheck, Video } from 'lucide-react'
+import { FileText, LoaderCircle, Newspaper, RefreshCw, ShieldCheck, Video } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { Candidate } from '../../../data/candidateTypes'
-import { refreshCandidateVideos } from '../../../services/adminVideoSyncService'
+import { refreshCandidateGdelt, refreshCandidateVideos } from '../../../services/adminVideoSyncService'
 import { getCandidatesFromDatabase } from '../../../services/candidateRepository'
 
 interface AdminVideoRefreshPanelProps {
@@ -13,7 +13,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
   const [candidates, setCandidates] = useState<Candidate[]>([])
   const [selectedCandidateId, setSelectedCandidateId] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [isRefreshing, setIsRefreshing] = useState<boolean>(false)
+  const [refreshingProvider, setRefreshingProvider] = useState<'youtube' | 'gdelt' | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [refreshMessage, setRefreshMessage] = useState<string | null>(null)
 
@@ -50,12 +50,12 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
     [candidates, selectedCandidateId],
   )
 
-  const handleRefresh = async () => {
+  const handleRefreshVideos = async () => {
     if (!selectedCandidate) {
       return
     }
 
-    setIsRefreshing(true)
+    setRefreshingProvider('youtube')
     setLoadError(null)
     setRefreshMessage(null)
 
@@ -68,7 +68,29 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
       console.error('Failed to refresh candidate videos from admin panel', error)
       setLoadError(error instanceof Error ? error.message : 'Impossible de rafraichir les videos.')
     } finally {
-      setIsRefreshing(false)
+      setRefreshingProvider(null)
+    }
+  }
+
+  const handleRefreshGdelt = async () => {
+    if (!selectedCandidate) {
+      return
+    }
+
+    setRefreshingProvider('gdelt')
+    setLoadError(null)
+    setRefreshMessage(null)
+
+    try {
+      const result = await refreshCandidateGdelt(selectedCandidate, adminEmail)
+      setRefreshMessage(
+        `${result.importedCount} entree${result.importedCount > 1 ? 's' : ''} GDELT importee${result.importedCount > 1 ? 's' : ''} pour ${result.candidateName}.`,
+      )
+    } catch (error) {
+      console.error('Failed to refresh candidate GDELT entries from admin panel', error)
+      setLoadError(error instanceof Error ? error.message : 'Impossible de rafraichir les donnees GDELT.')
+    } finally {
+      setRefreshingProvider(null)
     }
   }
 
@@ -82,12 +104,12 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Admin</p>
             <h2 className="mt-1 text-xl font-black tracking-tight text-slate-950 dark:text-white">
-              Rafraichissement videos candidat
+              Rafraichissement medias candidat
             </h2>
           </div>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-          Lance un refresh YouTube cible pour un candidat, puis verifie la page videos juste apres l’import.
+          Lance un refresh YouTube ou GDELT cible pour un candidat, puis verifie la fiche ou la page videos juste apres l’import.
         </p>
       </div>
 
@@ -97,7 +119,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
           <select
             value={selectedCandidateId}
             onChange={(event) => setSelectedCandidateId(event.target.value)}
-            disabled={isLoading || isRefreshing || candidates.length === 0}
+            disabled={isLoading || refreshingProvider !== null || candidates.length === 0}
             className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10 disabled:cursor-not-allowed disabled:bg-slate-100 dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-200 dark:disabled:bg-slate-900"
           >
             {candidates.map((candidate) => (
@@ -112,14 +134,44 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
           <button
             type="button"
             onClick={() => {
-              void handleRefresh()
+              void handleRefreshVideos()
             }}
-            disabled={!selectedCandidate || isLoading || isRefreshing}
+            disabled={!selectedCandidate || isLoading || refreshingProvider !== null}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-100 dark:disabled:bg-slate-700"
           >
-            {isRefreshing ? <LoaderCircle className="h-[18px] w-[18px] animate-spin" /> : <RefreshCw className="h-[18px] w-[18px]" />}
-            {isRefreshing ? 'Rafraichissement...' : 'Rafraichir les videos'}
+            {refreshingProvider === 'youtube' ? (
+              <LoaderCircle className="h-[18px] w-[18px] animate-spin" />
+            ) : (
+              <RefreshCw className="h-[18px] w-[18px]" />
+            )}
+            {refreshingProvider === 'youtube' ? 'Rafraichissement...' : 'Rafraichir les videos'}
           </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              void handleRefreshGdelt()
+            }}
+            disabled={!selectedCandidate || isLoading || refreshingProvider !== null}
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-200 dark:disabled:border-slate-700 dark:disabled:bg-slate-900 dark:disabled:text-slate-500"
+          >
+            {refreshingProvider === 'gdelt' ? (
+              <LoaderCircle className="h-[18px] w-[18px] animate-spin" />
+            ) : (
+              <Newspaper className="h-[18px] w-[18px]" />
+            )}
+            {refreshingProvider === 'gdelt' ? 'Rafraichissement...' : 'Rafraichir GDELT'}
+          </button>
+
+          {selectedCandidate ? (
+            <Link
+              to={`/candidats/${selectedCandidate.id}`}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary dark:border-slate-700 dark:text-slate-200"
+            >
+              <FileText className="h-[18px] w-[18px]" />
+              Voir la fiche
+            </Link>
+          ) : null}
 
           {selectedCandidate ? (
             <Link
