@@ -32,11 +32,26 @@ jobs:
         working-directory: frontend
         run: npm ci
 
+      - name: Validate build environment
+        working-directory: frontend
+        env:
+          VITE_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          VITE_YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          VITE_MEDIA_CLOUD_API_KEY: ${{ secrets.MEDIA_CLOUD_API_KEY }}
+          VITE_MEDIA_CLOUD_COLLECTION_IDS: ${{ secrets.MEDIA_CLOUD_COLLECTION_IDS }}
+        run: |
+          test -n "$VITE_FIREBASE_API_KEY" || { echo "::error::Missing FIREBASE_API_KEY GitHub secret."; exit 1; }
+          test -n "$VITE_YOUTUBE_API_KEY" || echo "::warning::Missing YOUTUBE_API_KEY GitHub secret. Admin YouTube refresh will be unavailable on the deployed site."
+          test -n "$VITE_MEDIA_CLOUD_API_KEY" || echo "::warning::Missing MEDIA_CLOUD_API_KEY GitHub secret. Admin Media Cloud refresh will be unavailable on the deployed site."
+
       - name: Build site
         working-directory: frontend
         run: npm run build
         env:
           VITE_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          VITE_YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          VITE_MEDIA_CLOUD_API_KEY: ${{ secrets.MEDIA_CLOUD_API_KEY }}
+          VITE_MEDIA_CLOUD_COLLECTION_IDS: ${{ secrets.MEDIA_CLOUD_COLLECTION_IDS }}
 
       - name: Add SPA fallback
         run: cp frontend/dist/index.html frontend/dist/404.html

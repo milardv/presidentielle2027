@@ -25,6 +25,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate sync environment
+        env:
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          MEDIA_CLOUD_API_KEY: ${{ secrets.MEDIA_CLOUD_API_KEY }}
+        run: |
+          test -n "$FIREBASE_API_KEY" || { echo "::error::Missing FIREBASE_API_KEY GitHub secret."; exit 1; }
+          test -n "$YOUTUBE_API_KEY" || echo "::warning::Missing YOUTUBE_API_KEY GitHub secret. YouTube imports will be skipped or fail."
+          test -n "$MEDIA_CLOUD_API_KEY" || echo "::warning::Missing MEDIA_CLOUD_API_KEY GitHub secret. Media Cloud sync will fail."
+
       - name: Sync GDELT, YouTube and Media Cloud data
         run: npm run sync:interventions
         env:
