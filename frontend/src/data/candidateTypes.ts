@@ -46,6 +46,17 @@ export interface CandidateStyleSignal {
   source: CandidateSource
 }
 
+export type CandidateInterventionType = 'video' | 'quote' | 'post'
+
+export interface CandidateIntervention {
+  id: string
+  type: CandidateInterventionType
+  title: string
+  excerpt: string
+  context: string
+  source: CandidateSource
+}
+
 export interface Candidate {
   id: string
   name: string
@@ -58,6 +69,8 @@ export interface Candidate {
   themes: string[]
   priority: number
   currentRole: string
+  birthDate?: string
+  birthYear?: number
   biography: string[]
   keyPositions: CandidatePosition[]
   timeline: CandidateTimelineEvent[]
@@ -65,6 +78,7 @@ export interface Candidate {
   network?: CandidateNetworkRelation[]
   parcours?: CandidateParcoursStep[]
   style?: CandidateStyleSignal[]
+  interventions?: CandidateIntervention[]
   sources: CandidateSource[]
   dataLastUpdated?: string
 }

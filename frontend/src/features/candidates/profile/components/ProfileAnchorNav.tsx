@@ -1,5 +1,6 @@
 const profileAnchors = [
   { id: 'resume', label: 'Résumé' },
+  { id: 'interventions', label: 'Interventions' },
   { id: 'themes', label: 'Thèmes' },
   { id: 'reseau', label: 'Réseau' },
   { id: 'parcours', label: 'Parcours' },

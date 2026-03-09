@@ -3,6 +3,7 @@ import type { Candidate } from '../../../../data/candidateTypes'
 import {
   candidateStatusBadgeStyles,
   formatFrenchDate,
+  getAgeFromBirthDate,
   getCandidateInitials,
 } from '../../shared/candidateUi'
 
@@ -12,16 +13,28 @@ interface CandidateCardProps {
 
 export function CandidateCard({ candidate }: CandidateCardProps) {
   const firstSource = candidate.sources[0]
+  const age = candidate.birthDate ? getAgeFromBirthDate(candidate.birthDate) : null
 
   return (
-    <article className="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-      <div className="relative h-40 sm:h-44 overflow-hidden bg-gradient-to-br from-slate-800 to-slate-700">
-        <div className="absolute top-3 left-3 flex flex-col gap-2">
+    <article className="group relative overflow-hidden rounded-[1.75rem] border border-slate-200/80 bg-white/90 shadow-[0_18px_48px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/20 hover:shadow-[0_26px_64px_rgba(26,34,127,0.16)] dark:border-slate-800 dark:bg-slate-900/92">
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-r from-primary/14 via-sky-200/22 to-amber-200/22 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-primary/18 dark:via-sky-400/10 dark:to-amber-300/10" />
+
+      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 sm:h-52">
+        <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2">
           <span
-            className={`text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-wider ${candidateStatusBadgeStyles[candidate.status]}`}
+            className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] ${candidateStatusBadgeStyles[candidate.status]}`}
           >
             {candidate.statusLabel}
           </span>
+          {age !== null ? (
+            <span className="rounded-full border border-white/20 bg-black/25 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+              {age} ans
+            </span>
+          ) : null}
+        </div>
+
+        <div className="absolute right-4 top-4 rounded-full border border-white/15 bg-black/25 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+          {candidate.party}
         </div>
 
         {candidate.photoUrl ? (
@@ -30,65 +43,66 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
               src={candidate.photoUrl}
               alt={`Photo Wikipedia de ${candidate.name}`}
               loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-black/35" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.10)_0%,rgba(15,23,42,0.38)_58%,rgba(15,23,42,0.88)_100%)]" />
           </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-20 w-20 rounded-full bg-white/15 border border-white/30 backdrop-blur-sm flex items-center justify-center text-white text-2xl font-bold tracking-wider">
+            <div className="flex h-24 w-24 items-center justify-center rounded-[1.75rem] border border-white/25 bg-white/12 text-3xl font-bold tracking-wider text-white backdrop-blur-sm">
               {getCandidateInitials(candidate.name)}
             </div>
           </div>
         )}
 
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
-          <p className="text-white font-bold text-base sm:text-lg leading-tight">{candidate.name}</p>
-          <p className="text-white/80 text-xs font-medium italic">
-            {candidate.party} - {candidate.bloc}
-          </p>
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+          <p className="text-xl font-black leading-tight tracking-tight text-white">{candidate.name}</p>
+          <p className="mt-2 max-w-[90%] text-sm font-medium text-white/78">{candidate.currentRole}</p>
         </div>
       </div>
 
-      <div className="p-4 space-y-4">
-        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{candidate.summary}</p>
-
-        <div className="flex flex-wrap gap-1.5">
-          {candidate.themes.map((theme) => (
+      <div className="relative p-5">
+        <div className="flex flex-wrap gap-2">
+          <span className="rounded-full bg-slate-950 px-3 py-1 text-[11px] font-semibold text-white dark:bg-white dark:text-slate-950">
+            {candidate.bloc}
+          </span>
+          {candidate.themes.slice(0, 3).map((theme) => (
             <span
               key={`${candidate.id}-${theme}`}
-              className="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-semibold uppercase"
+              className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-primary"
             >
               {theme}
             </span>
           ))}
         </div>
 
-        <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800">
+        <p className="mt-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{candidate.summary}</p>
+
+        <div className="mt-5 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
           <a
             href={firstSource.url}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-1 text-slate-500 hover:text-primary transition-colors"
+            className="flex items-center gap-2 rounded-2xl border border-slate-200/80 bg-slate-50/80 px-3 py-2 text-slate-600 transition-colors hover:border-primary/20 hover:text-primary dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-300"
           >
-            <span className="material-symbols-outlined text-sm">menu_book</span>
-            <span className="text-[11px] font-medium truncate max-w-[140px] sm:max-w-[180px]">
+            <span className="material-symbols-outlined text-[18px]">menu_book</span>
+            <span className="min-w-0 truncate text-[11px] font-semibold uppercase tracking-[0.14em]">
               {firstSource.label}
             </span>
           </a>
 
           <Link
             to={`/candidats/${candidate.id}`}
-            className="text-primary text-sm font-bold flex items-center gap-1 group/link"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary dark:bg-white dark:text-slate-950"
           >
             Consulter
-            <span className="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">
+            <span className="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-0.5">
               arrow_forward
             </span>
           </Link>
         </div>
 
-        <p className="text-[11px] text-slate-400">Source publiée le {formatFrenchDate(firstSource.date)}</p>
+        <p className="mt-4 text-[11px] text-slate-400">Source publiee le {formatFrenchDate(firstSource.date)}</p>
       </div>
     </article>
   )

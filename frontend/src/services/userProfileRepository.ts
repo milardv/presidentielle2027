@@ -1,9 +1,13 @@
 import {
+  arrayRemove,
+  arrayUnion,
   doc,
   getDoc,
+  onSnapshot,
   serverTimestamp,
   setDoc,
   type PartialWithFieldValue,
+  type Unsubscribe,
   type WithFieldValue,
 } from 'firebase/firestore'
 import { db } from '../firebase'
@@ -23,6 +27,7 @@ interface UserProfileDocument {
   email: string
   photoUrl: string | null
   providerId: string
+  favoriteCandidateIds: string[]
   createdAt: ReturnType<typeof serverTimestamp>
   updatedAt: ReturnType<typeof serverTimestamp>
   lastSignInAt: ReturnType<typeof serverTimestamp>
@@ -43,6 +48,7 @@ export async function upsertUserProfile(uid: string, input: UpsertUserProfileInp
       email: input.email,
       photoUrl: input.photoUrl,
       providerId: input.providerId,
+      favoriteCandidateIds: [],
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
       lastSignInAt: serverTimestamp(),
@@ -60,4 +66,45 @@ export async function upsertUserProfile(uid: string, input: UpsertUserProfileInp
     lastSignInAt: serverTimestamp(),
   }
   await setDoc(reference, updatePayload, { merge: true })
+}
+
+function sanitizeFavoriteCandidateIds(value: unknown): string[] {
+  if (!Array.isArray(value)) {
+    return []
+  }
+
+  return value.filter((entry): entry is string => typeof entry === 'string')
+}
+
+export function subscribeToUserFavoriteCandidateIds(
+  uid: string,
+  onNext: (favoriteCandidateIds: string[]) => void,
+  onError?: (error: unknown) => void,
+): Unsubscribe {
+  return onSnapshot(
+    userDocRef(uid),
+    (snapshot) => {
+      if (!snapshot.exists()) {
+        onNext([])
+        return
+      }
+
+      onNext(sanitizeFavoriteCandidateIds(snapshot.data().favoriteCandidateIds))
+    },
+    onError,
+  )
+}
+
+export async function toggleFavoriteCandidate(
+  uid: string,
+  candidateId: string,
+  shouldFavorite: boolean,
+): Promise<void> {
+  const payload: PartialWithFieldValue<UserProfileDocument> = {
+    uid,
+    favoriteCandidateIds: shouldFavorite ? arrayUnion(candidateId) : arrayRemove(candidateId),
+    updatedAt: serverTimestamp(),
+  }
+
+  await setDoc(userDocRef(uid), payload, { merge: true })
 }

@@ -1,5 +1,6 @@
 import type {
   Candidate,
+  CandidateIntervention,
   CandidateNetworkRelation,
   CandidateParcoursStep,
   CandidatePosition,
@@ -271,6 +272,50 @@ function parseStyle(value: unknown): CandidateStyleSignal[] {
     .filter((entry): entry is CandidateStyleSignal => entry !== null)
 }
 
+function parseInterventions(value: unknown): CandidateIntervention[] {
+  if (!Array.isArray(value)) {
+    return []
+  }
+
+  return value
+    .map((entry) => {
+      if (typeof entry !== 'object' || entry === null) {
+        return null
+      }
+
+      const maybeEntry = entry as {
+        id?: unknown
+        type?: unknown
+        title?: unknown
+        excerpt?: unknown
+        context?: unknown
+        source?: unknown
+      }
+
+      const source = parseSource(maybeEntry.source)
+      if (
+        typeof maybeEntry.id !== 'string' ||
+        (maybeEntry.type !== 'video' && maybeEntry.type !== 'quote' && maybeEntry.type !== 'post') ||
+        typeof maybeEntry.title !== 'string' ||
+        typeof maybeEntry.excerpt !== 'string' ||
+        typeof maybeEntry.context !== 'string' ||
+        source === null
+      ) {
+        return null
+      }
+
+      return {
+        id: maybeEntry.id,
+        type: maybeEntry.type,
+        title: maybeEntry.title,
+        excerpt: maybeEntry.excerpt,
+        context: maybeEntry.context,
+        source,
+      }
+    })
+    .filter((entry): entry is CandidateIntervention => entry !== null)
+}
+
 export function parseCandidate(id: string, data: Record<string, unknown>): Candidate | null {
   if (
     typeof data.name !== 'string' ||
@@ -304,6 +349,8 @@ export function parseCandidate(id: string, data: Record<string, unknown>): Candi
     themes: themes.length > 0 ? themes : ['Non classé'],
     priority: data.priority,
     currentRole: typeof data.currentRole === 'string' ? data.currentRole : 'Rôle non renseigné',
+    birthDate: typeof data.birthDate === 'string' ? data.birthDate : undefined,
+    birthYear: typeof data.birthYear === 'number' ? data.birthYear : undefined,
     biography: biography.length > 0 ? biography : [data.summary],
     keyPositions: parseKeyPositions(data.keyPositions),
     timeline: parseTimeline(data.timeline),
@@ -311,6 +358,7 @@ export function parseCandidate(id: string, data: Record<string, unknown>): Candi
     network: parseNetwork(data.network),
     parcours: parseParcours(data.parcours),
     style: parseStyle(data.style),
+    interventions: parseInterventions(data.interventions),
     sources,
     dataLastUpdated: typeof data.dataLastUpdated === 'string' ? data.dataLastUpdated : undefined,
   }

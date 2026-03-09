@@ -22,3 +22,25 @@ export async function getCandidateByIdFromDatabase(candidateId: string): Promise
 
   return parseCandidate(snapshot.id, snapshot.data())
 }
+
+export async function getCandidatesByIdsFromDatabase(candidateIds: string[]): Promise<Candidate[]> {
+  const uniqueCandidateIds = [...new Set(candidateIds)]
+
+  if (uniqueCandidateIds.length === 0) {
+    return []
+  }
+
+  const candidates = await Promise.all(
+    uniqueCandidateIds.map((candidateId) => getCandidateByIdFromDatabase(candidateId)),
+  )
+
+  const candidatesById = new Map(
+    candidates
+      .filter((candidate): candidate is Candidate => candidate !== null)
+      .map((candidate) => [candidate.id, candidate]),
+  )
+
+  return uniqueCandidateIds
+    .map((candidateId) => candidatesById.get(candidateId) ?? null)
+    .filter((candidate): candidate is Candidate => candidate !== null)
+}
