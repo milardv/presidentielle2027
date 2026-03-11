@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://milardv.github.io/presidentielle2027/sitemap.xml
+Sitemap: https://electionpresidentielle2027.com/sitemap.xml

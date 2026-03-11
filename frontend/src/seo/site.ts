@@ -1,5 +1,5 @@
 export const SITE_NAME = 'Présidentielles 2027'
-export const SITE_URL = 'https://milardv.github.io/presidentielle2027'
+export const SITE_URL = 'https://electionpresidentielle2027.com'
 
 function normalizePath(path: string): string {
   if (!path || path === '/') {
