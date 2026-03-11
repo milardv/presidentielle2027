@@ -50,9 +50,9 @@ export default function PersonalProfile() {
       />
       <div className="absolute inset-x-0 top-0 h-[28rem] bg-[radial-gradient(circle_at_top,_rgba(26,34,127,0.12),_transparent_55%),radial-gradient(circle_at_top_right,_rgba(245,158,11,0.10),_transparent_35%)] pointer-events-none" />
 
-      <AppSiteHeader containerClassName="max-w-5xl" />
+      <AppSiteHeader containerClassName="w-full" />
 
-      <main className="relative mx-auto flex max-w-5xl flex-col gap-5 px-4 py-8 pb-28 md:pb-16">
+      <main className="relative flex w-full flex-col gap-5 px-4 py-8 pb-28 md:pb-16">
         <section className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/92 p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] dark:border-slate-800 dark:bg-slate-900/92 sm:p-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Profil</p>
           <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-950 dark:text-white">Mon espace personnel</h1>

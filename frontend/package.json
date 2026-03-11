@@ -15,7 +15,9 @@
     "sync:tweets:dry": "node scripts/syncCandidateTweets.mjs --dry-run",
     "admin:sync-server": "node scripts/adminSyncServer.mjs",
     "sync:x-profiles": "node scripts/syncCandidateXProfiles.mjs",
-    "sync:network-graph": "node scripts/enrichCandidateNetworkGraph.mjs"
+    "sync:network-graph": "node scripts/enrichCandidateNetworkGraph.mjs",
+    "sync:biography-background": "node scripts/enrichCandidateBiographyBackground.mjs",
+    "sync:candidate-photos": "node scripts/uploadCandidatePhotosToCloudinary.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",

@@ -1,0 +1,22 @@
+{
+  "name": "Présidentielles 2027",
+  "short_name": "P2027",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#1a227f",
+  "icons": [
+    {
+      "src": "/site-logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

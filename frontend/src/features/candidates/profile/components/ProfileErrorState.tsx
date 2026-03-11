@@ -12,7 +12,7 @@ export function ProfileErrorState({ errorMessage }: ProfileErrorStateProps) {
     <div className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen">
       <ProfileSimpleHeader title="Profil candidat" />
 
-      <main className="max-w-4xl mx-auto px-4 py-10">
+      <main className="w-full px-4 py-10">
         <div className="rounded-xl border border-red-200 bg-red-50 p-5 text-red-700 text-sm">{errorMessage}</div>
         <div className="mt-4">
           <Link

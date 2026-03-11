@@ -81,9 +81,9 @@ export default function SeoLandingPage({ pageSlug }: SeoLandingPageProps) {
 
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top_left,_rgba(26,34,127,0.12),_transparent_36%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.10),_transparent_28%),radial-gradient(circle_at_40%_40%,_rgba(245,158,11,0.10),_transparent_24%)]" />
 
-      <AppSiteHeader containerClassName="max-w-6xl" />
+      <AppSiteHeader containerClassName="w-full" />
 
-      <main className="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 py-8 pb-28 md:pb-16">
+      <main className="relative flex w-full flex-col gap-8 px-4 py-8 pb-28 md:pb-16">
         <section className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/94 p-6 shadow-[0_20px_50px_rgba(15,23,42,0.08)] sm:p-8">
           <p className="max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">{displayHeroIntro}</p>
 

@@ -176,7 +176,7 @@ const candidates = [
     themes: ['Europe', 'Réindustrialisation', 'Social-démocratie'],
     priority: 9,
     photoUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/1720448398743_20240708_GLUCKSMANN_Raphael_FR_006.jpg/330px-1720448398743_20240708_GLUCKSMANN_Raphael_FR_006.jpg',
+      'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268684/presidentielles/candidats/raphael-glucksmann.jpg',
     currentRole: 'Député européen et coprésident de Place publique',
     biography: [
       'Né en 1979, Raphaël Glucksmann s’est d’abord imposé comme essayiste et réalisateur avant d’entrer dans la vie politique élective.',
@@ -327,7 +327,7 @@ const candidates = [
     themes: ['Bloc central', 'Réforme', 'Autorité'],
     priority: 10,
     photoUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Gabriel_Attal_2025_%283x4_cropped%29.jpg/330px-Gabriel_Attal_2025_%283x4_cropped%29.jpg',
+      'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268672/presidentielles/candidats/gabriel-attal.jpg',
     currentRole: 'Secrétaire général de Renaissance et président du groupe Ensemble pour la République à l’Assemblée nationale',
     biography: [
       'Né en 1989, Gabriel Attal a occupé plusieurs postes ministériels avant de devenir Premier ministre en 2024.',
@@ -471,7 +471,7 @@ const candidates = [
     themes: ['Union populaire', 'Rupture', 'Institutions'],
     priority: 11,
     photoUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Jean-Luc_M%C3%A9lenchon_2026.png/330px-Jean-Luc_M%C3%A9lenchon_2026.png',
+      'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268676/presidentielles/candidats/jean-luc-melenchon.jpg',
     currentRole: 'Chef de file de La France insoumise',
     biography: [
       'Né en 1951, Jean-Luc Mélenchon est une figure majeure de la gauche radicale française depuis plusieurs décennies.',
@@ -622,7 +622,7 @@ const candidates = [
     themes: ['Sécurité', 'Immigration', 'Droite d’autorité'],
     priority: 12,
     photoUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Bruno_Retailleau_-_Ministre_de_l%27Int%C3%A9rieur_fran%C3%A7ais_%28cropped%29.jpg/330px-Bruno_Retailleau_-_Ministre_de_l%27Int%C3%A9rieur_fran%C3%A7ais_%28cropped%29.jpg',
+      'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268669/presidentielles/candidats/bruno-retailleau.jpg',
     currentRole: 'Président des Républicains',
     biography: [
       'Né en 1960, Bruno Retailleau s’est imposé comme l’une des principales figures de la droite conservatrice au Sénat.',
@@ -760,7 +760,7 @@ const candidates = [
     themes: ['Justice', 'Sécurité', 'Droite sociale'],
     priority: 13,
     photoUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/French_Justice_Minister_G%C3%A9rald_Darmanin_in_2025_%28cropped_1%29.jpg/330px-French_Justice_Minister_G%C3%A9rald_Darmanin_in_2025_%28cropped_1%29.jpg',
+      'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268673/presidentielles/candidats/gerald-darmanin.jpg',
     currentRole: 'Garde des Sceaux, ministre de la Justice',
     biography: [
       'Né en 1982, Gérald Darmanin a bâti sa trajectoire entre implantation locale à Tourcoing et responsabilités ministérielles de premier plan.',

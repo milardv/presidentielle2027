@@ -10,7 +10,7 @@ interface AppSiteHeaderProps {
 
 export function AppSiteHeader({
   className = '',
-  containerClassName = 'max-w-7xl',
+  containerClassName = 'w-full',
 }: AppSiteHeaderProps) {
   return (
     <header

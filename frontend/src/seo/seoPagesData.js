@@ -1,5 +1,8 @@
 export const SITE_NAME = 'Présidentielles 2027'
 export const SITE_URL = 'https://electionpresidentielle2027.com'
+export const SITE_LOGO_PATH = '/site-logo.svg'
+export const SITE_FAVICON_PATH = '/favicon.svg'
+export const SITE_SOCIAL_IMAGE_PATH = '/site-social-card.svg'
 
 function candidatePage({
   slug,

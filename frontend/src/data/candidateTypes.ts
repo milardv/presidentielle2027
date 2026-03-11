@@ -50,6 +50,17 @@ export interface CandidateStyleSignal {
   source: CandidateSource
 }
 
+export interface CandidateParentBackground {
+  relation: string
+  profession: string
+  source: CandidateSource
+}
+
+export interface CandidateChildhoodInterest {
+  label: string
+  source: CandidateSource
+}
+
 export type CandidateInterventionType = 'video' | 'quote' | 'post'
 
 export interface CandidateIntervention {
@@ -77,6 +88,10 @@ export interface Candidate {
   birthDate?: string
   birthYear?: number
   biography: string[]
+  parentBackground?: CandidateParentBackground[]
+  childhoodCity?: string
+  childhoodCitySource?: CandidateSource
+  childhoodInterests?: CandidateChildhoodInterest[]
   keyPositions: CandidatePosition[]
   timeline: CandidateTimelineEvent[]
   themeHighlights?: CandidateThemeHighlight[]

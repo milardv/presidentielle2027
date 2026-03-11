@@ -1,9 +1,11 @@
 import type {
   Candidate,
+  CandidateChildhoodInterest,
   CandidateIntervention,
   CandidateNetworkRelation,
   CandidateNetworkTone,
   CandidateParcoursStep,
+  CandidateParentBackground,
   CandidatePosition,
   CandidateSource,
   CandidateStatus,
@@ -61,6 +63,68 @@ function parseStringArray(value: unknown): string[] {
   }
 
   return value.filter((entry): entry is string => typeof entry === 'string')
+}
+
+function parseParentBackground(value: unknown): CandidateParentBackground[] {
+  if (!Array.isArray(value)) {
+    return []
+  }
+
+  return value
+    .map((entry) => {
+      if (typeof entry !== 'object' || entry === null) {
+        return null
+      }
+
+      const maybeEntry = entry as {
+        relation?: unknown
+        profession?: unknown
+        source?: unknown
+      }
+      const source = parseSource(maybeEntry.source)
+      if (
+        typeof maybeEntry.relation !== 'string' ||
+        typeof maybeEntry.profession !== 'string' ||
+        source === null
+      ) {
+        return null
+      }
+
+      return {
+        relation: maybeEntry.relation,
+        profession: maybeEntry.profession,
+        source,
+      }
+    })
+    .filter((entry): entry is CandidateParentBackground => entry !== null)
+}
+
+function parseChildhoodInterests(value: unknown): CandidateChildhoodInterest[] {
+  if (!Array.isArray(value)) {
+    return []
+  }
+
+  return value
+    .map((entry) => {
+      if (typeof entry !== 'object' || entry === null) {
+        return null
+      }
+
+      const maybeEntry = entry as {
+        label?: unknown
+        source?: unknown
+      }
+      const source = parseSource(maybeEntry.source)
+      if (typeof maybeEntry.label !== 'string' || source === null) {
+        return null
+      }
+
+      return {
+        label: maybeEntry.label,
+        source,
+      }
+    })
+    .filter((entry): entry is CandidateChildhoodInterest => entry !== null)
 }
 
 function parseKeyPositions(value: unknown): CandidatePosition[] {
@@ -344,6 +408,9 @@ export function parseCandidate(id: string, data: Record<string, unknown>): Candi
 
   const themes = parseStringArray(data.themes)
   const biography = parseStringArray(data.biography)
+  const parentBackground = parseParentBackground(data.parentBackground)
+  const childhoodCitySource = parseSource(data.childhoodCitySource)
+  const childhoodInterests = parseChildhoodInterests(data.childhoodInterests)
 
   const sources = parseSources(data.sources)
   if (sources.length === 0) {
@@ -366,6 +433,10 @@ export function parseCandidate(id: string, data: Record<string, unknown>): Candi
     birthDate: typeof data.birthDate === 'string' ? data.birthDate : undefined,
     birthYear: typeof data.birthYear === 'number' ? data.birthYear : undefined,
     biography: biography.length > 0 ? biography : [data.summary],
+    parentBackground,
+    childhoodCity: typeof data.childhoodCity === 'string' ? data.childhoodCity : undefined,
+    childhoodCitySource: childhoodCitySource ?? undefined,
+    childhoodInterests,
     keyPositions: parseKeyPositions(data.keyPositions),
     timeline: parseTimeline(data.timeline),
     themeHighlights: parseThemeHighlights(data.themeHighlights),

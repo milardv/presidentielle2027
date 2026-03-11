@@ -4,7 +4,7 @@ export function HomeLoadingGrid() {
       {Array.from({ length: 4 }).map((_, index) => (
         <div
           key={`loading-${index}`}
-          className="h-72 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 animate-pulse"
+          className="h-[42rem] rounded-[1.85rem] border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 animate-pulse sm:h-[38rem]"
         ></div>
       ))}
     </section>

@@ -9,7 +9,7 @@ export function ProfilePageHeader() {
           Outil informatif - données issues de sources publiques
         </p>
       </div>
-      <AppSiteHeader containerClassName="max-w-7xl" />
+      <AppSiteHeader containerClassName="w-full" />
     </>
   )
 }

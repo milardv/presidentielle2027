@@ -76,7 +76,7 @@ export default function CandidateVideos() {
       <ProfilePageHeader />
       <CandidateProfileTabs candidateId={candidate.id} />
 
-      <main className="relative mx-auto max-w-4xl px-4 pb-16 pt-6 sm:px-6 sm:pb-24">
+      <main className="relative w-full px-4 pb-16 pt-6 sm:px-6 sm:pb-24">
         <section className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/92 shadow-[0_22px_60px_rgba(15,23,42,0.10)] dark:border-slate-800 dark:bg-slate-900/92">
           <div className="relative grid gap-6 p-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] lg:items-center sm:p-8">
             <div className="flex items-start gap-4">

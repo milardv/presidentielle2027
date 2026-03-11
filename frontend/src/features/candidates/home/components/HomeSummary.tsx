@@ -17,7 +17,11 @@ export function HomeSummary(_props: HomeSummaryProps) {
               Candidats, sondages et intentions de vote 2027
             </div>
             <h2 className="mt-4 max-w-3xl text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl lg:text-[2.85rem] lg:leading-[1.05]">
-              Qui sont les candidats aux présidentielles 2027 ?
+              Qui sont les candidats aux{' '}
+              <span className="bg-gradient-to-r from-primary via-blue-600 to-sky-500 bg-clip-text text-transparent">
+                présidentielles 2027
+              </span>{' '}
+              ?
             </h2>
             <div className="mt-5 inline-flex max-w-2xl items-start gap-3 rounded-[1.4rem] border border-slate-200/80 bg-slate-50/80 px-4 py-3 text-sm text-slate-700 dark:border-slate-800 dark:bg-slate-950/60 dark:text-slate-300">
               <span className="material-symbols-outlined text-primary">lightbulb</span>

@@ -24,7 +24,7 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
       <article className="relative flex h-full flex-col overflow-hidden rounded-[1.72rem] border border-white/60 bg-white/92 dark:border-slate-800/80 dark:bg-slate-900/94">
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-r from-primary/14 via-sky-200/22 to-amber-200/22 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-primary/18 dark:via-sky-400/10 dark:to-amber-300/10" />
 
-        <div className="relative h-60 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 sm:h-52">
+        <div className="relative h-[30rem] overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 sm:h-[26rem]">
           <div className="absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2">
             <span
               className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] ${candidateStatusBadgeStyles[candidate.status]}`}

@@ -51,7 +51,7 @@ export default function CandidateAnalysis() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_top_left,_rgba(26,34,127,0.12),_transparent_40%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.10),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(245,158,11,0.10),_transparent_22%)]" />
       <ProfilePageHeader />
 
-      <main className="relative mx-auto max-w-4xl pb-16 sm:pb-24">
+      <main className="relative w-full pb-16 sm:pb-24">
         <CandidateProfileTabs candidateId={candidate.id} />
 
         <section className="mx-4 mt-6 overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/92 shadow-[0_22px_60px_rgba(15,23,42,0.10)] sm:mx-6">

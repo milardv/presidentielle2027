@@ -84,7 +84,7 @@ export default function Profile() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_top,_rgba(26,34,127,0.10),_transparent_42%),radial-gradient(circle_at_top_right,_rgba(245,158,11,0.10),_transparent_26%)]" />
       <ProfilePageHeader />
 
-      <main className="relative max-w-4xl mx-auto pb-16 sm:pb-24">
+      <main className="relative w-full pb-16 sm:pb-24">
         <CandidateProfileTabs candidateId={candidate.id} />
         <ProfileHeroSection
           candidate={candidate}

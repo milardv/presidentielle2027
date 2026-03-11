@@ -284,9 +284,9 @@ export default function Polls() {
           inLanguage: 'fr-FR',
         }}
       />
-      <AppSiteHeader containerClassName="max-w-6xl" />
+      <AppSiteHeader containerClassName="w-full" />
 
-      <main className="max-w-6xl mx-auto px-4 pb-28 md:pb-16 py-6 space-y-6">
+      <main className="w-full px-4 pb-28 md:pb-16 py-6 space-y-6">
         <section className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/92 p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] dark:border-slate-800 dark:bg-slate-900/92 sm:p-6">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>

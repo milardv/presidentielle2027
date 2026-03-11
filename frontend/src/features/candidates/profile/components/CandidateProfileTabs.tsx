@@ -20,7 +20,7 @@ export function CandidateProfileTabs({ candidateId }: CandidateProfileTabsProps)
 
   return (
     <nav className="sticky top-[65px] z-40 border-b border-slate-200 bg-white/92 px-4 backdrop-blur-md dark:border-slate-800 dark:bg-background-dark/92 sm:top-[72px]">
-      <div className="mx-auto flex max-w-4xl overflow-x-auto no-scrollbar">
+      <div className="flex w-full overflow-x-auto no-scrollbar">
         {tabs.map((tab) => (
           <NavLink
             key={tab.to}

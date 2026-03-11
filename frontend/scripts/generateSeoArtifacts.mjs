@@ -1,7 +1,14 @@
 import { mkdir, rm, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { accentizeFrenchCopy } from '../src/seo/frenchCopy.js'
-import { SITE_NAME, SITE_URL, seoPages } from '../src/seo/seoPagesData.js'
+import {
+  SITE_FAVICON_PATH,
+  SITE_LOGO_PATH,
+  SITE_NAME,
+  SITE_SOCIAL_IMAGE_PATH,
+  SITE_URL,
+  seoPages,
+} from '../src/seo/seoPagesData.js'
 
 const PROJECT_ROOT = resolve(new URL('..', import.meta.url).pathname)
 const PUBLIC_DIR = resolve(PROJECT_ROOT, 'public')
@@ -15,9 +22,21 @@ function normalizePath(path) {
   return withLeadingSlash.endsWith('/') ? withLeadingSlash : `${withLeadingSlash}/`
 }
 
+function normalizeAssetPath(path) {
+  if (!path) {
+    return '/'
+  }
+
+  return path.startsWith('/') ? path : `/${path}`
+}
+
 function buildAbsoluteUrl(path) {
   const normalizedPath = normalizePath(path)
   return normalizedPath === '/' ? `${SITE_URL}/` : `${SITE_URL}${normalizedPath}`
+}
+
+function buildAbsoluteAssetUrl(path) {
+  return `${SITE_URL}${normalizeAssetPath(path)}`
 }
 
 function escapeHtml(value) {
@@ -52,6 +71,51 @@ function renderSeoPage(page) {
       },
     })),
   }
+  const organizationSchema = {
+    '@type': 'Organization',
+    name: siteName,
+    url: SITE_URL,
+    logo: {
+      '@type': 'ImageObject',
+      url: buildAbsoluteAssetUrl(SITE_LOGO_PATH),
+    },
+    image: buildAbsoluteAssetUrl(SITE_SOCIAL_IMAGE_PATH),
+  }
+  const websiteSchema = {
+    '@type': 'WebSite',
+    name: siteName,
+    url: SITE_URL,
+    inLanguage: 'fr-FR',
+    image: buildAbsoluteAssetUrl(SITE_SOCIAL_IMAGE_PATH),
+    publisher: {
+      '@type': 'Organization',
+      name: siteName,
+      logo: {
+        '@type': 'ImageObject',
+        url: buildAbsoluteAssetUrl(SITE_LOGO_PATH),
+      },
+    },
+  }
+  const webpageSchema = {
+    '@type': 'WebPage',
+    name: title,
+    description,
+    url: canonicalUrl,
+    inLanguage: 'fr-FR',
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: buildAbsoluteAssetUrl(SITE_SOCIAL_IMAGE_PATH),
+    },
+    isPartOf: {
+      '@type': 'WebSite',
+      name: siteName,
+      url: SITE_URL,
+    },
+  }
+  const schemaGraph = {
+    '@context': 'https://schema.org',
+    '@graph': [organizationSchema, websiteSchema, webpageSchema, { ...faqSchema, '@context': undefined }],
+  }
 
   return `<!doctype html>
 <html lang="fr">
@@ -61,16 +125,21 @@ function renderSeoPage(page) {
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#1a227f" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="${escapeHtml(siteName)}" />
   <meta property="og:title" content="${escapeHtml(title)}" />
   <meta property="og:description" content="${escapeHtml(description)}" />
   <meta property="og:url" content="${escapeHtml(canonicalUrl)}" />
+  <meta property="og:image" content="${escapeHtml(buildAbsoluteAssetUrl(SITE_SOCIAL_IMAGE_PATH))}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
+  <meta name="twitter:image" content="${escapeHtml(buildAbsoluteAssetUrl(SITE_SOCIAL_IMAGE_PATH))}" />
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
-  <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
+  <link rel="icon" type="image/svg+xml" href="${escapeHtml(buildAbsoluteAssetUrl(SITE_FAVICON_PATH))}" />
+  <link rel="manifest" href="${escapeHtml(buildAbsoluteAssetUrl('/site.webmanifest'))}" />
+  <script type="application/ld+json">${JSON.stringify(schemaGraph)}</script>
   <style>
     :root {
       color-scheme: light;

@@ -48,7 +48,7 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top_left,_rgba(26,34,127,0.10),_transparent_36%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.08),_transparent_28%),radial-gradient(circle_at_40%_40%,_rgba(245,158,11,0.08),_transparent_24%)]" />
       <HomeHeader />
 
-      <main className="relative max-w-7xl mx-auto px-4 pb-28 md:pb-24">
+      <main className="relative w-full px-4 pb-28 md:pb-24">
         <HomeSummary
           totalCount={candidates.length}
           declaredCount={declaredCount}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export function HomeDesktopFooter() {
   return (
     <footer className="hidden md:block py-12 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-start gap-8">
+      <div className="w-full px-4 flex flex-col md:flex-row justify-between items-start gap-8">
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-2xl">explore</span>

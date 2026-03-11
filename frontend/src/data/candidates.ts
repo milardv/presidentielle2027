@@ -14,7 +14,7 @@ export const knownCandidates2027: Candidate[] = [
       'Ancien Premier ministre (2017-2020), il a officialisé sa candidature le 3 septembre 2024.',
     themes: ['Institutions', 'Réindustrialisation', 'Sécurité'],
     priority: 1,
-    photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Edouard_Philippe_en_2025.png',
+    photoUrl: 'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268943/presidentielles/candidats/edouard-philippe.jpg',
     currentRole: 'Maire du Havre et président de Horizons',
     biography: [
       'Né le 28 novembre 1970 à Rouen, Édouard Philippe est haut-fonctionnaire de formation puis élu local au Havre.',
@@ -125,7 +125,7 @@ export const knownCandidates2027: Candidate[] = [
     themes: ['Droite populaire', 'Sécurité', 'Ancrage territorial'],
     priority: 2,
     photoUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/9/97/Xavier_Bertrand_-_2025_%28cropped%29.jpg',
+      'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268685/presidentielles/candidats/xavier-bertrand.jpg',
     currentRole: 'Président de la région Hauts-de-France',
     biography: [
       'Né en 1965, Xavier Bertrand a occupé plusieurs fonctions ministérielles avant de s’imposer comme chef de l’exécutif régional dans les Hauts-de-France.',
@@ -236,7 +236,7 @@ export const knownCandidates2027: Candidate[] = [
     themes: ['Salaires', 'Monde du travail', 'Anticapitalisme'],
     priority: 3,
     photoUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/6/6b/Nathalie_Arthaud_%28LO%29_19-05-2024.jpg',
+      'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268683/presidentielles/candidats/nathalie-arthaud.jpg',
     currentRole: 'Porte-parole de Lutte Ouvrière et enseignante',
     biography: [
       'Née en 1970, Nathalie Arthaud est enseignante en économie-communication et militante LO depuis sa jeunesse.',
@@ -346,7 +346,7 @@ export const knownCandidates2027: Candidate[] = [
       'Députée des Deux-Sèvres et cheffe de Génération Écologie, elle a annoncé sa candidature le 26 novembre 2025.',
     themes: ['Écologie de gouvernement', 'Décroissance', 'Énergie'],
     priority: 4,
-    photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9c/Delphine_Batho_%28cropped%29.png',
+    photoUrl: 'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268670/presidentielles/candidats/delphine-batho.jpg',
     currentRole: 'Députée des Deux-Sèvres et coordinatrice de Génération Écologie',
     biography: [
       'Née en 1973 à Paris, Delphine Batho est députée des Deux-Sèvres (2e circonscription) et siège au groupe Écologiste et Social.',
@@ -446,7 +446,7 @@ export const knownCandidates2027: Candidate[] = [
       'Secrétaire nationale des Écologistes, elle a officialisé sa candidature en octobre 2025 et gagne la désignation interne en décembre.',
     themes: ['Écologie', 'Union de la gauche', 'Démocratie'],
     priority: 5,
-    photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/20210819_tondelier.m-cr3.jpg',
+    photoUrl: 'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268682/presidentielles/candidats/marine-tondelier.jpg',
     currentRole: 'Secrétaire nationale des Écologistes',
     biography: [
       'Née en 1986, Marine Tondelier est une élue locale du Pas-de-Calais et une responsable nationale de l’écologie politique.',
@@ -561,7 +561,7 @@ export const knownCandidates2027: Candidate[] = [
       'Député de la Somme et fondateur de Debout, il annonce sa candidature à la primaire de la gauche en janvier 2026.',
     themes: ['Pouvoir d’achat', 'Justice fiscale', 'Union de la gauche'],
     priority: 6,
-    photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Fran%C3%A7ois_Ruffin_%28cropped%29.jpg',
+    photoUrl: 'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268671/presidentielles/candidats/francois-ruffin.jpg',
     currentRole: 'Député de la Somme et fondateur du mouvement Debout',
     biography: [
       'Né en 1975 à Calais, François Ruffin est journaliste de formation et député de la Somme.',
@@ -676,7 +676,7 @@ export const knownCandidates2027: Candidate[] = [
       'Sa candidature 2027 dépend du verdict en appel après une condamnation avec inéligibilité de 5 ans en 2025.',
     themes: ['Immigration', 'Souveraineté', 'Pouvoir d’achat'],
     priority: 7,
-    photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/81/Marine_Le_Pen_2025_%28cropped%29.jpg',
+    photoUrl: 'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268680/presidentielles/candidats/marine-le-pen.jpg',
     currentRole: 'Présidente du groupe RN à l’Assemblée nationale',
     biography: [
       'Figure centrale du RN depuis 2011, Marine Le Pen a été finaliste des présidentielles 2017 et 2022.',
@@ -792,7 +792,7 @@ export const knownCandidates2027: Candidate[] = [
       'Président du RN depuis 2022, il a confirmé qu’il serait candidat en 2027 si Marine Le Pen était empêchée.',
     themes: ['RN', 'Succession', 'Europe'],
     priority: 8,
-    photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/13/MEP_Jordan_Bardella.jpg',
+    photoUrl: 'https://res.cloudinary.com/dagxzno9s/image/upload/v1773268679/presidentielles/candidats/jordan-bardella.jpg',
     currentRole: 'Président du Rassemblement national et eurodéputé',
     biography: [
       'Né en 1995, Jordan Bardella est eurodéputé depuis 2019.',
