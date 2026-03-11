@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   font-family: "Public Sans", sans-serif;
@@ -17,6 +18,8 @@ body {
   min-height: 100dvh;
   font-family: "Public Sans", sans-serif;
   overflow-x: hidden;
+  background-color: var(--color-background-light);
+  color: #0f172a;
 }
 
 #root {
@@ -35,6 +38,7 @@ button {
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 @theme {
