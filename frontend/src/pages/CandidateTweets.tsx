@@ -10,6 +10,7 @@ import { useCandidateProfile } from '../features/candidates/profile/hooks/useCan
 import { useCandidateTweets } from '../features/candidates/profile/hooks/useCandidateTweets'
 import type { CandidateTweet } from '../data/candidateTweetTypes'
 import { formatFrenchDate, getCandidateInitials } from '../features/candidates/shared/candidateUi'
+import { SeoHead } from '../seo/SeoHead'
 
 function formatCompactNumber(value: number): string {
   return new Intl.NumberFormat('fr-FR', {
@@ -127,6 +128,12 @@ export default function CandidateTweets() {
 
   return (
     <div className="relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
+      <SeoHead
+        title={`${candidate.name} 2027 : tweets et prises de parole`}
+        description={`Flux des tweets et publications publiques de ${candidate.name} dans le suivi Presidentielles 2027.`}
+        path={`/candidats/${candidate.id}/tweets`}
+        noindex
+      />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[28rem] bg-[radial-gradient(circle_at_top_left,_rgba(26,34,127,0.12),_transparent_40%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.10),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(245,158,11,0.12),_transparent_22%)]" />
       <ProfilePageHeader />
       <CandidateProfileTabs candidateId={candidate.id} />

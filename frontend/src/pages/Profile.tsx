@@ -14,6 +14,7 @@ import { ProfileSourcesSection } from '../features/candidates/profile/components
 import { ProfileTimelineSection } from '../features/candidates/profile/components/ProfileTimelineSection'
 import { useCandidateProfile } from '../features/candidates/profile/hooks/useCandidateProfile'
 import { buildProfileCandidateViewModel } from '../features/candidates/profile/utils/profileCandidateViewModel'
+import { SeoHead } from '../seo/SeoHead'
 
 export default function Profile() {
   const { candidateId } = useParams<{ candidateId: string }>()
@@ -61,6 +62,23 @@ export default function Profile() {
 
   return (
     <div className="relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
+      <SeoHead
+        title={`${candidate.name} 2027 : profil, positions, interventions et sondages`}
+        description={`${candidate.name} 2027 : fiche complete avec positions, interventions, videos, tweets, sources et lecture de campagne.`}
+        path={`/candidats/${candidate.id}`}
+        keywords={[
+          `${candidate.name} 2027`,
+          `${candidate.name} presidentielle 2027`,
+          `${candidate.name} candidat 2027`,
+        ]}
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'ProfilePage',
+          name: `${candidate.name} 2027`,
+          description: `${candidate.name} : profil, positions, interventions et sources pour la presidentielle 2027.`,
+          inLanguage: 'fr-FR',
+        }}
+      />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_top,_rgba(26,34,127,0.10),_transparent_42%),radial-gradient(circle_at_top_right,_rgba(245,158,11,0.10),_transparent_26%)]" />
       <ProfilePageHeader />
 

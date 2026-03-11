@@ -10,6 +10,7 @@ import { useFavoriteCandidateMediaAttention } from '../features/auth/hooks/useFa
 import { useFavoriteCandidates } from '../features/auth/hooks/useFavoriteCandidates'
 import { ProfileAuthCard } from '../features/candidates/profile/components/ProfileAuthCard'
 import { appNavItems } from '../navigation/appNavItems'
+import { SeoHead } from '../seo/SeoHead'
 
 export default function PersonalProfile() {
   const {
@@ -41,6 +42,12 @@ export default function PersonalProfile() {
 
   return (
     <div className="min-h-screen bg-background-light text-slate-900 font-display dark:bg-background-dark dark:text-slate-100">
+      <SeoHead
+        title="Profil personnel | Presidentielles 2027"
+        description="Espace personnel pour suivre vos candidats favoris sur Presidentielles 2027."
+        path="/profile"
+        noindex
+      />
       <div className="absolute inset-x-0 top-0 h-[28rem] bg-[radial-gradient(circle_at_top,_rgba(26,34,127,0.12),_transparent_55%),radial-gradient(circle_at_top_right,_rgba(245,158,11,0.10),_transparent_35%)] pointer-events-none" />
 
       <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/88 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/88">

@@ -6,6 +6,7 @@ import { formatFrenchDate } from '../features/candidates/shared/candidateUi'
 import { PollsMobileNav } from '../features/polls/components/PollsMobileNav'
 import { usePolls } from '../features/polls/hooks/usePolls'
 import { appNavItems } from '../navigation/appNavItems'
+import { SeoHead } from '../seo/SeoHead'
 
 function formatScore(score: number): string {
   return new Intl.NumberFormat('fr-FR', {
@@ -119,21 +120,28 @@ function PollStudyCard({ poll }: { poll: VotingIntentPoll }) {
         {featuredScenario ? <ScenarioTopThree key={`${poll.id}-${featuredScenario.id}`} scenario={featuredScenario} /> : null}
 
         {secondaryScenarios.length > 0 ? (
-          <div className="rounded-xl border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/25 p-4">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">
-                Autres scénarios résumés
-              </p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                {secondaryScenarios.length} scenario{secondaryScenarios.length > 1 ? 's' : ''} compacté{secondaryScenarios.length > 1 ? 's' : ''}
-              </p>
+          <details className="group rounded-xl border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/25">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-4 text-sm font-semibold text-slate-700 marker:hidden dark:text-slate-200">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">
+                  Autres scénarios résumés
+                </p>
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                  {secondaryScenarios.length} scenario{secondaryScenarios.length > 1 ? 's' : ''} compacté{secondaryScenarios.length > 1 ? 's' : ''}
+                </p>
+              </div>
+              <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary transition group-open:rotate-45">
+                +
+              </span>
+            </summary>
+            <div className="border-t border-slate-200/80 px-4 pb-4 pt-4 dark:border-slate-800">
+              <div className="grid gap-3 lg:grid-cols-2">
+                {secondaryScenarios.map((scenario) => (
+                  <CompactScenarioCard key={`${poll.id}-${scenario.id}`} scenario={scenario} />
+                ))}
+              </div>
             </div>
-            <div className="mt-4 grid gap-3 lg:grid-cols-2">
-              {secondaryScenarios.map((scenario) => (
-                <CompactScenarioCard key={`${poll.id}-${scenario.id}`} scenario={scenario} />
-              ))}
-            </div>
-          </div>
+          </details>
         ) : null}
       </div>
     </article>
@@ -210,16 +218,28 @@ function LatestStudySpotlight({ poll }: { poll: VotingIntentPoll | null }) {
         </div>
       ) : null}
       {secondaryScenarios.length > 0 ? (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {secondaryScenarios.map((scenario) => (
-            <span
-              key={`${poll.id}-${scenario.id}`}
-              className="inline-flex rounded-full border border-emerald-200/80 dark:border-emerald-900/50 bg-white/80 dark:bg-slate-900/70 px-3 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300"
-            >
-              {scenario.label}
+        <details className="group mt-4 rounded-xl border border-emerald-200/70 dark:border-emerald-900/50 bg-white/75 dark:bg-slate-900/60">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-slate-700 marker:hidden dark:text-slate-200">
+            <span>
+              Voir les {secondaryScenarios.length} autre{secondaryScenarios.length > 1 ? 's' : ''} scenario{secondaryScenarios.length > 1 ? 's' : ''}
             </span>
-          ))}
-        </div>
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-700 transition group-open:rotate-45 dark:text-emerald-300">
+              +
+            </span>
+          </summary>
+          <div className="border-t border-emerald-200/70 px-4 pb-4 pt-3 dark:border-emerald-900/50">
+            <div className="flex flex-wrap gap-2">
+              {secondaryScenarios.map((scenario) => (
+                <span
+                  key={`${poll.id}-${scenario.id}`}
+                  className="inline-flex rounded-full border border-emerald-200/80 dark:border-emerald-900/50 bg-white/80 dark:bg-slate-900/70 px-3 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300"
+                >
+                  {scenario.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </details>
       ) : null}
     </section>
   )
@@ -246,6 +266,25 @@ export default function Polls() {
 
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+      <SeoHead
+        title="Sondage presidentielle 2027 : intentions de vote, classement et instituts"
+        description="Sondage presidentielle 2027 : comparez les intentions de vote, les scenarios, les instituts et les dynamiques de campagne sur une page claire."
+        path="/polls"
+        keywords={[
+          'sondage presidentielle 2027',
+          'presidentielle 2027 sondage',
+          'intentions de vote 2027',
+          'sondage IFOP presidentielle 2027',
+          'classement candidats presidentielle 2027',
+        ]}
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Sondages presidentielle 2027',
+          description: 'Page de suivi des intentions de vote et des scenarios de sondages pour la presidentielle 2027.',
+          inLanguage: 'fr-FR',
+        }}
+      />
       <header className="border-b border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-4 py-5">
           <div className="flex flex-wrap items-center justify-between gap-3">

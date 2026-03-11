@@ -14,6 +14,7 @@ export function HomeHeader() {
             <h1 className="mt-2 text-lg font-extrabold tracking-tight text-slate-950 dark:text-white sm:text-xl">
               Presidentielles 2027
             </h1>
+            <p className="text-xs text-slate-500">Candidats, sondages et intentions de vote</p>
           </div>
         </div>
 

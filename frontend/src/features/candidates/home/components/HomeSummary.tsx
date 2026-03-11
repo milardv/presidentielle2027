@@ -14,14 +14,14 @@ export function HomeSummary(_props: HomeSummaryProps) {
         <div className="grid gap-8 lg:items-end">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/10 bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-primary">
-              L&apos;essentiel de la campagne 2027
+              Candidats, sondages et intentions de vote 2027
             </div>
             <h2 className="mt-4 max-w-3xl text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl lg:text-[2.85rem] lg:leading-[1.05]">
               Qui sont les candidats aux présidentielles 2027 ?
             </h2>
             <div className="mt-5 inline-flex max-w-2xl items-start gap-3 rounded-[1.4rem] border border-slate-200/80 bg-slate-50/80 px-4 py-3 text-sm text-slate-700 dark:border-slate-800 dark:bg-slate-950/60 dark:text-slate-300">
               <span className="material-symbols-outlined text-primary">lightbulb</span>
-              <p>Fiches candidats, evolution des positions, interventions medias, videos et sondages, au meme endroit.</p>
+              <p>Candidats presidentielle 2027, sondages, intentions de vote, videos, tweets et analyses, au meme endroit.</p>
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
               <span className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-semibold text-white dark:bg-white dark:text-slate-950">

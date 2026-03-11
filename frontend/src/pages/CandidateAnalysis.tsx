@@ -14,6 +14,7 @@ import { useCandidateMediaAttention } from '../features/candidates/profile/hooks
 import { useCandidateProfile } from '../features/candidates/profile/hooks/useCandidateProfile'
 import { buildProfileCandidateViewModel } from '../features/candidates/profile/utils/profileCandidateViewModel'
 import { getCandidateInitials } from '../features/candidates/shared/candidateUi'
+import { SeoHead } from '../seo/SeoHead'
 
 export default function CandidateAnalysis() {
   const { candidateId } = useParams<{ candidateId: string }>()
@@ -39,6 +40,12 @@ export default function CandidateAnalysis() {
 
   return (
     <div className="relative min-h-screen bg-background-light font-display text-slate-900">
+      <SeoHead
+        title={`${candidate.name} 2027 : analyse media et reseau`}
+        description={`Analyse media, reseau, themes et parcours de ${candidate.name} dans le suivi Presidentielles 2027.`}
+        path={`/candidats/${candidate.id}/analysis`}
+        noindex
+      />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_top_left,_rgba(26,34,127,0.12),_transparent_40%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.10),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(245,158,11,0.10),_transparent_22%)]" />
       <ProfilePageHeader />
 
