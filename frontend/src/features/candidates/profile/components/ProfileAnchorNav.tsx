@@ -1,12 +1,7 @@
 const profileAnchors = [
   { id: 'resume', label: 'Résumé' },
   { id: 'evolution', label: 'Évolution' },
-  { id: 'media', label: 'Média' },
   { id: 'interventions', label: 'Interventions' },
-  { id: 'themes', label: 'Thèmes' },
-  { id: 'reseau', label: 'Réseau' },
-  { id: 'parcours', label: 'Parcours' },
-  { id: 'style', label: 'Style' },
   { id: 'sources', label: 'Sources' },
 ]
 

@@ -5,12 +5,13 @@ import { doc, getDocs, collection, writeBatch, getFirestore } from 'firebase/fir
 const firebaseConfig = getFirebaseConfig()
 
 const CANDIDATES_COLLECTION = 'candidates_2027'
-const DATA_LAST_UPDATED = '2026-03-09'
+const DATA_LAST_UPDATED = '2026-03-11'
 const DRY_RUN = process.argv.includes('--dry-run')
 
-const wikipediaAccessDate = '2026-03-09'
-const assemblyAccessDate = '2026-03-09'
-const justiceAccessDate = '2026-03-09'
+const wikipediaAccessDate = '2026-03-11'
+const assemblyAccessDate = '2026-03-11'
+const justiceAccessDate = '2026-03-11'
+const officialAccessDate = '2026-03-11'
 
 const raphaelSources = {
   official: {
@@ -27,6 +28,16 @@ const raphaelSources = {
     label: 'Le Monde',
     url: 'https://www.lemonde.fr/en/politics/article/2025/06/24/raphael-glucksmann-sets-out-policy-platform-for-2027-french-presidential-election_6742671_5.html',
     date: '2025-06-24',
+  },
+  congress: {
+    label: 'Place publique',
+    url: 'https://place-publique.eu/congres-place-publique/',
+    date: '2025-03-16',
+  },
+  europarl: {
+    label: 'Parlement européen',
+    url: 'https://www.europarl.europa.eu/meps/fr/197478/RAPHAEL_GLUCKSMANN/cv',
+    date: officialAccessDate,
   },
   wiki: {
     label: 'Wikipedia',
@@ -50,6 +61,11 @@ const attalSources = {
     label: 'TF1 Info',
     url: 'https://www.tf1info.fr/politique/discours-gabriel-attal-je-savais-que-la-france-en-paierait-le-prix-attal-tacle-macron-sur-la-dissolution-et-pose-des-jalons-pour-2027-2395927.html',
     date: '2025-09-21',
+  },
+  lcp: {
+    label: 'LCP',
+    url: 'https://lcp.fr/actualites/gabriel-attal-le-candidat-pressenti-pour-2027-est-il-l-homme-fort-de-la-macronie-323615',
+    date: '2025-09-11',
   },
   wiki: {
     label: 'Wikipedia',
@@ -79,6 +95,11 @@ const melenchonSources = {
     url: 'https://melenchon.fr/wp-content/uploads/2026/02/1.-COMMENT-FAIRE-E2.pdf',
     date: '2026-02-10',
   },
+  biography: {
+    label: 'Jean-Luc Melenchon',
+    url: 'https://melenchon.fr/biographie/',
+    date: officialAccessDate,
+  },
   wiki: {
     label: 'Wikipedia',
     url: 'https://fr.wikipedia.org/wiki/Jean-Luc_M%C3%A9lenchon',
@@ -96,6 +117,11 @@ const retailleauSources = {
     label: 'TF1 Info',
     url: 'https://www.tf1info.fr/politique/bruno-retailleau-candidat-a-la-presidentielle-2027-il-sera-l-invite-du-20h-de-tf1-ce-soir-2424402.html',
     date: '2026-02-12',
+  },
+  senate: {
+    label: 'Sénat',
+    url: 'https://www.senat.fr/senateur/retailleau_bruno14266k.html',
+    date: officialAccessDate,
   },
   wiki: {
     label: 'Wikipedia',
@@ -124,6 +150,11 @@ const darmaninSources = {
     label: 'Le Monde',
     url: 'https://www.lemonde.fr/politique/article/2025/08/31/a-tourcoing-gerald-darmanin-tend-la-main-aux-socialistes-et-fait-valoir-sa-fibre-sociale_6637931_823448.html',
     date: '2025-08-31',
+  },
+  populaires: {
+    label: 'Les Populaires',
+    url: 'https://les-populaires.fr/',
+    date: officialAccessDate,
   },
   wiki: {
     label: 'Wikipedia',
@@ -215,14 +246,74 @@ const candidates = [
         source: raphaelSources.primary,
       },
     ],
+    network: [
+      {
+        actor: 'Place publique',
+        role: 'Coprésident',
+        relation: 'Son parti lui sert de base organisationnelle pour structurer une offre sociale-démocrate autonome en vue de 2027.',
+        source: raphaelSources.congress,
+      },
+      {
+        actor: 'Parlement européen',
+        role: 'Député européen',
+        relation: 'Son mandat européen est son principal point d’appui institutionnel et donne de la crédibilité à sa ligne pro-européenne.',
+        source: raphaelSources.europarl,
+      },
+      {
+        actor: 'Alliance PS-Place publique',
+        role: 'Chef de file électoral',
+        relation: 'La coalition nouée aux européennes lui offre un réseau politique au-delà de son seul parti et prépare sa projection nationale.',
+        source: raphaelSources.platform,
+      },
+    ],
+    parcours: [
+      {
+        period: '2008-2013',
+        role: 'Conseiller diplomatique',
+        institution: 'Présidence géorgienne',
+        summary: 'Il accompagne le président Mikheil Saakachvili, première expérience structurante dans les questions internationales.',
+        source: raphaelSources.official,
+      },
+      {
+        period: '2018-2019',
+        role: 'Fondateur de Place publique puis tête de liste',
+        institution: 'Place publique',
+        summary: 'Il participe à la fondation de Place publique et mène la liste de centre gauche aux européennes de 2019.',
+        source: raphaelSources.official,
+      },
+      {
+        period: '2019-aujourd’hui',
+        role: 'Député européen',
+        institution: 'Parlement européen',
+        summary: 'Il installe sa trajectoire politique autour du mandat européen et des enjeux de souveraineté démocratique.',
+        source: raphaelSources.europarl,
+      },
+    ],
     style: [
       {
         axis: 'Registre',
         description: 'Style réformiste, pro-européen et offensif contre la logique de recomposition imposée par le macronisme.',
         source: raphaelSources.primary,
       },
+      {
+        axis: 'Narration',
+        description: 'Il met en scène une gauche réformatrice, ancrée dans la puissance industrielle et la défense de la démocratie libérale.',
+        source: raphaelSources.platform,
+      },
+      {
+        axis: 'Méthode',
+        description: 'Son refus de la primaire traduit un style de leadership autonome, peu enclin aux compromis tactiques imposés de l’extérieur.',
+        source: raphaelSources.primary,
+      },
     ],
-    sources: [raphaelSources.primary, raphaelSources.platform, raphaelSources.official, raphaelSources.wiki],
+    sources: [
+      raphaelSources.primary,
+      raphaelSources.platform,
+      raphaelSources.official,
+      raphaelSources.congress,
+      raphaelSources.europarl,
+      raphaelSources.wiki,
+    ],
   },
   {
     id: 'gabriel-attal',
@@ -237,7 +328,7 @@ const candidates = [
     priority: 10,
     photoUrl:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Gabriel_Attal_2025_%283x4_cropped%29.jpg/330px-Gabriel_Attal_2025_%283x4_cropped%29.jpg',
-    currentRole: 'Secrétaire général de Renaissance et président du groupe Renaissance à l’Assemblée nationale',
+    currentRole: 'Secrétaire général de Renaissance et président du groupe Ensemble pour la République à l’Assemblée nationale',
     biography: [
       'Né en 1989, Gabriel Attal a occupé plusieurs postes ministériels avant de devenir Premier ministre en 2024.',
       'Après Matignon, il conserve une place centrale dans le bloc macroniste comme chef du groupe Renaissance à l’Assemblée et secrétaire général du parti.',
@@ -300,14 +391,73 @@ const candidates = [
         source: attalSources.speech2027,
       },
     ],
+    network: [
+      {
+        actor: 'Renaissance',
+        role: 'Secrétaire général',
+        relation: 'Le parti lui fournit l’appareil central pour structurer sa projection politique nationale.',
+        source: attalSources.path2027,
+      },
+      {
+        actor: 'Groupe Ensemble pour la République',
+        role: 'Président de groupe',
+        relation: 'La présidence du groupe à l’Assemblée fait de lui le principal point d’appui parlementaire du bloc central.',
+        source: attalSources.assembly,
+      },
+      {
+        actor: 'Jeunes macronistes',
+        role: 'Relais militants',
+        relation: 'Le socle militant générationnel autour d’Attal alimente son image de successeur possible et sa capacité de mobilisation.',
+        source: attalSources.lcp,
+      },
+    ],
+    parcours: [
+      {
+        period: '2017-2022',
+        role: 'Membre du gouvernement',
+        institution: 'Exécutif français',
+        summary: 'Il enchaîne plusieurs portefeuilles ministériels et s’impose comme une figure montante de la macronie.',
+        source: attalSources.wiki,
+      },
+      {
+        period: '2024',
+        role: 'Premier ministre',
+        institution: 'Gouvernement français',
+        summary: 'Son passage à Matignon lui donne une stature nationale et un statut d’héritier potentiel du bloc central.',
+        source: attalSources.wiki,
+      },
+      {
+        period: '2024-aujourd’hui',
+        role: 'Chef de parti et chef de groupe',
+        institution: 'Renaissance / Assemblée nationale',
+        summary: 'Après Matignon, il consolide simultanément un ancrage partisan et parlementaire pour préparer la suite.',
+        source: attalSources.assembly,
+      },
+    ],
     style: [
       {
         axis: 'Registre',
         description: 'Style offensif et générationnel, cherchant à réarmer politiquement le centre après 2024.',
         source: attalSources.speech2027,
       },
+      {
+        axis: 'Positionnement',
+        description: 'Il combine vocabulaire de responsabilité, promesse d’efficacité et volonté d’incarner le renouveau après le macronisme.',
+        source: attalSources.path2027,
+      },
+      {
+        axis: 'Tempo',
+        description: 'Ses interventions récentes visent à occuper vite l’espace post-Macron et à parler directement au socle central.',
+        source: attalSources.lcp,
+      },
     ],
-    sources: [attalSources.path2027, attalSources.speech2027, attalSources.assembly, attalSources.wiki],
+    sources: [
+      attalSources.path2027,
+      attalSources.speech2027,
+      attalSources.lcp,
+      attalSources.assembly,
+      attalSources.wiki,
+    ],
   },
   {
     id: 'jean-luc-melenchon',
@@ -391,17 +541,71 @@ const candidates = [
         source: melenchonSources.strategy,
       },
     ],
+    network: [
+      {
+        actor: 'La France insoumise',
+        role: 'Chef de file',
+        relation: 'Il reste le centre de gravité stratégique du mouvement et la référence de la ligne insoumise pour 2027.',
+        source: melenchonSources.official,
+      },
+      {
+        actor: 'Institut La Boétie',
+        role: 'Coprésident',
+        relation: 'Le laboratoire d’idées prolonge son influence intellectuelle et alimente la préparation doctrinale de son camp.',
+        source: melenchonSources.biography,
+      },
+      {
+        actor: 'Écosystème insoumis',
+        role: 'Direction politique informelle',
+        relation: 'Son autorité personnelle organise la sélection des thèmes, des cadres et du calendrier stratégique du mouvement.',
+        source: melenchonSources.strategy,
+      },
+    ],
+    parcours: [
+      {
+        period: '2008-2016',
+        role: 'Fondateur du Parti de gauche',
+        institution: 'Gauche radicale',
+        summary: 'Il quitte le Parti socialiste, fonde le Parti de gauche et installe sa propre trajectoire politique nationale.',
+        source: melenchonSources.biography,
+      },
+      {
+        period: '2016-aujourd’hui',
+        role: 'Chef de file',
+        institution: 'La France insoumise',
+        summary: 'Il structure un mouvement autonome centré sur l’Union populaire et la rupture avec le bloc central.',
+        source: melenchonSources.official,
+      },
+      {
+        period: '2025-2026',
+        role: 'Préparateur stratégique de 2027',
+        institution: 'Écosystème insoumis',
+        summary: 'Il verrouille la ligne autonome de LFI et diffuse un document de cadrage pour préparer le prochain cycle présidentiel.',
+        source: melenchonSources.strategy,
+      },
+    ],
     style: [
       {
         axis: 'Registre',
         description: 'Style tribunitien, conflictuel et fortement centralisé autour de la maîtrise de la ligne du mouvement.',
         source: melenchonSources.reiteration,
       },
+      {
+        axis: 'Rhétorique',
+        description: 'Ses prises de parole privilégient la conflictualité politique, la dramatisation du rapport de force et la clarté de camp.',
+        source: melenchonSources.insoumise2027,
+      },
+      {
+        axis: 'Architecture',
+        description: 'Il articule discours programmatique long et séquences médiatiques courtes pour garder la main sur le récit insoumis.',
+        source: melenchonSources.strategy,
+      },
     ],
     sources: [
       melenchonSources.insoumise2027,
       melenchonSources.reiteration,
       melenchonSources.strategy,
+      melenchonSources.biography,
       melenchonSources.official,
       melenchonSources.wiki,
     ],
@@ -482,14 +686,67 @@ const candidates = [
         source: retailleauSources.lr,
       },
     ],
+    network: [
+      {
+        actor: 'Les Républicains',
+        role: 'Président',
+        relation: 'La présidence du parti lui donne la machine militante et l’autorité interne nécessaires pour préparer 2027.',
+        source: retailleauSources.lr,
+      },
+      {
+        actor: 'Sénat',
+        role: 'Sénateur de Vendée',
+        relation: 'Son ancrage sénatorial nourrit son image d’élu de droite expérimenté et sa crédibilité sur les dossiers régaliens.',
+        source: retailleauSources.senate,
+      },
+      {
+        actor: 'Droite régalienne',
+        role: 'Pôle idéologique',
+        relation: 'Il fédère une droite d’autorité autour des questions d’immigration, de sécurité et d’ordre.',
+        source: retailleauSources.tf1,
+      },
+    ],
+    parcours: [
+      {
+        period: '2004-2010',
+        role: 'Président du groupe de la majorité',
+        institution: 'Conseil régional des Pays de la Loire',
+        summary: 'Il construit un socle politique local solide avant sa montée en puissance nationale.',
+        source: retailleauSources.senate,
+      },
+      {
+        period: '2004-aujourd’hui',
+        role: 'Sénateur',
+        institution: 'Sénat',
+        summary: 'Le Sénat devient sa base institutionnelle durable et le lieu où il affine sa ligne politique.',
+        source: retailleauSources.senate,
+      },
+      {
+        period: '2025-aujourd’hui',
+        role: 'Président des Républicains',
+        institution: 'Les Républicains',
+        summary: 'Sa victoire à la tête du parti l’installe comme l’un des principaux prétendants de la droite pour 2027.',
+        source: retailleauSources.lr,
+      },
+    ],
     style: [
       {
         axis: 'Registre',
         description: 'Style de droite d’autorité, sobre dans la forme mais très affirmé sur le fond régalien.',
         source: retailleauSources.tf1,
       },
+      {
+        axis: 'Tonalité',
+        description: 'Il privilégie un discours grave, ferme et hiérarchisé, visant à réinstaller une autorité politique classique.',
+        source: retailleauSources.lr,
+      },
+      {
+        axis: 'Cadre politique',
+        description: 'Sa communication met en avant la continuité doctrinale de la droite républicaine plutôt qu’un récit de rupture personnelle.',
+        source: retailleauSources.senate,
+      },
     ],
-    sources: [retailleauSources.tf1, retailleauSources.lr, retailleauSources.wiki],
+    sources: [retailleauSources.tf1, retailleauSources.lr, retailleauSources.senate, retailleauSources.wiki],
   },
   {
     id: 'gerald-darmanin',
@@ -567,17 +824,71 @@ const candidates = [
         source: darmaninSources.capable,
       },
     ],
+    network: [
+      {
+        actor: 'Ministère de la Justice',
+        role: 'Garde des Sceaux',
+        relation: 'La Chancellerie lui donne un levier institutionnel fort pour nourrir son image d’homme d’autorité.',
+        source: darmaninSources.justice,
+      },
+      {
+        actor: 'Les Populaires',
+        role: 'Fondateur',
+        relation: 'Son propre mouvement lui permet de s’émanciper partiellement du seul appareil présidentiel et de tester une offre politique autonome.',
+        source: darmaninSources.populaires,
+      },
+      {
+        actor: 'Tourcoing',
+        role: 'Ancrage territorial',
+        relation: 'La mise en scène régulière de Tourcoing nourrit sa ligne de droite sociale et populaire.',
+        source: darmaninSources.movement,
+      },
+    ],
+    parcours: [
+      {
+        period: '2014-2020',
+        role: 'Maire',
+        institution: 'Tourcoing',
+        summary: 'Son implantation locale à Tourcoing sert de base durable à sa trajectoire politique nationale.',
+        source: darmaninSources.wiki,
+      },
+      {
+        period: '2017-2024',
+        role: 'Ministre puis ministre de l’Intérieur',
+        institution: 'Gouvernements français',
+        summary: 'Il s’impose comme l’un des visages les plus visibles du pouvoir exécutif sur les sujets régaliens.',
+        source: darmaninSources.wiki,
+      },
+      {
+        period: '2024-aujourd’hui',
+        role: 'Garde des Sceaux et fondateur de Populaires',
+        institution: 'Justice / mouvement politique',
+        summary: 'Il combine appareil d’État et structuration d’un mouvement propre pour préparer son avenir politique.',
+        source: darmaninSources.populaires,
+      },
+    ],
     style: [
       {
         axis: 'Registre',
         description: 'Style direct, axé sur l’autorité et la proximité avec les classes populaires.',
         source: darmaninSources.movement,
       },
+      {
+        axis: 'Narration',
+        description: 'Il cherche à concilier ordre républicain et récit de mobilité sociale pour élargir son socle à droite comme au centre.',
+        source: darmaninSources.capable,
+      },
+      {
+        axis: 'Incarnation',
+        description: 'Sa communication repose sur la personnalisation, la franchise revendiquée et l’affichage d’une disponibilité pour 2027.',
+        source: darmaninSources.participates,
+      },
     ],
     sources: [
       darmaninSources.capable,
       darmaninSources.participates,
       darmaninSources.movement,
+      darmaninSources.populaires,
       darmaninSources.justice,
       darmaninSources.wiki,
     ],

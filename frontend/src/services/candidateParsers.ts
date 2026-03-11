@@ -2,6 +2,7 @@ import type {
   Candidate,
   CandidateIntervention,
   CandidateNetworkRelation,
+  CandidateNetworkTone,
   CandidateParcoursStep,
   CandidatePosition,
   CandidateSource,
@@ -13,9 +14,14 @@ import type {
 import { decodeHtmlEntities } from '../utils/htmlEntities'
 
 const validStatuses: CandidateStatus[] = ['declared', 'declared_primary', 'intent', 'conditional']
+const validNetworkTones: CandidateNetworkTone[] = ['ally', 'institution', 'rival']
 
 function isValidStatus(value: unknown): value is CandidateStatus {
   return typeof value === 'string' && validStatuses.includes(value as CandidateStatus)
+}
+
+function isValidNetworkTone(value: unknown): value is CandidateNetworkTone {
+  return typeof value === 'string' && validNetworkTones.includes(value as CandidateNetworkTone)
 }
 
 function parseSource(value: unknown): CandidateSource | null {
@@ -177,6 +183,8 @@ function parseNetwork(value: unknown): CandidateNetworkRelation[] {
         actor?: unknown
         role?: unknown
         relation?: unknown
+        tone?: unknown
+        imageUrl?: unknown
         source?: unknown
       }
       const source = parseSource(maybeEntry.source)
@@ -193,6 +201,10 @@ function parseNetwork(value: unknown): CandidateNetworkRelation[] {
         actor: maybeEntry.actor,
         role: maybeEntry.role,
         relation: maybeEntry.relation,
+        ...(isValidNetworkTone(maybeEntry.tone) ? { tone: maybeEntry.tone } : {}),
+        ...(typeof maybeEntry.imageUrl === 'string' && maybeEntry.imageUrl.length > 0
+          ? { imageUrl: maybeEntry.imageUrl }
+          : {}),
         source,
       }
     })
@@ -342,6 +354,7 @@ export function parseCandidate(id: string, data: Record<string, unknown>): Candi
     id,
     name: data.name,
     photoUrl: typeof data.photoUrl === 'string' ? data.photoUrl : '',
+    xUsername: typeof data.xUsername === 'string' ? data.xUsername : undefined,
     bloc: data.bloc,
     party: data.party,
     status: data.status,

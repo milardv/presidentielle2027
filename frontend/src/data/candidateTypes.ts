@@ -25,10 +25,14 @@ export interface CandidateThemeHighlight {
   source: CandidateSource
 }
 
+export type CandidateNetworkTone = 'ally' | 'institution' | 'rival'
+
 export interface CandidateNetworkRelation {
   actor: string
   role: string
   relation: string
+  tone?: CandidateNetworkTone
+  imageUrl?: string
   source: CandidateSource
 }
 
@@ -61,6 +65,7 @@ export interface Candidate {
   id: string
   name: string
   photoUrl: string
+  xUsername?: string
   bloc: string
   party: string
   status: CandidateStatus
