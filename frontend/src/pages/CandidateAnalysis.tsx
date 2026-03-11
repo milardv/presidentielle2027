@@ -1,5 +1,3 @@
-import type { ReactNode } from 'react'
-import { FileSearch, GitBranch, Route } from 'lucide-react'
 import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { CandidateAnalysisAnchorNav } from '../features/candidates/profile/components/CandidateAnalysisAnchorNav'
@@ -16,18 +14,6 @@ import { useCandidateMediaAttention } from '../features/candidates/profile/hooks
 import { useCandidateProfile } from '../features/candidates/profile/hooks/useCandidateProfile'
 import { buildProfileCandidateViewModel } from '../features/candidates/profile/utils/profileCandidateViewModel'
 import { getCandidateInitials } from '../features/candidates/shared/candidateUi'
-
-function AnalysisStat({ label, value, icon }: { label: string; value: string; icon: ReactNode }) {
-  return (
-    <div className="rounded-[1.4rem] border border-slate-200/80 bg-white/90 p-4 shadow-sm">
-      <div className="flex items-center justify-between gap-3">
-        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">{label}</p>
-        <div className="text-primary">{icon}</div>
-      </div>
-      <p className="mt-3 text-2xl font-black tracking-tight text-slate-950">{value}</p>
-    </div>
-  )
-}
 
 export default function CandidateAnalysis() {
   const { candidateId } = useParams<{ candidateId: string }>()
@@ -82,24 +68,6 @@ export default function CandidateAnalysis() {
                   Lecture analytique de son attention média, de ses thèmes, de son réseau, de son parcours et de son style politique.
                 </p>
               </div>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-              <AnalysisStat
-                label="Thèmes"
-                value={`${viewModel.themeHighlights.length}`}
-                icon={<FileSearch className="h-[18px] w-[18px]" />}
-              />
-              <AnalysisStat
-                label="Réseau"
-                value={`${viewModel.networkEntries.length}`}
-                icon={<GitBranch className="h-[18px] w-[18px]" />}
-              />
-              <AnalysisStat
-                label="Parcours"
-                value={`${viewModel.parcoursEntries.length}`}
-                icon={<Route className="h-[18px] w-[18px]" />}
-              />
             </div>
           </div>
         </section>

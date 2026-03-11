@@ -10,6 +10,9 @@
     "preview": "vite preview",
     "sync:interventions": "node scripts/syncCandidateInterventions.mjs",
     "sync:interventions:dry": "node scripts/syncCandidateInterventions.mjs --dry-run",
+    "sync:tweets": "node scripts/syncCandidateTweets.mjs",
+    "sync:tweets:dry": "node scripts/syncCandidateTweets.mjs --dry-run",
+    "admin:sync-server": "node scripts/adminSyncServer.mjs",
     "sync:x-profiles": "node scripts/syncCandidateXProfiles.mjs",
     "sync:network-graph": "node scripts/enrichCandidateNetworkGraph.mjs"
   },
@@ -24,6 +27,7 @@
     "firebase": "^12.10.0",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
+    "playwright": "^1.58.2",
     "react": "^19.2.0",
     "react-cytoscapejs": "^2.0.0",
     "react-dom": "^19.2.0",

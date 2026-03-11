@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, query, where, writeBatch } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, query, where, writeBatch } from 'firebase/firestore'
 import type {
   CandidateMediaAttentionPeakContext,
   CandidateMediaAttentionPeakStory,
@@ -12,6 +12,7 @@ import { decodeHtmlEntities } from '../utils/htmlEntities'
 const CANDIDATES_COLLECTION = 'candidates_2027'
 const RAW_INTERVENTIONS_COLLECTION = 'candidate_interventions_2027'
 const MEDIA_ATTENTION_COLLECTION = 'candidate_media_attention_2027'
+const TWEETS_COLLECTION = 'candidate_tweets_2027'
 const LOOKBACK_DAYS = 45
 const MEDIA_ATTENTION_TIMESPAN = '3months'
 const MEDIA_CLOUD_BASE_API_URL = 'https://search.mediacloud.org/api/'
@@ -55,9 +56,29 @@ export interface RefreshCandidateMediaAttentionResult {
   updatedAt: string
 }
 
+export interface RefreshCandidateTweetsResult {
+  candidateName: string
+  candidateId: string
+  importedCount: number
+  updatedAt: string
+}
+
+export interface RefreshAllCandidateTweetsResult {
+  candidateCount: number
+  importedCount: number
+  updatedAt: string
+}
+
 export interface CandidateMediaCounts {
   youtube: number
   gdelt: number
+  tweets: number
+}
+
+export interface CandidateTweetSyncStatus {
+  lastRunAt: string | null
+  importedCount: number | null
+  status: string | null
 }
 
 function getYouTubeApiKey(): string {
@@ -80,6 +101,28 @@ function getMediaCloudApiKey(): string {
   }
 
   return apiKey
+}
+
+function getAdminSyncApiUrl(): string {
+  return import.meta.env.VITE_ADMIN_SYNC_API_URL?.trim() || 'http://127.0.0.1:8787'
+}
+
+async function postToAdminSync<T>(path: string, payload: Record<string, unknown>): Promise<T> {
+  const response = await fetch(`${getAdminSyncApiUrl().replace(/\/$/, '')}${path}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+
+  const body = (await response.json()) as { error?: string }
+
+  if (!response.ok) {
+    throw new Error(body.error || 'Le serveur local de sync a refuse la requete.')
+  }
+
+  return body as T
 }
 
 function getMediaCloudCollectionIds(): number[] {
@@ -780,6 +823,100 @@ export async function refreshCandidateMediaAttention(
   }
 }
 
+export async function refreshCandidateTweets(
+  candidate: Candidate,
+  userEmail: string | null | undefined,
+): Promise<RefreshCandidateTweetsResult> {
+  if (!isAdminEmail(userEmail)) {
+    throw new Error(`Admin access required for ${ADMIN_EMAIL}.`)
+  }
+
+  try {
+    const payload = await postToAdminSync<{
+      candidateId?: string
+      candidateName?: string
+      importedCount?: number
+      updatedAt?: string
+    }>('/admin/refresh-tweets', {
+        candidateId: candidate.id,
+        adminEmail: userEmail,
+    })
+
+    return {
+      candidateName: payload.candidateName || candidate.name,
+      candidateId: payload.candidateId || candidate.id,
+      importedCount: Number.isFinite(payload.importedCount) ? Number(payload.importedCount) : 0,
+      updatedAt: payload.updatedAt || new Date().toISOString(),
+    }
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('Failed to fetch')) {
+      throw new Error('Le serveur local de sync tweets ne repond pas. Lance `npm run admin:sync-server` sur la machine admin.')
+    }
+
+    throw new Error(getRefreshErrorMessage(error))
+  }
+}
+
+export async function refreshAllCandidateTweets(
+  userEmail: string | null | undefined,
+): Promise<RefreshAllCandidateTweetsResult> {
+  if (!isAdminEmail(userEmail)) {
+    throw new Error(`Admin access required for ${ADMIN_EMAIL}.`)
+  }
+
+  try {
+    const payload = await postToAdminSync<{
+      candidateCount?: number
+      importedCount?: number
+      updatedAt?: string
+    }>('/admin/refresh-all-tweets', {
+      adminEmail: userEmail,
+    })
+
+    return {
+      candidateCount: Number.isFinite(payload.candidateCount) ? Number(payload.candidateCount) : 0,
+      importedCount: Number.isFinite(payload.importedCount) ? Number(payload.importedCount) : 0,
+      updatedAt: payload.updatedAt || new Date().toISOString(),
+    }
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('Failed to fetch')) {
+      throw new Error('Le serveur local de sync tweets ne repond pas. Lance `npm run admin:sync-server` sur la machine admin.')
+    }
+
+    throw new Error(getRefreshErrorMessage(error))
+  }
+}
+
+export async function getCandidateTweetSyncStatus(candidateId: string): Promise<CandidateTweetSyncStatus> {
+  const snapshot = await getDoc(doc(db, CANDIDATES_COLLECTION, candidateId))
+  const data = snapshot.data() as {
+    tweetsSyncMeta?: {
+      lastRunAt?: unknown
+      importedCount?: unknown
+      status?: unknown
+    }
+  } | undefined
+
+  const lastRunAt =
+    typeof data?.tweetsSyncMeta?.lastRunAt === 'string' && data.tweetsSyncMeta.lastRunAt.trim().length > 0
+      ? data.tweetsSyncMeta.lastRunAt
+      : null
+  const importedCount =
+    typeof data?.tweetsSyncMeta?.importedCount === 'number' && Number.isFinite(data.tweetsSyncMeta.importedCount)
+      ? data.tweetsSyncMeta.importedCount
+      : null
+  const status =
+    typeof data?.tweetsSyncMeta?.status === 'string' && data.tweetsSyncMeta.status.trim().length > 0
+      ? data.tweetsSyncMeta.status
+      : null
+
+  return {
+    lastRunAt,
+    importedCount,
+    status,
+  }
+}
+
 export async function getCandidateMediaCounts(candidateId: string): Promise<CandidateMediaCounts> {
   const youtubeQuery = query(
     collection(db, RAW_INTERVENTIONS_COLLECTION),
@@ -791,11 +928,20 @@ export async function getCandidateMediaCounts(candidateId: string): Promise<Cand
     where('candidateId', '==', candidateId),
     where('provider', '==', 'gdelt'),
   )
+  const tweetsQuery = query(
+    collection(db, TWEETS_COLLECTION),
+    where('candidateId', '==', candidateId),
+  )
 
-  const [youtubeSnapshot, gdeltSnapshot] = await Promise.all([getDocs(youtubeQuery), getDocs(gdeltQuery)])
+  const [youtubeSnapshot, gdeltSnapshot, tweetsSnapshot] = await Promise.all([
+    getDocs(youtubeQuery),
+    getDocs(gdeltQuery),
+    getDocs(tweetsQuery),
+  ])
 
   return {
     youtube: youtubeSnapshot.size,
     gdelt: gdeltSnapshot.size,
+    tweets: tweetsSnapshot.size,
   }
 }

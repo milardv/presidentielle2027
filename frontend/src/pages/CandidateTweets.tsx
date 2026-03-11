@@ -1,200 +1,123 @@
-import { useEffect, useRef, useState } from 'react'
-import { AtSign, ExternalLink } from 'lucide-react'
+import type { ReactNode } from 'react'
+import { AtSign, BadgeCheck, ExternalLink, Eye, Heart, MessageCircle, Repeat2 } from 'lucide-react'
+import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { CandidateProfileTabs } from '../features/candidates/profile/components/CandidateProfileTabs'
 import { ProfileErrorState } from '../features/candidates/profile/components/ProfileErrorState'
 import { ProfileLoadingState } from '../features/candidates/profile/components/ProfileLoadingState'
 import { ProfilePageHeader } from '../features/candidates/profile/components/ProfilePageHeader'
 import { useCandidateProfile } from '../features/candidates/profile/hooks/useCandidateProfile'
-import { getCandidateInitials } from '../features/candidates/shared/candidateUi'
+import { useCandidateTweets } from '../features/candidates/profile/hooks/useCandidateTweets'
+import type { CandidateTweet } from '../data/candidateTweetTypes'
+import { formatFrenchDate, getCandidateInitials } from '../features/candidates/shared/candidateUi'
 
-const X_WIDGET_SCRIPT_ID = 'x-widgets-script'
-const X_WIDGET_INIT_TIMEOUT_MS = 5000
-
-let xWidgetsPromise: Promise<XWidgets> | null = null
-
-type XWidgets = {
-  widgets: {
-    load: (element?: HTMLElement) => void
-  }
+function formatCompactNumber(value: number): string {
+  return new Intl.NumberFormat('fr-FR', {
+    notation: 'compact',
+    maximumFractionDigits: value >= 1000 ? 1 : 0,
+  }).format(value)
 }
 
-function loadXWidgets(): Promise<XWidgets> {
-  if (typeof window === 'undefined') {
-    return Promise.reject(new Error('Window is unavailable.'))
-  }
-
-  const existingWidgets = (window as Window & { twttr?: XWidgets }).twttr
-  if (existingWidgets?.widgets) {
-    return Promise.resolve(existingWidgets)
-  }
-
-  if (xWidgetsPromise) {
-    return xWidgetsPromise
-  }
-
-  let script = document.getElementById(X_WIDGET_SCRIPT_ID) as HTMLScriptElement | null
-  if (!script) {
-    script = document.createElement('script')
-    script.id = X_WIDGET_SCRIPT_ID
-    script.src = 'https://platform.twitter.com/widgets.js'
-    script.async = true
-    script.charset = 'utf-8'
-    document.body.appendChild(script)
-  }
-
-  xWidgetsPromise = new Promise<XWidgets>((resolve, reject) => {
-    let attempts = 0
-    const maxAttempts = 100
-
-    const checkWidgets = () => {
-      const twttr = (window as Window & { twttr?: XWidgets }).twttr
-      if (twttr?.widgets) {
-        resolve(twttr)
-        return true
-      }
-
-      attempts += 1
-      if (attempts >= maxAttempts) {
-        reject(new Error('Le widget X ne s’est pas initialise correctement.'))
-        return true
-      }
-
-      return false
-    }
-
-    if (checkWidgets()) {
-      return
-    }
-
-    const intervalId = window.setInterval(() => {
-      if (checkWidgets()) {
-        window.clearInterval(intervalId)
-      }
-    }, 100)
-
-    script?.addEventListener(
-      'error',
-      () => {
-        window.clearInterval(intervalId)
-        xWidgetsPromise = null
-        reject(new Error('Impossible de charger le script officiel X.'))
-      },
-      { once: true },
-    )
-  })
-
-  return xWidgetsPromise
+function TweetMetric({ label, value, icon }: { label: string; value: number; icon: ReactNode }) {
+  return (
+    <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-3 py-1.5 text-xs font-semibold text-slate-600 dark:border-slate-700 dark:bg-slate-950/60 dark:text-slate-300">
+      <span className="text-slate-400">{icon}</span>
+      <span>{formatCompactNumber(value)}</span>
+      <span className="sr-only">{label}</span>
+    </div>
+  )
 }
 
-function OfficialXTimeline({ username }: { username: string }) {
-  const containerRef = useRef<HTMLDivElement | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [loadError, setLoadError] = useState<string | null>(null)
-
-  useEffect(() => {
-    let active = true
-    const container = containerRef.current
-
-    if (!container) {
-      return undefined
-    }
-
-    setIsLoading(true)
-    setLoadError(null)
-
-    if (container.dataset.timelineUsername === username && container.querySelector('iframe')) {
-      setIsLoading(false)
-      return undefined
-    }
-
-    if (container.dataset.timelineUsername !== username) {
-      container.innerHTML = ''
-      container.dataset.timelineUsername = username
-    }
-
-    if (!container.querySelector('a.twitter-timeline')) {
-      const timelineAnchor = document.createElement('a')
-      timelineAnchor.className = 'twitter-timeline'
-      timelineAnchor.href = `https://twitter.com/${username}?ref_src=twsrc%5Etfw`
-      timelineAnchor.setAttribute('data-tweet-limit', '10')
-      timelineAnchor.setAttribute('data-chrome', 'nofooter noborders transparent')
-      timelineAnchor.setAttribute('data-dnt', 'true')
-      timelineAnchor.textContent = `Tweets by @${username}`
-      container.appendChild(timelineAnchor)
-    }
-
-    const observer = new MutationObserver(() => {
-      if (container.querySelector('iframe')) {
-        setIsLoading(false)
-        setLoadError(null)
-        observer.disconnect()
-      }
-    })
-
-    observer.observe(container, { childList: true, subtree: true })
-
-    void loadXWidgets()
-      .then((twttr) => {
-        if (!active) {
-          return
-        }
-
-        twttr.widgets.load(container)
-        window.setTimeout(() => {
-          if (active && !container.querySelector('iframe')) {
-            setLoadError('X refuse temporairement l’embed de cette timeline ou ton navigateur bloque le widget. Ouvre le compte directement sur X.')
-            setIsLoading(false)
-          }
-        }, X_WIDGET_INIT_TIMEOUT_MS)
-      })
-      .catch((error) => {
-        if (!active) {
-          return
-        }
-
-        console.error('Failed to load official X timeline', error)
-        setLoadError('Impossible de charger l’embed officiel X pour le moment.')
-        setIsLoading(false)
-      })
-
-    return () => {
-      active = false
-      observer.disconnect()
-    }
-  }, [username])
+function TweetCard({ tweet, isLead = false }: { tweet: CandidateTweet; isLead?: boolean }) {
+  const leadMedia = tweet.media[0] ?? null
 
   return (
-    <div className="rounded-[2rem] border border-slate-200/80 bg-white/94 p-4 shadow-[0_18px_50px_rgba(15,23,42,0.08)] dark:border-slate-800 dark:bg-slate-900/92 sm:p-6">
-      <div className="relative mx-auto max-w-[540px]">
-        {isLoading ? (
-          <div className="pointer-events-none absolute inset-0 z-10 animate-pulse rounded-[1.6rem] bg-white/88 p-4 dark:bg-slate-900/88">
-            <div className="space-y-4">
-              <div className="h-12 rounded-2xl bg-slate-200/80 dark:bg-slate-800/80" />
-              <div className="h-[520px] rounded-[1.6rem] bg-slate-200/80 dark:bg-slate-800/80" />
+    <article
+      className={`overflow-hidden rounded-[1.8rem] border bg-white/94 shadow-sm ${
+        isLead
+          ? 'border-primary/20 shadow-[0_20px_50px_rgba(26,34,127,0.12)]'
+          : 'border-slate-200/80 dark:border-slate-800'
+      } dark:bg-slate-900/92`}
+    >
+      <div className={`grid gap-0 ${leadMedia ? 'lg:grid-cols-[minmax(0,1fr)_320px]' : ''}`}>
+        <div className="p-5 sm:p-6">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex items-center gap-3">
+              {tweet.authorProfileImageUrl ? (
+                <img
+                  src={tweet.authorProfileImageUrl}
+                  alt={tweet.authorName}
+                  className="h-12 w-12 rounded-2xl object-cover"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              ) : (
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900 text-sm font-bold text-white">
+                  {getCandidateInitials(tweet.authorName)}
+                </div>
+              )}
+
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <p className="text-sm font-black tracking-tight text-slate-950 dark:text-white">{tweet.authorName}</p>
+                  {tweet.authorVerified ? <BadgeCheck className="h-[16px] w-[16px] text-primary" /> : null}
+                </div>
+                <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                  <span className="inline-flex items-center gap-1">
+                    <AtSign className="h-[13px] w-[13px]" />
+                    {tweet.authorUsername}
+                  </span>
+                  <span>•</span>
+                  <span>{formatFrenchDate(tweet.publishedAt)}</span>
+                </div>
+              </div>
             </div>
-          </div>
-        ) : null}
 
-        {loadError ? (
-          <div className="mb-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-700 dark:border-amber-900/40 dark:bg-amber-950/30 dark:text-amber-300">
-            {loadError}
+            <a
+              href={tweet.url}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition hover:border-primary hover:text-primary dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-300"
+              aria-label="Ouvrir le tweet sur X"
+            >
+              <ExternalLink className="h-[18px] w-[18px]" />
+            </a>
           </div>
-        ) : null}
 
-        <div className="relative min-h-[620px]">
-          <div ref={containerRef} className="min-h-[620px]" />
+          <p className="mt-5 whitespace-pre-wrap text-[15px] leading-7 text-slate-700 dark:text-slate-200">{tweet.text}</p>
+
+          <div className="mt-5 flex flex-wrap items-center gap-2.5">
+            <TweetMetric label="Mentions j’aime" value={tweet.metrics.likes} icon={<Heart className="h-[15px] w-[15px]" />} />
+            <TweetMetric label="Réponses" value={tweet.metrics.replies} icon={<MessageCircle className="h-[15px] w-[15px]" />} />
+            <TweetMetric label="Reposts" value={tweet.metrics.reposts} icon={<Repeat2 className="h-[15px] w-[15px]" />} />
+            <TweetMetric label="Vues" value={tweet.metrics.views} icon={<Eye className="h-[15px] w-[15px]" />} />
+          </div>
         </div>
+
+        {leadMedia ? (
+          <div className="border-t border-slate-200/80 bg-slate-100/80 dark:border-slate-800 dark:bg-slate-950/60 lg:border-l lg:border-t-0">
+            <img
+              src={leadMedia.url}
+              alt={leadMedia.altText ?? `Visuel du tweet de ${tweet.authorName}`}
+              className="h-full w-full object-cover"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+        ) : null}
       </div>
-    </div>
+    </article>
   )
 }
 
 export default function CandidateTweets() {
   const { candidateId } = useParams<{ candidateId: string }>()
   const { candidate, isLoading: isCandidateLoading, loadError: candidateLoadError } = useCandidateProfile(candidateId)
+  const { tweets, isLoading: areTweetsLoading, loadError: tweetsLoadError } = useCandidateTweets(candidateId)
 
-  if (isCandidateLoading) {
+  const [leadTweet, otherTweets] = useMemo(() => [tweets[0] ?? null, tweets.slice(1)], [tweets])
+
+  if (isCandidateLoading || areTweetsLoading) {
     return <ProfileLoadingState />
   }
 
@@ -229,7 +152,7 @@ export default function CandidateTweets() {
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Tweets</p>
                 <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-950 dark:text-white">{candidate.name}</h1>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                  Timeline officielle X du candidat, intégrée directement via le widget officiel et limitée à 10 posts.
+                  Les 10 derniers posts publics du compte X officiel du candidat, récupérés automatiquement puis stockés en base.
                 </p>
               </div>
             </div>
@@ -238,6 +161,9 @@ export default function CandidateTweets() {
               <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Compte officiel</p>
               <p className="mt-3 text-2xl font-black tracking-tight text-slate-950 dark:text-white">
                 {candidate.xUsername ? `@${candidate.xUsername}` : 'Non configure'}
+              </p>
+              <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                {tweets.length} post{tweets.length > 1 ? 's' : ''} disponible{tweets.length > 1 ? 's' : ''}
               </p>
               {candidate.xUsername ? (
                 <a
@@ -254,23 +180,34 @@ export default function CandidateTweets() {
           </div>
         </section>
 
-        {candidate.xUsername ? (
-          <section className="mt-6">
-            <OfficialXTimeline username={candidate.xUsername} />
-          </section>
-        ) : (
+        {tweetsLoadError ? (
+          <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-700 dark:border-amber-900/40 dark:bg-amber-950/30 dark:text-amber-300">
+            {tweetsLoadError}
+          </div>
+        ) : null}
+
+        {!tweetsLoadError && tweets.length === 0 ? (
           <section className="mt-6 rounded-[2rem] border border-dashed border-slate-300 bg-white/85 p-8 text-center dark:border-slate-700 dark:bg-slate-900/85">
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-[1.4rem] bg-primary/10 text-primary">
               <AtSign className="h-[28px] w-[28px]" />
             </div>
             <h2 className="mt-5 text-2xl font-black tracking-tight text-slate-950 dark:text-white">
-              Compte X non configuré
+              Aucun tweet importé pour le moment
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-              Aucun identifiant X officiel n’est encore enregistré pour ce candidat.
+              La synchronisation Playwright n’a pas encore rempli ce compte ou le profil n’est pas exploitable publiquement.
             </p>
           </section>
-        )}
+        ) : null}
+
+        {leadTweet ? (
+          <section className="mt-6 grid gap-5">
+            <TweetCard tweet={leadTweet} isLead />
+            {otherTweets.map((tweet) => (
+              <TweetCard key={tweet.id} tweet={tweet} />
+            ))}
+          </section>
+        ) : null}
       </main>
     </div>
   )

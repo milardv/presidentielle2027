@@ -25,6 +25,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium
+
       - name: Validate sync environment
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
@@ -42,3 +45,8 @@ jobs:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           MEDIA_CLOUD_API_KEY: ${{ secrets.MEDIA_CLOUD_API_KEY }}
           MEDIA_CLOUD_COLLECTION_IDS: ${{ secrets.MEDIA_CLOUD_COLLECTION_IDS }}
+
+      - name: Sync X tweets via public web scraping
+        run: npm run sync:tweets
+        env:
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}

@@ -1,13 +1,17 @@
 import { useEffect, useMemo, useState } from 'react'
-import { ChartSpline, FileText, LoaderCircle, Newspaper, RefreshCw, ShieldCheck, Video } from 'lucide-react'
+import { ChartSpline, FileText, LoaderCircle, MessageCircle, Newspaper, RefreshCw, ShieldCheck, Video } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { Candidate } from '../../../data/candidateTypes'
 import {
   getCandidateMediaCounts,
+  getCandidateTweetSyncStatus,
+  refreshAllCandidateTweets,
   refreshCandidateMediaAttention,
   refreshCandidateGdelt,
+  refreshCandidateTweets,
   refreshCandidateVideos,
   type CandidateMediaCounts,
+  type CandidateTweetSyncStatus,
 } from '../../../services/adminVideoSyncService'
 import { getCandidatesFromDatabase } from '../../../services/candidateRepository'
 
@@ -15,12 +19,33 @@ interface AdminVideoRefreshPanelProps {
   adminEmail: string
 }
 
+function formatSyncDate(value: string | null): string {
+  if (!value) {
+    return 'Jamais'
+  }
+
+  const parsedDate = new Date(value)
+  if (Number.isNaN(parsedDate.getTime())) {
+    return 'Jamais'
+  }
+
+  return new Intl.DateTimeFormat('fr-FR', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  }).format(parsedDate)
+}
+
 export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelProps) {
   const [candidates, setCandidates] = useState<Candidate[]>([])
   const [selectedCandidateId, setSelectedCandidateId] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [refreshingProvider, setRefreshingProvider] = useState<'youtube' | 'gdelt' | 'mediacloud' | null>(null)
-  const [mediaCounts, setMediaCounts] = useState<CandidateMediaCounts>({ youtube: 0, gdelt: 0 })
+  const [refreshingProvider, setRefreshingProvider] = useState<'youtube' | 'gdelt' | 'mediacloud' | 'tweets' | 'tweets-all' | null>(null)
+  const [mediaCounts, setMediaCounts] = useState<CandidateMediaCounts>({ youtube: 0, gdelt: 0, tweets: 0 })
+  const [tweetSyncStatus, setTweetSyncStatus] = useState<CandidateTweetSyncStatus>({
+    lastRunAt: null,
+    importedCount: null,
+    status: null,
+  })
   const [isCountsLoading, setIsCountsLoading] = useState<boolean>(false)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [refreshMessage, setRefreshMessage] = useState<string | null>(null)
@@ -61,7 +86,8 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
 
   useEffect(() => {
     if (!selectedCandidateId) {
-      setMediaCounts({ youtube: 0, gdelt: 0 })
+      setMediaCounts({ youtube: 0, gdelt: 0, tweets: 0 })
+      setTweetSyncStatus({ lastRunAt: null, importedCount: null, status: null })
       setIsCountsLoading(false)
       return
     }
@@ -69,13 +95,14 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
     let active = true
     setIsCountsLoading(true)
 
-    void getCandidateMediaCounts(selectedCandidateId)
-      .then((counts) => {
+    void Promise.all([getCandidateMediaCounts(selectedCandidateId), getCandidateTweetSyncStatus(selectedCandidateId)])
+      .then(([counts, syncStatus]) => {
         if (!active) {
           return
         }
 
         setMediaCounts(counts)
+        setTweetSyncStatus(syncStatus)
       })
       .catch((error) => {
         if (!active) {
@@ -83,7 +110,8 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
         }
 
         console.error('Failed to load candidate media counts', error)
-        setMediaCounts({ youtube: 0, gdelt: 0 })
+        setMediaCounts({ youtube: 0, gdelt: 0, tweets: 0 })
+        setTweetSyncStatus({ lastRunAt: null, importedCount: null, status: null })
       })
       .finally(() => {
         if (active) {
@@ -166,6 +194,62 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
     }
   }
 
+  const handleRefreshTweets = async () => {
+    if (!selectedCandidate) {
+      return
+    }
+
+    setRefreshingProvider('tweets')
+    setLoadError(null)
+    setRefreshMessage(null)
+
+    try {
+      const result = await refreshCandidateTweets(selectedCandidate, adminEmail)
+      const [counts, syncStatus] = await Promise.all([
+        getCandidateMediaCounts(selectedCandidate.id),
+        getCandidateTweetSyncStatus(selectedCandidate.id),
+      ])
+      setMediaCounts(counts)
+      setTweetSyncStatus(syncStatus)
+      setRefreshMessage(
+        `${result.importedCount} tweet${result.importedCount > 1 ? 's' : ''} mis a jour pour ${selectedCandidate.name}.`,
+      )
+    } catch (error) {
+      console.error('Failed to refresh candidate tweets from admin panel', error)
+      setLoadError(error instanceof Error ? error.message : 'Impossible de rafraichir les tweets.')
+    } finally {
+      setRefreshingProvider(null)
+    }
+  }
+
+  const handleRefreshAllTweets = async () => {
+    setRefreshingProvider('tweets-all')
+    setLoadError(null)
+    setRefreshMessage(null)
+
+    try {
+      const result = await refreshAllCandidateTweets(adminEmail)
+
+      if (selectedCandidateId) {
+        const [counts, syncStatus] = await Promise.all([
+          getCandidateMediaCounts(selectedCandidateId),
+          getCandidateTweetSyncStatus(selectedCandidateId),
+        ])
+        setMediaCounts(counts)
+        setTweetSyncStatus(syncStatus)
+      }
+
+      setRefreshMessage(
+        `${result.importedCount} tweets mis a jour sur ${result.candidateCount} candidat${result.candidateCount > 1 ? 's' : ''}.`,
+      )
+    } catch (error) {
+      console.error('Failed to refresh all candidate tweets from admin panel', error)
+      setLoadError(error instanceof Error ? error.message : 'Impossible de rafraichir tous les tweets.')
+    } finally {
+      setRefreshingProvider(null)
+    }
+  }
+
   return (
     <section className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/94 shadow-[0_20px_50px_rgba(15,23,42,0.08)] dark:border-slate-800 dark:bg-slate-900/92">
       <div className="border-b border-slate-200/80 bg-slate-50/70 px-5 py-4 dark:border-slate-800 dark:bg-slate-950/40 sm:px-6">
@@ -181,7 +265,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
           </div>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-          Lance un refresh cible pour un candidat: YouTube pour les videos, GDELT pour les articles, Media Cloud pour la courbe d’attention.
+          Lance un refresh cible pour un candidat: YouTube pour les videos, X pour les tweets scrapes, GDELT pour les articles, Media Cloud pour la courbe d’attention.
         </p>
       </div>
 
@@ -202,7 +286,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
           </select>
         </label>
 
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-3">
           <div className="rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 dark:border-slate-800 dark:bg-slate-950/50">
             <div className="flex items-center justify-between gap-3">
               <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Videos YouTube</span>
@@ -221,6 +305,37 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
             <p className="mt-2 text-2xl font-black tracking-tight text-slate-950 dark:text-white">
               {isCountsLoading ? '…' : mediaCounts.gdelt}
             </p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 dark:border-slate-800 dark:bg-slate-950/50">
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Tweets</span>
+              <MessageCircle className="h-[16px] w-[16px] text-primary" />
+            </div>
+            <p className="mt-2 text-2xl font-black tracking-tight text-slate-950 dark:text-white">
+              {isCountsLoading ? '…' : mediaCounts.tweets}
+            </p>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 dark:border-slate-800 dark:bg-slate-950/50">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Dernier refresh tweets</p>
+              <p className="mt-2 text-sm font-semibold text-slate-900 dark:text-slate-100">
+                {formatSyncDate(tweetSyncStatus.lastRunAt)}
+              </p>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                {tweetSyncStatus.importedCount !== null
+                  ? `${tweetSyncStatus.importedCount} tweet${tweetSyncStatus.importedCount > 1 ? 's' : ''} importe${tweetSyncStatus.importedCount > 1 ? 's' : ''}`
+                  : 'Aucun refresh detecte pour ce candidat.'}
+              </p>
+            </div>
+            {tweetSyncStatus.status ? (
+              <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300">
+                {tweetSyncStatus.status}
+              </span>
+            ) : null}
           </div>
         </div>
 
@@ -260,6 +375,38 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
           <button
             type="button"
             onClick={() => {
+              void handleRefreshTweets()
+            }}
+            disabled={!selectedCandidate || isLoading || refreshingProvider !== null}
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-200 dark:disabled:border-slate-700 dark:disabled:bg-slate-900 dark:disabled:text-slate-500"
+          >
+            {refreshingProvider === 'tweets' ? (
+              <LoaderCircle className="h-[18px] w-[18px] animate-spin" />
+            ) : (
+              <MessageCircle className="h-[18px] w-[18px]" />
+            )}
+            {refreshingProvider === 'tweets' ? 'Rafraichissement...' : 'Rafraichir les tweets'}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              void handleRefreshAllTweets()
+            }}
+            disabled={isLoading || refreshingProvider !== null || candidates.length === 0}
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-200 dark:disabled:border-slate-700 dark:disabled:bg-slate-900 dark:disabled:text-slate-500"
+          >
+            {refreshingProvider === 'tweets-all' ? (
+              <LoaderCircle className="h-[18px] w-[18px] animate-spin" />
+            ) : (
+              <MessageCircle className="h-[18px] w-[18px]" />
+            )}
+            {refreshingProvider === 'tweets-all' ? 'Rafraichissement global...' : 'Rafraichir tous les tweets'}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
               void handleRefreshMediaAttention()
             }}
             disabled={!selectedCandidate || isLoading || refreshingProvider !== null || !hasMediaCloudKey}
@@ -292,6 +439,16 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
               Voir la page videos
             </Link>
           ) : null}
+
+          {selectedCandidate ? (
+            <Link
+              to={`/candidats/${selectedCandidate.id}/tweets`}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary dark:border-slate-700 dark:text-slate-200"
+            >
+              <MessageCircle className="h-[18px] w-[18px]" />
+              Voir la page tweets
+            </Link>
+          ) : null}
         </div>
 
         {refreshMessage ? (
@@ -305,6 +462,10 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
             Media Cloud n’est pas configure dans le front admin. Ajoute `VITE_MEDIA_CLOUD_API_KEY` en local si tu veux lancer ce refresh depuis l’interface.
           </p>
         ) : null}
+
+        <p className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-400">
+          Le refresh tweets passe par un service local pour executer Playwright. Lance `npm run admin:sync-server` sur la machine admin, puis utilise le bouton.
+        </p>
 
         {loadError ? (
           <p className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-700 dark:border-amber-900/40 dark:bg-amber-950/30 dark:text-amber-300">

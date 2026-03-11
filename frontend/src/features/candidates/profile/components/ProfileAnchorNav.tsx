@@ -7,7 +7,7 @@ const profileAnchors = [
 
 export function ProfileAnchorNav() {
   return (
-    <nav className="sticky top-[65px] sm:top-[72px] bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 z-40">
+    <nav className="sticky top-[65px] sm:top-[72px] bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 z-40 mt-4">
       <div className="flex px-4 overflow-x-auto no-scrollbar">
         {profileAnchors.map((anchor, index) => (
           <a

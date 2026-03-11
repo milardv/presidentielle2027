@@ -8,7 +8,7 @@ const analysisAnchors = [
 
 export function CandidateAnalysisAnchorNav() {
   return (
-    <nav className="sticky top-[121px] z-40 border-b border-slate-200 bg-white px-4 sm:top-[128px]">
+    <nav className="sticky top-[121px] z-40 border-b border-slate-200 bg-white px-4 sm:top-[128px] mt-4">
       <div className="mx-auto flex max-w-4xl overflow-x-auto no-scrollbar">
         {analysisAnchors.map((anchor, index) => (
           <a
