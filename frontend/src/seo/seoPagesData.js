@@ -1,4 +1,4 @@
-export const SITE_NAME = 'Presidentielles 2027'
+export const SITE_NAME = 'Présidentielles 2027'
 export const SITE_URL = 'https://milardv.github.io/presidentielle2027'
 
 function candidatePage({
@@ -37,55 +37,55 @@ function candidatePage({
 export const seoPages = [
   {
     slug: 'presidentielle-2027',
-    title: 'Presidentielle 2027 : candidats, sondages, date et intentions de vote',
+    title: 'Présidentielle 2027 : candidats, sondages, date et intentions de vote',
     description:
-      'Presidentielle 2027 : suivez les candidats potentiels, les sondages, les intentions de vote, les profils, les interventions et les dynamiques de campagne au meme endroit.',
+      'Présidentielle 2027 : date probable, candidats déjà en vue, sondages, intentions de vote et règles utiles pour comprendre la campagne.',
     heroEyebrow: 'Guide 2027',
-    heroTitle: 'Presidentielle 2027 : le point d’entree pour suivre la campagne',
+    heroTitle: 'Présidentielle 2027 : ce qu’il faut savoir dès maintenant',
     heroIntro:
-      'Cette page sert de hub editorial pour comprendre la presidentielle 2027, les candidats, les sondages, les intentions de vote et les grandes questions qui structurent la campagne.',
+      'La présidentielle 2027 reste très ouverte. Toutes les candidatures ne sont pas arrêtées, les sondages varient selon les scénarios, et il faut distinguer ce qui est déjà solide de ce qui relève encore des hypothèses.',
     queries: [
-      'presidentielle 2027',
-      'election presidentielle 2027',
-      'qui sera president en 2027',
+      'présidentielle 2027',
+      'élection présidentielle 2027',
+      'qui sera président en 2027',
       'qui sera candidat 2027',
     ],
     summary: [
-      'Une vue claire des candidats deja declares, conditionnels ou testes dans les sondages.',
-      'Un acces direct aux sondages, aux intentions de vote et aux profils detailles.',
-      'Des pages de contexte pour les questions les plus recherchees sur Google autour de 2027.',
+      'La campagne se lit d’abord par statuts de candidature, blocs politiques et scénarios de sondage.',
+      'Aucun vainqueur sérieux ne peut être annoncé à ce stade, mais plusieurs noms structurent déjà le débat.',
+      'Le calendrier, les règles du scrutin et les rapports de force permettent déjà de suivre 2027 intelligemment.',
     ],
     sections: [
       {
-        title: 'Pourquoi cette page repond a la requete presidentielle 2027',
+        title: 'Ce que l’on sait déjà sur 2027',
         paragraphs: [
-          'Les internautes qui cherchent presidentielle 2027 veulent en general trois choses: savoir qui peut etre candidat, comprendre ou en sont les sondages, et suivre les temps forts de campagne sans multiplier les sources.',
-          'Le site Presidentielles a ete structure pour repondre exactement a ce besoin: une home de synthese, une page sondages, des fiches candidats, des videos, des tweets et une analyse du reseau politique de chaque profil.',
+          'La prochaine présidentielle française aura lieu en 2027, dans un paysage encore mouvant. Plusieurs personnalités sont déjà déclarées, d’autres sont testées dans les enquêtes d’opinion, et certaines restent surtout des hypothèses politiques ou partisanes.',
+          'Le point important est simple : la campagne n’est pas figée. Pour comprendre 2027, il faut regarder les candidatures crédibles, les rapports de force par bloc, et la manière dont les instituts testent les différents scénarios de premier tour.',
         ],
       },
       {
-        title: 'Ce que vous pouvez consulter ensuite',
+        title: 'Comment se faire une idée fiable de la course',
         paragraphs: [
-          'Si votre objectif est de savoir qui est en tete, la page sondages reste la meilleure entree. Si vous cherchez plutot un nom precis, les pages dediees a Bardella, Le Pen, Attal, Edouard Philippe, Melenchon ou Glucksmann renvoient vers leurs fiches completes.',
-          'Le site couvre aussi les grandes questions de contexte: quand aura lieu la presidentielle 2027, qui peut se presenter, comment se deroule l’election et si Emmanuel Macron peut ou non se representer.',
+          'Le bon réflexe consiste à croiser plusieurs éléments : le statut réel de chaque candidat, les sondages les plus récents, les thèmes sur lesquels il prend position, et sa capacité à rassembler au-delà de son socle politique.',
+          'Autrement dit, suivre 2027 ne consiste pas seulement à demander qui est en tête aujourd’hui. Il faut aussi regarder qui peut durer, qui peut élargir sa base, et qui peut transformer une visibilité médiatique en candidature réellement compétitive.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Ou voir les candidats a la presidentielle 2027 ?',
+        question: 'Où voir les candidats à la présidentielle 2027 ?',
         answer:
-          'La home du site centralise les principaux candidats suivis avec leur statut, leurs profils et leurs sources. Les pages SEO candidates renvoient ensuite vers les fiches detaillees.',
+          'La liste utile n’est pas seulement une liste de noms. Il faut regarder qui est déclaré, qui est simplement testé, et qui dispose déjà d’un appareil politique ou d’une dynamique suffisante pour compter en 2027.',
       },
       {
-        question: 'Ou voir les sondages de la presidentielle 2027 ?',
+        question: 'Où voir les sondages de la présidentielle 2027 ?',
         answer:
-          'La page sondages du site regroupe les intentions de vote par institut et par scenario. Elle est reliee depuis cette page et depuis l’accueil.',
+          'Les sondages doivent être lus institut par institut, scénario par scénario, avec attention à la date de terrain. Une seule étude ne suffit jamais à résumer une campagne aussi ouverte.',
       },
       {
-        question: 'Cette page dit-elle deja qui gagnera en 2027 ?',
+        question: 'Peut-on déjà savoir qui gagnera en 2027 ?',
         answer:
-          'Non. Elle renvoie vers les donnees utiles pour suivre la campagne, mais ne presente pas un vainqueur certain. Les dynamiques restent evolutives tant que l’election n’est pas tenue.',
+          'Non. À ce stade, les données permettent surtout d’identifier les candidats les plus solides, les blocs les plus structurés et les scénarios qui reviennent le plus souvent, pas de désigner un vainqueur certain.',
       },
     ],
     relatedLinks: [
@@ -96,124 +96,124 @@ export const seoPages = [
   },
   {
     slug: 'sondage-presidentielle-2027',
-    title: 'Sondage presidentielle 2027 : intentions de vote, classement et dynamique',
+    title: 'Sondage présidentielle 2027 : intentions de vote, classement et dynamique',
     description:
-      'Retrouvez les sondages presidentielle 2027, les intentions de vote, les classements par scenario et les instituts suivis par le site.',
+      'Sondage présidentielle 2027 : ce que disent vraiment les intentions de vote, comment comparer les instituts et ce qu’on peut déjà déduire des scénarios testés.',
     heroEyebrow: 'Sondages 2027',
-    heroTitle: 'Sondage presidentielle 2027 : lire les intentions de vote sans se perdre',
+    heroTitle: 'Sondage présidentielle 2027 : ce que montrent vraiment les intentions de vote',
     heroIntro:
-      'Cette page cible toutes les recherches liees aux sondages presidentielle 2027, aux intentions de vote et aux scenarios institut par institut.',
+      'Les sondages 2027 donnent une photographie utile du rapport de force, mais ils ne disent ni tout ni définitivement qui gagnera. Pour bien les lire, il faut comparer les instituts, les dates de terrain et les scénarios testés.',
     queries: [
-      'presidentielle 2027 sondage',
-      'sondage presidentielle 2027',
+      'présidentielle 2027 sondage',
+      'sondage présidentielle 2027',
       'intentions de vote 2027',
-      'sondages presidentielle 2027 en direct',
-      'classement candidats presidentielle 2027',
-      'sondage IFOP presidentielle 2027',
-      'qui va gagner presidentielle 2027',
-      'probabilite victoire presidentielle 2027',
+      'sondages présidentielle 2027 en direct',
+      'classement candidats présidentielle 2027',
+      'sondage IFOP présidentielle 2027',
+      'qui va gagner présidentielle 2027',
+      'probabilité victoire présidentielle 2027',
     ],
     summary: [
-      'Une vue par institut et par scenario, sans noyer la lecture.',
-      'Un classement moyen pour repérer la hierarchie du moment.',
-      'Un lien direct vers la page sondages dynamique du site.',
+      'Un sondage vaut surtout par sa date, son institut et la composition exacte de son scénario.',
+      'Les écarts faibles et les variations marginales ne doivent pas être surinterprétés.',
+      'La meilleure lecture vient de la comparaison entre plusieurs études, pas d’un seul chiffre isolé.',
     ],
     sections: [
       {
-        title: 'Comment lire un sondage presidentielle 2027',
+        title: 'Ce que disent vraiment les sondages 2027',
         paragraphs: [
-          'Un sondage teste un ou plusieurs scenarios. La bonne lecture consiste a comparer les instituts, la date de terrain, la composition du scenario et l’ecart entre les candidats, plutot qu’a surinterpreter une seule enquete.',
-          'Le site affiche un scenario principal par institut et resserre les autres scenarios pour garder une lecture claire. Cela permet de voir rapidement qui mene, qui progresse, et quels duels ou triangulations sont les plus testes.',
+          'Une intention de vote ne mesure pas un résultat futur certain. Elle mesure une situation donnée, à une date donnée, dans un scénario précis. Changer un nom dans le tableau, modifier l’offre politique ou déplacer le terrain de quelques semaines suffit parfois à faire bouger l’ordre d’arrivée.',
+          'La bonne question n’est donc pas seulement qui est premier. Il faut aussi regarder qui est régulièrement bien placé, qui plafonne, qui progresse selon les configurations, et quels candidats existent surtout dans un scénario particulier.',
         ],
       },
       {
-        title: 'Que faire de la requete sondage IFOP presidentielle 2027',
+        title: 'Comment comparer IFOP, Harris, OpinionWay, Elabe ou Cluster17',
         paragraphs: [
-          'La requete IFOP est frequente parce que l’institut reste une reference dans le debat public. Mais il faut toujours replacer IFOP dans un ensemble plus large: OpinionWay, Harris Interactive, Cluster17, Elabe et les autres instituts peuvent faire varier la photo selon leur scenario.',
-          'La page sondages de Presidentielles a ete pensee dans cet esprit: comparer les etudes disponibles sans les confondre, et garder une synthese utile meme quand plusieurs scenarios coexistent.',
+          'Chaque institut apporte sa propre photographie. Les différences peuvent venir de la méthode, de la date de terrain, du wording ou simplement du scénario testé. C’est pourquoi il faut comparer plusieurs études au lieu de transformer un seul sondage en verdict.',
+          'Lorsqu’un nom revient en tête dans plusieurs enquêtes, ou lorsqu’un même bloc politique reste durablement haut quel que soit l’institut, on tient déjà une information plus robuste qu’un classement isolé publié un jour donné.',
         ],
       },
       {
-        title: 'Qui va gagner la presidentielle 2027 ?',
+        title: 'Peut-on déjà savoir qui va gagner ?',
         paragraphs: [
-          'Le site ne pretend pas donner une prediction definitive. En revanche, il montre les tendances, les ecarts, le rythme des publications et les candidats les plus cites dans les scenarios actuels.',
-          'Pour une lecture solide, il faut croiser les intentions de vote, la dynamique media, les alliances possibles et le niveau de structuration de chaque candidature.',
+          'Non. En mars 2026, il est beaucoup trop tôt pour confondre intentions de vote et résultat final. Les candidatures ne sont pas toutes stabilisées, les alliances peuvent encore bouger et la campagne elle-même n’a pas encore produit tous ses effets.',
+          'En revanche, les sondages permettent déjà d’identifier les candidats les plus visibles, les plus testés et les plus capables d’entrer dans une course crédible au premier tour.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Ou voir les derniers sondages presidentielle 2027 ?',
+        question: 'Où voir les derniers sondages présidentielle 2027 ?',
         answer:
-          'La meilleure entree reste la page sondages du site, qui consolide les etudes par institut, par date de terrain et par scenario.',
+          'Il faut regarder les études les plus récentes, mais surtout les comparer entre elles. La date de terrain, l’institut et le scénario comptent davantage qu’un titre de publication isolé.',
       },
       {
-        question: 'Le site affiche-t-il une probabilite de victoire ?',
+        question: 'Le site affiche-t-il une probabilité de victoire ?',
         answer:
-          'Pas comme un modele predicitif ferme. Le site montre plutot les intentions de vote, les classements et les dynamiques comparees, ce qui permet une lecture plus prudente.',
+          'Pas sous la forme d’une prédiction fermée. Une campagne aussi ouverte se lit mieux par tendances, hiérarchie de candidats et répétition des scénarios que par promesse de certitude.',
       },
       {
-        question: 'Les sondages sont-ils mis a jour automatiquement ?',
+        question: 'Les sondages sont-ils mis à jour automatiquement ?',
         answer:
-          'Oui, les donnees sont stockees en base puis relues par le front. L’objectif est de rendre la page rapide, claire et stable.',
+          'Oui. Les données sont stockées en base puis relues par le front pour garder un affichage rapide, stable et facile à comparer dans le temps.',
       },
     ],
     relatedLinks: [
       { label: 'Ouvrir la page sondages', href: '/polls' },
       { label: 'Voir les candidats 2027', href: '/candidats-presidentielle-2027/' },
-      { label: 'Retour au guide presidentielle 2027', href: '/presidentielle-2027/' },
+      { label: 'Retour au guide présidentielle 2027', href: '/presidentielle-2027/' },
     ],
   },
   {
     slug: 'candidats-presidentielle-2027',
-    title: 'Candidats presidentielle 2027 : liste, profils et statuts',
+    title: 'Candidats présidentielle 2027 : liste, profils et statuts',
     description:
-      'Qui sont les candidats a la presidentielle 2027 ? Retrouvez les profils suivis, leur statut, leurs positions et les liens utiles pour comprendre la campagne.',
+      'Qui sont les candidats à la présidentielle 2027 ? Les noms déjà sérieux, les candidatures plausibles et les profils simplement testés dans les sondages.',
     heroEyebrow: 'Candidats',
-    heroTitle: 'Candidats presidentielle 2027 : qui est vraiment en lice ?',
+    heroTitle: 'Candidats présidentielle 2027 : qui compte vraiment à ce stade ?',
     heroIntro:
-      'Cette page editorialise la requete candidats presidentielle 2027 et renvoie vers les fiches completes des profils les plus suivis.',
+      'La question utile n’est pas seulement de savoir qui est cité. Il faut distinguer les candidatures déclarées, les profils plausibles, et les noms qui existent surtout parce qu’ils sont testés dans les sondages.',
     queries: [
-      'candidats presidentielle 2027',
+      'candidats présidentielle 2027',
       'qui sera candidat 2027',
-      'qui peut se presenter en 2027',
+      'qui peut se présenter en 2027',
     ],
     summary: [
-      'Des profils deja declares, des candidatures conditionnelles et des noms testes dans les sondages.',
-      'Des fiches detaillees avec positions, interventions et sources.',
-      'Un maillage vers les pages individuelles les plus recherchees.',
+      'Tous les noms visibles en 2027 n’ont pas le même niveau de réalité politique.',
+      'Le bon tri consiste à séparer les candidats déclarés, les candidatures probables et les profils encore hypothétiques.',
+      'Pour juger un candidat, il faut regarder son statut, son parti, ses positions et sa présence dans les sondages.',
     ],
     sections: [
       {
-        title: 'Comment le site classe les candidats 2027',
+        title: 'Qui compte vraiment en 2027 ?',
         paragraphs: [
-          'Le site distingue les profils declares, les candidatures conditionnelles et les personnalites qui structurent deja les scenarii de sondages sans declaration ferme. Cette nuance est essentielle pour ne pas confondre activite politique et candidature formelle.',
-          'Chaque fiche candidat rassemble un resume, l’evolution des positions, les interventions medias, les videos, les tweets et une page d’analyse. L’objectif n’est pas seulement de lister des noms, mais de donner du contexte et des sources.',
+          'À ce stade, comptent surtout les personnalités qui réunissent au moins une partie des conditions suivantes : un parti ou un appareil identifiable, une exposition nationale régulière, un espace politique clair, et une présence récurrente dans les intentions de vote.',
+          'Cela permet de faire la différence entre une candidature déjà installée, une ambition sérieuse en cours de construction, et un simple nom d’essai utilisé par les instituts pour tester un électorat ou une famille politique.',
         ],
       },
       {
-        title: 'Quels noms reviennent le plus dans les recherches 2027',
+        title: 'Comment reconnaître une candidature crédible',
         paragraphs: [
-          'Parmi les requetes les plus frequentes, on retrouve Bardella 2027, Le Pen 2027, Attal president 2027, Edouard Philippe 2027, Melenchon 2027, Zemmour 2027 et Glucksmann 2027. Chacun de ces profils dispose ou disposera d’une page cible dans le site.',
-          'Le maillage interne a ete concu pour permettre a Google comme aux lecteurs de passer facilement d’une requete generale a une page plus specialisee.',
+          'Une candidature crédible ne repose pas seulement sur la notoriété. Elle suppose aussi une capacité d’organisation, des relais territoriaux, des prises de position cohérentes et, à terme, la possibilité d’obtenir les parrainages nécessaires.',
+          'Autrement dit, un bon classement dans un sondage peut signaler un potentiel, mais il ne suffit pas à lui seul à faire d’une personnalité un candidat solide pour l’élection présidentielle.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Tous les noms de sondages sont-ils de vrais candidats ?',
+        question: 'Tous les noms visibles dans les sondages sont-ils de vrais candidats ?',
         answer:
-          'Non. Certains sont deja declares, d’autres restent des possibilites politiques ou des candidatures conditionnelles. Le site fait cette distinction dans chaque fiche.',
+          'Non. Certains sont déjà engagés, d’autres sont seulement testés pour mesurer un rapport de force. Il faut donc toujours distinguer candidature réelle, hypothèse conditionnelle et simple scénario d’enquête.',
       },
       {
         question: 'Comment savoir qui est officiellement candidat ?',
         answer:
-          'Le site indique un statut pour chaque profil. Ce statut est plus utile qu’une simple liste, car il montre si la candidature est declaree, conditionnelle ou seulement testee.',
+          'Le bon indicateur n’est pas seulement la notoriété, mais le statut politique annoncé : déclaration formelle, candidature envisagée, ou simple présence dans les scénarios d’intentions de vote.',
       },
       {
-        question: 'Ou voir le detail d’un candidat ?',
+        question: 'Où voir le détail d’un candidat ?',
         answer:
-          'Chaque page cible renvoie vers une fiche complete avec positions, interventions, videos, tweets et analyse.',
+          'Une fiche utile doit montrer plus qu’un portrait : statut, positions, interventions, dynamique médiatique et liens avec les principaux sondages.',
       },
     ],
     relatedLinks: [
@@ -224,35 +224,35 @@ export const seoPages = [
   },
   {
     slug: 'quand-aura-lieu-la-presidentielle-2027',
-    title: 'Quand aura lieu la presidentielle 2027 ? Date, calendrier et rythme du scrutin',
+    title: 'Quand aura lieu la présidentielle 2027 ? Date, calendrier et rythme du scrutin',
     description:
-      'Quand aura lieu la presidentielle 2027 ? Ce que l’on sait du calendrier, de la date probable du scrutin et de l’organisation des deux tours.',
+      'Quand aura lieu la présidentielle 2027 ? Réponse claire sur la date officielle, le calendrier attendu et l’écart entre les deux tours.',
     heroEyebrow: 'Calendrier',
-    heroTitle: 'Quand aura lieu la presidentielle 2027 ?',
+    heroTitle: 'Quand aura lieu la présidentielle 2027 ?',
     heroIntro:
-      'Au 11 mars 2026, les dates exactes de l’election presidentielle 2027 ne sont pas encore fixees par decret. Cette page resume ce que l’on peut dire utilement et proprement.',
+      'Au 11 mars 2026, la date officielle n’est pas encore publiée. On peut néanmoins répondre clairement à la question : l’élection doit se tenir au printemps 2027, avec deux tours espacés de quatorze jours.',
     queries: [
-      'quand aura lieu la presidentielle 2027',
-      'date election presidentielle 2027',
+      'quand aura lieu la présidentielle 2027',
+      'date élection présidentielle 2027',
     ],
     summary: [
-      'Les dates exactes ne sont pas encore officielles au 11 mars 2026.',
-      'L’election doit se tenir au printemps 2027.',
-      'Le decret de convocation precise formellement le calendrier du premier et du second tour.',
+      'La date exacte n’est pas encore officielle au 11 mars 2026.',
+      'Le scrutin doit se tenir au printemps 2027.',
+      'Le second tour intervient quatorze jours après le premier.',
     ],
     sections: [
       {
-        title: 'Ce que l’on peut dire sans surpromettre',
+        title: 'Ce qui est déjà certain',
         paragraphs: [
-          'La prochaine election presidentielle francaise doit se tenir en 2027. En pratique, le scrutin a lieu au printemps et comporte deux tours separes de quatorze jours.',
-          'En revanche, au 11 mars 2026, le calendrier officiel n’est pas encore publie. Il faut donc eviter d’annoncer une date ferme tant que le decret de convocation n’est pas paru.',
+          'La prochaine élection présidentielle aura bien lieu en 2027 et se déroulera, comme d’habitude, en deux tours. Le rythme institutionnel de la Ve République conduit à un scrutin organisé au printemps, avec un second tour quatorze jours après le premier.',
+          'Ce cadre général est solide. Il permet déjà de comprendre le tempo politique de l’année 2027, même si les dates précises ne sont pas encore arrêtées officiellement.',
         ],
       },
       {
-        title: 'Pourquoi Google cherche deja la date',
+        title: 'Ce qui n’est pas encore officiel',
         paragraphs: [
-          'La requete monte tres tot parce que la date structure toute la campagne: collecte des parrainages, declarations, publications de sondages et calendrier media. Cette page sert justement a donner une reponse precise sans inventer de date non encore oficialisee.',
-          'Pour suivre la suite logique, la meilleure page complementaire est la page sondages, puis la page expliquant comment se deroule l’election presidentielle.',
+          'Au 11 mars 2026, le décret de convocation n’a pas encore fixé la date exacte du premier tour. Il faut donc éviter d’annoncer un jour précis comme s’il était déjà officiel.',
+          'La réponse honnête à la question est donc la suivante : printemps 2027, deux tours, quatorze jours d’écart, mais calendrier détaillé encore en attente de publication officielle.',
         ],
       },
     ],
@@ -260,74 +260,74 @@ export const seoPages = [
       {
         question: 'La date du premier tour 2027 est-elle officielle ?',
         answer:
-          'Non, pas encore au 11 mars 2026. La date exacte sera fixee et annoncee officiellement dans le calendrier electoral.',
+          'Non, pas encore au 11 mars 2026. La date exacte doit encore être fixée par les autorités compétentes et publiée officiellement.',
       },
       {
-        question: 'Combien de temps separe les deux tours ?',
+        question: 'Combien de temps sépare les deux tours ?',
         answer:
-          'Le second tour intervient quatorze jours apres le premier.',
+          'Le second tour de l’élection présidentielle intervient quatorze jours après le premier.',
       },
       {
-        question: 'Ou suivre les candidats pendant l’attente du calendrier officiel ?',
+        question: 'Où suivre les candidats en attendant la date officielle ?',
         answer:
-          'Le site renvoie vers les fiches candidats et les sondages, qui restent les meilleurs points d’entree tant que la date n’est pas encore formalisee.',
+          'En attendant le calendrier détaillé, le plus utile est de suivre les candidats les plus crédibles, les intentions de vote et les grands thèmes de campagne déjà visibles.',
       },
     ],
     relatedLinks: [
-      { label: 'Comment se deroule l’election presidentielle', href: '/comment-se-deroule-election-presidentielle/' },
+      { label: 'Comment se déroule l’élection présidentielle', href: '/comment-se-deroule-election-presidentielle/' },
       { label: 'Voir les sondages 2027', href: '/polls' },
       { label: 'Retour au guide 2027', href: '/presidentielle-2027/' },
     ],
   },
   {
     slug: 'qui-peut-se-presenter-en-2027',
-    title: 'Qui peut se presenter en 2027 ? Conditions pour etre candidat a la presidentielle',
+    title: 'Qui peut se présenter en 2027 ? Conditions pour être candidat à la présidentielle',
     description:
-      'Qui peut se presenter en 2027 ? Conditions d’age, nationalite, droits civiques et parrainages pour l’election presidentielle francaise.',
-    heroEyebrow: 'Regles',
-    heroTitle: 'Qui peut se presenter en 2027 ?',
+      'Qui peut se présenter en 2027 ? Réponse claire sur les conditions légales de candidature et le rôle décisif des 500 parrainages.',
+    heroEyebrow: 'Règles',
+    heroTitle: 'Qui peut se présenter en 2027 ?',
     heroIntro:
-      'Cette page repond a la requete qui peut se presenter en 2027 avec une reponse claire, utile et sourcable pour la presidentielle francaise.',
+      'En théorie, tout citoyen français remplissant les conditions légales peut briguer l’Élysée. En pratique, la vraie barrière est politique : il faut aussi obtenir 500 présentations d’élus.',
     queries: [
-      'qui peut se presenter en 2027',
-      'conditions candidature presidentielle 2027',
+      'qui peut se présenter en 2027',
+      'conditions candidature présidentielle 2027',
     ],
     summary: [
-      'Il faut pouvoir reunir les conditions constitutionnelles et legals de candidature.',
-      'Le filtre politique decisif reste le systeme de parrainages.',
-      'La page candidats du site montre ensuite qui est effectivement suivi dans la campagne.',
+      'Être connu ne suffit pas pour devenir candidat à la présidentielle.',
+      'Il faut remplir les conditions légales de base et obtenir 500 présentations d’élus.',
+      'La difficulté est autant politique que juridique.',
     ],
     sections: [
       {
-        title: 'Les conditions a retenir',
+        title: 'La réponse courte',
         paragraphs: [
-          'Pour se presenter a l’election presidentielle, il faut etre francais, avoir au moins 18 ans, jouir de ses droits civiques et remplir les obligations declarees pour la candidature.',
-          'Surtout, il faut obtenir 500 presentations d’elus provenant d’au moins 30 departements ou collectivites d’outre-mer, sans que plus d’un dixieme des presentateurs provienne du meme territoire. C’est le verrou pratique le plus important.',
+          'Peut se présenter à l’élection présidentielle un citoyen français majeur, jouissant de ses droits civiques et capable de satisfaire aux exigences prévues pour déposer une candidature régulière.',
+          'Le point décisif, en pratique, est l’obtention de 500 présentations d’élus provenant d’au moins 30 départements ou collectivités d’outre-mer, sans concentration excessive sur un seul territoire.',
         ],
       },
       {
-        title: 'Pourquoi la question revient aussi souvent',
+        title: 'Pourquoi tout le monde ne peut pas réellement aller au bout',
         paragraphs: [
-          'La distinction entre popularite mediatique et capacite reelle a se presenter est essentielle. Beaucoup de personnalites sont citees dans le debat public, mais toutes ne disposent pas de la structure politique ou territoriale pour franchir le cap des parrainages.',
-          'C’est pour cela que le site ne se contente pas d’un nom ou d’un sondage: il remet chaque candidature potentielle dans un contexte politique plus large.',
+          'Une notoriété médiatique, un bon sondage ou une forte présence sur les réseaux ne suffisent pas. Pour devenir un candidat réel, il faut une organisation, des relais territoriaux et la capacité de convaincre des élus de parrainer la candidature.',
+          'C’est pour cela qu’il existe toujours un écart entre les personnalités dont on parle beaucoup et celles qui ont une chance concrète d’être officiellement sur la ligne de départ.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Faut-il 500 parrainages pour etre candidat ?',
+        question: 'Faut-il 500 parrainages pour être candidat ?',
         answer:
-          'Oui. Les 500 presentations d’elus constituent un filtre central de l’election presidentielle francaise.',
+          'Oui. L’obtention de 500 présentations d’élus constitue la condition politique la plus déterminante pour transformer une ambition en candidature effective.',
       },
       {
-        question: 'Peut-on etre candidat simplement parce qu’on est teste dans les sondages ?',
+        question: 'Peut-on être candidat simplement parce qu’on est testé dans les sondages ?',
         answer:
-          'Non. Etre teste dans les sondages ne dispense pas des conditions juridiques et politiques de candidature.',
+          'Non. Être testé dans une enquête d’opinion peut signaler une existence politique, mais cela ne remplace ni les conditions légales ni la capacité à obtenir des présentations d’élus.',
       },
       {
-        question: 'Ou voir les profils qui comptent vraiment pour 2027 ?',
+        question: 'Quels profils ont vraiment une chance de compter en 2027 ?',
         answer:
-          'La page candidats du site et les fiches detaillees permettent de distinguer les candidatures structurees des simples hypothese de debat.',
+          'Ce sont généralement ceux qui combinent notoriété nationale, appareil politique, relais territoriaux et capacité à exister durablement dans les sondages et le débat public.',
       },
     ],
     relatedLinks: [
@@ -338,202 +338,203 @@ export const seoPages = [
   },
   {
     slug: 'macron-peut-il-se-representer-en-2027',
-    title: 'Macron peut-il se representer en 2027 ?',
+    title: 'Macron peut-il se représenter en 2027 ?',
     description:
-      'Macron peut-il se representer en 2027 ? Reponse courte, base constitutionnelle et contexte politique autour de la limitation a deux mandats consecutifs.',
+      'Macron peut-il se représenter en 2027 ? Réponse constitutionnelle claire et conséquences politiques pour la succession du bloc central.',
     heroEyebrow: 'Constitution',
-    heroTitle: 'Macron peut-il se representer en 2027 ?',
+    heroTitle: 'Macron peut-il se représenter en 2027 ?',
     heroIntro:
-      'La reponse courte est non, sauf changement institutionnel majeur. Cette page explique pourquoi de facon simple et sans ambiguite.',
+      'La réponse courte est non. En l’état actuel de l’article 6 de la Constitution, Emmanuel Macron ne peut pas exercer un troisième mandat consécutif après 2017 et 2022.',
     queries: [
-      'macron peut-il se representer en 2027',
+      'macron peut-il se représenter en 2027',
       'macron 2027',
     ],
     summary: [
-      'L’article 6 de la Constitution limite l’exercice a deux mandats consecutifs.',
-      'Emmanuel Macron a ete elu en 2017 puis en 2022.',
-      'En l’etat actuel du droit, il ne peut donc pas etre candidat en 2027.',
+      'L’article 6 de la Constitution limite l’exercice à deux mandats consécutifs.',
+      'Emmanuel Macron a déjà été élu en 2017 puis en 2022.',
+      'En l’état actuel du droit, il ne peut donc pas être candidat à un nouveau mandat consécutif en 2027.',
     ],
     sections: [
       {
-        title: 'La logique constitutionnelle',
+        title: 'La réponse juridique',
         paragraphs: [
-          'Depuis la revision constitutionnelle, nul ne peut exercer plus de deux mandats consecutifs de president de la Republique. Emmanuel Macron ayant ete elu en 2017 puis reelu en 2022, un nouveau mandat consecutif en 2027 n’est pas possible dans le cadre actuel.',
-          'Dire les choses ainsi est plus rigoureux que de parler d’une impossibilite politique abstraite: c’est avant tout une consequence de la Constitution, pas une simple hypothese de campagne.',
+          'L’article 6 de la Constitution prévoit qu’aucun président ne peut exercer plus de deux mandats consécutifs. Emmanuel Macron ayant été élu une première fois en 2017 puis réélu en 2022, il n’entre pas dans le cadre d’une candidature à un troisième mandat consécutif en 2027.',
+          'Ce point ne relève pas d’une interprétation politique flottante. C’est une conséquence directe du droit constitutionnel actuellement en vigueur.',
         ],
       },
       {
-        title: 'Pourquoi la question reste importante pour 2027',
+        title: 'Pourquoi la question reste centrale malgré tout',
         paragraphs: [
-          'Parce qu’elle structure toute la recomposition du camp macroniste. Si Emmanuel Macron ne peut pas etre candidat en 2027, la question devient celle de la succession: Attal, Edouard Philippe, Darmanin, ou d’autres profils susceptibles de revendiquer l’heritage ou la rupture.',
-          'Le site traite cette question par les sondages, les fiches candidats et les pages dediees aux principaux noms cites pour 2027.',
+          'Même sans candidature possible, Emmanuel Macron continue de peser sur 2027 par la question de sa succession, de son influence et de la recomposition de son espace politique.',
+          'Autrement dit, demander si Macron peut se représenter revient souvent, en réalité, à demander qui héritera du bloc central, qui s’en démarquera et comment cette succession redessinera le premier tour.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Emmanuel Macron peut-il faire un troisieme mandat consecutif ?',
+        question: 'Emmanuel Macron peut-il faire un troisième mandat consécutif ?',
         answer:
-          'Non, pas en l’etat actuel de l’article 6 de la Constitution.',
+          'Non. En l’état actuel de la Constitution, un troisième mandat présidentiel consécutif n’est pas possible.',
       },
       {
-        question: 'Pourquoi voit-on encore la requete Macron 2027 ?',
+        question: 'Pourquoi voit-on encore Macron 2027 dans les recherches ?',
         answer:
-          'Parce que la question de son influence, de sa succession et de son camp politique reste centrale meme sans candidature possible.',
+          'Parce que la question porte souvent moins sur sa candidature que sur son influence, sa succession et l’avenir du camp qu’il a structuré depuis 2017.',
       },
       {
-        question: 'Qui peut recuperer son espace politique ?',
+        question: 'Qui peut occuper cet espace politique en 2027 ?',
         answer:
-          'Les recherches se concentrent surtout sur Gabriel Attal, Edouard Philippe et d’autres personnalites du bloc central ou de la droite gouvernementale.',
+          'Plusieurs figures du bloc central ou de la droite gouvernementale sont observées dans ce rôle, notamment celles qui disposent déjà d’une visibilité nationale et d’une crédibilité de premier tour.',
       },
     ],
     relatedLinks: [
       { label: 'Gabriel Attal 2027', href: '/attal-president-2027/' },
-      { label: 'Edouard Philippe 2027', href: '/edouard-philippe-2027/' },
+      { label: 'Édouard Philippe 2027', href: '/edouard-philippe-2027/' },
       { label: 'Voir les sondages', href: '/polls' },
     ],
   },
   {
     slug: 'comment-se-deroule-election-presidentielle',
-    title: 'Comment se deroule l’election presidentielle ? Regles, tours et qualification',
+    title: 'Comment se déroule l’élection présidentielle ? Règles, tours et qualification',
     description:
-      'Comment se deroule l’election presidentielle francaise ? Deux tours, qualification, campagne, parrainages et logique du scrutin presidentiel.',
+      'Comment se déroule l’élection présidentielle française ? Deux tours, qualification, majorité absolue et logique du scrutin expliqués simplement.',
     heroEyebrow: 'Mode d’emploi',
-    heroTitle: 'Comment se deroule l’election presidentielle ?',
+    heroTitle: 'Comment se déroule l’élection présidentielle ?',
     heroIntro:
-      'Cette page explique le fonctionnement de l’election presidentielle francaise de facon claire pour les internautes qui veulent comprendre les regles avant de suivre 2027.',
+      'L’élection présidentielle française se déroule en deux tours : tous les candidats qualifiés au premier, puis les deux premiers au second si personne n’obtient la majorité absolue dès le départ.',
     queries: [
-      'comment se deroule l election presidentielle',
-      'regles election presidentielle france',
+      'comment se déroule l election présidentielle',
+      'règles élection présidentielle france',
     ],
     summary: [
       'Le scrutin se joue en deux tours.',
       'Les deux premiers du premier tour se qualifient pour le second.',
-      'Le vainqueur du second tour devient president de la Republique.',
+      'Le vainqueur du second tour devient président de la République.',
     ],
     sections: [
       {
-        title: 'Le schema general du scrutin',
+        title: 'Le premier tour',
         paragraphs: [
-          'Au premier tour, tous les candidats qualifies se presentent. Si aucun n’obtient la majorite absolue des suffrages exprimes, un second tour oppose les deux candidats arrives en tete.',
-          'Le second tour tranche entre ces deux finalistes. Cette logique explique pourquoi les sondages de premier tour, les reserves de voix et les reports sont aussi surveilles dans la campagne presidentielle.',
+          'Au premier tour, tous les candidats officiellement qualifiés sont en compétition. Si l’un d’entre eux recueille la majorité absolue des suffrages exprimés, il est élu immédiatement.',
+          'Dans les faits contemporains, ce cas est exceptionnel. Le premier tour sert donc surtout à sélectionner les deux finalistes et à mesurer le poids réel de chaque bloc politique.',
         ],
       },
       {
-        title: 'Pourquoi cette page est utile pour 2027',
+        title: 'Pourquoi le second tour change tout',
         paragraphs: [
-          'Une grande partie des recherches autour de 2027 melange candidats, calendrier, regles et sondages. Cette page sert de point d’ordre: comprendre d’abord le mecanisme, puis lire correctement les scenarios et les rapports de force.',
-          'Pour un suivi plus concret de la campagne 2027, il faut ensuite consulter la page sondages et les fiches des candidats les plus cites.',
+          'Une fois les deux finalistes connus, l’élection devient un duel. Les électeurs des candidats éliminés doivent alors arbitrer, se reporter, s’abstenir ou voter blanc, ce qui modifie fortement la logique du scrutin.',
+          'C’est pour cela que la lecture de 2027 ne peut pas s’arrêter au premier tour : il faut aussi regarder les réserves de voix, les compatibilités politiques et les rejets réciproques.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Combien y a-t-il de tours a l’election presidentielle ?',
+        question: 'Combien y a-t-il de tours à l’élection présidentielle ?',
         answer:
-          'Deux tours, sauf victoire au premier tour avec majorite absolue des suffrages exprimes, ce qui n’arrive pas dans les configurations contemporaines.',
+          'Deux, sauf si un candidat obtient dès le premier tour la majorité absolue des suffrages exprimés.',
       },
       {
         question: 'Qui se qualifie pour le second tour ?',
         answer:
-          'Les deux candidats arrives en tete au premier tour.',
+          'Les deux candidats arrivés en tête au premier tour se qualifient pour le second.',
       },
       {
         question: 'Pourquoi les reports de voix comptent-ils autant ?',
         answer:
-          'Parce qu’entre les deux tours, le scrutin devient un duel. Les electorats elimines du premier tour deviennent alors decisifs.',
+          'Parce qu’entre les deux tours, les électorats des candidats éliminés deviennent décisifs pour faire basculer l’élection.',
       },
     ],
     relatedLinks: [
       { label: 'Voir les sondages 2027', href: '/polls' },
       { label: 'Voir les candidats', href: '/' },
-      { label: 'Quand aura lieu la presidentielle 2027', href: '/quand-aura-lieu-la-presidentielle-2027/' },
+      { label: 'Quand aura lieu la présidentielle 2027', href: '/quand-aura-lieu-la-presidentielle-2027/' },
     ],
   },
   {
     slug: 'simulateur-presidentielle-2027',
-    title: 'Simulateur presidentielle 2027 : comparer les candidats et les scenarios',
+    title: 'Simulateur présidentielle 2027 : comparer les candidats et les scénarios',
     description:
-      'Simulateur presidentielle 2027 : page d’entree pour comparer les candidats, les scenarios de sondages et les dynamiques de campagne.',
+      'Simulateur présidentielle 2027 : ce qu’on peut vraiment comparer aujourd’hui entre candidats, scénarios de sondages et blocs politiques.',
     heroEyebrow: 'Comparaison',
-    heroTitle: 'Simulateur presidentielle 2027 : comparer au lieu de deviner',
+    heroTitle: 'Simulateur présidentielle 2027 : ce qu’on peut comparer sérieusement',
     heroIntro:
-      'Le site n’expose pas encore un simulateur mathematique complet, mais il sert deja de comparateur de campagne: candidats, scenarios de sondages, videos, tweets et attention media.',
+      'Il n’existe pas encore de simulateur crédible capable de prédire 2027 avec certitude. En revanche, on peut déjà comparer les scénarios de premier tour, les candidats testés et les grands équilibres politiques.',
     queries: [
-      'simulateur presidentielle 2027',
-      'comparateur presidentielle 2027',
+      'simulateur présidentielle 2027',
+      'comparateur présidentielle 2027',
     ],
     summary: [
-      'Comparer les candidats sur leurs profils et leurs interventions.',
-      'Comparer les scenarios de sondages institut par institut.',
-      'Suivre les dynamiques media sans sortir du site.',
+      'Le plus utile aujourd’hui est de comparer les scénarios, pas de promettre une prédiction définitive.',
+      'Les intentions de vote permettent de lire les rapports de force par candidat et par bloc.',
+      'Un bon comparateur montre les écarts, les variantes de scénario et les dynamiques, pas un faux verdict figé.',
     ],
     sections: [
       {
-        title: 'Pourquoi cette page existe',
+        title: 'Ce qu’un simulateur peut vraiment montrer en 2026',
         paragraphs: [
-          'La requete simulateur presidentielle 2027 traduit un besoin de comparaison, pas seulement un besoin de prediction. Cette page oriente donc vers les bons outils disponibles aujourd’hui sur le site.',
-          'Le visiteur peut comparer les profils, suivre les intentions de vote et lire les pages dediees aux candidats qui structurent deja la conversation publique.',
+          'À ce stade, un outil sérieux ne peut pas dire qui sera élu en 2027. En revanche, il peut comparer les candidats présents dans les sondages, observer comment un scénario change quand un nom entre ou sort, et mesurer quels blocs restent les plus solides.',
+          'C’est déjà beaucoup : cela permet de voir qui pèse réellement, qui n’existe que dans certains cas de figure et quels duels deviennent crédibles selon les configurations testées.',
         ],
       },
       {
-        title: 'Ce que le site sait deja faire',
+        title: 'Ce qu’il ne faut pas promettre',
         paragraphs: [
-          'La page sondages donne un classement lisible par institut et par scenario. Les fiches candidats donnent les positions, interventions, videos, tweets et analyses de reseau.',
-          'Cette combinaison constitue deja une base solide de comparaison. Un simulateur plus poussé pourra etre ajoute ensuite sans changer l’architecture de contenu.',
+          'Un simulateur honnête ne doit pas transformer des données encore incomplètes en prophétie. Les candidatures ne sont pas toutes arrêtées, les alliances peuvent bouger et la campagne réelle modifiera encore les rapports de force.',
+          'La bonne approche consiste donc à comparer, hiérarchiser et observer les tendances, plutôt qu’à faire croire qu’un algorithme sait déjà qui gagnera la présidentielle 2027.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Le site propose-t-il un simulateur de second tour ?',
+        question: 'Existe-t-il déjà un simulateur fiable de second tour pour 2027 ?',
         answer:
-          'Pas encore sous la forme d’un outil de projection interactif complet. En revanche, il permet deja de comparer les scenarios testes par les instituts.',
+          'Pas au sens d’un outil capable de prédire sérieusement l’issue finale. En revanche, les scénarios de sondages permettent déjà de comparer plusieurs configurations de premier tour et d’anticiper certains équilibres.',
       },
       {
-        question: 'Ou commencer pour comparer les candidats ?',
+        question: 'Par quoi faut-il commencer pour comparer les candidats ?',
         answer:
-          'La page sondages puis les fiches candidats constituent aujourd’hui le chemin le plus utile.',
+          'Le plus utile est de partir des intentions de vote, puis de regarder le statut réel du candidat, son bloc politique et sa capacité à exister au-delà d’un simple test de sondage.',
       },
       {
-        question: 'Pourquoi parler de simulateur si l’outil n’est pas complet ?',
+        question: 'À quoi sert alors cette page ?',
         answer:
-          'Parce que l’intention de recherche est avant tout comparative. La page repond a cette attente sans promettre un modele predictif trompeur.',
+          'Elle sert à répondre à la vraie question derrière le mot simulateur : quels candidats comparer, quels scénarios regarder et quelles limites garder en tête avant de tirer des conclusions trop tôt.',
       },
     ],
     relatedLinks: [
       { label: 'Voir les sondages', href: '/polls' },
       { label: 'Voir les candidats', href: '/' },
-      { label: 'Guide presidentielle 2027', href: '/presidentielle-2027/' },
+      { label: 'Guide présidentielle 2027', href: '/presidentielle-2027/' },
     ],
   },
   candidatePage({
     slug: 'bardella-2027',
-    title: 'Bardella 2027 : candidature, sondages et scenario presidentielle',
+    title: 'Bardella 2027 : candidature, sondages et scénario présidentielle',
     description:
-      'Bardella 2027 : comprendre la place de Jordan Bardella dans les sondages, sa relation avec Marine Le Pen et son poids dans les scenarios 2027.',
-    heroTitle: 'Bardella 2027 : pourquoi Jordan Bardella compte deja dans la campagne',
+      'Bardella 2027 : ce que signifie vraiment la place de Jordan Bardella dans les sondages, au RN et dans les scénarios de 2027.',
+    heroTitle: 'Bardella 2027 : pourquoi Jordan Bardella compte déjà',
     heroIntro:
-      'La requete Bardella 2027 renvoie a une question simple: Jordan Bardella est-il un candidat central, un recours ou une hypothese conditionnelle ? Cette page oriente vers sa fiche et vers les sondages.',
-    queries: ['bardella 2027', 'jordan bardella 2027', 'qui va gagner presidentielle 2027'],
+      'Jordan Bardella pèse en 2027 parce qu’il peut être lu de deux façons : comme figure politique propre du RN et comme variable décisive dans la stratégie autour de Marine Le Pen.',
+    queries: ['bardella 2027', 'jordan bardella 2027', 'qui va gagner présidentielle 2027'],
     summary: [
-      'Un profil cle du bloc RN dans les sondages.',
-      'Une page utile pour lire sa relation politique avec Marine Le Pen.',
-      'Un lien direct vers sa fiche complete et les scenarios de vote.',
+      'Sa place dépend du scénario retenu et du rôle exact que le RN lui attribue.',
+      'Ses niveaux doivent toujours être comparés à ceux de Marine Le Pen.',
+      'La question centrale n’est pas seulement son score, mais son statut politique réel.',
     ],
     candidatePath: '/candidats/jordan-bardella',
     sections: [
       {
-        title: 'Pourquoi la requete Bardella 2027 est si forte',
+        title: 'Pourquoi Bardella pèse déjà autant',
         paragraphs: [
-          'Jordan Bardella incarne a la fois une candidature proprement envisagee dans certains scenarios et une variable de remplacement ou de projection pour l’espace politique du Rassemblement national.',
-          'Les internautes cherchent donc a savoir s’il est simplement teste dans les sondages ou s’il devient une hypothese politique majeure. Le site replace cette question dans les sondages et les sources disponibles.',
+          'Jordan Bardella est devenu une figure nationale qui dépasse le simple rôle de porte-parole partisan. Son nom compte parce qu’il peut être testé comme candidature autonome, comme recours possible, ou comme indicateur du poids propre du RN dans l’opinion.',
+          'Cela explique pourquoi il faut toujours lire ses chiffres avec prudence : un score Bardella ne dit pas seulement quelque chose sur lui, il dit aussi quelque chose sur l’état du bloc national-populiste et sur la place laissée ou non à d’autres figures de ce camp.',
         ],
       },
       {
-        title: 'Que regarder en priorite',
+        title: 'Les trois choses à regarder',
         paragraphs: [
-          'Il faut observer ses performances dans les intentions de vote, le type de scenario dans lequel il est teste et la nature de sa relation avec Marine Le Pen. C’est exactement ce que documentent la fiche candidat et la page sondages.',
+          'D’abord son statut : candidature assumée, hypothèse conditionnelle ou simple test d’institut. Ensuite sa relation politique avec Marine Le Pen. Enfin sa capacité à tenir un niveau élevé dans plusieurs scénarios et pas seulement dans un cas isolé.',
+          'Si un candidat reste haut quelles que soient les configurations, il devient un acteur structurant de la campagne. Si son niveau dépend beaucoup de la présence ou de l’absence d’un autre nom, la lecture est plus conditionnelle.',
         ],
       },
     ],
@@ -541,17 +542,17 @@ export const seoPages = [
       {
         question: 'Jordan Bardella est-il officiellement candidat en 2027 ?',
         answer:
-          'Le site indique son statut exact sur sa fiche. L’important est de distinguer declaration ferme, scenario conditionnel et simple test d’institut.',
+          'La question doit être lue avec précision : selon les séquences, Jordan Bardella peut être présenté comme candidature possible, hypothèse conditionnelle ou simple scénario de sondage. Il faut donc regarder son statut exact et non seulement son nom.',
       },
       {
-        question: 'Pourquoi Bardella et Le Pen sont-ils souvent lies dans les recherches ?',
+        question: 'Pourquoi Bardella et Le Pen sont-ils toujours comparés ?',
         answer:
-          'Parce qu’ils occupent le meme espace politique et que certains scenarios font de Bardella une hypothese alternative ou complementaire.',
+          'Parce qu’ils occupent le même espace politique et que la présence de l’un modifie immédiatement la lecture électorale de l’autre.',
       },
       {
-        question: 'Ou voir ses sondages ?',
+        question: 'Où voir ses scores dans les intentions de vote ?',
         answer:
-          'La page sondages et sa fiche detaillee donnent les deux lectures utiles.',
+          'Le plus utile est de comparer ses niveaux scénario par scénario, plutôt que de s’arrêter à un seul classement publié un jour donné.',
       },
     ],
   }),
@@ -559,29 +560,30 @@ export const seoPages = [
     slug: 'le-pen-2027',
     title: 'Le Pen 2027 : candidature, statut et place dans les sondages',
     description:
-      'Le Pen 2027 : suivre la situation politique de Marine Le Pen, son statut pour 2027 et sa place dans les intentions de vote.',
-    heroTitle: 'Le Pen 2027 : un nom central pour lire la campagne',
+      'Le Pen 2027 : pourquoi Marine Le Pen reste centrale, ce que change sa présence et comment lire sa place dans les intentions de vote.',
+    heroTitle: 'Le Pen 2027 : un nom central pour toute la lecture du premier tour',
     heroIntro:
-      'La requete Le Pen 2027 reste l’une des plus fortes de l’espace politique francais. Cette page sert de pont entre la recherche Google, la fiche candidate et la lecture des sondages.',
-    queries: ['le pen 2027', 'marine le pen 2027', 'sondage presidentielle 2027'],
+      'Marine Le Pen reste un repère majeur de 2027. Sa présence, son niveau et son statut modifient immédiatement la hiérarchie de nombreux autres candidats.',
+    queries: ['le pen 2027', 'marine le pen 2027', 'sondage présidentielle 2027'],
     summary: [
-      'Un nom majeur des requetes 2027.',
-      'Une lecture a croiser entre statut personnel, bloc politique et scenarios de sondages.',
-      'Un acces direct a la fiche complete et a la page sondages.',
+      'Sa seule présence change la lecture du premier tour.',
+      'Il faut regarder à la fois son statut, sa base électorale et l’effet sur le RN.',
+      'Comparer Le Pen et Bardella éclaire la stratégie de tout son camp.',
     ],
     candidatePath: '/candidats/marine-le-pen',
     sections: [
       {
-        title: 'Pourquoi la requete Le Pen 2027 est structurante',
+        title: 'Pourquoi Marine Le Pen reste structurante',
         paragraphs: [
-          'Marine Le Pen reste un point de repere pour lire l’ensemble du paysage 2027. Meme lorsque d’autres noms montent, son statut, sa capacite de candidature et l’effet de sa presence ou de son absence dans les scenarios changent l’interpretation des rapports de force.',
-          'Le site traite cette question en montrant les sources, les scenarii et les evolutions de position plutot qu’en s’en tenant a un simple nom.',
+          'Marine Le Pen reste l’un des noms qui organisent le plus fortement le paysage 2027. Quand elle est présente dans un scénario, la hiérarchie des autres candidats change souvent, notamment dans le camp national-populiste mais aussi dans la lecture globale du premier tour.',
+          'C’est pour cela qu’il faut suivre à la fois son niveau électoral propre, son statut personnel et l’effet que sa présence produit sur les autres candidatures de droite ou d’extrême droite.',
         ],
       },
       {
-        title: 'Quel usage faire de cette page',
+        title: 'Ce qu’il faut regarder en priorité',
         paragraphs: [
-          'Si vous cherchez a comprendre son statut et son positionnement, ouvrez d’abord la fiche candidate. Si vous cherchez a savoir comment sa presence modifie la hierarchie 2027, la page sondages est la meilleure entree.',
+          'La première question est de savoir dans quels scénarios elle apparaît et avec quel niveau. La deuxième consiste à voir comment sa présence modifie la place de Jordan Bardella et, plus largement, l’équilibre des autres blocs au premier tour.',
+          'Autrement dit, Le Pen 2027 ne se lit pas seulement comme un cas individuel. C’est aussi une clé d’interprétation de l’ensemble du paysage électoral.',
         ],
       },
     ],
@@ -589,209 +591,213 @@ export const seoPages = [
       {
         question: 'Marine Le Pen est-elle suivie dans les sondages 2027 ?',
         answer:
-          'Oui, la page sondages du site permet de voir dans quels scenarios elle apparait et avec quels niveaux.',
+          'Oui. Lorsqu’elle figure dans un scénario, son niveau permet de mesurer non seulement sa force propre, mais aussi la façon dont toute la compétition se réorganise autour d’elle.',
       },
       {
         question: 'Pourquoi comparer Le Pen et Bardella ?',
         answer:
-          'Parce que leurs scenarios se repondent souvent dans les recherches et dans l’espace politique du RN.',
+          'Parce que cette comparaison dit beaucoup sur la stratégie du RN et sur la manière dont son électorat pourrait se répartir selon la tête d’affiche retenue.',
       },
       {
-        question: 'Ou lire ses positions et interventions ?',
+        question: 'Où lire ses positions et ses interventions ?',
         answer:
-          'La fiche candidate concentre justement les positions, interventions, videos et tweets.',
+          'Une fiche utile doit montrer ses prises de position, ses interventions médiatiques et la façon dont elles s’inscrivent dans la préparation de 2027.',
       },
     ],
   }),
   candidatePage({
     slug: 'attal-president-2027',
-    title: 'Attal president 2027 : candidature, ligne politique et sondages',
+    title: 'Attal président 2027 : candidature, ligne politique et sondages',
     description:
-      'Attal president 2027 : suivre Gabriel Attal, son positionnement, ses ambitions pour 2027 et sa place dans les sondages.',
-    heroTitle: 'Attal president 2027 : pourquoi Gabriel Attal cristallise la succession',
+      'Attal président 2027 : pourquoi Gabriel Attal est regardé comme un héritier possible du bloc central et comment lire sa crédibilité.',
+    heroTitle: 'Attal président 2027 : la question de la crédibilité plus que du buzz',
     heroIntro:
-      'La requete Attal president 2027 ne cherche pas seulement un nom: elle cherche la place de Gabriel Attal dans l’apres-Macron. Cette page renvoie vers sa fiche detaillee et les sondages.',
-    queries: ['attal president 2027', 'gabriel attal 2027', 'macron succession 2027'],
+      'Gabriel Attal apparaît comme l’un des héritiers possibles du bloc central. La vraie question n’est pas seulement sa visibilité, mais sa capacité à transformer cette visibilité en candidature de premier tour.',
+    queries: ['attal président 2027', 'gabriel attal 2027', 'macron succession 2027'],
     summary: [
-      'Un profil cle de la succession du bloc central.',
-      'Une lecture croisee entre sondages, style politique et reseau d’alliances.',
-      'Une fiche detaillee a consulter ensuite.',
+      'Son nom revient parce qu’il incarne une partie de la succession du bloc central.',
+      'Il faut mesurer sa capacité à rassembler au-delà de son socle immédiat.',
+      'Ses sondages n’ont de sens que rapportés à son espace politique et à ses concurrents directs.',
     ],
     candidatePath: '/candidats/gabriel-attal',
     sections: [
       {
-        title: 'Pourquoi Gabriel Attal est si recherche',
+        title: 'Pourquoi son nom revient autant',
         paragraphs: [
-          'Depuis la fermeture constitutionnelle de la voie Macron 2027, Gabriel Attal apparait comme l’un des principaux points de fixation de la succession. C’est ce qui rend la requete Attal president 2027 si frequente.',
-          'Pour la lire correctement, il faut regarder a la fois son positionnement politique, sa capacite de rassemblement et sa place dans les scenarios de vote.',
+          'Depuis que la voie d’un nouveau mandat consécutif d’Emmanuel Macron est fermée, Gabriel Attal est naturellement observé comme l’un des profils capables de reprendre une partie de cet espace politique. Son âge, sa notoriété et son expérience gouvernementale nourrissent cette attention.',
+          'Mais une présidentielle ne se gagne pas à la seule exposition médiatique. La vraie question est de savoir s’il peut tenir dans la durée, fédérer un bloc et apparaître comme plus qu’un symbole de succession.',
         ],
       },
       {
-        title: 'Ce que le site apporte sur Attal 2027',
+        title: 'Ce qui décidera de sa crédibilité',
         paragraphs: [
-          'La fiche Attal rassemble les positions, interventions medias, videos, tweets et analyse de reseau. Elle permet de depasser le simple bruit de campagne pour comprendre sa construction de candidature.',
+          'Il faut regarder son niveau dans les scénarios, sa capacité à parler au-delà du noyau macroniste, et sa faculté à exister face aux autres prétendants du centre et de la droite de gouvernement.',
+          'Un candidat crédible pour 2027 n’est pas seulement un nom connu : c’est un profil capable de durer, de structurer un discours et de rester compétitif dans plusieurs hypothèses de premier tour.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Gabriel Attal est-il deja candidat ?',
+        question: 'Gabriel Attal est-il déjà candidat ?',
         answer:
-          'Le site indique son statut en clair sur sa fiche. C’est le bon endroit pour distinguer declaration, intention et scenario de sondage.',
+          'Il faut distinguer ici l’ambition politique, le statut officiel et la présence dans les sondages. Les trois ne se confondent pas et doivent être lus séparément.',
       },
       {
-        question: 'Pourquoi Attal est-il souvent relie a Macron 2027 ?',
+        question: 'Pourquoi Attal est-il souvent relié à Macron 2027 ?',
         answer:
-          'Parce qu’il fait partie des profils qui peuvent capter une partie de l’electorat, du reseau ou de l’espace politique du macronisme apres 2022.',
+          'Parce qu’il est l’un des profils les plus souvent cités quand il s’agit de penser la succession du bloc central et l’après-Macron.',
       },
       {
-        question: 'Ou voir ses videos et ses tweets ?',
+        question: 'Où voir ses vidéos et ses tweets ?',
         answer:
-          'La fiche Attal renvoie vers des onglets videos et tweets dedies.',
+          'Pour juger un candidat de ce type, il faut regarder ses prises de parole publiques autant que ses chiffres dans les intentions de vote.',
       },
     ],
   }),
   candidatePage({
     slug: 'edouard-philippe-2027',
-    title: 'Edouard Philippe 2027 : candidature, profil et sondages',
+    title: 'Édouard Philippe 2027 : candidature, profil et sondages',
     description:
-      'Edouard Philippe 2027 : suivre sa candidature, son profil politique, ses positions et sa place dans les intentions de vote.',
-    heroTitle: 'Edouard Philippe 2027 : un profil de pivot pour la presidentielle',
+      'Édouard Philippe 2027 : pourquoi il apparaît comme un profil solide du centre-droit et comment lire sa place dans la course.',
+    heroTitle: 'Édouard Philippe 2027 : un profil de centre-droit déjà très installé',
     heroIntro:
-      'Edouard Philippe 2027 reste une recherche structurante du camp central et de la droite gouvernementale. Cette page sert de porte d’entree avant la fiche detaillee.',
-    queries: ['edouard philippe 2027', 'philippe 2027', 'candidat centre droit 2027'],
+      'Édouard Philippe est l’un des profils les plus solides du centre-droit pour 2027. Le sujet n’est pas seulement sa notoriété, mais sa capacité à agréger un espace politique assez large pour viser le second tour.',
+    queries: ['édouard philippe 2027', 'philippe 2027', 'candidat centre droit 2027'],
     summary: [
-      'Un candidat deja installe dans l’imaginaire 2027.',
-      'Une lecture utile entre declaration, bloc politique et intentions de vote.',
-      'Une fiche detaillee pour les positions, interventions et analyses.',
+      'Sa notoriété est déjà forte, mais elle doit encore se transformer en coalition électorale solide.',
+      'Il faut mesurer son autonomie réelle par rapport au macronisme.',
+      'Ses scores n’ont de sens qu’en regard de ses concurrents du centre et de la droite modérée.',
     ],
     candidatePath: '/candidats/edouard-philippe',
     sections: [
       {
-        title: 'Pourquoi Edouard Philippe pese autant',
+        title: 'Pourquoi il apparaît comme un pivot',
         paragraphs: [
-          'Edouard Philippe dispose d’un niveau d’identification eleve, d’une image d’ancien Premier ministre et d’une capacite a etre teste comme profil de stabilite. Cela explique la persistance de la requete Edouard Philippe 2027.',
-          'Le site permet de relier cette notoriete a des donnees plus utiles: sa fiche, ses videos, ses tweets et ses niveaux dans les sondages.',
+          'Édouard Philippe combine plusieurs atouts rares : une identification nationale élevée, une image d’ancien Premier ministre et une capacité à rassurer une partie de l’électorat modéré. Cela explique pourquoi son nom revient aussi souvent lorsqu’on parle de 2027.',
+          'Mais être un pivot potentiel ne suffit pas. La vraie question est de savoir s’il peut transformer cette stature en dynamique électorale assez large pour dominer son camp et rester compétitif face aux autres blocs.',
         ],
       },
       {
         title: 'Comment lire sa candidature',
         paragraphs: [
-          'Il faut regarder sa ligne politique propre, son autonomie par rapport au macronisme et sa capacite a capter un espace central ou de droite moderee. Les analyses du site ont ete organisees pour cette lecture.',
+          'Il faut regarder sa ligne politique propre, la place qu’il prend vis-à-vis du macronisme et sa capacité à attirer des électeurs du centre comme de la droite de gouvernement.',
+          'Si cette capacité d’agrégation se confirme dans plusieurs scénarios de sondage, alors son nom ne sera plus seulement un symbole de stabilité, mais un vrai point d’appui pour la campagne 2027.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Edouard Philippe est-il en campagne pour 2027 ?',
+        question: 'Édouard Philippe est-il déjà en campagne pour 2027 ?',
         answer:
-          'La fiche detaillee du site permet de voir son statut, ses signaux politiques et ses prises de position recentes.',
+          'La bonne lecture consiste à regarder son statut politique concret, ses prises de position récentes et la manière dont il se situe dans l’espace central et centre-droit.',
       },
       {
-        question: 'Pourquoi le comparer a Gabriel Attal ?',
+        question: 'Pourquoi le comparer à Gabriel Attal ?',
         answer:
-          'Parce qu’ils occupent tous deux une partie de l’espace post-Macron, mais avec des styles, reseaux et bases politiques differents.',
+          'Parce qu’ils peuvent viser une partie du même espace politique tout en proposant des styles, des réseaux et des trajectoires différentes.',
       },
       {
-        question: 'Ou voir ses interventions ?',
+        question: 'Où voir ses interventions ?',
         answer:
-          'La fiche Edouard Philippe rassemble interventions medias, videos et tweets.',
+          'Pour comprendre sa trajectoire, il faut regarder ses interventions médiatiques, ses positions publiques et leur cohérence avec une éventuelle candidature.',
       },
     ],
   }),
   candidatePage({
     slug: 'melenchon-2027',
-    title: 'Melenchon 2027 : candidature, ligne politique et role a gauche',
+    title: 'Mélenchon 2027 : candidature, ligne politique et rôle à gauche',
     description:
-      'Melenchon 2027 : comprendre son positionnement, son role dans la gauche 2027 et sa place dans les scenarios de sondages.',
-    heroTitle: 'Melenchon 2027 : un acteur qui continue de structurer la gauche',
+      'Mélenchon 2027 : pourquoi Jean-Luc Mélenchon continue de structurer la gauche et comment lire son poids dans les scénarios testés.',
+    heroTitle: 'Mélenchon 2027 : un acteur qui continue de structurer la gauche',
     heroIntro:
-      'La requete Melenchon 2027 vise autant sa candidature eventuelle que sa capacite a structurer le jeu a gauche. Cette page renvoie vers sa fiche detaillee et les scenarios de sondages.',
-    queries: ['melenchon 2027', 'jean luc melenchon 2027', 'gauche 2027'],
+      'Jean-Luc Mélenchon reste central pour 2027, qu’il soit lui-même candidat ou qu’il pèse sur la désignation du candidat final de son espace politique.',
+    queries: ['mélenchon 2027', 'jean-luc mélenchon 2027', 'gauche 2027'],
     summary: [
-      'Une figure centrale du debat a gauche.',
-      'Une lecture a mener avec les sondages et la strategie d’alliance.',
-      'Une fiche detaillee pour ses positions, ses interventions et son reseau.',
+      'Son nom reste incontournable dès qu’il s’agit de lire la gauche pour 2027.',
+      'La vraie question est autant son rôle de structuration que son éventuelle candidature personnelle.',
+      'Il faut comparer sa ligne, son bloc et ses performances aux autres profils de gauche.',
     ],
     candidatePath: '/candidats/jean-luc-melenchon',
     sections: [
       {
-        title: 'Pourquoi la requete Melenchon 2027 reste forte',
+        title: 'Pourquoi il reste incontournable',
         paragraphs: [
-          'Jean-Luc Melenchon conserve un pouvoir de structuration du debat a gauche: candidature directe, influence strategique, pression sur les alliances ou concurrence avec d’autres profils. C’est ce qui maintient son nom tres haut dans les recherches.',
-          'Le site suit cette centralite au travers de sa fiche, de ses interventions et de la lecture de son reseau politique.',
+          'Jean-Luc Mélenchon conserve une capacité rare à structurer le débat à gauche. Même quand il n’est pas au centre de l’actualité immédiate, sa ligne politique, sa base militante et sa place dans l’espace insoumis continuent de peser sur tout l’équilibre de ce camp.',
+          'C’est ce qui explique la persistance de son nom dans les recherches : on ne cherche pas seulement à savoir s’il sera candidat, mais aussi quel effet sa présence ou son absence produira sur toute la gauche.',
         ],
       },
       {
-        title: 'Que faut-il regarder en priorite',
+        title: 'Ce qu’il faut regarder pour le juger',
         paragraphs: [
-          'Le point cle consiste a observer le rapport entre sa ligne politique, l’espace insoumis et la facon dont les instituts le testent par rapport aux autres profils de gauche. La page sondages permet justement cette comparaison.',
+          'Il faut observer sa relation avec les autres forces de gauche, la manière dont les instituts le testent, et la capacité de sa ligne à tenir face à des offres concurrentes plus social-démocrates, écologistes ou populistes.',
+          'Autrement dit, Mélenchon 2027 ne se lit pas seulement en points de sondage. Il se lit aussi en capacité de polarisation, de rassemblement ou de division.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Jean-Luc Melenchon est-il suivi dans les sondages 2027 ?',
+        question: 'Jean-Luc Mélenchon est-il suivi dans les sondages 2027 ?',
         answer:
-          'Oui, lorsqu’il apparait dans les scenarios suivis, la page sondages permet de le comparer aux autres candidatures de gauche.',
+          'Oui, quand il figure dans les scénarios, son niveau permet de mesurer à la fois sa force propre et l’état du rapport de force à gauche.',
       },
       {
-        question: 'Pourquoi Melenchon est-il compare a Glucksmann ?',
+        question: 'Pourquoi Mélenchon est-il souvent comparé à Glucksmann ?',
         answer:
-          'Parce qu’ils incarnent deux styles, deux coalitions et deux trajectoires distinctes de la gauche pour 2027.',
+          'Parce qu’ils représentent deux lignes différentes de la gauche et deux façons opposées d’élargir ou de structurer cet électorat.',
       },
       {
-        question: 'Ou voir ses prises de parole ?',
+        question: 'Où voir ses prises de parole ?',
         answer:
-          'La fiche Melenchon renvoie vers les interventions, les videos et les tweets recents.',
+          'Les prises de parole sont essentielles pour juger un profil comme le sien, car elles disent autant sa stratégie que ses positions de fond.',
       },
     ],
   }),
   candidatePage({
     slug: 'zemmour-2027',
-    title: 'Zemmour 2027 : retour politique, sondages et place dans le debat',
+    title: 'Zemmour 2027 : retour politique, sondages et place dans le débat',
     description:
-      'Zemmour 2027 : suivre sa place dans les scenarios de sondages et comprendre son role dans l’espace politique de droite radicale.',
-    heroTitle: 'Zemmour 2027 : pourquoi Eric Zemmour reste une requete de campagne',
+      'Zemmour 2027 : ce que vaut encore son nom dans les scénarios testés et ce qu’il dit de l’état de la droite radicale.',
+    heroTitle: 'Zemmour 2027 : ce que signifie encore son nom dans la course',
     heroIntro:
-      'La requete Zemmour 2027 continue d’exister parce qu’elle touche a la fragmentation de la droite radicale et a la concurrence entre plusieurs figures du meme espace politique.',
-    queries: ['zemmour 2027', 'eric zemmour 2027', 'droite radicale 2027'],
+      'Éric Zemmour n’occupe plus la même position qu’en 2022, mais son nom reste utile pour mesurer la dispersion ou la recomposition de la droite radicale.',
+    queries: ['zemmour 2027', 'éric zemmour 2027', 'droite radicale 2027'],
     summary: [
-      'Un nom qui continue a structurer certaines recherches 2027.',
-      'Une lecture a mener surtout par les sondages et la recomposition de son espace politique.',
-      'Une orientation vers les scenarios et les pages des autres candidats de cet espace.',
+      'Son nom reste un indicateur de fragmentation politique plus qu’une évidence de candidature.',
+      'Il faut regarder s’il existe encore comme pôle électoral distinct.',
+      'Le bon angle n’est pas seulement sa personne, mais l’état de tout l’espace qu’il a contribué à structurer.',
     ],
     candidatePath: null,
     sections: [
       {
-        title: 'Pourquoi la requete existe encore',
+        title: 'Ce que sa présence signifie vraiment',
         paragraphs: [
-          'Eric Zemmour reste present dans les comparaisons, dans certaines hypothese de sondages et dans les raisonnements sur la dispersion ou la recomposition des droites. Meme sans etre la figure la plus probable du scrutin, son nom continue donc de compter dans le referencement 2027.',
-          'Cette page a surtout pour role d’orienter la recherche vers les pages les plus utiles du site: sondages, Bardella 2027, Le Pen 2027 et vue generale sur les candidats.',
+          'Quand le nom d’Éric Zemmour apparaît encore dans les comparaisons ou dans certains scénarios, cela dit surtout quelque chose de l’état de la droite radicale : dispersion, concurrence interne, ou maintien d’un espace politique distinct.',
+          'Sa place ne doit donc pas être lue de façon isolée. Elle prend son sens par rapport au RN, à Bardella, à Marine Le Pen et à la capacité de cet électorat à se concentrer sur une seule candidature.',
         ],
       },
       {
-        title: 'Que faut-il regarder',
+        title: 'Comment lire sa place en 2027',
         paragraphs: [
-          'Plutot qu’une simple intuition, il faut regarder si Zemmour apparait dans les scenarios suivis, a quel niveau et dans quel rapport de force avec les autres candidatures de droite radicale.',
+          'La bonne question est de savoir s’il conserve un socle identifiable, s’il réapparaît dans des scénarios crédibles et si sa présence modifie réellement le rapport de force à droite.',
+          'S’il n’existe plus que marginalement dans les enquêtes, alors sa fonction devient surtout interprétative. S’il retrouve une capacité à perturber l’équilibre du bloc national, il redevient un facteur politique plus concret.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Eric Zemmour est-il present sur le site ?',
+        question: 'Éric Zemmour est-il encore un acteur politique à suivre pour 2027 ?',
         answer:
-          'Le site suit surtout les profils les plus structurants en base, mais la page sondages permet de reperer les scenarios ou son nom peut apparaitre.',
+          'Oui, au moins comme indicateur d’un espace politique. La vraie question est de savoir s’il pèse encore directement dans les intentions de vote ou surtout dans la recomposition de son camp.',
       },
       {
-        question: 'Pourquoi relier Zemmour a Bardella et Le Pen ?',
+        question: 'Pourquoi le comparer à Bardella et à Le Pen ?',
         answer:
-          'Parce qu’ils se disputent une partie d’un meme espace de lecture politique dans les requetes 2027.',
+          'Parce qu’ils se disputent ou se partagent une partie du même espace électoral, et que leur rapport de force dit beaucoup sur la structure du premier tour.',
       },
       {
-        question: 'Ou voir sa place dans les intentions de vote ?',
+        question: 'Où voir sa place dans les intentions de vote ?',
         answer:
-          'La page sondages est la meilleure entree pour cette lecture.',
+          'La bonne lecture consiste à repérer les scénarios où il apparaît et à comparer immédiatement son niveau à celui des autres candidatures de droite radicale.',
       },
     ],
   }),
@@ -799,47 +805,48 @@ export const seoPages = [
     slug: 'glucksmann-2027',
     title: 'Glucksmann 2027 : candidature, espace politique et dynamique',
     description:
-      'Glucksmann 2027 : suivre Raphael Glucksmann, sa trajectoire, son espace politique et sa place dans les scenarios presidentiels.',
-    heroTitle: 'Glucksmann 2027 : pourquoi Raphael Glucksmann attire les recherches',
+      'Glucksmann 2027 : pourquoi Raphaël Glucksmann attire l’attention et comment juger sa capacité à exister comme candidature de gauche.',
+    heroTitle: 'Glucksmann 2027 : une candidature possible, mais à quelles conditions ?',
     heroIntro:
-      'La requete Glucksmann 2027 cherche a mesurer sa capacite a devenir une candidature de gauche sociale-democrate ou europeenne capable d’exister seule.',
-    queries: ['glucksmann 2027', 'raphael glucksmann 2027', 'gauche sociale democrate 2027'],
+      'Raphaël Glucksmann attire l’attention parce qu’il incarne une offre de gauche pro-européenne distincte de LFI comme du centre. La vraie question est de savoir si cette ligne peut devenir une candidature assez large pour peser en 2027.',
+    queries: ['glucksmann 2027', 'raphaël glucksmann 2027', 'gauche sociale-démocrate 2027'],
     summary: [
-      'Un profil qui monte dans de nombreuses discussions 2027.',
-      'Une lecture utile entre positionnement ideologique, potentiel electoral et strategie d’autonomie.',
-      'Une fiche detaillee pour suivre ses positions, interventions et videos.',
+      'Son nom monte parce qu’il incarne une offre différente à gauche.',
+      'La clé est de savoir s’il peut élargir au-delà d’un public urbain, européen et réformiste.',
+      'Il faut juger sa trajectoire à la fois par sa visibilité, ses positions et sa capacité de rassemblement.',
     ],
     candidatePath: '/candidats/raphael-glucksmann',
     sections: [
       {
-        title: 'Pourquoi la requete Glucksmann 2027 est en hausse',
+        title: 'Pourquoi son nom progresse autant',
         paragraphs: [
-          'Raphael Glucksmann cristallise une partie des attentes autour d’une offre de gauche pro-europeenne, sociale-democrate et autonome. Cela suffit a faire de son nom une requete recurrente bien avant l’echeance.',
-          'Le site suit cette dynamique avec une fiche dediee, des interventions, des videos, des tweets et une lecture de son espace politique.',
+          'Raphaël Glucksmann concentre une partie des attentes d’une gauche pro-européenne, sociale-démocrate et autonome vis-à-vis des blocs déjà bien identifiés. Cela suffit à faire de lui un nom de plus en plus observé dans la perspective de 2027.',
+          'Mais l’attention ne suffit pas. Pour devenir un acteur central de la présidentielle, il faut encore transformer cette visibilité en force électorale, en capacité de rassemblement et en crédibilité nationale au premier tour.',
         ],
       },
       {
-        title: 'Comment lire son profil',
+        title: 'Ce qu’il faut regarder pour le juger',
         paragraphs: [
-          'Il faut observer a la fois son positionnement propre, sa capacite de rassemblement a gauche et son exposition mediatique. C’est justement le croisement propose par la fiche candidat et la page sondages.',
+          'Il faut regarder son positionnement propre, sa capacité à se différencier des autres offres de gauche et la manière dont les instituts le testent face à des profils concurrents. C’est là que l’on voit si son nom correspond à une simple curiosité politique ou à une candidature réellement montante.',
+          'Il faut aussi observer si son espace reste niche ou s’il parvient à parler plus largement à l’électorat de gauche et du centre-gauche.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Raphael Glucksmann est-il deja candidat ?',
+        question: 'Raphaël Glucksmann est-il déjà candidat ?',
         answer:
-          'Le site indique son statut exact sur sa fiche, ce qui permet d’eviter les approximations entre speculation et candidature assumee.',
+          'La question doit être lue avec nuance : un nom peut être fortement présent dans le débat sans relever encore d’une candidature formellement arrêtée.',
       },
       {
-        question: 'Pourquoi le comparer a Melenchon ?',
+        question: 'Pourquoi le comparer à Mélenchon ?',
         answer:
-          'Parce que la gauche 2027 se lit souvent a travers cette tension entre lignes, electorats et strategies concurrentes.',
+          'Parce qu’ils représentent deux lignes différentes pour la gauche 2027, avec des électorats, des stratégies et des horizons de coalition distincts.',
       },
       {
-        question: 'Ou voir ses prises de parole ?',
+        question: 'Où voir ses prises de parole ?',
         answer:
-          'La fiche Glucksmann regroupe les interventions, videos et tweets recents.',
+          'Pour évaluer un profil de ce type, il faut regarder ses interventions publiques, ses thèmes récurrents et leur traduction éventuelle dans les scénarios de vote.',
       },
     ],
   }),

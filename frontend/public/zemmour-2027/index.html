@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zemmour 2027 : retour politique, sondages et place dans le debat</title>
-  <meta name="description" content="Zemmour 2027 : suivre sa place dans les scenarios de sondages et comprendre son role dans l’espace politique de droite radicale." />
+  <title>Zemmour 2027 : retour politique, sondages et place dans le débat</title>
+  <meta name="description" content="Zemmour 2027 : ce que vaut encore son nom dans les scénarios testés et ce qu’il dit de l’état de la droite radicale." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Presidentielles 2027" />
-  <meta property="og:title" content="Zemmour 2027 : retour politique, sondages et place dans le debat" />
-  <meta property="og:description" content="Zemmour 2027 : suivre sa place dans les scenarios de sondages et comprendre son role dans l’espace politique de droite radicale." />
+  <meta property="og:site_name" content="Présidentielles 2027" />
+  <meta property="og:title" content="Zemmour 2027 : retour politique, sondages et place dans le débat" />
+  <meta property="og:description" content="Zemmour 2027 : ce que vaut encore son nom dans les scénarios testés et ce qu’il dit de l’état de la droite radicale." />
   <meta property="og:url" content="https://milardv.github.io/presidentielle2027/zemmour-2027/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Zemmour 2027 : retour politique, sondages et place dans le debat" />
-  <meta name="twitter:description" content="Zemmour 2027 : suivre sa place dans les scenarios de sondages et comprendre son role dans l’espace politique de droite radicale." />
+  <meta name="twitter:title" content="Zemmour 2027 : retour politique, sondages et place dans le débat" />
+  <meta name="twitter:description" content="Zemmour 2027 : ce que vaut encore son nom dans les scénarios testés et ce qu’il dit de l’état de la droite radicale." />
   <link rel="canonical" href="https://milardv.github.io/presidentielle2027/zemmour-2027/" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Eric Zemmour est-il present sur le site ?","acceptedAnswer":{"@type":"Answer","text":"Le site suit surtout les profils les plus structurants en base, mais la page sondages permet de reperer les scenarios ou son nom peut apparaitre."}},{"@type":"Question","name":"Pourquoi relier Zemmour a Bardella et Le Pen ?","acceptedAnswer":{"@type":"Answer","text":"Parce qu’ils se disputent une partie d’un meme espace de lecture politique dans les requetes 2027."}},{"@type":"Question","name":"Ou voir sa place dans les intentions de vote ?","acceptedAnswer":{"@type":"Answer","text":"La page sondages est la meilleure entree pour cette lecture."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Éric Zemmour est-il encore un acteur politique à suivre pour 2027 ?","acceptedAnswer":{"@type":"Answer","text":"Oui, au moins comme indicateur d’un espace politique. La vraie question est de savoir s’il pèse encore directement dans les intentions de vote ou surtout dans la recomposition de son camp."}},{"@type":"Question","name":"Pourquoi le comparer à Bardella et à Le Pen ?","acceptedAnswer":{"@type":"Answer","text":"Parce qu’ils se disputent ou se partagent une partie du même espace électoral, et que leur rapport de force dit beaucoup sur la structure du premier tour."}},{"@type":"Question","name":"Où voir sa place dans les intentions de vote ?","acceptedAnswer":{"@type":"Answer","text":"La bonne lecture consiste à repérer les scénarios où il apparaît et à comparer immédiatement son niveau à celui des autres candidatures de droite radicale."}}]}</script>
   <style>
     :root {
       color-scheme: light;
@@ -51,7 +51,44 @@
       gap: 16px;
       padding: 16px 0 24px;
     }
-    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 1.1rem; }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      box-shadow: 0 16px 36px rgba(26,34,127,.24);
+      flex: none;
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-title {
+      display: block;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+    .brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .nav { display: flex; flex-wrap: wrap; gap: 10px; }
     .nav a {
       border: 1px solid var(--border);
@@ -173,7 +210,13 @@
 <body>
   <main class="shell">
     <header class="topbar">
-      <div class="brand">Presidentielles 2027</div>
+      <a class="brand-link" href="https://milardv.github.io/presidentielle2027/" aria-label="Retour à l’accueil Présidentielles 2027">
+        <span class="brand-mark">↗</span>
+        <span class="brand-copy">
+          <span class="brand-title">Présidentielles 2027</span>
+          <span class="brand-subtitle">Candidats, sondages et intentions de vote</span>
+        </span>
+      </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="https://milardv.github.io/presidentielle2027/">Accueil</a>
         <a href="https://milardv.github.io/presidentielle2027/polls/">Sondages</a>
@@ -184,24 +227,24 @@
 
     <section class="hero">
       <span class="eyebrow">Candidat 2027</span>
-      <h1>Zemmour 2027 : pourquoi Eric Zemmour reste une requete de campagne</h1>
-      <p class="lead">La requete Zemmour 2027 continue d’exister parce qu’elle touche a la fragmentation de la droite radicale et a la concurrence entre plusieurs figures du meme espace politique.</p>
+      <h1>Zemmour 2027 : ce que signifie encore son nom dans la course</h1>
+      <p class="lead">Éric Zemmour n’occupe plus la même position qu’en 2022, mais son nom reste utile pour mesurer la dispersion ou la recomposition de la droite radicale.</p>
 
       <div class="chips">
-        <span class="chip">zemmour 2027</span><span class="chip">eric zemmour 2027</span><span class="chip">droite radicale 2027</span>
+        <span class="chip">zemmour 2027</span><span class="chip">éric zemmour 2027</span><span class="chip">droite radicale 2027</span>
       </div>
 
       <div class="layout">
         <div>
           
             <article class="card">
-              <h2>Pourquoi la requete existe encore</h2>
-              <p>Eric Zemmour reste present dans les comparaisons, dans certaines hypothese de sondages et dans les raisonnements sur la dispersion ou la recomposition des droites. Meme sans etre la figure la plus probable du scrutin, son nom continue donc de compter dans le referencement 2027.</p><p>Cette page a surtout pour role d’orienter la recherche vers les pages les plus utiles du site: sondages, Bardella 2027, Le Pen 2027 et vue generale sur les candidats.</p>
+              <h2>Ce que sa présence signifie vraiment</h2>
+              <p>Quand le nom d’Éric Zemmour apparaît encore dans les comparaisons ou dans certains scénarios, cela dit surtout quelque chose de l’état de la droite radicale : dispersion, concurrence interne, ou maintien d’un espace politique distinct.</p><p>Sa place ne doit donc pas être lue de façon isolée. Elle prend son sens par rapport au RN, à Bardella, à Marine Le Pen et à la capacité de cet électorat à se concentrer sur une seule candidature.</p>
             </article>
           
             <article class="card">
-              <h2>Que faut-il regarder</h2>
-              <p>Plutot qu’une simple intuition, il faut regarder si Zemmour apparait dans les scenarios suivis, a quel niveau et dans quel rapport de force avec les autres candidatures de droite radicale.</p>
+              <h2>Comment lire sa place en 2027</h2>
+              <p>La bonne question est de savoir s’il conserve un socle identifiable, s’il réapparaît dans des scénarios crédibles et si sa présence modifie réellement le rapport de force à droite.</p><p>S’il n’existe plus que marginalement dans les enquêtes, alors sa fonction devient surtout interprétative. S’il retrouve une capacité à perturber l’équilibre du bloc national, il redevient un facteur politique plus concret.</p>
             </article>
           
         </div>
@@ -210,7 +253,7 @@
           <section class="panel" style="padding:22px;">
             <div class="eyebrow">A retenir</div>
             <ul>
-              <li><span>Un nom qui continue a structurer certaines recherches 2027.</span></li><li><span>Une lecture a mener surtout par les sondages et la recomposition de son espace politique.</span></li><li><span>Une orientation vers les scenarios et les pages des autres candidats de cet espace.</span></li>
+              <li><span>Son nom reste un indicateur de fragmentation politique plus qu’une évidence de candidature.</span></li><li><span>Il faut regarder s’il existe encore comme pôle électoral distinct.</span></li><li><span>Le bon angle n’est pas seulement sa personne, mais l’état de tout l’espace qu’il a contribué à structurer.</span></li>
             </ul>
           </section>
 
@@ -244,25 +287,25 @@
       <div class="faq-grid">
         
           <article class="faq">
-            <h2>Eric Zemmour est-il present sur le site ?</h2>
-            <p>Le site suit surtout les profils les plus structurants en base, mais la page sondages permet de reperer les scenarios ou son nom peut apparaitre.</p>
+            <h2>Éric Zemmour est-il encore un acteur politique à suivre pour 2027 ?</h2>
+            <p>Oui, au moins comme indicateur d’un espace politique. La vraie question est de savoir s’il pèse encore directement dans les intentions de vote ou surtout dans la recomposition de son camp.</p>
           </article>
         
           <article class="faq">
-            <h2>Pourquoi relier Zemmour a Bardella et Le Pen ?</h2>
-            <p>Parce qu’ils se disputent une partie d’un meme espace de lecture politique dans les requetes 2027.</p>
+            <h2>Pourquoi le comparer à Bardella et à Le Pen ?</h2>
+            <p>Parce qu’ils se disputent ou se partagent une partie du même espace électoral, et que leur rapport de force dit beaucoup sur la structure du premier tour.</p>
           </article>
         
           <article class="faq">
-            <h2>Ou voir sa place dans les intentions de vote ?</h2>
-            <p>La page sondages est la meilleure entree pour cette lecture.</p>
+            <h2>Où voir sa place dans les intentions de vote ?</h2>
+            <p>La bonne lecture consiste à repérer les scénarios où il apparaît et à comparer immédiatement son niveau à celui des autres candidatures de droite radicale.</p>
           </article>
         
       </div>
     </section>
 
     <footer>
-      Cette page fait partie de Presidentielles 2027 et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.
+      Cette page fait partie de Présidentielles 2027 et renvoie vers les données de campagne, les profils candidats et les sondages 2027.
     </footer>
   </main>
 </body>

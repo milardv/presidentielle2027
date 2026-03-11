@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Melenchon 2027 : candidature, ligne politique et role a gauche</title>
-  <meta name="description" content="Melenchon 2027 : comprendre son positionnement, son role dans la gauche 2027 et sa place dans les scenarios de sondages." />
+  <title>Mélenchon 2027 : candidature, ligne politique et rôle à gauche</title>
+  <meta name="description" content="Mélenchon 2027 : pourquoi Jean-Luc Mélenchon continue de structurer la gauche et comment lire son poids dans les scénarios testés." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Presidentielles 2027" />
-  <meta property="og:title" content="Melenchon 2027 : candidature, ligne politique et role a gauche" />
-  <meta property="og:description" content="Melenchon 2027 : comprendre son positionnement, son role dans la gauche 2027 et sa place dans les scenarios de sondages." />
+  <meta property="og:site_name" content="Présidentielles 2027" />
+  <meta property="og:title" content="Mélenchon 2027 : candidature, ligne politique et rôle à gauche" />
+  <meta property="og:description" content="Mélenchon 2027 : pourquoi Jean-Luc Mélenchon continue de structurer la gauche et comment lire son poids dans les scénarios testés." />
   <meta property="og:url" content="https://milardv.github.io/presidentielle2027/melenchon-2027/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Melenchon 2027 : candidature, ligne politique et role a gauche" />
-  <meta name="twitter:description" content="Melenchon 2027 : comprendre son positionnement, son role dans la gauche 2027 et sa place dans les scenarios de sondages." />
+  <meta name="twitter:title" content="Mélenchon 2027 : candidature, ligne politique et rôle à gauche" />
+  <meta name="twitter:description" content="Mélenchon 2027 : pourquoi Jean-Luc Mélenchon continue de structurer la gauche et comment lire son poids dans les scénarios testés." />
   <link rel="canonical" href="https://milardv.github.io/presidentielle2027/melenchon-2027/" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Jean-Luc Melenchon est-il suivi dans les sondages 2027 ?","acceptedAnswer":{"@type":"Answer","text":"Oui, lorsqu’il apparait dans les scenarios suivis, la page sondages permet de le comparer aux autres candidatures de gauche."}},{"@type":"Question","name":"Pourquoi Melenchon est-il compare a Glucksmann ?","acceptedAnswer":{"@type":"Answer","text":"Parce qu’ils incarnent deux styles, deux coalitions et deux trajectoires distinctes de la gauche pour 2027."}},{"@type":"Question","name":"Ou voir ses prises de parole ?","acceptedAnswer":{"@type":"Answer","text":"La fiche Melenchon renvoie vers les interventions, les videos et les tweets recents."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Jean-Luc Mélenchon est-il suivi dans les sondages 2027 ?","acceptedAnswer":{"@type":"Answer","text":"Oui, quand il figure dans les scénarios, son niveau permet de mesurer à la fois sa force propre et l’état du rapport de force à gauche."}},{"@type":"Question","name":"Pourquoi Mélenchon est-il souvent comparé à Glucksmann ?","acceptedAnswer":{"@type":"Answer","text":"Parce qu’ils représentent deux lignes différentes de la gauche et deux façons opposées d’élargir ou de structurer cet électorat."}},{"@type":"Question","name":"Où voir ses prises de parole ?","acceptedAnswer":{"@type":"Answer","text":"Les prises de parole sont essentielles pour juger un profil comme le sien, car elles disent autant sa stratégie que ses positions de fond."}}]}</script>
   <style>
     :root {
       color-scheme: light;
@@ -51,7 +51,44 @@
       gap: 16px;
       padding: 16px 0 24px;
     }
-    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 1.1rem; }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      box-shadow: 0 16px 36px rgba(26,34,127,.24);
+      flex: none;
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-title {
+      display: block;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+    .brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .nav { display: flex; flex-wrap: wrap; gap: 10px; }
     .nav a {
       border: 1px solid var(--border);
@@ -173,7 +210,13 @@
 <body>
   <main class="shell">
     <header class="topbar">
-      <div class="brand">Presidentielles 2027</div>
+      <a class="brand-link" href="https://milardv.github.io/presidentielle2027/" aria-label="Retour à l’accueil Présidentielles 2027">
+        <span class="brand-mark">↗</span>
+        <span class="brand-copy">
+          <span class="brand-title">Présidentielles 2027</span>
+          <span class="brand-subtitle">Candidats, sondages et intentions de vote</span>
+        </span>
+      </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="https://milardv.github.io/presidentielle2027/">Accueil</a>
         <a href="https://milardv.github.io/presidentielle2027/polls/">Sondages</a>
@@ -184,24 +227,24 @@
 
     <section class="hero">
       <span class="eyebrow">Candidat 2027</span>
-      <h1>Melenchon 2027 : un acteur qui continue de structurer la gauche</h1>
-      <p class="lead">La requete Melenchon 2027 vise autant sa candidature eventuelle que sa capacite a structurer le jeu a gauche. Cette page renvoie vers sa fiche detaillee et les scenarios de sondages.</p>
+      <h1>Mélenchon 2027 : un acteur qui continue de structurer la gauche</h1>
+      <p class="lead">Jean-Luc Mélenchon reste central pour 2027, qu’il soit lui-même candidat ou qu’il pèse sur la désignation du candidat final de son espace politique.</p>
 
       <div class="chips">
-        <span class="chip">melenchon 2027</span><span class="chip">jean luc melenchon 2027</span><span class="chip">gauche 2027</span>
+        <span class="chip">mélenchon 2027</span><span class="chip">jean-luc mélenchon 2027</span><span class="chip">gauche 2027</span>
       </div>
 
       <div class="layout">
         <div>
           
             <article class="card">
-              <h2>Pourquoi la requete Melenchon 2027 reste forte</h2>
-              <p>Jean-Luc Melenchon conserve un pouvoir de structuration du debat a gauche: candidature directe, influence strategique, pression sur les alliances ou concurrence avec d’autres profils. C’est ce qui maintient son nom tres haut dans les recherches.</p><p>Le site suit cette centralite au travers de sa fiche, de ses interventions et de la lecture de son reseau politique.</p>
+              <h2>Pourquoi il reste incontournable</h2>
+              <p>Jean-Luc Mélenchon conserve une capacité rare à structurer le débat à gauche. Même quand il n’est pas au centre de l’actualité immédiate, sa ligne politique, sa base militante et sa place dans l’espace insoumis continuent de peser sur tout l’équilibre de ce camp.</p><p>C’est ce qui explique la persistance de son nom dans les recherches : on ne cherche pas seulement à savoir s’il sera candidat, mais aussi quel effet sa présence ou son absence produira sur toute la gauche.</p>
             </article>
           
             <article class="card">
-              <h2>Que faut-il regarder en priorite</h2>
-              <p>Le point cle consiste a observer le rapport entre sa ligne politique, l’espace insoumis et la facon dont les instituts le testent par rapport aux autres profils de gauche. La page sondages permet justement cette comparaison.</p>
+              <h2>Ce qu’il faut regarder pour le juger</h2>
+              <p>Il faut observer sa relation avec les autres forces de gauche, la manière dont les instituts le testent, et la capacité de sa ligne à tenir face à des offres concurrentes plus social-démocrates, écologistes ou populistes.</p><p>Autrement dit, Mélenchon 2027 ne se lit pas seulement en points de sondage. Il se lit aussi en capacité de polarisation, de rassemblement ou de division.</p>
             </article>
           
         </div>
@@ -210,7 +253,7 @@
           <section class="panel" style="padding:22px;">
             <div class="eyebrow">A retenir</div>
             <ul>
-              <li><span>Une figure centrale du debat a gauche.</span></li><li><span>Une lecture a mener avec les sondages et la strategie d’alliance.</span></li><li><span>Une fiche detaillee pour ses positions, ses interventions et son reseau.</span></li>
+              <li><span>Son nom reste incontournable dès qu’il s’agit de lire la gauche pour 2027.</span></li><li><span>La vraie question est autant son rôle de structuration que son éventuelle candidature personnelle.</span></li><li><span>Il faut comparer sa ligne, son bloc et ses performances aux autres profils de gauche.</span></li>
             </ul>
           </section>
 
@@ -244,25 +287,25 @@
       <div class="faq-grid">
         
           <article class="faq">
-            <h2>Jean-Luc Melenchon est-il suivi dans les sondages 2027 ?</h2>
-            <p>Oui, lorsqu’il apparait dans les scenarios suivis, la page sondages permet de le comparer aux autres candidatures de gauche.</p>
+            <h2>Jean-Luc Mélenchon est-il suivi dans les sondages 2027 ?</h2>
+            <p>Oui, quand il figure dans les scénarios, son niveau permet de mesurer à la fois sa force propre et l’état du rapport de force à gauche.</p>
           </article>
         
           <article class="faq">
-            <h2>Pourquoi Melenchon est-il compare a Glucksmann ?</h2>
-            <p>Parce qu’ils incarnent deux styles, deux coalitions et deux trajectoires distinctes de la gauche pour 2027.</p>
+            <h2>Pourquoi Mélenchon est-il souvent comparé à Glucksmann ?</h2>
+            <p>Parce qu’ils représentent deux lignes différentes de la gauche et deux façons opposées d’élargir ou de structurer cet électorat.</p>
           </article>
         
           <article class="faq">
-            <h2>Ou voir ses prises de parole ?</h2>
-            <p>La fiche Melenchon renvoie vers les interventions, les videos et les tweets recents.</p>
+            <h2>Où voir ses prises de parole ?</h2>
+            <p>Les prises de parole sont essentielles pour juger un profil comme le sien, car elles disent autant sa stratégie que ses positions de fond.</p>
           </article>
         
       </div>
     </section>
 
     <footer>
-      Cette page fait partie de Presidentielles 2027 et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.
+      Cette page fait partie de Présidentielles 2027 et renvoie vers les données de campagne, les profils candidats et les sondages 2027.
     </footer>
   </main>
 </body>

@@ -1,4 +1,4 @@
-export const SITE_NAME = 'Presidentielles 2027'
+export const SITE_NAME = 'Présidentielles 2027'
 export const SITE_URL = 'https://milardv.github.io/presidentielle2027'
 
 function normalizePath(path: string): string {

@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
+import { MobileAppNav } from '../components/MobileAppNav'
 import { CandidateAnalysisAnchorNav } from '../features/candidates/profile/components/CandidateAnalysisAnchorNav'
 import { CandidateProfileTabs } from '../features/candidates/profile/components/CandidateProfileTabs'
 import { ProfileErrorState } from '../features/candidates/profile/components/ProfileErrorState'
@@ -14,6 +15,7 @@ import { useCandidateMediaAttention } from '../features/candidates/profile/hooks
 import { useCandidateProfile } from '../features/candidates/profile/hooks/useCandidateProfile'
 import { buildProfileCandidateViewModel } from '../features/candidates/profile/utils/profileCandidateViewModel'
 import { getCandidateInitials } from '../features/candidates/shared/candidateUi'
+import { appNavItems } from '../navigation/appNavItems'
 import { SeoHead } from '../seo/SeoHead'
 
 export default function CandidateAnalysis() {
@@ -41,8 +43,8 @@ export default function CandidateAnalysis() {
   return (
     <div className="relative min-h-screen bg-background-light font-display text-slate-900">
       <SeoHead
-        title={`${candidate.name} 2027 : analyse media et reseau`}
-        description={`Analyse media, reseau, themes et parcours de ${candidate.name} dans le suivi Presidentielles 2027.`}
+        title={`${candidate.name} 2027 : analyse média et réseau`}
+        description={`Analyse média, réseau, thèmes et parcours de ${candidate.name} dans le suivi Présidentielles 2027.`}
         path={`/candidats/${candidate.id}/analysis`}
         noindex
       />
@@ -99,6 +101,8 @@ export default function CandidateAnalysis() {
           <ProfileStyleSection candidateId={candidate.id} entries={viewModel.styleEntries} />
         </div>
       </main>
+
+      <MobileAppNav items={appNavItems} />
     </div>
   )
 }

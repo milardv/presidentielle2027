@@ -85,13 +85,14 @@ function buildStyleEntries(candidate: Candidate): CandidateStyleSignal[] {
 }
 
 export function buildProfileCandidateViewModel(candidate: Candidate): ProfileCandidateViewModel {
-  const timeline = [...candidate.timeline].sort((first, second) => first.date.localeCompare(second.date))
+  const chronologicalTimeline = [...candidate.timeline].sort((first, second) => first.date.localeCompare(second.date))
+  const timeline = [...chronologicalTimeline].reverse()
 
   return {
     timeline,
     themeHighlights: buildThemeHighlights(candidate),
     networkEntries: buildNetworkEntries(candidate),
-    parcoursEntries: buildParcoursEntries(candidate, timeline),
+    parcoursEntries: buildParcoursEntries(candidate, chronologicalTimeline),
     styleEntries: buildStyleEntries(candidate),
   }
 }

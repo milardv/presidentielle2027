@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { AtSign, BadgeCheck, ExternalLink, Eye, Heart, MessageCircle, Repeat2 } from 'lucide-react'
 import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
+import { MobileAppNav } from '../components/MobileAppNav'
 import { CandidateProfileTabs } from '../features/candidates/profile/components/CandidateProfileTabs'
 import { ProfileErrorState } from '../features/candidates/profile/components/ProfileErrorState'
 import { ProfileLoadingState } from '../features/candidates/profile/components/ProfileLoadingState'
@@ -10,6 +11,7 @@ import { useCandidateProfile } from '../features/candidates/profile/hooks/useCan
 import { useCandidateTweets } from '../features/candidates/profile/hooks/useCandidateTweets'
 import type { CandidateTweet } from '../data/candidateTweetTypes'
 import { formatFrenchDate, getCandidateInitials } from '../features/candidates/shared/candidateUi'
+import { appNavItems } from '../navigation/appNavItems'
 import { SeoHead } from '../seo/SeoHead'
 
 function formatCompactNumber(value: number): string {
@@ -130,7 +132,7 @@ export default function CandidateTweets() {
     <div className="relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
       <SeoHead
         title={`${candidate.name} 2027 : tweets et prises de parole`}
-        description={`Flux des tweets et publications publiques de ${candidate.name} dans le suivi Presidentielles 2027.`}
+        description={`Flux des tweets et publications publiques de ${candidate.name} dans le suivi Présidentielles 2027.`}
         path={`/candidats/${candidate.id}/tweets`}
         noindex
       />
@@ -167,7 +169,7 @@ export default function CandidateTweets() {
             <div className="rounded-[1.5rem] border border-slate-200/80 bg-slate-50/80 p-5 dark:border-slate-800 dark:bg-slate-950/60">
               <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Compte officiel</p>
               <p className="mt-3 text-2xl font-black tracking-tight text-slate-950 dark:text-white">
-                {candidate.xUsername ? `@${candidate.xUsername}` : 'Non configure'}
+                {candidate.xUsername ? `@${candidate.xUsername}` : 'Non configuré'}
               </p>
               <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
                 {tweets.length} post{tweets.length > 1 ? 's' : ''} disponible{tweets.length > 1 ? 's' : ''}
@@ -216,6 +218,8 @@ export default function CandidateTweets() {
           </section>
         ) : null}
       </main>
+
+      <MobileAppNav items={appNavItems} />
     </div>
   )
 }

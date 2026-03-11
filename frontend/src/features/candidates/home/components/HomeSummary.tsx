@@ -21,14 +21,14 @@ export function HomeSummary(_props: HomeSummaryProps) {
             </h2>
             <div className="mt-5 inline-flex max-w-2xl items-start gap-3 rounded-[1.4rem] border border-slate-200/80 bg-slate-50/80 px-4 py-3 text-sm text-slate-700 dark:border-slate-800 dark:bg-slate-950/60 dark:text-slate-300">
               <span className="material-symbols-outlined text-primary">lightbulb</span>
-              <p>Candidats presidentielle 2027, sondages, intentions de vote, videos, tweets et analyses, au meme endroit.</p>
+              <p>Candidats présidentielle 2027, sondages, intentions de vote, vidéos, tweets et analyses, au même endroit.</p>
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
               <span className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-semibold text-white dark:bg-white dark:text-slate-950">
                 Comparer plus vite
               </span>
               <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-semibold text-slate-600 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
-                Verifier les sources
+                Vérifier les sources
               </span>
               <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-semibold text-slate-600 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
                 Suivre la campagne

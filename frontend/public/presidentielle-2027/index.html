@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Presidentielle 2027 : candidats, sondages, date et intentions de vote</title>
-  <meta name="description" content="Presidentielle 2027 : suivez les candidats potentiels, les sondages, les intentions de vote, les profils, les interventions et les dynamiques de campagne au meme endroit." />
+  <title>Présidentielle 2027 : candidats, sondages, date et intentions de vote</title>
+  <meta name="description" content="Présidentielle 2027 : date probable, candidats déjà en vue, sondages, intentions de vote et règles utiles pour comprendre la campagne." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Presidentielles 2027" />
-  <meta property="og:title" content="Presidentielle 2027 : candidats, sondages, date et intentions de vote" />
-  <meta property="og:description" content="Presidentielle 2027 : suivez les candidats potentiels, les sondages, les intentions de vote, les profils, les interventions et les dynamiques de campagne au meme endroit." />
+  <meta property="og:site_name" content="Présidentielles 2027" />
+  <meta property="og:title" content="Présidentielle 2027 : candidats, sondages, date et intentions de vote" />
+  <meta property="og:description" content="Présidentielle 2027 : date probable, candidats déjà en vue, sondages, intentions de vote et règles utiles pour comprendre la campagne." />
   <meta property="og:url" content="https://milardv.github.io/presidentielle2027/presidentielle-2027/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Presidentielle 2027 : candidats, sondages, date et intentions de vote" />
-  <meta name="twitter:description" content="Presidentielle 2027 : suivez les candidats potentiels, les sondages, les intentions de vote, les profils, les interventions et les dynamiques de campagne au meme endroit." />
+  <meta name="twitter:title" content="Présidentielle 2027 : candidats, sondages, date et intentions de vote" />
+  <meta name="twitter:description" content="Présidentielle 2027 : date probable, candidats déjà en vue, sondages, intentions de vote et règles utiles pour comprendre la campagne." />
   <link rel="canonical" href="https://milardv.github.io/presidentielle2027/presidentielle-2027/" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ou voir les candidats a la presidentielle 2027 ?","acceptedAnswer":{"@type":"Answer","text":"La home du site centralise les principaux candidats suivis avec leur statut, leurs profils et leurs sources. Les pages SEO candidates renvoient ensuite vers les fiches detaillees."}},{"@type":"Question","name":"Ou voir les sondages de la presidentielle 2027 ?","acceptedAnswer":{"@type":"Answer","text":"La page sondages du site regroupe les intentions de vote par institut et par scenario. Elle est reliee depuis cette page et depuis l’accueil."}},{"@type":"Question","name":"Cette page dit-elle deja qui gagnera en 2027 ?","acceptedAnswer":{"@type":"Answer","text":"Non. Elle renvoie vers les donnees utiles pour suivre la campagne, mais ne presente pas un vainqueur certain. Les dynamiques restent evolutives tant que l’election n’est pas tenue."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Où voir les candidats à la présidentielle 2027 ?","acceptedAnswer":{"@type":"Answer","text":"La liste utile n’est pas seulement une liste de noms. Il faut regarder qui est déclaré, qui est simplement testé, et qui dispose déjà d’un appareil politique ou d’une dynamique suffisante pour compter en 2027."}},{"@type":"Question","name":"Où voir les sondages de la présidentielle 2027 ?","acceptedAnswer":{"@type":"Answer","text":"Les sondages doivent être lus institut par institut, scénario par scénario, avec attention à la date de terrain. Une seule étude ne suffit jamais à résumer une campagne aussi ouverte."}},{"@type":"Question","name":"Peut-on déjà savoir qui gagnera en 2027 ?","acceptedAnswer":{"@type":"Answer","text":"Non. À ce stade, les données permettent surtout d’identifier les candidats les plus solides, les blocs les plus structurés et les scénarios qui reviennent le plus souvent, pas de désigner un vainqueur certain."}}]}</script>
   <style>
     :root {
       color-scheme: light;
@@ -51,7 +51,44 @@
       gap: 16px;
       padding: 16px 0 24px;
     }
-    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 1.1rem; }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      box-shadow: 0 16px 36px rgba(26,34,127,.24);
+      flex: none;
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-title {
+      display: block;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+    .brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .nav { display: flex; flex-wrap: wrap; gap: 10px; }
     .nav a {
       border: 1px solid var(--border);
@@ -173,7 +210,13 @@
 <body>
   <main class="shell">
     <header class="topbar">
-      <div class="brand">Presidentielles 2027</div>
+      <a class="brand-link" href="https://milardv.github.io/presidentielle2027/" aria-label="Retour à l’accueil Présidentielles 2027">
+        <span class="brand-mark">↗</span>
+        <span class="brand-copy">
+          <span class="brand-title">Présidentielles 2027</span>
+          <span class="brand-subtitle">Candidats, sondages et intentions de vote</span>
+        </span>
+      </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="https://milardv.github.io/presidentielle2027/">Accueil</a>
         <a href="https://milardv.github.io/presidentielle2027/polls/">Sondages</a>
@@ -184,24 +227,24 @@
 
     <section class="hero">
       <span class="eyebrow">Guide 2027</span>
-      <h1>Presidentielle 2027 : le point d’entree pour suivre la campagne</h1>
-      <p class="lead">Cette page sert de hub editorial pour comprendre la presidentielle 2027, les candidats, les sondages, les intentions de vote et les grandes questions qui structurent la campagne.</p>
+      <h1>Présidentielle 2027 : ce qu’il faut savoir dès maintenant</h1>
+      <p class="lead">La présidentielle 2027 reste très ouverte. Toutes les candidatures ne sont pas arrêtées, les sondages varient selon les scénarios, et il faut distinguer ce qui est déjà solide de ce qui relève encore des hypothèses.</p>
 
       <div class="chips">
-        <span class="chip">presidentielle 2027</span><span class="chip">election presidentielle 2027</span><span class="chip">qui sera president en 2027</span><span class="chip">qui sera candidat 2027</span>
+        <span class="chip">présidentielle 2027</span><span class="chip">élection présidentielle 2027</span><span class="chip">qui sera président en 2027</span><span class="chip">qui sera candidat 2027</span>
       </div>
 
       <div class="layout">
         <div>
           
             <article class="card">
-              <h2>Pourquoi cette page repond a la requete presidentielle 2027</h2>
-              <p>Les internautes qui cherchent presidentielle 2027 veulent en general trois choses: savoir qui peut etre candidat, comprendre ou en sont les sondages, et suivre les temps forts de campagne sans multiplier les sources.</p><p>Le site Presidentielles a ete structure pour repondre exactement a ce besoin: une home de synthese, une page sondages, des fiches candidats, des videos, des tweets et une analyse du reseau politique de chaque profil.</p>
+              <h2>Ce que l’on sait déjà sur 2027</h2>
+              <p>La prochaine présidentielle française aura lieu en 2027, dans un paysage encore mouvant. Plusieurs personnalités sont déjà déclarées, d’autres sont testées dans les enquêtes d’opinion, et certaines restent surtout des hypothèses politiques ou partisanes.</p><p>Le point important est simple : la campagne n’est pas figée. Pour comprendre 2027, il faut regarder les candidatures crédibles, les rapports de force par bloc, et la manière dont les instituts testent les différents scénarios de premier tour.</p>
             </article>
           
             <article class="card">
-              <h2>Ce que vous pouvez consulter ensuite</h2>
-              <p>Si votre objectif est de savoir qui est en tete, la page sondages reste la meilleure entree. Si vous cherchez plutot un nom precis, les pages dediees a Bardella, Le Pen, Attal, Edouard Philippe, Melenchon ou Glucksmann renvoient vers leurs fiches completes.</p><p>Le site couvre aussi les grandes questions de contexte: quand aura lieu la presidentielle 2027, qui peut se presenter, comment se deroule l’election et si Emmanuel Macron peut ou non se representer.</p>
+              <h2>Comment se faire une idée fiable de la course</h2>
+              <p>Le bon réflexe consiste à croiser plusieurs éléments : le statut réel de chaque candidat, les sondages les plus récents, les thèmes sur lesquels il prend position, et sa capacité à rassembler au-delà de son socle politique.</p><p>Autrement dit, suivre 2027 ne consiste pas seulement à demander qui est en tête aujourd’hui. Il faut aussi regarder qui peut durer, qui peut élargir sa base, et qui peut transformer une visibilité médiatique en candidature réellement compétitive.</p>
             </article>
           
         </div>
@@ -210,7 +253,7 @@
           <section class="panel" style="padding:22px;">
             <div class="eyebrow">A retenir</div>
             <ul>
-              <li><span>Une vue claire des candidats deja declares, conditionnels ou testes dans les sondages.</span></li><li><span>Un acces direct aux sondages, aux intentions de vote et aux profils detailles.</span></li><li><span>Des pages de contexte pour les questions les plus recherchees sur Google autour de 2027.</span></li>
+              <li><span>La campagne se lit d’abord par statuts de candidature, blocs politiques et scénarios de sondage.</span></li><li><span>Aucun vainqueur sérieux ne peut être annoncé à ce stade, mais plusieurs noms structurent déjà le débat.</span></li><li><span>Le calendrier, les règles du scrutin et les rapports de force permettent déjà de suivre 2027 intelligemment.</span></li>
             </ul>
           </section>
 
@@ -244,25 +287,25 @@
       <div class="faq-grid">
         
           <article class="faq">
-            <h2>Ou voir les candidats a la presidentielle 2027 ?</h2>
-            <p>La home du site centralise les principaux candidats suivis avec leur statut, leurs profils et leurs sources. Les pages SEO candidates renvoient ensuite vers les fiches detaillees.</p>
+            <h2>Où voir les candidats à la présidentielle 2027 ?</h2>
+            <p>La liste utile n’est pas seulement une liste de noms. Il faut regarder qui est déclaré, qui est simplement testé, et qui dispose déjà d’un appareil politique ou d’une dynamique suffisante pour compter en 2027.</p>
           </article>
         
           <article class="faq">
-            <h2>Ou voir les sondages de la presidentielle 2027 ?</h2>
-            <p>La page sondages du site regroupe les intentions de vote par institut et par scenario. Elle est reliee depuis cette page et depuis l’accueil.</p>
+            <h2>Où voir les sondages de la présidentielle 2027 ?</h2>
+            <p>Les sondages doivent être lus institut par institut, scénario par scénario, avec attention à la date de terrain. Une seule étude ne suffit jamais à résumer une campagne aussi ouverte.</p>
           </article>
         
           <article class="faq">
-            <h2>Cette page dit-elle deja qui gagnera en 2027 ?</h2>
-            <p>Non. Elle renvoie vers les donnees utiles pour suivre la campagne, mais ne presente pas un vainqueur certain. Les dynamiques restent evolutives tant que l’election n’est pas tenue.</p>
+            <h2>Peut-on déjà savoir qui gagnera en 2027 ?</h2>
+            <p>Non. À ce stade, les données permettent surtout d’identifier les candidats les plus solides, les blocs les plus structurés et les scénarios qui reviennent le plus souvent, pas de désigner un vainqueur certain.</p>
           </article>
         
       </div>
     </section>
 
     <footer>
-      Cette page fait partie de Presidentielles 2027 et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.
+      Cette page fait partie de Présidentielles 2027 et renvoie vers les données de campagne, les profils candidats et les sondages 2027.
     </footer>
   </main>
 </body>

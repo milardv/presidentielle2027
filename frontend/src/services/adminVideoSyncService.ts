@@ -702,35 +702,35 @@ function getRefreshErrorMessage(error: unknown): string {
     const code = String(error.code)
 
     if (code === 'permission-denied') {
-      return 'Firestore refuse l’ecriture des donnees. Verifie les regles pour l’utilisateur admin.'
+      return 'Firestore refuse l’écriture des données. Vérifie les règles pour l’utilisateur admin.'
     }
   }
 
   if (error instanceof Error) {
     if (error.message.includes('Missing Media Cloud API key')) {
-      return 'La cle Media Cloud n’est pas configuree dans le front admin.'
+      return 'La clé Media Cloud n’est pas configurée dans le front admin.'
     }
 
     if (error.message.toLowerCase().includes('token')) {
-      return 'La cle Media Cloud semble invalide ou refusee.'
+      return 'La clé Media Cloud semble invalide ou refusée.'
     }
 
     if (error.message.includes('API_KEY_SERVICE_BLOCKED')) {
-      return 'La YouTube Data API n’est pas active pour cette cle.'
+      return 'La YouTube Data API n’est pas active pour cette clé.'
     }
 
     if (error.message.includes('quota')) {
-      return 'Le quota YouTube est temporairement depasse.'
+      return 'Le quota YouTube est temporairement dépassé.'
     }
 
     if (error.message.includes('Failed to fetch')) {
-      return 'La source distante ne repond pas pour le moment.'
+      return 'La source distante ne répond pas pour le moment.'
     }
 
     return error.message
   }
 
-  return 'Impossible de rafraichir les donnees pour le moment.'
+  return 'Impossible de rafraîchir les données pour le moment.'
 }
 
 export async function refreshCandidateVideos(
@@ -850,7 +850,7 @@ export async function refreshCandidateTweets(
     }
   } catch (error) {
     if (error instanceof Error && error.message.includes('Failed to fetch')) {
-      throw new Error('Le serveur local de sync tweets ne repond pas. Lance `npm run admin:sync-server` sur la machine admin.')
+      throw new Error('Le serveur local de sync tweets ne répond pas. Lance `npm run admin:sync-server` sur la machine admin.')
     }
 
     throw new Error(getRefreshErrorMessage(error))
@@ -880,7 +880,7 @@ export async function refreshAllCandidateTweets(
     }
   } catch (error) {
     if (error instanceof Error && error.message.includes('Failed to fetch')) {
-      throw new Error('Le serveur local de sync tweets ne repond pas. Lance `npm run admin:sync-server` sur la machine admin.')
+      throw new Error('Le serveur local de sync tweets ne répond pas. Lance `npm run admin:sync-server` sur la machine admin.')
     }
 
     throw new Error(getRefreshErrorMessage(error))

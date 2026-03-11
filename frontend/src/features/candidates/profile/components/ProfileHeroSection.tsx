@@ -94,7 +94,7 @@ export function ProfileHeroSection({
                       }`}
                     >
                       <span className="material-symbols-outlined text-[18px]">{isFavorite ? 'favorite' : 'favorite_border'}</span>
-                      {isFavoritePending ? 'Mise a jour...' : actionLabel}
+                      {isFavoritePending ? 'Mise à jour...' : actionLabel}
                     </button>
                   </div>
                   <p className="mt-2 text-base font-medium text-slate-600 dark:text-slate-300">

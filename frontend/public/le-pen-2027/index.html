@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Le Pen 2027 : candidature, statut et place dans les sondages</title>
-  <meta name="description" content="Le Pen 2027 : suivre la situation politique de Marine Le Pen, son statut pour 2027 et sa place dans les intentions de vote." />
+  <meta name="description" content="Le Pen 2027 : pourquoi Marine Le Pen reste centrale, ce que change sa présence et comment lire sa place dans les intentions de vote." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Presidentielles 2027" />
+  <meta property="og:site_name" content="Présidentielles 2027" />
   <meta property="og:title" content="Le Pen 2027 : candidature, statut et place dans les sondages" />
-  <meta property="og:description" content="Le Pen 2027 : suivre la situation politique de Marine Le Pen, son statut pour 2027 et sa place dans les intentions de vote." />
+  <meta property="og:description" content="Le Pen 2027 : pourquoi Marine Le Pen reste centrale, ce que change sa présence et comment lire sa place dans les intentions de vote." />
   <meta property="og:url" content="https://milardv.github.io/presidentielle2027/le-pen-2027/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Le Pen 2027 : candidature, statut et place dans les sondages" />
-  <meta name="twitter:description" content="Le Pen 2027 : suivre la situation politique de Marine Le Pen, son statut pour 2027 et sa place dans les intentions de vote." />
+  <meta name="twitter:description" content="Le Pen 2027 : pourquoi Marine Le Pen reste centrale, ce que change sa présence et comment lire sa place dans les intentions de vote." />
   <link rel="canonical" href="https://milardv.github.io/presidentielle2027/le-pen-2027/" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Marine Le Pen est-elle suivie dans les sondages 2027 ?","acceptedAnswer":{"@type":"Answer","text":"Oui, la page sondages du site permet de voir dans quels scenarios elle apparait et avec quels niveaux."}},{"@type":"Question","name":"Pourquoi comparer Le Pen et Bardella ?","acceptedAnswer":{"@type":"Answer","text":"Parce que leurs scenarios se repondent souvent dans les recherches et dans l’espace politique du RN."}},{"@type":"Question","name":"Ou lire ses positions et interventions ?","acceptedAnswer":{"@type":"Answer","text":"La fiche candidate concentre justement les positions, interventions, videos et tweets."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Marine Le Pen est-elle suivie dans les sondages 2027 ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Lorsqu’elle figure dans un scénario, son niveau permet de mesurer non seulement sa force propre, mais aussi la façon dont toute la compétition se réorganise autour d’elle."}},{"@type":"Question","name":"Pourquoi comparer Le Pen et Bardella ?","acceptedAnswer":{"@type":"Answer","text":"Parce que cette comparaison dit beaucoup sur la stratégie du RN et sur la manière dont son électorat pourrait se répartir selon la tête d’affiche retenue."}},{"@type":"Question","name":"Où lire ses positions et ses interventions ?","acceptedAnswer":{"@type":"Answer","text":"Une fiche utile doit montrer ses prises de position, ses interventions médiatiques et la façon dont elles s’inscrivent dans la préparation de 2027."}}]}</script>
   <style>
     :root {
       color-scheme: light;
@@ -51,7 +51,44 @@
       gap: 16px;
       padding: 16px 0 24px;
     }
-    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 1.1rem; }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      box-shadow: 0 16px 36px rgba(26,34,127,.24);
+      flex: none;
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-title {
+      display: block;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+    .brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .nav { display: flex; flex-wrap: wrap; gap: 10px; }
     .nav a {
       border: 1px solid var(--border);
@@ -173,7 +210,13 @@
 <body>
   <main class="shell">
     <header class="topbar">
-      <div class="brand">Presidentielles 2027</div>
+      <a class="brand-link" href="https://milardv.github.io/presidentielle2027/" aria-label="Retour à l’accueil Présidentielles 2027">
+        <span class="brand-mark">↗</span>
+        <span class="brand-copy">
+          <span class="brand-title">Présidentielles 2027</span>
+          <span class="brand-subtitle">Candidats, sondages et intentions de vote</span>
+        </span>
+      </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="https://milardv.github.io/presidentielle2027/">Accueil</a>
         <a href="https://milardv.github.io/presidentielle2027/polls/">Sondages</a>
@@ -184,24 +227,24 @@
 
     <section class="hero">
       <span class="eyebrow">Candidat 2027</span>
-      <h1>Le Pen 2027 : un nom central pour lire la campagne</h1>
-      <p class="lead">La requete Le Pen 2027 reste l’une des plus fortes de l’espace politique francais. Cette page sert de pont entre la recherche Google, la fiche candidate et la lecture des sondages.</p>
+      <h1>Le Pen 2027 : un nom central pour toute la lecture du premier tour</h1>
+      <p class="lead">Marine Le Pen reste un repère majeur de 2027. Sa présence, son niveau et son statut modifient immédiatement la hiérarchie de nombreux autres candidats.</p>
 
       <div class="chips">
-        <span class="chip">le pen 2027</span><span class="chip">marine le pen 2027</span><span class="chip">sondage presidentielle 2027</span>
+        <span class="chip">le pen 2027</span><span class="chip">marine le pen 2027</span><span class="chip">sondage présidentielle 2027</span>
       </div>
 
       <div class="layout">
         <div>
           
             <article class="card">
-              <h2>Pourquoi la requete Le Pen 2027 est structurante</h2>
-              <p>Marine Le Pen reste un point de repere pour lire l’ensemble du paysage 2027. Meme lorsque d’autres noms montent, son statut, sa capacite de candidature et l’effet de sa presence ou de son absence dans les scenarios changent l’interpretation des rapports de force.</p><p>Le site traite cette question en montrant les sources, les scenarii et les evolutions de position plutot qu’en s’en tenant a un simple nom.</p>
+              <h2>Pourquoi Marine Le Pen reste structurante</h2>
+              <p>Marine Le Pen reste l’un des noms qui organisent le plus fortement le paysage 2027. Quand elle est présente dans un scénario, la hiérarchie des autres candidats change souvent, notamment dans le camp national-populiste mais aussi dans la lecture globale du premier tour.</p><p>C’est pour cela qu’il faut suivre à la fois son niveau électoral propre, son statut personnel et l’effet que sa présence produit sur les autres candidatures de droite ou d’extrême droite.</p>
             </article>
           
             <article class="card">
-              <h2>Quel usage faire de cette page</h2>
-              <p>Si vous cherchez a comprendre son statut et son positionnement, ouvrez d’abord la fiche candidate. Si vous cherchez a savoir comment sa presence modifie la hierarchie 2027, la page sondages est la meilleure entree.</p>
+              <h2>Ce qu’il faut regarder en priorité</h2>
+              <p>La première question est de savoir dans quels scénarios elle apparaît et avec quel niveau. La deuxième consiste à voir comment sa présence modifie la place de Jordan Bardella et, plus largement, l’équilibre des autres blocs au premier tour.</p><p>Autrement dit, Le Pen 2027 ne se lit pas seulement comme un cas individuel. C’est aussi une clé d’interprétation de l’ensemble du paysage électoral.</p>
             </article>
           
         </div>
@@ -210,7 +253,7 @@
           <section class="panel" style="padding:22px;">
             <div class="eyebrow">A retenir</div>
             <ul>
-              <li><span>Un nom majeur des requetes 2027.</span></li><li><span>Une lecture a croiser entre statut personnel, bloc politique et scenarios de sondages.</span></li><li><span>Un acces direct a la fiche complete et a la page sondages.</span></li>
+              <li><span>Sa seule présence change la lecture du premier tour.</span></li><li><span>Il faut regarder à la fois son statut, sa base électorale et l’effet sur le RN.</span></li><li><span>Comparer Le Pen et Bardella éclaire la stratégie de tout son camp.</span></li>
             </ul>
           </section>
 
@@ -245,24 +288,24 @@
         
           <article class="faq">
             <h2>Marine Le Pen est-elle suivie dans les sondages 2027 ?</h2>
-            <p>Oui, la page sondages du site permet de voir dans quels scenarios elle apparait et avec quels niveaux.</p>
+            <p>Oui. Lorsqu’elle figure dans un scénario, son niveau permet de mesurer non seulement sa force propre, mais aussi la façon dont toute la compétition se réorganise autour d’elle.</p>
           </article>
         
           <article class="faq">
             <h2>Pourquoi comparer Le Pen et Bardella ?</h2>
-            <p>Parce que leurs scenarios se repondent souvent dans les recherches et dans l’espace politique du RN.</p>
+            <p>Parce que cette comparaison dit beaucoup sur la stratégie du RN et sur la manière dont son électorat pourrait se répartir selon la tête d’affiche retenue.</p>
           </article>
         
           <article class="faq">
-            <h2>Ou lire ses positions et interventions ?</h2>
-            <p>La fiche candidate concentre justement les positions, interventions, videos et tweets.</p>
+            <h2>Où lire ses positions et ses interventions ?</h2>
+            <p>Une fiche utile doit montrer ses prises de position, ses interventions médiatiques et la façon dont elles s’inscrivent dans la préparation de 2027.</p>
           </article>
         
       </div>
     </section>
 
     <footer>
-      Cette page fait partie de Presidentielles 2027 et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.
+      Cette page fait partie de Présidentielles 2027 et renvoie vers les données de campagne, les profils candidats et les sondages 2027.
     </footer>
   </main>
 </body>

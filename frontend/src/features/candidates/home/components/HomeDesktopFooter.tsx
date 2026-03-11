@@ -12,7 +12,7 @@ export function HomeDesktopFooter() {
             </h3>
           </div>
           <p className="text-slate-500 text-sm max-w-xs leading-relaxed">
-            Projet informatif fonde sur des declarations publiques de candidature et des sources ouvertes.
+            Projet informatif fondé sur des déclarations publiques de candidature et des sources ouvertes.
           </p>
         </div>
 
@@ -31,11 +31,6 @@ export function HomeDesktopFooter() {
                 </Link>
               </li>
               <li>
-                <Link to="/analysis" className="hover:text-primary">
-                  Analyse
-                </Link>
-              </li>
-              <li>
                 <Link to="/profile" className="hover:text-primary">
                   Profil
                 </Link>
@@ -46,11 +41,6 @@ export function HomeDesktopFooter() {
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase text-slate-400">Ressources</h4>
             <ul className="text-sm space-y-2 font-medium">
-              <li>
-                <Link to="/" className="hover:text-primary">
-                  Methodologie
-                </Link>
-              </li>
               <li>
                 <Link to="/" className="hover:text-primary">
                   Sources

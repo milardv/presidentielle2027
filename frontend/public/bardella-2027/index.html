@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bardella 2027 : candidature, sondages et scenario presidentielle</title>
-  <meta name="description" content="Bardella 2027 : comprendre la place de Jordan Bardella dans les sondages, sa relation avec Marine Le Pen et son poids dans les scenarios 2027." />
+  <title>Bardella 2027 : candidature, sondages et scénario présidentielle</title>
+  <meta name="description" content="Bardella 2027 : ce que signifie vraiment la place de Jordan Bardella dans les sondages, au RN et dans les scénarios de 2027." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Presidentielles 2027" />
-  <meta property="og:title" content="Bardella 2027 : candidature, sondages et scenario presidentielle" />
-  <meta property="og:description" content="Bardella 2027 : comprendre la place de Jordan Bardella dans les sondages, sa relation avec Marine Le Pen et son poids dans les scenarios 2027." />
+  <meta property="og:site_name" content="Présidentielles 2027" />
+  <meta property="og:title" content="Bardella 2027 : candidature, sondages et scénario présidentielle" />
+  <meta property="og:description" content="Bardella 2027 : ce que signifie vraiment la place de Jordan Bardella dans les sondages, au RN et dans les scénarios de 2027." />
   <meta property="og:url" content="https://milardv.github.io/presidentielle2027/bardella-2027/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Bardella 2027 : candidature, sondages et scenario presidentielle" />
-  <meta name="twitter:description" content="Bardella 2027 : comprendre la place de Jordan Bardella dans les sondages, sa relation avec Marine Le Pen et son poids dans les scenarios 2027." />
+  <meta name="twitter:title" content="Bardella 2027 : candidature, sondages et scénario présidentielle" />
+  <meta name="twitter:description" content="Bardella 2027 : ce que signifie vraiment la place de Jordan Bardella dans les sondages, au RN et dans les scénarios de 2027." />
   <link rel="canonical" href="https://milardv.github.io/presidentielle2027/bardella-2027/" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Jordan Bardella est-il officiellement candidat en 2027 ?","acceptedAnswer":{"@type":"Answer","text":"Le site indique son statut exact sur sa fiche. L’important est de distinguer declaration ferme, scenario conditionnel et simple test d’institut."}},{"@type":"Question","name":"Pourquoi Bardella et Le Pen sont-ils souvent lies dans les recherches ?","acceptedAnswer":{"@type":"Answer","text":"Parce qu’ils occupent le meme espace politique et que certains scenarios font de Bardella une hypothese alternative ou complementaire."}},{"@type":"Question","name":"Ou voir ses sondages ?","acceptedAnswer":{"@type":"Answer","text":"La page sondages et sa fiche detaillee donnent les deux lectures utiles."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Jordan Bardella est-il officiellement candidat en 2027 ?","acceptedAnswer":{"@type":"Answer","text":"La question doit être lue avec précision : selon les séquences, Jordan Bardella peut être présenté comme candidature possible, hypothèse conditionnelle ou simple scénario de sondage. Il faut donc regarder son statut exact et non seulement son nom."}},{"@type":"Question","name":"Pourquoi Bardella et Le Pen sont-ils toujours comparés ?","acceptedAnswer":{"@type":"Answer","text":"Parce qu’ils occupent le même espace politique et que la présence de l’un modifie immédiatement la lecture électorale de l’autre."}},{"@type":"Question","name":"Où voir ses scores dans les intentions de vote ?","acceptedAnswer":{"@type":"Answer","text":"Le plus utile est de comparer ses niveaux scénario par scénario, plutôt que de s’arrêter à un seul classement publié un jour donné."}}]}</script>
   <style>
     :root {
       color-scheme: light;
@@ -51,7 +51,44 @@
       gap: 16px;
       padding: 16px 0 24px;
     }
-    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 1.1rem; }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      box-shadow: 0 16px 36px rgba(26,34,127,.24);
+      flex: none;
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-title {
+      display: block;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+    .brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .nav { display: flex; flex-wrap: wrap; gap: 10px; }
     .nav a {
       border: 1px solid var(--border);
@@ -173,7 +210,13 @@
 <body>
   <main class="shell">
     <header class="topbar">
-      <div class="brand">Presidentielles 2027</div>
+      <a class="brand-link" href="https://milardv.github.io/presidentielle2027/" aria-label="Retour à l’accueil Présidentielles 2027">
+        <span class="brand-mark">↗</span>
+        <span class="brand-copy">
+          <span class="brand-title">Présidentielles 2027</span>
+          <span class="brand-subtitle">Candidats, sondages et intentions de vote</span>
+        </span>
+      </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="https://milardv.github.io/presidentielle2027/">Accueil</a>
         <a href="https://milardv.github.io/presidentielle2027/polls/">Sondages</a>
@@ -184,24 +227,24 @@
 
     <section class="hero">
       <span class="eyebrow">Candidat 2027</span>
-      <h1>Bardella 2027 : pourquoi Jordan Bardella compte deja dans la campagne</h1>
-      <p class="lead">La requete Bardella 2027 renvoie a une question simple: Jordan Bardella est-il un candidat central, un recours ou une hypothese conditionnelle ? Cette page oriente vers sa fiche et vers les sondages.</p>
+      <h1>Bardella 2027 : pourquoi Jordan Bardella compte déjà</h1>
+      <p class="lead">Jordan Bardella pèse en 2027 parce qu’il peut être lu de deux façons : comme figure politique propre du RN et comme variable décisive dans la stratégie autour de Marine Le Pen.</p>
 
       <div class="chips">
-        <span class="chip">bardella 2027</span><span class="chip">jordan bardella 2027</span><span class="chip">qui va gagner presidentielle 2027</span>
+        <span class="chip">bardella 2027</span><span class="chip">jordan bardella 2027</span><span class="chip">qui va gagner présidentielle 2027</span>
       </div>
 
       <div class="layout">
         <div>
           
             <article class="card">
-              <h2>Pourquoi la requete Bardella 2027 est si forte</h2>
-              <p>Jordan Bardella incarne a la fois une candidature proprement envisagee dans certains scenarios et une variable de remplacement ou de projection pour l’espace politique du Rassemblement national.</p><p>Les internautes cherchent donc a savoir s’il est simplement teste dans les sondages ou s’il devient une hypothese politique majeure. Le site replace cette question dans les sondages et les sources disponibles.</p>
+              <h2>Pourquoi Bardella pèse déjà autant</h2>
+              <p>Jordan Bardella est devenu une figure nationale qui dépasse le simple rôle de porte-parole partisan. Son nom compte parce qu’il peut être testé comme candidature autonome, comme recours possible, ou comme indicateur du poids propre du RN dans l’opinion.</p><p>Cela explique pourquoi il faut toujours lire ses chiffres avec prudence : un score Bardella ne dit pas seulement quelque chose sur lui, il dit aussi quelque chose sur l’état du bloc national-populiste et sur la place laissée ou non à d’autres figures de ce camp.</p>
             </article>
           
             <article class="card">
-              <h2>Que regarder en priorite</h2>
-              <p>Il faut observer ses performances dans les intentions de vote, le type de scenario dans lequel il est teste et la nature de sa relation avec Marine Le Pen. C’est exactement ce que documentent la fiche candidat et la page sondages.</p>
+              <h2>Les trois choses à regarder</h2>
+              <p>D’abord son statut : candidature assumée, hypothèse conditionnelle ou simple test d’institut. Ensuite sa relation politique avec Marine Le Pen. Enfin sa capacité à tenir un niveau élevé dans plusieurs scénarios et pas seulement dans un cas isolé.</p><p>Si un candidat reste haut quelles que soient les configurations, il devient un acteur structurant de la campagne. Si son niveau dépend beaucoup de la présence ou de l’absence d’un autre nom, la lecture est plus conditionnelle.</p>
             </article>
           
         </div>
@@ -210,7 +253,7 @@
           <section class="panel" style="padding:22px;">
             <div class="eyebrow">A retenir</div>
             <ul>
-              <li><span>Un profil cle du bloc RN dans les sondages.</span></li><li><span>Une page utile pour lire sa relation politique avec Marine Le Pen.</span></li><li><span>Un lien direct vers sa fiche complete et les scenarios de vote.</span></li>
+              <li><span>Sa place dépend du scénario retenu et du rôle exact que le RN lui attribue.</span></li><li><span>Ses niveaux doivent toujours être comparés à ceux de Marine Le Pen.</span></li><li><span>La question centrale n’est pas seulement son score, mais son statut politique réel.</span></li>
             </ul>
           </section>
 
@@ -245,24 +288,24 @@
         
           <article class="faq">
             <h2>Jordan Bardella est-il officiellement candidat en 2027 ?</h2>
-            <p>Le site indique son statut exact sur sa fiche. L’important est de distinguer declaration ferme, scenario conditionnel et simple test d’institut.</p>
+            <p>La question doit être lue avec précision : selon les séquences, Jordan Bardella peut être présenté comme candidature possible, hypothèse conditionnelle ou simple scénario de sondage. Il faut donc regarder son statut exact et non seulement son nom.</p>
           </article>
         
           <article class="faq">
-            <h2>Pourquoi Bardella et Le Pen sont-ils souvent lies dans les recherches ?</h2>
-            <p>Parce qu’ils occupent le meme espace politique et que certains scenarios font de Bardella une hypothese alternative ou complementaire.</p>
+            <h2>Pourquoi Bardella et Le Pen sont-ils toujours comparés ?</h2>
+            <p>Parce qu’ils occupent le même espace politique et que la présence de l’un modifie immédiatement la lecture électorale de l’autre.</p>
           </article>
         
           <article class="faq">
-            <h2>Ou voir ses sondages ?</h2>
-            <p>La page sondages et sa fiche detaillee donnent les deux lectures utiles.</p>
+            <h2>Où voir ses scores dans les intentions de vote ?</h2>
+            <p>Le plus utile est de comparer ses niveaux scénario par scénario, plutôt que de s’arrêter à un seul classement publié un jour donné.</p>
           </article>
         
       </div>
     </section>
 
     <footer>
-      Cette page fait partie de Presidentielles 2027 et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.
+      Cette page fait partie de Présidentielles 2027 et renvoie vers les données de campagne, les profils candidats et les sondages 2027.
     </footer>
   </main>
 </body>

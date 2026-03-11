@@ -80,7 +80,7 @@ function FavoriteCandidateCard({
           <span className="material-symbols-outlined text-[18px]">
             {isRemoving ? 'hourglass_top' : 'delete'}
           </span>
-          {isRemoving ? 'Retrait...' : ''}
+          {isRemoving ? 'Retrait...' : 'Retirer'}
         </button>
       </div>
 
@@ -141,8 +141,8 @@ export function FavoriteCandidatesSection({
               Les candidats que vous suivez
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-              Retrouvez ici vos profils politiques mis de cote pour revenir vite sur leurs positions,
-              interventions et evolutions de campagne.
+              Retrouvez ici vos profils politiques mis de côté pour revenir vite sur leurs positions,
+              interventions et évolutions de campagne.
             </p>
           </div>
 
@@ -167,7 +167,7 @@ export function FavoriteCandidatesSection({
                 <span className="material-symbols-outlined text-[24px]">favorite</span>
               </div>
               <h3 className="mt-4 text-lg font-bold tracking-tight text-slate-950 dark:text-white">
-                Aucun candidat suivi pour l'instant
+                Aucun candidat suivi pour l’instant
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
                 Ouvrez une fiche candidat puis utilisez le bouton de suivi pour le retrouver ici.

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ExternalLink, PlayCircle, SquarePlay, Video } from 'lucide-react'
 import { useParams } from 'react-router-dom'
+import { MobileAppNav } from '../components/MobileAppNav'
 import { CandidateProfileTabs } from '../features/candidates/profile/components/CandidateProfileTabs'
 import { ProfileErrorState } from '../features/candidates/profile/components/ProfileErrorState'
 import { ProfileLoadingState } from '../features/candidates/profile/components/ProfileLoadingState'
@@ -9,6 +10,7 @@ import { ProfilePageHeader } from '../features/candidates/profile/components/Pro
 import { useCandidateProfile } from '../features/candidates/profile/hooks/useCandidateProfile'
 import { useCandidateVideos } from '../features/candidates/profile/hooks/useCandidateVideos'
 import { formatFrenchDate, getCandidateInitials } from '../features/candidates/shared/candidateUi'
+import { appNavItems } from '../navigation/appNavItems'
 import { SeoHead } from '../seo/SeoHead'
 
 function VideoStat({ label, value, icon }: { label: string; value: string; icon: ReactNode }) {
@@ -65,8 +67,8 @@ export default function CandidateVideos() {
   return (
     <div className="relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
       <SeoHead
-        title={`${candidate.name} 2027 : videos et interventions`}
-        description={`Selection de videos et interventions de ${candidate.name} dans le suivi Presidentielles 2027.`}
+        title={`${candidate.name} 2027 : vidéos et interventions`}
+        description={`Sélection de vidéos et interventions de ${candidate.name} dans le suivi Présidentielles 2027.`}
         path={`/candidats/${candidate.id}/videos`}
         noindex
       />
@@ -153,7 +155,7 @@ export default function CandidateVideos() {
                 <div>
                   <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-primary">
                     <PlayCircle className="h-[16px] w-[16px]" />
-                    Lecture integree
+                    Lecture intégrée
                   </div>
 
                   <h2 className="mt-4 text-2xl font-black tracking-tight text-slate-950 dark:text-white">
@@ -283,6 +285,8 @@ export default function CandidateVideos() {
           </section>
         ) : null}
       </main>
+
+      <MobileAppNav items={appNavItems} />
     </div>
   )
 }

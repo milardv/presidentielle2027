@@ -6,6 +6,25 @@ import { decodeHtmlEntities } from '../utils/htmlEntities'
 const TWEETS_COLLECTION = 'candidate_tweets_2027'
 const MAX_TWEETS = 10
 
+function toTweetTimestamp(value: string): number {
+  if (!value) {
+    return 0
+  }
+
+  const normalizedValue = value.trim()
+  if (!normalizedValue) {
+    return 0
+  }
+
+  if (/^\d{4}-\d{2}-\d{2}$/.test(normalizedValue)) {
+    const parsedDate = Date.parse(`${normalizedValue}T12:00:00Z`)
+    return Number.isNaN(parsedDate) ? 0 : parsedDate
+  }
+
+  const parsedDate = Date.parse(normalizedValue)
+  return Number.isNaN(parsedDate) ? 0 : parsedDate
+}
+
 function isMetrics(value: unknown): value is CandidateTweetMetrics {
   if (typeof value !== 'object' || value === null) {
     return false
@@ -91,6 +110,6 @@ export async function getCandidateTweetsFromDatabase(candidateId: string): Promi
   return snapshot.docs
     .map((entry) => parseCandidateTweet(entry.id, entry.data()))
     .filter((tweet): tweet is CandidateTweet => tweet !== null)
-    .sort((first, second) => second.publishedAt.localeCompare(first.publishedAt))
+    .sort((first, second) => toTweetTimestamp(second.publishedAt) - toTweetTimestamp(first.publishedAt))
     .slice(0, MAX_TWEETS)
 }

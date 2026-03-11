@@ -199,7 +199,7 @@ export function ProfileMediaAttentionSection({
       <section id="media" className="scroll-mt-40">
         <ProfileSectionHeading icon="monitoring" title="Courbe d’attention média" />
         <div className="rounded-xl border border-dashed border-slate-300 bg-white p-5 text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
-          Aucune courbe média disponible pour le moment. Lance un rafraichissement Media Cloud depuis le profil admin pour alimenter cette vue.
+          Aucune courbe média disponible pour le moment. Lance un rafraîchissement Media Cloud depuis le profil admin pour alimenter cette vue.
         </div>
       </section>
     )

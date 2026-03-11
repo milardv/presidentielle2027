@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Glucksmann 2027 : candidature, espace politique et dynamique</title>
-  <meta name="description" content="Glucksmann 2027 : suivre Raphael Glucksmann, sa trajectoire, son espace politique et sa place dans les scenarios presidentiels." />
+  <meta name="description" content="Glucksmann 2027 : pourquoi Raphaël Glucksmann attire l’attention et comment juger sa capacité à exister comme candidature de gauche." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Presidentielles 2027" />
+  <meta property="og:site_name" content="Présidentielles 2027" />
   <meta property="og:title" content="Glucksmann 2027 : candidature, espace politique et dynamique" />
-  <meta property="og:description" content="Glucksmann 2027 : suivre Raphael Glucksmann, sa trajectoire, son espace politique et sa place dans les scenarios presidentiels." />
+  <meta property="og:description" content="Glucksmann 2027 : pourquoi Raphaël Glucksmann attire l’attention et comment juger sa capacité à exister comme candidature de gauche." />
   <meta property="og:url" content="https://milardv.github.io/presidentielle2027/glucksmann-2027/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Glucksmann 2027 : candidature, espace politique et dynamique" />
-  <meta name="twitter:description" content="Glucksmann 2027 : suivre Raphael Glucksmann, sa trajectoire, son espace politique et sa place dans les scenarios presidentiels." />
+  <meta name="twitter:description" content="Glucksmann 2027 : pourquoi Raphaël Glucksmann attire l’attention et comment juger sa capacité à exister comme candidature de gauche." />
   <link rel="canonical" href="https://milardv.github.io/presidentielle2027/glucksmann-2027/" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Raphael Glucksmann est-il deja candidat ?","acceptedAnswer":{"@type":"Answer","text":"Le site indique son statut exact sur sa fiche, ce qui permet d’eviter les approximations entre speculation et candidature assumee."}},{"@type":"Question","name":"Pourquoi le comparer a Melenchon ?","acceptedAnswer":{"@type":"Answer","text":"Parce que la gauche 2027 se lit souvent a travers cette tension entre lignes, electorats et strategies concurrentes."}},{"@type":"Question","name":"Ou voir ses prises de parole ?","acceptedAnswer":{"@type":"Answer","text":"La fiche Glucksmann regroupe les interventions, videos et tweets recents."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Raphaël Glucksmann est-il déjà candidat ?","acceptedAnswer":{"@type":"Answer","text":"La question doit être lue avec nuance : un nom peut être fortement présent dans le débat sans relever encore d’une candidature formellement arrêtée."}},{"@type":"Question","name":"Pourquoi le comparer à Mélenchon ?","acceptedAnswer":{"@type":"Answer","text":"Parce qu’ils représentent deux lignes différentes pour la gauche 2027, avec des électorats, des stratégies et des horizons de coalition distincts."}},{"@type":"Question","name":"Où voir ses prises de parole ?","acceptedAnswer":{"@type":"Answer","text":"Pour évaluer un profil de ce type, il faut regarder ses interventions publiques, ses thèmes récurrents et leur traduction éventuelle dans les scénarios de vote."}}]}</script>
   <style>
     :root {
       color-scheme: light;
@@ -51,7 +51,44 @@
       gap: 16px;
       padding: 16px 0 24px;
     }
-    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 1.1rem; }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      box-shadow: 0 16px 36px rgba(26,34,127,.24);
+      flex: none;
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-title {
+      display: block;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+    .brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .nav { display: flex; flex-wrap: wrap; gap: 10px; }
     .nav a {
       border: 1px solid var(--border);
@@ -173,7 +210,13 @@
 <body>
   <main class="shell">
     <header class="topbar">
-      <div class="brand">Presidentielles 2027</div>
+      <a class="brand-link" href="https://milardv.github.io/presidentielle2027/" aria-label="Retour à l’accueil Présidentielles 2027">
+        <span class="brand-mark">↗</span>
+        <span class="brand-copy">
+          <span class="brand-title">Présidentielles 2027</span>
+          <span class="brand-subtitle">Candidats, sondages et intentions de vote</span>
+        </span>
+      </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="https://milardv.github.io/presidentielle2027/">Accueil</a>
         <a href="https://milardv.github.io/presidentielle2027/polls/">Sondages</a>
@@ -184,24 +227,24 @@
 
     <section class="hero">
       <span class="eyebrow">Candidat 2027</span>
-      <h1>Glucksmann 2027 : pourquoi Raphael Glucksmann attire les recherches</h1>
-      <p class="lead">La requete Glucksmann 2027 cherche a mesurer sa capacite a devenir une candidature de gauche sociale-democrate ou europeenne capable d’exister seule.</p>
+      <h1>Glucksmann 2027 : une candidature possible, mais à quelles conditions ?</h1>
+      <p class="lead">Raphaël Glucksmann attire l’attention parce qu’il incarne une offre de gauche pro-européenne distincte de LFI comme du centre. La vraie question est de savoir si cette ligne peut devenir une candidature assez large pour peser en 2027.</p>
 
       <div class="chips">
-        <span class="chip">glucksmann 2027</span><span class="chip">raphael glucksmann 2027</span><span class="chip">gauche sociale democrate 2027</span>
+        <span class="chip">glucksmann 2027</span><span class="chip">raphaël glucksmann 2027</span><span class="chip">gauche sociale-démocrate 2027</span>
       </div>
 
       <div class="layout">
         <div>
           
             <article class="card">
-              <h2>Pourquoi la requete Glucksmann 2027 est en hausse</h2>
-              <p>Raphael Glucksmann cristallise une partie des attentes autour d’une offre de gauche pro-europeenne, sociale-democrate et autonome. Cela suffit a faire de son nom une requete recurrente bien avant l’echeance.</p><p>Le site suit cette dynamique avec une fiche dediee, des interventions, des videos, des tweets et une lecture de son espace politique.</p>
+              <h2>Pourquoi son nom progresse autant</h2>
+              <p>Raphaël Glucksmann concentre une partie des attentes d’une gauche pro-européenne, sociale-démocrate et autonome vis-à-vis des blocs déjà bien identifiés. Cela suffit à faire de lui un nom de plus en plus observé dans la perspective de 2027.</p><p>Mais l’attention ne suffit pas. Pour devenir un acteur central de la présidentielle, il faut encore transformer cette visibilité en force électorale, en capacité de rassemblement et en crédibilité nationale au premier tour.</p>
             </article>
           
             <article class="card">
-              <h2>Comment lire son profil</h2>
-              <p>Il faut observer a la fois son positionnement propre, sa capacite de rassemblement a gauche et son exposition mediatique. C’est justement le croisement propose par la fiche candidat et la page sondages.</p>
+              <h2>Ce qu’il faut regarder pour le juger</h2>
+              <p>Il faut regarder son positionnement propre, sa capacité à se différencier des autres offres de gauche et la manière dont les instituts le testent face à des profils concurrents. C’est là que l’on voit si son nom correspond à une simple curiosité politique ou à une candidature réellement montante.</p><p>Il faut aussi observer si son espace reste niche ou s’il parvient à parler plus largement à l’électorat de gauche et du centre-gauche.</p>
             </article>
           
         </div>
@@ -210,7 +253,7 @@
           <section class="panel" style="padding:22px;">
             <div class="eyebrow">A retenir</div>
             <ul>
-              <li><span>Un profil qui monte dans de nombreuses discussions 2027.</span></li><li><span>Une lecture utile entre positionnement ideologique, potentiel electoral et strategie d’autonomie.</span></li><li><span>Une fiche detaillee pour suivre ses positions, interventions et videos.</span></li>
+              <li><span>Son nom monte parce qu’il incarne une offre différente à gauche.</span></li><li><span>La clé est de savoir s’il peut élargir au-delà d’un public urbain, européen et réformiste.</span></li><li><span>Il faut juger sa trajectoire à la fois par sa visibilité, ses positions et sa capacité de rassemblement.</span></li>
             </ul>
           </section>
 
@@ -244,25 +287,25 @@
       <div class="faq-grid">
         
           <article class="faq">
-            <h2>Raphael Glucksmann est-il deja candidat ?</h2>
-            <p>Le site indique son statut exact sur sa fiche, ce qui permet d’eviter les approximations entre speculation et candidature assumee.</p>
+            <h2>Raphaël Glucksmann est-il déjà candidat ?</h2>
+            <p>La question doit être lue avec nuance : un nom peut être fortement présent dans le débat sans relever encore d’une candidature formellement arrêtée.</p>
           </article>
         
           <article class="faq">
-            <h2>Pourquoi le comparer a Melenchon ?</h2>
-            <p>Parce que la gauche 2027 se lit souvent a travers cette tension entre lignes, electorats et strategies concurrentes.</p>
+            <h2>Pourquoi le comparer à Mélenchon ?</h2>
+            <p>Parce qu’ils représentent deux lignes différentes pour la gauche 2027, avec des électorats, des stratégies et des horizons de coalition distincts.</p>
           </article>
         
           <article class="faq">
-            <h2>Ou voir ses prises de parole ?</h2>
-            <p>La fiche Glucksmann regroupe les interventions, videos et tweets recents.</p>
+            <h2>Où voir ses prises de parole ?</h2>
+            <p>Pour évaluer un profil de ce type, il faut regarder ses interventions publiques, ses thèmes récurrents et leur traduction éventuelle dans les scénarios de vote.</p>
           </article>
         
       </div>
     </section>
 
     <footer>
-      Cette page fait partie de Presidentielles 2027 et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.
+      Cette page fait partie de Présidentielles 2027 et renvoie vers les données de campagne, les profils candidats et les sondages 2027.
     </footer>
   </main>
 </body>

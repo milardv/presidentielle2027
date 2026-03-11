@@ -138,11 +138,11 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
       const counts = await getCandidateMediaCounts(selectedCandidate.id)
       setMediaCounts(counts)
       setRefreshMessage(
-        `${result.importedCount} video${result.importedCount > 1 ? 's' : ''} importee${result.importedCount > 1 ? 's' : ''} pour ${result.candidateName}.`,
+        `${result.importedCount} video${result.importedCount > 1 ? 's' : ''} importée${result.importedCount > 1 ? 's' : ''} pour ${result.candidateName}.`,
       )
     } catch (error) {
       console.error('Failed to refresh candidate videos from admin panel', error)
-      setLoadError(error instanceof Error ? error.message : 'Impossible de rafraichir les videos.')
+      setLoadError(error instanceof Error ? error.message : 'Impossible de rafraîchir les vidéos.')
     } finally {
       setRefreshingProvider(null)
     }
@@ -162,11 +162,11 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
       const counts = await getCandidateMediaCounts(selectedCandidate.id)
       setMediaCounts(counts)
       setRefreshMessage(
-        `${result.importedCount} entree${result.importedCount > 1 ? 's' : ''} GDELT importee${result.importedCount > 1 ? 's' : ''} pour ${result.candidateName}.`,
+        `${result.importedCount} entrée${result.importedCount > 1 ? 's' : ''} GDELT importée${result.importedCount > 1 ? 's' : ''} pour ${result.candidateName}.`,
       )
     } catch (error) {
       console.error('Failed to refresh candidate GDELT entries from admin panel', error)
-      setLoadError(error instanceof Error ? error.message : 'Impossible de rafraichir les donnees GDELT.')
+      setLoadError(error instanceof Error ? error.message : 'Impossible de rafraîchir les données GDELT.')
     } finally {
       setRefreshingProvider(null)
     }
@@ -184,11 +184,11 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
     try {
       const result = await refreshCandidateMediaAttention(selectedCandidate, adminEmail)
       setRefreshMessage(
-        `${result.pointCount} point${result.pointCount > 1 ? 's' : ''} Media Cloud mis a jour pour ${result.candidateName}.`,
+        `${result.pointCount} point${result.pointCount > 1 ? 's' : ''} Media Cloud mis à jour pour ${result.candidateName}.`,
       )
     } catch (error) {
       console.error('Failed to refresh candidate Media Cloud attention from admin panel', error)
-      setLoadError(error instanceof Error ? error.message : 'Impossible de rafraichir la courbe Media Cloud.')
+      setLoadError(error instanceof Error ? error.message : 'Impossible de rafraîchir la courbe Media Cloud.')
     } finally {
       setRefreshingProvider(null)
     }
@@ -212,11 +212,11 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
       setMediaCounts(counts)
       setTweetSyncStatus(syncStatus)
       setRefreshMessage(
-        `${result.importedCount} tweet${result.importedCount > 1 ? 's' : ''} mis a jour pour ${selectedCandidate.name}.`,
+        `${result.importedCount} tweet${result.importedCount > 1 ? 's' : ''} mis à jour pour ${selectedCandidate.name}.`,
       )
     } catch (error) {
       console.error('Failed to refresh candidate tweets from admin panel', error)
-      setLoadError(error instanceof Error ? error.message : 'Impossible de rafraichir les tweets.')
+      setLoadError(error instanceof Error ? error.message : 'Impossible de rafraîchir les tweets.')
     } finally {
       setRefreshingProvider(null)
     }
@@ -240,7 +240,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
       }
 
       setRefreshMessage(
-        `${result.importedCount} tweets mis a jour sur ${result.candidateCount} candidat${result.candidateCount > 1 ? 's' : ''}.`,
+        `${result.importedCount} tweets mis à jour sur ${result.candidateCount} candidat${result.candidateCount > 1 ? 's' : ''}.`,
       )
     } catch (error) {
       console.error('Failed to refresh all candidate tweets from admin panel', error)
@@ -260,12 +260,12 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Admin</p>
             <h2 className="mt-1 text-xl font-black tracking-tight text-slate-950 dark:text-white">
-              Rafraichissement medias candidat
+              Rafraîchissement médias candidat
             </h2>
           </div>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-          Lance un refresh cible pour un candidat: YouTube pour les videos, X pour les tweets scrapes, GDELT pour les articles, Media Cloud pour la courbe d’attention.
+          Lance un rafraîchissement ciblé pour un candidat : YouTube pour les vidéos, X pour les tweets scrapés, GDELT pour les articles, Media Cloud pour la courbe d’attention.
         </p>
       </div>
 
@@ -289,7 +289,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
         <div className="grid gap-3 sm:grid-cols-3">
           <div className="rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 dark:border-slate-800 dark:bg-slate-950/50">
             <div className="flex items-center justify-between gap-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Videos YouTube</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Vidéos YouTube</span>
               <Video className="h-[16px] w-[16px] text-primary" />
             </div>
             <p className="mt-2 text-2xl font-black tracking-tight text-slate-950 dark:text-white">
@@ -321,14 +321,14 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
         <div className="rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 dark:border-slate-800 dark:bg-slate-950/50">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Dernier refresh tweets</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Dernier rafraîchissement tweets</p>
               <p className="mt-2 text-sm font-semibold text-slate-900 dark:text-slate-100">
                 {formatSyncDate(tweetSyncStatus.lastRunAt)}
               </p>
               <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
                 {tweetSyncStatus.importedCount !== null
-                  ? `${tweetSyncStatus.importedCount} tweet${tweetSyncStatus.importedCount > 1 ? 's' : ''} importe${tweetSyncStatus.importedCount > 1 ? 's' : ''}`
-                  : 'Aucun refresh detecte pour ce candidat.'}
+                  ? `${tweetSyncStatus.importedCount} tweet${tweetSyncStatus.importedCount > 1 ? 's' : ''} importé${tweetSyncStatus.importedCount > 1 ? 's' : ''}`
+                  : 'Aucun rafraîchissement détecté pour ce candidat.'}
               </p>
             </div>
             {tweetSyncStatus.status ? (
@@ -353,7 +353,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
             ) : (
               <RefreshCw className="h-[18px] w-[18px]" />
             )}
-            {refreshingProvider === 'youtube' ? 'Rafraichissement...' : 'Rafraichir les videos'}
+            {refreshingProvider === 'youtube' ? 'Rafraîchissement...' : 'Rafraîchir les vidéos'}
           </button>
 
           <button
@@ -369,7 +369,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
             ) : (
               <Newspaper className="h-[18px] w-[18px]" />
             )}
-            {refreshingProvider === 'gdelt' ? 'Rafraichissement...' : 'Rafraichir GDELT'}
+            {refreshingProvider === 'gdelt' ? 'Rafraîchissement...' : 'Rafraîchir GDELT'}
           </button>
 
           <button
@@ -385,7 +385,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
             ) : (
               <MessageCircle className="h-[18px] w-[18px]" />
             )}
-            {refreshingProvider === 'tweets' ? 'Rafraichissement...' : 'Rafraichir les tweets'}
+            {refreshingProvider === 'tweets' ? 'Rafraîchissement...' : 'Rafraîchir les tweets'}
           </button>
 
           <button
@@ -401,7 +401,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
             ) : (
               <MessageCircle className="h-[18px] w-[18px]" />
             )}
-            {refreshingProvider === 'tweets-all' ? 'Rafraichissement global...' : 'Rafraichir tous les tweets'}
+            {refreshingProvider === 'tweets-all' ? 'Rafraîchissement global...' : 'Rafraîchir tous les tweets'}
           </button>
 
           <button
@@ -417,7 +417,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
             ) : (
               <ChartSpline className="h-[18px] w-[18px]" />
             )}
-            {refreshingProvider === 'mediacloud' ? 'Rafraichissement...' : 'Rafraichir Media Cloud'}
+            {refreshingProvider === 'mediacloud' ? 'Rafraîchissement...' : 'Rafraîchir Media Cloud'}
           </button>
 
           {selectedCandidate ? (
@@ -436,7 +436,7 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
               className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary dark:border-slate-700 dark:text-slate-200"
             >
               <Video className="h-[18px] w-[18px]" />
-              Voir la page videos
+              Voir la page vidéos
             </Link>
           ) : null}
 
@@ -459,12 +459,12 @@ export function AdminVideoRefreshPanel({ adminEmail }: AdminVideoRefreshPanelPro
 
         {!hasMediaCloudKey ? (
           <p className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-400">
-            Media Cloud n’est pas configure dans le front admin. Ajoute `VITE_MEDIA_CLOUD_API_KEY` en local si tu veux lancer ce refresh depuis l’interface.
+            Media Cloud n’est pas configuré dans le front admin. Ajoute `VITE_MEDIA_CLOUD_API_KEY` en local si tu veux lancer ce rafraîchissement depuis l’interface.
           </p>
         ) : null}
 
         <p className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-400">
-          Le refresh tweets passe par un service local pour executer Playwright. Lance `npm run admin:sync-server` sur la machine admin, puis utilise le bouton.
+          Le rafraîchissement des tweets passe par un service local pour exécuter Playwright. Lance `npm run admin:sync-server` sur la machine admin, puis utilise le bouton.
         </p>
 
         {loadError ? (

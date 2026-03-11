@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Candidats presidentielle 2027 : liste, profils et statuts</title>
-  <meta name="description" content="Qui sont les candidats a la presidentielle 2027 ? Retrouvez les profils suivis, leur statut, leurs positions et les liens utiles pour comprendre la campagne." />
+  <title>Candidats présidentielle 2027 : liste, profils et statuts</title>
+  <meta name="description" content="Qui sont les candidats à la présidentielle 2027 ? Les noms déjà sérieux, les candidatures plausibles et les profils simplement testés dans les sondages." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Presidentielles 2027" />
-  <meta property="og:title" content="Candidats presidentielle 2027 : liste, profils et statuts" />
-  <meta property="og:description" content="Qui sont les candidats a la presidentielle 2027 ? Retrouvez les profils suivis, leur statut, leurs positions et les liens utiles pour comprendre la campagne." />
+  <meta property="og:site_name" content="Présidentielles 2027" />
+  <meta property="og:title" content="Candidats présidentielle 2027 : liste, profils et statuts" />
+  <meta property="og:description" content="Qui sont les candidats à la présidentielle 2027 ? Les noms déjà sérieux, les candidatures plausibles et les profils simplement testés dans les sondages." />
   <meta property="og:url" content="https://milardv.github.io/presidentielle2027/candidats-presidentielle-2027/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Candidats presidentielle 2027 : liste, profils et statuts" />
-  <meta name="twitter:description" content="Qui sont les candidats a la presidentielle 2027 ? Retrouvez les profils suivis, leur statut, leurs positions et les liens utiles pour comprendre la campagne." />
+  <meta name="twitter:title" content="Candidats présidentielle 2027 : liste, profils et statuts" />
+  <meta name="twitter:description" content="Qui sont les candidats à la présidentielle 2027 ? Les noms déjà sérieux, les candidatures plausibles et les profils simplement testés dans les sondages." />
   <link rel="canonical" href="https://milardv.github.io/presidentielle2027/candidats-presidentielle-2027/" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Tous les noms de sondages sont-ils de vrais candidats ?","acceptedAnswer":{"@type":"Answer","text":"Non. Certains sont deja declares, d’autres restent des possibilites politiques ou des candidatures conditionnelles. Le site fait cette distinction dans chaque fiche."}},{"@type":"Question","name":"Comment savoir qui est officiellement candidat ?","acceptedAnswer":{"@type":"Answer","text":"Le site indique un statut pour chaque profil. Ce statut est plus utile qu’une simple liste, car il montre si la candidature est declaree, conditionnelle ou seulement testee."}},{"@type":"Question","name":"Ou voir le detail d’un candidat ?","acceptedAnswer":{"@type":"Answer","text":"Chaque page cible renvoie vers une fiche complete avec positions, interventions, videos, tweets et analyse."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Tous les noms visibles dans les sondages sont-ils de vrais candidats ?","acceptedAnswer":{"@type":"Answer","text":"Non. Certains sont déjà engagés, d’autres sont seulement testés pour mesurer un rapport de force. Il faut donc toujours distinguer candidature réelle, hypothèse conditionnelle et simple scénario d’enquête."}},{"@type":"Question","name":"Comment savoir qui est officiellement candidat ?","acceptedAnswer":{"@type":"Answer","text":"Le bon indicateur n’est pas seulement la notoriété, mais le statut politique annoncé : déclaration formelle, candidature envisagée, ou simple présence dans les scénarios d’intentions de vote."}},{"@type":"Question","name":"Où voir le détail d’un candidat ?","acceptedAnswer":{"@type":"Answer","text":"Une fiche utile doit montrer plus qu’un portrait : statut, positions, interventions, dynamique médiatique et liens avec les principaux sondages."}}]}</script>
   <style>
     :root {
       color-scheme: light;
@@ -51,7 +51,44 @@
       gap: 16px;
       padding: 16px 0 24px;
     }
-    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 1.1rem; }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      box-shadow: 0 16px 36px rgba(26,34,127,.24);
+      flex: none;
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-title {
+      display: block;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+    .brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .nav { display: flex; flex-wrap: wrap; gap: 10px; }
     .nav a {
       border: 1px solid var(--border);
@@ -173,7 +210,13 @@
 <body>
   <main class="shell">
     <header class="topbar">
-      <div class="brand">Presidentielles 2027</div>
+      <a class="brand-link" href="https://milardv.github.io/presidentielle2027/" aria-label="Retour à l’accueil Présidentielles 2027">
+        <span class="brand-mark">↗</span>
+        <span class="brand-copy">
+          <span class="brand-title">Présidentielles 2027</span>
+          <span class="brand-subtitle">Candidats, sondages et intentions de vote</span>
+        </span>
+      </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="https://milardv.github.io/presidentielle2027/">Accueil</a>
         <a href="https://milardv.github.io/presidentielle2027/polls/">Sondages</a>
@@ -184,24 +227,24 @@
 
     <section class="hero">
       <span class="eyebrow">Candidats</span>
-      <h1>Candidats presidentielle 2027 : qui est vraiment en lice ?</h1>
-      <p class="lead">Cette page editorialise la requete candidats presidentielle 2027 et renvoie vers les fiches completes des profils les plus suivis.</p>
+      <h1>Candidats présidentielle 2027 : qui compte vraiment à ce stade ?</h1>
+      <p class="lead">La question utile n’est pas seulement de savoir qui est cité. Il faut distinguer les candidatures déclarées, les profils plausibles, et les noms qui existent surtout parce qu’ils sont testés dans les sondages.</p>
 
       <div class="chips">
-        <span class="chip">candidats presidentielle 2027</span><span class="chip">qui sera candidat 2027</span><span class="chip">qui peut se presenter en 2027</span>
+        <span class="chip">candidats présidentielle 2027</span><span class="chip">qui sera candidat 2027</span><span class="chip">qui peut se présenter en 2027</span>
       </div>
 
       <div class="layout">
         <div>
           
             <article class="card">
-              <h2>Comment le site classe les candidats 2027</h2>
-              <p>Le site distingue les profils declares, les candidatures conditionnelles et les personnalites qui structurent deja les scenarii de sondages sans declaration ferme. Cette nuance est essentielle pour ne pas confondre activite politique et candidature formelle.</p><p>Chaque fiche candidat rassemble un resume, l’evolution des positions, les interventions medias, les videos, les tweets et une page d’analyse. L’objectif n’est pas seulement de lister des noms, mais de donner du contexte et des sources.</p>
+              <h2>Qui compte vraiment en 2027 ?</h2>
+              <p>À ce stade, comptent surtout les personnalités qui réunissent au moins une partie des conditions suivantes : un parti ou un appareil identifiable, une exposition nationale régulière, un espace politique clair, et une présence récurrente dans les intentions de vote.</p><p>Cela permet de faire la différence entre une candidature déjà installée, une ambition sérieuse en cours de construction, et un simple nom d’essai utilisé par les instituts pour tester un électorat ou une famille politique.</p>
             </article>
           
             <article class="card">
-              <h2>Quels noms reviennent le plus dans les recherches 2027</h2>
-              <p>Parmi les requetes les plus frequentes, on retrouve Bardella 2027, Le Pen 2027, Attal president 2027, Edouard Philippe 2027, Melenchon 2027, Zemmour 2027 et Glucksmann 2027. Chacun de ces profils dispose ou disposera d’une page cible dans le site.</p><p>Le maillage interne a ete concu pour permettre a Google comme aux lecteurs de passer facilement d’une requete generale a une page plus specialisee.</p>
+              <h2>Comment reconnaître une candidature crédible</h2>
+              <p>Une candidature crédible ne repose pas seulement sur la notoriété. Elle suppose aussi une capacité d’organisation, des relais territoriaux, des prises de position cohérentes et, à terme, la possibilité d’obtenir les parrainages nécessaires.</p><p>Autrement dit, un bon classement dans un sondage peut signaler un potentiel, mais il ne suffit pas à lui seul à faire d’une personnalité un candidat solide pour l’élection présidentielle.</p>
             </article>
           
         </div>
@@ -210,7 +253,7 @@
           <section class="panel" style="padding:22px;">
             <div class="eyebrow">A retenir</div>
             <ul>
-              <li><span>Des profils deja declares, des candidatures conditionnelles et des noms testes dans les sondages.</span></li><li><span>Des fiches detaillees avec positions, interventions et sources.</span></li><li><span>Un maillage vers les pages individuelles les plus recherchees.</span></li>
+              <li><span>Tous les noms visibles en 2027 n’ont pas le même niveau de réalité politique.</span></li><li><span>Le bon tri consiste à séparer les candidats déclarés, les candidatures probables et les profils encore hypothétiques.</span></li><li><span>Pour juger un candidat, il faut regarder son statut, son parti, ses positions et sa présence dans les sondages.</span></li>
             </ul>
           </section>
 
@@ -244,25 +287,25 @@
       <div class="faq-grid">
         
           <article class="faq">
-            <h2>Tous les noms de sondages sont-ils de vrais candidats ?</h2>
-            <p>Non. Certains sont deja declares, d’autres restent des possibilites politiques ou des candidatures conditionnelles. Le site fait cette distinction dans chaque fiche.</p>
+            <h2>Tous les noms visibles dans les sondages sont-ils de vrais candidats ?</h2>
+            <p>Non. Certains sont déjà engagés, d’autres sont seulement testés pour mesurer un rapport de force. Il faut donc toujours distinguer candidature réelle, hypothèse conditionnelle et simple scénario d’enquête.</p>
           </article>
         
           <article class="faq">
             <h2>Comment savoir qui est officiellement candidat ?</h2>
-            <p>Le site indique un statut pour chaque profil. Ce statut est plus utile qu’une simple liste, car il montre si la candidature est declaree, conditionnelle ou seulement testee.</p>
+            <p>Le bon indicateur n’est pas seulement la notoriété, mais le statut politique annoncé : déclaration formelle, candidature envisagée, ou simple présence dans les scénarios d’intentions de vote.</p>
           </article>
         
           <article class="faq">
-            <h2>Ou voir le detail d’un candidat ?</h2>
-            <p>Chaque page cible renvoie vers une fiche complete avec positions, interventions, videos, tweets et analyse.</p>
+            <h2>Où voir le détail d’un candidat ?</h2>
+            <p>Une fiche utile doit montrer plus qu’un portrait : statut, positions, interventions, dynamique médiatique et liens avec les principaux sondages.</p>
           </article>
         
       </div>
     </section>
 
     <footer>
-      Cette page fait partie de Presidentielles 2027 et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.
+      Cette page fait partie de Présidentielles 2027 et renvoie vers les données de campagne, les profils candidats et les sondages 2027.
     </footer>
   </main>
 </body>

@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sondage presidentielle 2027 : intentions de vote, classement et dynamique</title>
-  <meta name="description" content="Retrouvez les sondages presidentielle 2027, les intentions de vote, les classements par scenario et les instituts suivis par le site." />
+  <title>Sondage présidentielle 2027 : intentions de vote, classement et dynamique</title>
+  <meta name="description" content="Sondage présidentielle 2027 : ce que disent vraiment les intentions de vote, comment comparer les instituts et ce qu’on peut déjà déduire des scénarios testés." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Presidentielles 2027" />
-  <meta property="og:title" content="Sondage presidentielle 2027 : intentions de vote, classement et dynamique" />
-  <meta property="og:description" content="Retrouvez les sondages presidentielle 2027, les intentions de vote, les classements par scenario et les instituts suivis par le site." />
+  <meta property="og:site_name" content="Présidentielles 2027" />
+  <meta property="og:title" content="Sondage présidentielle 2027 : intentions de vote, classement et dynamique" />
+  <meta property="og:description" content="Sondage présidentielle 2027 : ce que disent vraiment les intentions de vote, comment comparer les instituts et ce qu’on peut déjà déduire des scénarios testés." />
   <meta property="og:url" content="https://milardv.github.io/presidentielle2027/sondage-presidentielle-2027/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Sondage presidentielle 2027 : intentions de vote, classement et dynamique" />
-  <meta name="twitter:description" content="Retrouvez les sondages presidentielle 2027, les intentions de vote, les classements par scenario et les instituts suivis par le site." />
+  <meta name="twitter:title" content="Sondage présidentielle 2027 : intentions de vote, classement et dynamique" />
+  <meta name="twitter:description" content="Sondage présidentielle 2027 : ce que disent vraiment les intentions de vote, comment comparer les instituts et ce qu’on peut déjà déduire des scénarios testés." />
   <link rel="canonical" href="https://milardv.github.io/presidentielle2027/sondage-presidentielle-2027/" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ou voir les derniers sondages presidentielle 2027 ?","acceptedAnswer":{"@type":"Answer","text":"La meilleure entree reste la page sondages du site, qui consolide les etudes par institut, par date de terrain et par scenario."}},{"@type":"Question","name":"Le site affiche-t-il une probabilite de victoire ?","acceptedAnswer":{"@type":"Answer","text":"Pas comme un modele predicitif ferme. Le site montre plutot les intentions de vote, les classements et les dynamiques comparees, ce qui permet une lecture plus prudente."}},{"@type":"Question","name":"Les sondages sont-ils mis a jour automatiquement ?","acceptedAnswer":{"@type":"Answer","text":"Oui, les donnees sont stockees en base puis relues par le front. L’objectif est de rendre la page rapide, claire et stable."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Où voir les derniers sondages présidentielle 2027 ?","acceptedAnswer":{"@type":"Answer","text":"Il faut regarder les études les plus récentes, mais surtout les comparer entre elles. La date de terrain, l’institut et le scénario comptent davantage qu’un titre de publication isolé."}},{"@type":"Question","name":"Le site affiche-t-il une probabilité de victoire ?","acceptedAnswer":{"@type":"Answer","text":"Pas sous la forme d’une prédiction fermée. Une campagne aussi ouverte se lit mieux par tendances, hiérarchie de candidats et répétition des scénarios que par promesse de certitude."}},{"@type":"Question","name":"Les sondages sont-ils mis à jour automatiquement ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Les données sont stockées en base puis relues par le front pour garder un affichage rapide, stable et facile à comparer dans le temps."}}]}</script>
   <style>
     :root {
       color-scheme: light;
@@ -51,7 +51,44 @@
       gap: 16px;
       padding: 16px 0 24px;
     }
-    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 1.1rem; }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      box-shadow: 0 16px 36px rgba(26,34,127,.24);
+      flex: none;
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-title {
+      display: block;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+    .brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .nav { display: flex; flex-wrap: wrap; gap: 10px; }
     .nav a {
       border: 1px solid var(--border);
@@ -173,7 +210,13 @@
 <body>
   <main class="shell">
     <header class="topbar">
-      <div class="brand">Presidentielles 2027</div>
+      <a class="brand-link" href="https://milardv.github.io/presidentielle2027/" aria-label="Retour à l’accueil Présidentielles 2027">
+        <span class="brand-mark">↗</span>
+        <span class="brand-copy">
+          <span class="brand-title">Présidentielles 2027</span>
+          <span class="brand-subtitle">Candidats, sondages et intentions de vote</span>
+        </span>
+      </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="https://milardv.github.io/presidentielle2027/">Accueil</a>
         <a href="https://milardv.github.io/presidentielle2027/polls/">Sondages</a>
@@ -184,29 +227,29 @@
 
     <section class="hero">
       <span class="eyebrow">Sondages 2027</span>
-      <h1>Sondage presidentielle 2027 : lire les intentions de vote sans se perdre</h1>
-      <p class="lead">Cette page cible toutes les recherches liees aux sondages presidentielle 2027, aux intentions de vote et aux scenarios institut par institut.</p>
+      <h1>Sondage présidentielle 2027 : ce que montrent vraiment les intentions de vote</h1>
+      <p class="lead">Les sondages 2027 donnent une photographie utile du rapport de force, mais ils ne disent ni tout ni définitivement qui gagnera. Pour bien les lire, il faut comparer les instituts, les dates de terrain et les scénarios testés.</p>
 
       <div class="chips">
-        <span class="chip">presidentielle 2027 sondage</span><span class="chip">sondage presidentielle 2027</span><span class="chip">intentions de vote 2027</span><span class="chip">sondages presidentielle 2027 en direct</span><span class="chip">classement candidats presidentielle 2027</span><span class="chip">sondage IFOP presidentielle 2027</span><span class="chip">qui va gagner presidentielle 2027</span><span class="chip">probabilite victoire presidentielle 2027</span>
+        <span class="chip">présidentielle 2027 sondage</span><span class="chip">sondage présidentielle 2027</span><span class="chip">intentions de vote 2027</span><span class="chip">sondages présidentielle 2027 en direct</span><span class="chip">classement candidats présidentielle 2027</span><span class="chip">sondage IFOP présidentielle 2027</span><span class="chip">qui va gagner présidentielle 2027</span><span class="chip">probabilité victoire présidentielle 2027</span>
       </div>
 
       <div class="layout">
         <div>
           
             <article class="card">
-              <h2>Comment lire un sondage presidentielle 2027</h2>
-              <p>Un sondage teste un ou plusieurs scenarios. La bonne lecture consiste a comparer les instituts, la date de terrain, la composition du scenario et l’ecart entre les candidats, plutot qu’a surinterpreter une seule enquete.</p><p>Le site affiche un scenario principal par institut et resserre les autres scenarios pour garder une lecture claire. Cela permet de voir rapidement qui mene, qui progresse, et quels duels ou triangulations sont les plus testes.</p>
+              <h2>Ce que disent vraiment les sondages 2027</h2>
+              <p>Une intention de vote ne mesure pas un résultat futur certain. Elle mesure une situation donnée, à une date donnée, dans un scénario précis. Changer un nom dans le tableau, modifier l’offre politique ou déplacer le terrain de quelques semaines suffit parfois à faire bouger l’ordre d’arrivée.</p><p>La bonne question n’est donc pas seulement qui est premier. Il faut aussi regarder qui est régulièrement bien placé, qui plafonne, qui progresse selon les configurations, et quels candidats existent surtout dans un scénario particulier.</p>
             </article>
           
             <article class="card">
-              <h2>Que faire de la requete sondage IFOP presidentielle 2027</h2>
-              <p>La requete IFOP est frequente parce que l’institut reste une reference dans le debat public. Mais il faut toujours replacer IFOP dans un ensemble plus large: OpinionWay, Harris Interactive, Cluster17, Elabe et les autres instituts peuvent faire varier la photo selon leur scenario.</p><p>La page sondages de Presidentielles a ete pensee dans cet esprit: comparer les etudes disponibles sans les confondre, et garder une synthese utile meme quand plusieurs scenarios coexistent.</p>
+              <h2>Comment comparer IFOP, Harris, OpinionWay, Elabe ou Cluster17</h2>
+              <p>Chaque institut apporte sa propre photographie. Les différences peuvent venir de la méthode, de la date de terrain, du wording ou simplement du scénario testé. C’est pourquoi il faut comparer plusieurs études au lieu de transformer un seul sondage en verdict.</p><p>Lorsqu’un nom revient en tête dans plusieurs enquêtes, ou lorsqu’un même bloc politique reste durablement haut quel que soit l’institut, on tient déjà une information plus robuste qu’un classement isolé publié un jour donné.</p>
             </article>
           
             <article class="card">
-              <h2>Qui va gagner la presidentielle 2027 ?</h2>
-              <p>Le site ne pretend pas donner une prediction definitive. En revanche, il montre les tendances, les ecarts, le rythme des publications et les candidats les plus cites dans les scenarios actuels.</p><p>Pour une lecture solide, il faut croiser les intentions de vote, la dynamique media, les alliances possibles et le niveau de structuration de chaque candidature.</p>
+              <h2>Peut-on déjà savoir qui va gagner ?</h2>
+              <p>Non. En mars 2026, il est beaucoup trop tôt pour confondre intentions de vote et résultat final. Les candidatures ne sont pas toutes stabilisées, les alliances peuvent encore bouger et la campagne elle-même n’a pas encore produit tous ses effets.</p><p>En revanche, les sondages permettent déjà d’identifier les candidats les plus visibles, les plus testés et les plus capables d’entrer dans une course crédible au premier tour.</p>
             </article>
           
         </div>
@@ -215,7 +258,7 @@
           <section class="panel" style="padding:22px;">
             <div class="eyebrow">A retenir</div>
             <ul>
-              <li><span>Une vue par institut et par scenario, sans noyer la lecture.</span></li><li><span>Un classement moyen pour repérer la hierarchie du moment.</span></li><li><span>Un lien direct vers la page sondages dynamique du site.</span></li>
+              <li><span>Un sondage vaut surtout par sa date, son institut et la composition exacte de son scénario.</span></li><li><span>Les écarts faibles et les variations marginales ne doivent pas être surinterprétés.</span></li><li><span>La meilleure lecture vient de la comparaison entre plusieurs études, pas d’un seul chiffre isolé.</span></li>
             </ul>
           </section>
 
@@ -234,7 +277,7 @@
                 </a>
               
                 <a class="cta" href="https://milardv.github.io/presidentielle2027/presidentielle-2027/">
-                  <span>Retour au guide presidentielle 2027</span>
+                  <span>Retour au guide présidentielle 2027</span>
                   <span>→</span>
                 </a>
               
@@ -249,25 +292,25 @@
       <div class="faq-grid">
         
           <article class="faq">
-            <h2>Ou voir les derniers sondages presidentielle 2027 ?</h2>
-            <p>La meilleure entree reste la page sondages du site, qui consolide les etudes par institut, par date de terrain et par scenario.</p>
+            <h2>Où voir les derniers sondages présidentielle 2027 ?</h2>
+            <p>Il faut regarder les études les plus récentes, mais surtout les comparer entre elles. La date de terrain, l’institut et le scénario comptent davantage qu’un titre de publication isolé.</p>
           </article>
         
           <article class="faq">
-            <h2>Le site affiche-t-il une probabilite de victoire ?</h2>
-            <p>Pas comme un modele predicitif ferme. Le site montre plutot les intentions de vote, les classements et les dynamiques comparees, ce qui permet une lecture plus prudente.</p>
+            <h2>Le site affiche-t-il une probabilité de victoire ?</h2>
+            <p>Pas sous la forme d’une prédiction fermée. Une campagne aussi ouverte se lit mieux par tendances, hiérarchie de candidats et répétition des scénarios que par promesse de certitude.</p>
           </article>
         
           <article class="faq">
-            <h2>Les sondages sont-ils mis a jour automatiquement ?</h2>
-            <p>Oui, les donnees sont stockees en base puis relues par le front. L’objectif est de rendre la page rapide, claire et stable.</p>
+            <h2>Les sondages sont-ils mis à jour automatiquement ?</h2>
+            <p>Oui. Les données sont stockées en base puis relues par le front pour garder un affichage rapide, stable et facile à comparer dans le temps.</p>
           </article>
         
       </div>
     </section>
 
     <footer>
-      Cette page fait partie de Presidentielles 2027 et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.
+      Cette page fait partie de Présidentielles 2027 et renvoie vers les données de campagne, les profils candidats et les sondages 2027.
     </footer>
   </main>
 </body>

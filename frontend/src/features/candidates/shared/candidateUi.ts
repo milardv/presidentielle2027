@@ -114,8 +114,33 @@ export function getCandidateInitials(fullName: string): string {
     .join('')
 }
 
+function parseDateLike(date: string): Date | null {
+  if (!date) {
+    return null
+  }
+
+  const normalizedDate = date.trim()
+  if (!normalizedDate) {
+    return null
+  }
+
+  if (/^\d{4}-\d{2}-\d{2}$/.test(normalizedDate)) {
+    const parsedDate = new Date(`${normalizedDate}T12:00:00Z`)
+    return Number.isNaN(parsedDate.getTime()) ? null : parsedDate
+  }
+
+  const parsedDate = new Date(normalizedDate)
+  return Number.isNaN(parsedDate.getTime()) ? null : parsedDate
+}
+
 export function formatFrenchDate(date: string): string {
-  return new Date(`${date}T12:00:00Z`).toLocaleDateString('fr-FR')
+  const parsedDate = parseDateLike(date)
+
+  if (parsedDate === null) {
+    return 'Date indisponible'
+  }
+
+  return parsedDate.toLocaleDateString('fr-FR')
 }
 
 export function getAgeFromBirthDate(birthDate: string): number | null {

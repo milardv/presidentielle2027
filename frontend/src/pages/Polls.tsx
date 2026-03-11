@@ -1,11 +1,10 @@
 import type { PollCandidateAggregate, PollScenario, VotingIntentPoll } from '../data/pollTypes'
-import { DesktopAppTabs } from '../components/DesktopAppTabs'
+import { AppSiteHeader } from '../components/AppSiteHeader'
 import { HomeAlert } from '../features/candidates/home/components/HomeAlert'
 import { HomeDesktopFooter } from '../features/candidates/home/components/HomeDesktopFooter'
 import { formatFrenchDate } from '../features/candidates/shared/candidateUi'
 import { PollsMobileNav } from '../features/polls/components/PollsMobileNav'
 import { usePolls } from '../features/polls/hooks/usePolls'
-import { appNavItems } from '../navigation/appNavItems'
 import { SeoHead } from '../seo/SeoHead'
 
 function formatScore(score: number): string {
@@ -100,14 +99,14 @@ function PollStudyCard({ poll }: { poll: VotingIntentPoll }) {
               {poll.pollster}
             </span>
             <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">
-              {poll.scenarios.length} scenarios
+              {poll.scenarios.length} scénarios
             </span>
           </div>
           <h3 className="mt-3 text-xl font-black tracking-tight text-slate-900 dark:text-white">
             Terrain du {formatFrenchDate(poll.fieldworkStart)} au {formatFrenchDate(poll.fieldworkEnd)}
           </h3>
           <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-            Echantillon de {poll.sampleSize.toLocaleString('fr-FR')} personnes. Source publique :{' '}
+            Échantillon de {poll.sampleSize.toLocaleString('fr-FR')} personnes. Source publique :{' '}
             <a className="font-semibold text-primary hover:underline" href={poll.sourceUrl} target="_blank" rel="noreferrer">
               {poll.sourceLabel}
             </a>
@@ -127,7 +126,7 @@ function PollStudyCard({ poll }: { poll: VotingIntentPoll }) {
                   Autres scénarios résumés
                 </p>
                 <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                  {secondaryScenarios.length} scenario{secondaryScenarios.length > 1 ? 's' : ''} compacté{secondaryScenarios.length > 1 ? 's' : ''}
+                  {secondaryScenarios.length} scénario{secondaryScenarios.length > 1 ? 's' : ''} compacté{secondaryScenarios.length > 1 ? 's' : ''}
                 </p>
               </div>
               <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary transition group-open:rotate-45">
@@ -153,11 +152,11 @@ function CandidateLeaderboard({ candidates }: { candidates: PollCandidateAggrega
     <section className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Moyenne des scenarios</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Moyenne des scénarios</p>
           <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-900 dark:text-white">Hiérarchie moyenne</h2>
         </div>
         <p className="max-w-xl text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-          Moyenne simple sur l'ensemble des scenarios stockés. Ce n'est pas une projection electorale, mais un repere de niveau dans les tests publics disponibles.
+          Moyenne simple sur l'ensemble des scénarios stockés. Ce n'est pas une projection électorale, mais un repère de niveau dans les tests publics disponibles.
         </p>
       </div>
 
@@ -174,7 +173,7 @@ function CandidateLeaderboard({ candidates }: { candidates: PollCandidateAggrega
           >
             <div>
               <p className="font-semibold text-slate-900 dark:text-white">{candidate.candidateName}</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">{candidate.scenarioCount} scenarios comptabilisés</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">{candidate.scenarioCount} scénarios comptabilisés</p>
             </div>
             <p className="text-lg font-black text-primary">{formatScore(candidate.averageScore)}%</p>
             <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">{candidate.leaderCount}</p>
@@ -200,7 +199,7 @@ function LatestStudySpotlight({ poll }: { poll: VotingIntentPoll | null }) {
         {poll.pollster} - fin de terrain le {formatFrenchDate(poll.fieldworkEnd)}
       </h2>
       <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-        {poll.scenarios.length} scenarios en base, avec un echantillon de {poll.sampleSize.toLocaleString('fr-FR')} personnes.
+        {poll.scenarios.length} scénarios en base, avec un échantillon de {poll.sampleSize.toLocaleString('fr-FR')} personnes.
       </p>
       {featuredScenario ? (
         <div className="mt-4 rounded-xl border border-emerald-200/70 dark:border-emerald-900/50 bg-white/80 dark:bg-slate-900/70 p-4">
@@ -221,7 +220,7 @@ function LatestStudySpotlight({ poll }: { poll: VotingIntentPoll | null }) {
         <details className="group mt-4 rounded-xl border border-emerald-200/70 dark:border-emerald-900/50 bg-white/75 dark:bg-slate-900/60">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-slate-700 marker:hidden dark:text-slate-200">
             <span>
-              Voir les {secondaryScenarios.length} autre{secondaryScenarios.length > 1 ? 's' : ''} scenario{secondaryScenarios.length > 1 ? 's' : ''}
+              Voir les {secondaryScenarios.length} autre{secondaryScenarios.length > 1 ? 's' : ''} scénario{secondaryScenarios.length > 1 ? 's' : ''}
             </span>
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-700 transition group-open:rotate-45 dark:text-emerald-300">
               +
@@ -267,63 +266,66 @@ export default function Polls() {
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
       <SeoHead
-        title="Sondage presidentielle 2027 : intentions de vote, classement et instituts"
-        description="Sondage presidentielle 2027 : comparez les intentions de vote, les scenarios, les instituts et les dynamiques de campagne sur une page claire."
+        title="Sondage présidentielle 2027 : intentions de vote, classement et instituts"
+        description="Sondage présidentielle 2027 : comparez les intentions de vote, les scénarios, les instituts et les dynamiques de campagne sur une page claire."
         path="/polls"
         keywords={[
-          'sondage presidentielle 2027',
-          'presidentielle 2027 sondage',
+          'sondage présidentielle 2027',
+          'présidentielle 2027 sondage',
           'intentions de vote 2027',
-          'sondage IFOP presidentielle 2027',
-          'classement candidats presidentielle 2027',
+          'sondage IFOP présidentielle 2027',
+          'classement candidats présidentielle 2027',
         ]}
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
-          name: 'Sondages presidentielle 2027',
-          description: 'Page de suivi des intentions de vote et des scenarios de sondages pour la presidentielle 2027.',
+          name: 'Sondages présidentielle 2027',
+          description: 'Page de suivi des intentions de vote et des scénarios de sondages pour la présidentielle 2027.',
           inLanguage: 'fr-FR',
         }}
       />
-      <header className="border-b border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-4 py-5">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Sondage</p>
-              <h1 className="mt-2 text-3xl font-black tracking-tight">Sondages d'intention de vote 2027</h1>
-            </div>
-            <div className="flex flex-col items-end gap-3">
-              <DesktopAppTabs items={appNavItems} className="shadow-none" />
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/40 px-4 py-3 text-right">
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Maj base</p>
-                <p className="mt-1 text-sm font-semibold">{dataLastUpdatedLabel}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <AppSiteHeader containerClassName="max-w-6xl" />
 
       <main className="max-w-6xl mx-auto px-4 pb-28 md:pb-16 py-6 space-y-6">
+        <section className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/92 p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] dark:border-slate-800 dark:bg-slate-900/92 sm:p-6">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Sondage</p>
+              <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+                Sondages d'intention de vote 2027
+              </h1>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                Lecture claire des études disponibles, des scénarios testés et des équilibres de premier tour.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/40 px-4 py-3 text-right">
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Mise à jour base</p>
+              <p className="mt-1 text-sm font-semibold">{dataLastUpdatedLabel}</p>
+            </div>
+          </div>
+        </section>
+
         <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <PollSummaryCard
-            label="Etudes"
+            label="Études"
             value={String(totalStudies)}
-            detail={`${pollsterCount} instituts differents consultés.`}
+            detail={`${pollsterCount} instituts différents consultés.`}
           />
           <PollSummaryCard
-            label="Scenarios"
+            label="Scénarios"
             value={String(totalScenarios)}
             detail="Nombre de configurations de premier tour comparables."
           />
           <PollSummaryCard
             label="Dernier terrain"
             value={lastFieldworkLabel}
-            detail="Date de fin de terrain de l'etude la plus recente stockee."
+            detail="Date de fin de terrain de l’étude la plus récente stockée."
           />
           <PollSummaryCard
             label="Leader moyen"
             value={meanLeader ? `${meanLeader.candidateName} ${formatScore(meanLeader.averageScore)}%` : 'N/A'}
-            detail="Moyenne simple sur l'ensemble des scenarios disponibles."
+            detail="Moyenne simple sur l’ensemble des scénarios disponibles."
           />
         </section>
 
@@ -335,7 +337,7 @@ export default function Polls() {
             <LatestStudySpotlight poll={latestStudy} />
 
             <section className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm">
-              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Resume clair</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Résumé clair</p>
               <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-900 dark:text-white">Ce qu'il faut retenir</h2>
               <div className="mt-5 grid gap-3">
                 {keyTakeaways.map((takeaway, index) => (

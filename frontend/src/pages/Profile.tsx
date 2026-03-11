@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { MobileAppNav } from '../components/MobileAppNav'
 import { useAuthSession } from '../features/auth/hooks/useAuthSession'
 import { useFavoriteCandidates } from '../features/auth/hooks/useFavoriteCandidates'
 import { CandidateProfileTabs } from '../features/candidates/profile/components/CandidateProfileTabs'
@@ -14,6 +15,7 @@ import { ProfileSourcesSection } from '../features/candidates/profile/components
 import { ProfileTimelineSection } from '../features/candidates/profile/components/ProfileTimelineSection'
 import { useCandidateProfile } from '../features/candidates/profile/hooks/useCandidateProfile'
 import { buildProfileCandidateViewModel } from '../features/candidates/profile/utils/profileCandidateViewModel'
+import { appNavItems } from '../navigation/appNavItems'
 import { SeoHead } from '../seo/SeoHead'
 
 export default function Profile() {
@@ -64,18 +66,18 @@ export default function Profile() {
     <div className="relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
       <SeoHead
         title={`${candidate.name} 2027 : profil, positions, interventions et sondages`}
-        description={`${candidate.name} 2027 : fiche complete avec positions, interventions, videos, tweets, sources et lecture de campagne.`}
+        description={`${candidate.name} 2027 : fiche complète avec positions, interventions, vidéos, tweets, sources et lecture de campagne.`}
         path={`/candidats/${candidate.id}`}
         keywords={[
           `${candidate.name} 2027`,
-          `${candidate.name} presidentielle 2027`,
+          `${candidate.name} présidentielle 2027`,
           `${candidate.name} candidat 2027`,
         ]}
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'ProfilePage',
           name: `${candidate.name} 2027`,
-          description: `${candidate.name} : profil, positions, interventions et sources pour la presidentielle 2027.`,
+          description: `${candidate.name} : profil, positions, interventions et sources pour la présidentielle 2027.`,
           inLanguage: 'fr-FR',
         }}
       />
@@ -107,6 +109,8 @@ export default function Profile() {
           <ProfileSourcesSection sources={candidate.sources} />
         </div>
       </main>
+
+      <MobileAppNav items={appNavItems} />
     </div>
   )
 }

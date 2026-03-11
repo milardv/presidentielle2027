@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comment se deroule l’election presidentielle ? Regles, tours et qualification</title>
-  <meta name="description" content="Comment se deroule l’election presidentielle francaise ? Deux tours, qualification, campagne, parrainages et logique du scrutin presidentiel." />
+  <title>Comment se déroule l’élection présidentielle ? Règles, tours et qualification</title>
+  <meta name="description" content="Comment se déroule l’élection présidentielle française ? Deux tours, qualification, majorité absolue et logique du scrutin expliqués simplement." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Presidentielles 2027" />
-  <meta property="og:title" content="Comment se deroule l’election presidentielle ? Regles, tours et qualification" />
-  <meta property="og:description" content="Comment se deroule l’election presidentielle francaise ? Deux tours, qualification, campagne, parrainages et logique du scrutin presidentiel." />
+  <meta property="og:site_name" content="Présidentielles 2027" />
+  <meta property="og:title" content="Comment se déroule l’élection présidentielle ? Règles, tours et qualification" />
+  <meta property="og:description" content="Comment se déroule l’élection présidentielle française ? Deux tours, qualification, majorité absolue et logique du scrutin expliqués simplement." />
   <meta property="og:url" content="https://milardv.github.io/presidentielle2027/comment-se-deroule-election-presidentielle/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Comment se deroule l’election presidentielle ? Regles, tours et qualification" />
-  <meta name="twitter:description" content="Comment se deroule l’election presidentielle francaise ? Deux tours, qualification, campagne, parrainages et logique du scrutin presidentiel." />
+  <meta name="twitter:title" content="Comment se déroule l’élection présidentielle ? Règles, tours et qualification" />
+  <meta name="twitter:description" content="Comment se déroule l’élection présidentielle française ? Deux tours, qualification, majorité absolue et logique du scrutin expliqués simplement." />
   <link rel="canonical" href="https://milardv.github.io/presidentielle2027/comment-se-deroule-election-presidentielle/" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Combien y a-t-il de tours a l’election presidentielle ?","acceptedAnswer":{"@type":"Answer","text":"Deux tours, sauf victoire au premier tour avec majorite absolue des suffrages exprimes, ce qui n’arrive pas dans les configurations contemporaines."}},{"@type":"Question","name":"Qui se qualifie pour le second tour ?","acceptedAnswer":{"@type":"Answer","text":"Les deux candidats arrives en tete au premier tour."}},{"@type":"Question","name":"Pourquoi les reports de voix comptent-ils autant ?","acceptedAnswer":{"@type":"Answer","text":"Parce qu’entre les deux tours, le scrutin devient un duel. Les electorats elimines du premier tour deviennent alors decisifs."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Combien y a-t-il de tours à l’élection présidentielle ?","acceptedAnswer":{"@type":"Answer","text":"Deux, sauf si un candidat obtient dès le premier tour la majorité absolue des suffrages exprimés."}},{"@type":"Question","name":"Qui se qualifie pour le second tour ?","acceptedAnswer":{"@type":"Answer","text":"Les deux candidats arrivés en tête au premier tour se qualifient pour le second."}},{"@type":"Question","name":"Pourquoi les reports de voix comptent-ils autant ?","acceptedAnswer":{"@type":"Answer","text":"Parce qu’entre les deux tours, les électorats des candidats éliminés deviennent décisifs pour faire basculer l’élection."}}]}</script>
   <style>
     :root {
       color-scheme: light;
@@ -51,7 +51,44 @@
       gap: 16px;
       padding: 16px 0 24px;
     }
-    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 1.1rem; }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      box-shadow: 0 16px 36px rgba(26,34,127,.24);
+      flex: none;
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-title {
+      display: block;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+    .brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .nav { display: flex; flex-wrap: wrap; gap: 10px; }
     .nav a {
       border: 1px solid var(--border);
@@ -173,7 +210,13 @@
 <body>
   <main class="shell">
     <header class="topbar">
-      <div class="brand">Presidentielles 2027</div>
+      <a class="brand-link" href="https://milardv.github.io/presidentielle2027/" aria-label="Retour à l’accueil Présidentielles 2027">
+        <span class="brand-mark">↗</span>
+        <span class="brand-copy">
+          <span class="brand-title">Présidentielles 2027</span>
+          <span class="brand-subtitle">Candidats, sondages et intentions de vote</span>
+        </span>
+      </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="https://milardv.github.io/presidentielle2027/">Accueil</a>
         <a href="https://milardv.github.io/presidentielle2027/polls/">Sondages</a>
@@ -184,24 +227,24 @@
 
     <section class="hero">
       <span class="eyebrow">Mode d’emploi</span>
-      <h1>Comment se deroule l’election presidentielle ?</h1>
-      <p class="lead">Cette page explique le fonctionnement de l’election presidentielle francaise de facon claire pour les internautes qui veulent comprendre les regles avant de suivre 2027.</p>
+      <h1>Comment se déroule l’élection présidentielle ?</h1>
+      <p class="lead">L’élection présidentielle française se déroule en deux tours : tous les candidats qualifiés au premier, puis les deux premiers au second si personne n’obtient la majorité absolue dès le départ.</p>
 
       <div class="chips">
-        <span class="chip">comment se deroule l election presidentielle</span><span class="chip">regles election presidentielle france</span>
+        <span class="chip">comment se déroule l élection présidentielle</span><span class="chip">règles élection présidentielle france</span>
       </div>
 
       <div class="layout">
         <div>
           
             <article class="card">
-              <h2>Le schema general du scrutin</h2>
-              <p>Au premier tour, tous les candidats qualifies se presentent. Si aucun n’obtient la majorite absolue des suffrages exprimes, un second tour oppose les deux candidats arrives en tete.</p><p>Le second tour tranche entre ces deux finalistes. Cette logique explique pourquoi les sondages de premier tour, les reserves de voix et les reports sont aussi surveilles dans la campagne presidentielle.</p>
+              <h2>Le premier tour</h2>
+              <p>Au premier tour, tous les candidats officiellement qualifiés sont en compétition. Si l’un d’entre eux recueille la majorité absolue des suffrages exprimés, il est élu immédiatement.</p><p>Dans les faits contemporains, ce cas est exceptionnel. Le premier tour sert donc surtout à sélectionner les deux finalistes et à mesurer le poids réel de chaque bloc politique.</p>
             </article>
           
             <article class="card">
-              <h2>Pourquoi cette page est utile pour 2027</h2>
-              <p>Une grande partie des recherches autour de 2027 melange candidats, calendrier, regles et sondages. Cette page sert de point d’ordre: comprendre d’abord le mecanisme, puis lire correctement les scenarios et les rapports de force.</p><p>Pour un suivi plus concret de la campagne 2027, il faut ensuite consulter la page sondages et les fiches des candidats les plus cites.</p>
+              <h2>Pourquoi le second tour change tout</h2>
+              <p>Une fois les deux finalistes connus, l’élection devient un duel. Les électeurs des candidats éliminés doivent alors arbitrer, se reporter, s’abstenir ou voter blanc, ce qui modifie fortement la logique du scrutin.</p><p>C’est pour cela que la lecture de 2027 ne peut pas s’arrêter au premier tour : il faut aussi regarder les réserves de voix, les compatibilités politiques et les rejets réciproques.</p>
             </article>
           
         </div>
@@ -210,7 +253,7 @@
           <section class="panel" style="padding:22px;">
             <div class="eyebrow">A retenir</div>
             <ul>
-              <li><span>Le scrutin se joue en deux tours.</span></li><li><span>Les deux premiers du premier tour se qualifient pour le second.</span></li><li><span>Le vainqueur du second tour devient president de la Republique.</span></li>
+              <li><span>Le scrutin se joue en deux tours.</span></li><li><span>Les deux premiers du premier tour se qualifient pour le second.</span></li><li><span>Le vainqueur du second tour devient président de la République.</span></li>
             </ul>
           </section>
 
@@ -229,7 +272,7 @@
                 </a>
               
                 <a class="cta" href="https://milardv.github.io/presidentielle2027/quand-aura-lieu-la-presidentielle-2027/">
-                  <span>Quand aura lieu la presidentielle 2027</span>
+                  <span>Quand aura lieu la présidentielle 2027</span>
                   <span>→</span>
                 </a>
               
@@ -244,25 +287,25 @@
       <div class="faq-grid">
         
           <article class="faq">
-            <h2>Combien y a-t-il de tours a l’election presidentielle ?</h2>
-            <p>Deux tours, sauf victoire au premier tour avec majorite absolue des suffrages exprimes, ce qui n’arrive pas dans les configurations contemporaines.</p>
+            <h2>Combien y a-t-il de tours à l’élection présidentielle ?</h2>
+            <p>Deux, sauf si un candidat obtient dès le premier tour la majorité absolue des suffrages exprimés.</p>
           </article>
         
           <article class="faq">
             <h2>Qui se qualifie pour le second tour ?</h2>
-            <p>Les deux candidats arrives en tete au premier tour.</p>
+            <p>Les deux candidats arrivés en tête au premier tour se qualifient pour le second.</p>
           </article>
         
           <article class="faq">
             <h2>Pourquoi les reports de voix comptent-ils autant ?</h2>
-            <p>Parce qu’entre les deux tours, le scrutin devient un duel. Les electorats elimines du premier tour deviennent alors decisifs.</p>
+            <p>Parce qu’entre les deux tours, les électorats des candidats éliminés deviennent décisifs pour faire basculer l’élection.</p>
           </article>
         
       </div>
     </section>
 
     <footer>
-      Cette page fait partie de Presidentielles 2027 et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.
+      Cette page fait partie de Présidentielles 2027 et renvoie vers les données de campagne, les profils candidats et les sondages 2027.
     </footer>
   </main>
 </body>

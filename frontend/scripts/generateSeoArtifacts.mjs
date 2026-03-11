@@ -1,5 +1,6 @@
 import { mkdir, rm, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
+import { accentizeFrenchCopy } from '../src/seo/frenchCopy.js'
 import { SITE_NAME, SITE_URL, seoPages } from '../src/seo/seoPagesData.js'
 
 const PROJECT_ROOT = resolve(new URL('..', import.meta.url).pathname)
@@ -30,15 +31,24 @@ function escapeHtml(value) {
 
 function renderSeoPage(page) {
   const canonicalUrl = buildAbsoluteUrl(`/${page.slug}/`)
+  const siteName = accentizeFrenchCopy(SITE_NAME)
+  const title = accentizeFrenchCopy(page.title)
+  const description = accentizeFrenchCopy(page.description)
+  const heroEyebrow = accentizeFrenchCopy(page.heroEyebrow)
+  const heroTitle = accentizeFrenchCopy(page.heroTitle)
+  const heroIntro = accentizeFrenchCopy(page.heroIntro)
+  const footerText = accentizeFrenchCopy(
+    `Cette page fait partie de ${SITE_NAME} et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.`,
+  )
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: page.faqs.map((faq) => ({
       '@type': 'Question',
-      name: faq.question,
+      name: accentizeFrenchCopy(faq.question),
       acceptedAnswer: {
         '@type': 'Answer',
-        text: faq.answer,
+        text: accentizeFrenchCopy(faq.answer),
       },
     })),
   }
@@ -48,17 +58,17 @@ function renderSeoPage(page) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${escapeHtml(page.title)}</title>
-  <meta name="description" content="${escapeHtml(page.description)}" />
+  <title>${escapeHtml(title)}</title>
+  <meta name="description" content="${escapeHtml(description)}" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}" />
-  <meta property="og:title" content="${escapeHtml(page.title)}" />
-  <meta property="og:description" content="${escapeHtml(page.description)}" />
+  <meta property="og:site_name" content="${escapeHtml(siteName)}" />
+  <meta property="og:title" content="${escapeHtml(title)}" />
+  <meta property="og:description" content="${escapeHtml(description)}" />
   <meta property="og:url" content="${escapeHtml(canonicalUrl)}" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${escapeHtml(page.title)}" />
-  <meta name="twitter:description" content="${escapeHtml(page.description)}" />
+  <meta name="twitter:title" content="${escapeHtml(title)}" />
+  <meta name="twitter:description" content="${escapeHtml(description)}" />
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
   <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
   <style>
@@ -96,7 +106,44 @@ function renderSeoPage(page) {
       gap: 16px;
       padding: 16px 0 24px;
     }
-    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 1.1rem; }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      box-shadow: 0 16px 36px rgba(26,34,127,.24);
+      flex: none;
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-title {
+      display: block;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+    .brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .nav { display: flex; flex-wrap: wrap; gap: 10px; }
     .nav a {
       border: 1px solid var(--border);
@@ -218,7 +265,13 @@ function renderSeoPage(page) {
 <body>
   <main class="shell">
     <header class="topbar">
-      <div class="brand">${escapeHtml(SITE_NAME)}</div>
+      <a class="brand-link" href="${escapeHtml(buildAbsoluteUrl('/'))}" aria-label="Retour à l’accueil ${escapeHtml(siteName)}">
+        <span class="brand-mark">↗</span>
+        <span class="brand-copy">
+          <span class="brand-title">${escapeHtml(siteName)}</span>
+          <span class="brand-subtitle">Candidats, sondages et intentions de vote</span>
+        </span>
+      </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="${escapeHtml(buildAbsoluteUrl('/'))}">Accueil</a>
         <a href="${escapeHtml(buildAbsoluteUrl('/polls'))}">Sondages</a>
@@ -228,12 +281,12 @@ function renderSeoPage(page) {
     </header>
 
     <section class="hero">
-      <span class="eyebrow">${escapeHtml(page.heroEyebrow)}</span>
-      <h1>${escapeHtml(page.heroTitle)}</h1>
-      <p class="lead">${escapeHtml(page.heroIntro)}</p>
+      <span class="eyebrow">${escapeHtml(heroEyebrow)}</span>
+      <h1>${escapeHtml(heroTitle)}</h1>
+      <p class="lead">${escapeHtml(heroIntro)}</p>
 
       <div class="chips">
-        ${page.queries.map((query) => `<span class="chip">${escapeHtml(query)}</span>`).join('')}
+        ${page.queries.map((query) => `<span class="chip">${escapeHtml(accentizeFrenchCopy(query))}</span>`).join('')}
       </div>
 
       <div class="layout">
@@ -242,8 +295,8 @@ function renderSeoPage(page) {
             .map(
               (section) => `
             <article class="card">
-              <h2>${escapeHtml(section.title)}</h2>
-              ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('')}
+              <h2>${escapeHtml(accentizeFrenchCopy(section.title))}</h2>
+              ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(accentizeFrenchCopy(paragraph))}</p>`).join('')}
             </article>
           `,
             )
@@ -254,7 +307,7 @@ function renderSeoPage(page) {
           <section class="panel" style="padding:22px;">
             <div class="eyebrow">A retenir</div>
             <ul>
-              ${page.summary.map((item) => `<li><span>${escapeHtml(item)}</span></li>`).join('')}
+              ${page.summary.map((item) => `<li><span>${escapeHtml(accentizeFrenchCopy(item))}</span></li>`).join('')}
             </ul>
           </section>
 
@@ -265,7 +318,7 @@ function renderSeoPage(page) {
                 .map(
                   (link) => `
                 <a class="cta" href="${escapeHtml(buildAbsoluteUrl(link.href))}">
-                  <span>${escapeHtml(link.label)}</span>
+                  <span>${escapeHtml(accentizeFrenchCopy(link.label))}</span>
                   <span>→</span>
                 </a>
               `,
@@ -284,8 +337,8 @@ function renderSeoPage(page) {
           .map(
             (faq) => `
           <article class="faq">
-            <h2>${escapeHtml(faq.question)}</h2>
-            <p>${escapeHtml(faq.answer)}</p>
+            <h2>${escapeHtml(accentizeFrenchCopy(faq.question))}</h2>
+            <p>${escapeHtml(accentizeFrenchCopy(faq.answer))}</p>
           </article>
         `,
           )
@@ -294,7 +347,7 @@ function renderSeoPage(page) {
     </section>
 
     <footer>
-      Cette page fait partie de ${escapeHtml(SITE_NAME)} et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.
+      ${escapeHtml(footerText)}
     </footer>
   </main>
 </body>

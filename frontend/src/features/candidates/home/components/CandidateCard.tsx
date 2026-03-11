@@ -18,7 +18,7 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
   return (
     <Link
       to={`/candidats/${candidate.id}`}
-      aria-label={`Voir la fiche detaillee de ${candidate.name}`}
+      aria-label={`Voir la fiche détaillée de ${candidate.name}`}
       className={`group block h-full overflow-hidden rounded-[1.85rem] bg-gradient-to-br ${partyGradientClasses} p-[1.5px] shadow-[0_18px_48px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_26px_64px_rgba(26,34,127,0.16)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/20`}
     >
       <article className="relative flex h-full flex-col overflow-hidden rounded-[1.72rem] border border-white/60 bg-white/92 dark:border-slate-800/80 dark:bg-slate-900/94">
@@ -85,7 +85,7 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
             </span>
           </div>
 
-          <p className="mt-4 text-[11px] text-slate-400">Source publiee le {formatFrenchDate(firstSource.date)}</p>
+          <p className="mt-4 text-[11px] text-slate-400">Source publiée le {formatFrenchDate(firstSource.date)}</p>
         </div>
       </article>
     </Link>

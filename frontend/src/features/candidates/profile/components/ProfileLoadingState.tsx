@@ -1,4 +1,6 @@
 import { ProfileSimpleHeader } from './ProfileSimpleHeader'
+import { MobileAppNav } from '../../../../components/MobileAppNav'
+import { appNavItems } from '../../../../navigation/appNavItems'
 
 export function ProfileLoadingState() {
   return (
@@ -10,6 +12,8 @@ export function ProfileLoadingState() {
         <div className="h-24 rounded-xl bg-slate-200 dark:bg-slate-800 animate-pulse" />
         <div className="h-40 rounded-xl bg-slate-200 dark:bg-slate-800 animate-pulse" />
       </main>
+
+      <MobileAppNav items={appNavItems} />
     </div>
   )
 }

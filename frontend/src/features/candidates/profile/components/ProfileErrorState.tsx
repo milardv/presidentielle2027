@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { MobileAppNav } from '../../../../components/MobileAppNav'
+import { appNavItems } from '../../../../navigation/appNavItems'
 import { ProfileSimpleHeader } from './ProfileSimpleHeader'
 
 interface ProfileErrorStateProps {
@@ -22,6 +24,8 @@ export function ProfileErrorState({ errorMessage }: ProfileErrorStateProps) {
           </Link>
         </div>
       </main>
+
+      <MobileAppNav items={appNavItems} />
     </div>
   )
 }

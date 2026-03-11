@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulateur presidentielle 2027 : comparer les candidats et les scenarios</title>
-  <meta name="description" content="Simulateur presidentielle 2027 : page d’entree pour comparer les candidats, les scenarios de sondages et les dynamiques de campagne." />
+  <title>Simulateur présidentielle 2027 : comparer les candidats et les scénarios</title>
+  <meta name="description" content="Simulateur présidentielle 2027 : ce qu’on peut vraiment comparer aujourd’hui entre candidats, scénarios de sondages et blocs politiques." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Presidentielles 2027" />
-  <meta property="og:title" content="Simulateur presidentielle 2027 : comparer les candidats et les scenarios" />
-  <meta property="og:description" content="Simulateur presidentielle 2027 : page d’entree pour comparer les candidats, les scenarios de sondages et les dynamiques de campagne." />
+  <meta property="og:site_name" content="Présidentielles 2027" />
+  <meta property="og:title" content="Simulateur présidentielle 2027 : comparer les candidats et les scénarios" />
+  <meta property="og:description" content="Simulateur présidentielle 2027 : ce qu’on peut vraiment comparer aujourd’hui entre candidats, scénarios de sondages et blocs politiques." />
   <meta property="og:url" content="https://milardv.github.io/presidentielle2027/simulateur-presidentielle-2027/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Simulateur presidentielle 2027 : comparer les candidats et les scenarios" />
-  <meta name="twitter:description" content="Simulateur presidentielle 2027 : page d’entree pour comparer les candidats, les scenarios de sondages et les dynamiques de campagne." />
+  <meta name="twitter:title" content="Simulateur présidentielle 2027 : comparer les candidats et les scénarios" />
+  <meta name="twitter:description" content="Simulateur présidentielle 2027 : ce qu’on peut vraiment comparer aujourd’hui entre candidats, scénarios de sondages et blocs politiques." />
   <link rel="canonical" href="https://milardv.github.io/presidentielle2027/simulateur-presidentielle-2027/" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Le site propose-t-il un simulateur de second tour ?","acceptedAnswer":{"@type":"Answer","text":"Pas encore sous la forme d’un outil de projection interactif complet. En revanche, il permet deja de comparer les scenarios testes par les instituts."}},{"@type":"Question","name":"Ou commencer pour comparer les candidats ?","acceptedAnswer":{"@type":"Answer","text":"La page sondages puis les fiches candidats constituent aujourd’hui le chemin le plus utile."}},{"@type":"Question","name":"Pourquoi parler de simulateur si l’outil n’est pas complet ?","acceptedAnswer":{"@type":"Answer","text":"Parce que l’intention de recherche est avant tout comparative. La page repond a cette attente sans promettre un modele predictif trompeur."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Existe-t-il déjà un simulateur fiable de second tour pour 2027 ?","acceptedAnswer":{"@type":"Answer","text":"Pas au sens d’un outil capable de prédire sérieusement l’issue finale. En revanche, les scénarios de sondages permettent déjà de comparer plusieurs configurations de premier tour et d’anticiper certains équilibres."}},{"@type":"Question","name":"Par quoi faut-il commencer pour comparer les candidats ?","acceptedAnswer":{"@type":"Answer","text":"Le plus utile est de partir des intentions de vote, puis de regarder le statut réel du candidat, son bloc politique et sa capacité à exister au-delà d’un simple test de sondage."}},{"@type":"Question","name":"À quoi sert alors cette page ?","acceptedAnswer":{"@type":"Answer","text":"Elle sert à répondre à la vraie question derrière le mot simulateur : quels candidats comparer, quels scénarios regarder et quelles limites garder en tête avant de tirer des conclusions trop tôt."}}]}</script>
   <style>
     :root {
       color-scheme: light;
@@ -51,7 +51,44 @@
       gap: 16px;
       padding: 16px 0 24px;
     }
-    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 1.1rem; }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      box-shadow: 0 16px 36px rgba(26,34,127,.24);
+      flex: none;
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-title {
+      display: block;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+    .brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .nav { display: flex; flex-wrap: wrap; gap: 10px; }
     .nav a {
       border: 1px solid var(--border);
@@ -173,7 +210,13 @@
 <body>
   <main class="shell">
     <header class="topbar">
-      <div class="brand">Presidentielles 2027</div>
+      <a class="brand-link" href="https://milardv.github.io/presidentielle2027/" aria-label="Retour à l’accueil Présidentielles 2027">
+        <span class="brand-mark">↗</span>
+        <span class="brand-copy">
+          <span class="brand-title">Présidentielles 2027</span>
+          <span class="brand-subtitle">Candidats, sondages et intentions de vote</span>
+        </span>
+      </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="https://milardv.github.io/presidentielle2027/">Accueil</a>
         <a href="https://milardv.github.io/presidentielle2027/polls/">Sondages</a>
@@ -184,24 +227,24 @@
 
     <section class="hero">
       <span class="eyebrow">Comparaison</span>
-      <h1>Simulateur presidentielle 2027 : comparer au lieu de deviner</h1>
-      <p class="lead">Le site n’expose pas encore un simulateur mathematique complet, mais il sert deja de comparateur de campagne: candidats, scenarios de sondages, videos, tweets et attention media.</p>
+      <h1>Simulateur présidentielle 2027 : ce qu’on peut comparer sérieusement</h1>
+      <p class="lead">Il n’existe pas encore de simulateur crédible capable de prédire 2027 avec certitude. En revanche, on peut déjà comparer les scénarios de premier tour, les candidats testés et les grands équilibres politiques.</p>
 
       <div class="chips">
-        <span class="chip">simulateur presidentielle 2027</span><span class="chip">comparateur presidentielle 2027</span>
+        <span class="chip">simulateur présidentielle 2027</span><span class="chip">comparateur présidentielle 2027</span>
       </div>
 
       <div class="layout">
         <div>
           
             <article class="card">
-              <h2>Pourquoi cette page existe</h2>
-              <p>La requete simulateur presidentielle 2027 traduit un besoin de comparaison, pas seulement un besoin de prediction. Cette page oriente donc vers les bons outils disponibles aujourd’hui sur le site.</p><p>Le visiteur peut comparer les profils, suivre les intentions de vote et lire les pages dediees aux candidats qui structurent deja la conversation publique.</p>
+              <h2>Ce qu’un simulateur peut vraiment montrer en 2026</h2>
+              <p>À ce stade, un outil sérieux ne peut pas dire qui sera élu en 2027. En revanche, il peut comparer les candidats présents dans les sondages, observer comment un scénario change quand un nom entre ou sort, et mesurer quels blocs restent les plus solides.</p><p>C’est déjà beaucoup : cela permet de voir qui pèse réellement, qui n’existe que dans certains cas de figure et quels duels deviennent crédibles selon les configurations testées.</p>
             </article>
           
             <article class="card">
-              <h2>Ce que le site sait deja faire</h2>
-              <p>La page sondages donne un classement lisible par institut et par scenario. Les fiches candidats donnent les positions, interventions, videos, tweets et analyses de reseau.</p><p>Cette combinaison constitue deja une base solide de comparaison. Un simulateur plus poussé pourra etre ajoute ensuite sans changer l’architecture de contenu.</p>
+              <h2>Ce qu’il ne faut pas promettre</h2>
+              <p>Un simulateur honnête ne doit pas transformer des données encore incomplètes en prophétie. Les candidatures ne sont pas toutes arrêtées, les alliances peuvent bouger et la campagne réelle modifiera encore les rapports de force.</p><p>La bonne approche consiste donc à comparer, hiérarchiser et observer les tendances, plutôt qu’à faire croire qu’un algorithme sait déjà qui gagnera la présidentielle 2027.</p>
             </article>
           
         </div>
@@ -210,7 +253,7 @@
           <section class="panel" style="padding:22px;">
             <div class="eyebrow">A retenir</div>
             <ul>
-              <li><span>Comparer les candidats sur leurs profils et leurs interventions.</span></li><li><span>Comparer les scenarios de sondages institut par institut.</span></li><li><span>Suivre les dynamiques media sans sortir du site.</span></li>
+              <li><span>Le plus utile aujourd’hui est de comparer les scénarios, pas de promettre une prédiction définitive.</span></li><li><span>Les intentions de vote permettent de lire les rapports de force par candidat et par bloc.</span></li><li><span>Un bon comparateur montre les écarts, les variantes de scénario et les dynamiques, pas un faux verdict figé.</span></li>
             </ul>
           </section>
 
@@ -229,7 +272,7 @@
                 </a>
               
                 <a class="cta" href="https://milardv.github.io/presidentielle2027/presidentielle-2027/">
-                  <span>Guide presidentielle 2027</span>
+                  <span>Guide présidentielle 2027</span>
                   <span>→</span>
                 </a>
               
@@ -244,25 +287,25 @@
       <div class="faq-grid">
         
           <article class="faq">
-            <h2>Le site propose-t-il un simulateur de second tour ?</h2>
-            <p>Pas encore sous la forme d’un outil de projection interactif complet. En revanche, il permet deja de comparer les scenarios testes par les instituts.</p>
+            <h2>Existe-t-il déjà un simulateur fiable de second tour pour 2027 ?</h2>
+            <p>Pas au sens d’un outil capable de prédire sérieusement l’issue finale. En revanche, les scénarios de sondages permettent déjà de comparer plusieurs configurations de premier tour et d’anticiper certains équilibres.</p>
           </article>
         
           <article class="faq">
-            <h2>Ou commencer pour comparer les candidats ?</h2>
-            <p>La page sondages puis les fiches candidats constituent aujourd’hui le chemin le plus utile.</p>
+            <h2>Par quoi faut-il commencer pour comparer les candidats ?</h2>
+            <p>Le plus utile est de partir des intentions de vote, puis de regarder le statut réel du candidat, son bloc politique et sa capacité à exister au-delà d’un simple test de sondage.</p>
           </article>
         
           <article class="faq">
-            <h2>Pourquoi parler de simulateur si l’outil n’est pas complet ?</h2>
-            <p>Parce que l’intention de recherche est avant tout comparative. La page repond a cette attente sans promettre un modele predictif trompeur.</p>
+            <h2>À quoi sert alors cette page ?</h2>
+            <p>Elle sert à répondre à la vraie question derrière le mot simulateur : quels candidats comparer, quels scénarios regarder et quelles limites garder en tête avant de tirer des conclusions trop tôt.</p>
           </article>
         
       </div>
     </section>
 
     <footer>
-      Cette page fait partie de Presidentielles 2027 et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.
+      Cette page fait partie de Présidentielles 2027 et renvoie vers les données de campagne, les profils candidats et les sondages 2027.
     </footer>
   </main>
 </body>
