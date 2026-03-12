@@ -8,6 +8,9 @@ interface HomeSummaryProps {
   lastUpdateLabel: string
 }
 
+const ELYSEE_HERO_IMAGE_URL =
+  'https://res.cloudinary.com/dagxzno9s/image/upload/f_auto,q_auto/v1773332875/presidentielles/site/elysee-home.png'
+
 const summaryStats = (props: HomeSummaryProps) => [
   { label: 'Profils suivis', value: `${props.totalCount}`, icon: UsersRound },
   { label: 'Déclarés', value: `${props.declaredCount}`, icon: Landmark },
@@ -72,7 +75,7 @@ export function HomeSummary(props: HomeSummaryProps) {
 
           <div className="hero-image-reveal relative min-h-[22rem] border-t border-slate-200 xl:border-l xl:border-t-0">
             <img
-              src="/elysee.png"
+              src={ELYSEE_HERO_IMAGE_URL}
               alt="Palais de l'Élysée"
               className="absolute inset-0 h-full w-full object-cover"
             />
