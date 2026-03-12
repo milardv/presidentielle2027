@@ -41,6 +41,18 @@ html {
   color-scheme: light;
 }
 
+html.home-viewport-scrollbar-hidden,
+body.home-viewport-scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html.home-viewport-scrollbar-hidden::-webkit-scrollbar,
+body.home-viewport-scrollbar-hidden::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 @theme {
   --color-primary: #1a227f;
   --color-background-light: #f6f6f8;
@@ -48,6 +60,42 @@ html {
   --color-neutral-slate: #475569;
   --color-accent-blue: #3b82f6;
   --font-display: "Public Sans", sans-serif;
+}
+
+@keyframes heroRevealUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroRevealScale {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes candidateCardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @layer utilities {
@@ -64,5 +112,116 @@ html {
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  .candidate-rail-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .candidate-rail-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .candidate-rail-shell {
+    position: relative;
+    border-radius: 2rem;
+  }
+
+  .candidate-rail-track {
+    position: relative;
+    height: 1rem;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, rgba(226, 232, 240, 0.96) 0%, rgba(203, 213, 225, 0.86) 100%);
+    box-shadow:
+      inset 0 0 0 1px rgba(148, 163, 184, 0.24),
+      inset 0 2px 4px rgba(255, 255, 255, 0.74);
+    cursor: pointer;
+  }
+
+  .candidate-rail-thumb {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 1rem;
+    min-width: 5.5rem;
+    border: 0;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, rgba(26, 34, 127, 1) 0%, rgba(34, 80, 205, 0.98) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.24),
+      0 8px 20px rgba(26, 34, 127, 0.18);
+    cursor: grab;
+    transform: translateY(-50%);
+    transition:
+      left 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      width 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      background 180ms ease;
+  }
+
+  .candidate-rail-thumb:hover {
+    background: linear-gradient(180deg, rgba(21, 29, 115, 1) 0%, rgba(26, 92, 219, 0.98) 100%);
+  }
+
+  .candidate-rail-thumb-active {
+    transform: translateY(-50%) scaleX(1.03) scaleY(1.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.24),
+      0 12px 24px rgba(26, 34, 127, 0.26);
+  }
+
+  .candidate-rail-thumb:active,
+  .candidate-rail-thumb-dragging {
+    cursor: grabbing;
+  }
+
+  .hero-reveal {
+    opacity: 0;
+    animation: heroRevealUp 680ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  .hero-reveal-delay-1 {
+    animation-delay: 80ms;
+  }
+
+  .hero-reveal-delay-2 {
+    animation-delay: 160ms;
+  }
+
+  .hero-reveal-delay-3 {
+    animation-delay: 240ms;
+  }
+
+  .hero-reveal-delay-4 {
+    animation-delay: 320ms;
+  }
+
+  .hero-reveal-delay-5 {
+    animation-delay: 400ms;
+  }
+
+  .hero-image-reveal {
+    opacity: 0;
+    animation: heroRevealScale 920ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+    will-change: transform, opacity;
+  }
+
+  .candidate-card-reveal {
+    opacity: 0;
+    animation: candidateCardReveal 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal,
+    .hero-image-reveal,
+    .candidate-card-reveal {
+      opacity: 1;
+      animation: none;
+      transform: none;
+    }
   }
 }

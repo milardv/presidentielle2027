@@ -236,7 +236,7 @@ export const seoPages = [
       'Au 11 mars 2026, la date officielle n’est pas encore publiée. On peut néanmoins répondre clairement à la question : l’élection doit se tenir au printemps 2027, avec deux tours espacés de quatorze jours.',
     queries: [
       'quand aura lieu la présidentielle 2027',
-      'date élection présidentielle 2027',
+      'date élections présidentielles 2027',
     ],
     summary: [
       'La date exacte n’est pas encore officielle au 11 mars 2026.',

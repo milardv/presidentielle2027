@@ -206,6 +206,20 @@
       font-size: .92rem;
       line-height: 1.7;
     }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .footer-links a {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.86);
+      padding: 9px 13px;
+      font-size: .82rem;
+      font-weight: 700;
+    }
     @media (max-width: 920px) {
       .layout { grid-template-columns: 1fr; }
       .hero { padding: 24px; }
@@ -236,7 +250,7 @@
       <p class="lead">Au 11 mars 2026, la date officielle n’est pas encore publiée. On peut néanmoins répondre clairement à la question : l’élection doit se tenir au printemps 2027, avec deux tours espacés de quatorze jours.</p>
 
       <div class="chips">
-        <span class="chip">quand aura lieu la présidentielle 2027</span><span class="chip">date élection présidentielle 2027</span>
+        <span class="chip">quand aura lieu la présidentielle 2027</span><span class="chip">date élections présidentielles 2027</span>
       </div>
 
       <div class="layout">
@@ -311,6 +325,11 @@
 
     <footer>
       Cette page fait partie de Présidentielles 2027 et renvoie vers les données de campagne, les profils candidats et les sondages 2027.
+      <div class="footer-links">
+        <a href="https://electionpresidentielle2027.com/">Accueil</a>
+        <a href="https://electionpresidentielle2027.com/polls/">Sondages</a>
+        <a href="https://electionpresidentielle2027.com/sources/">Sources</a>
+      </div>
     </footer>
   </main>
 </body>

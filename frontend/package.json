@@ -17,7 +17,8 @@
     "sync:x-profiles": "node scripts/syncCandidateXProfiles.mjs",
     "sync:network-graph": "node scripts/enrichCandidateNetworkGraph.mjs",
     "sync:biography-background": "node scripts/enrichCandidateBiographyBackground.mjs",
-    "sync:candidate-photos": "node scripts/uploadCandidatePhotosToCloudinary.mjs"
+    "sync:candidate-photos": "node scripts/uploadCandidatePhotosToCloudinary.mjs",
+    "sync:candidate-videos": "node scripts/uploadCandidateVideosToCloudinary.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",

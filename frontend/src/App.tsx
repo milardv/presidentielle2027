@@ -7,6 +7,7 @@ import PersonalProfile from './pages/PersonalProfile.tsx'
 import Profile from './pages/Profile.tsx'
 import CandidateTweets from './pages/CandidateTweets.tsx'
 import CandidateVideos from './pages/CandidateVideos.tsx'
+import Sources from './pages/Sources.tsx'
 import SeoLandingPage from './pages/SeoLandingPage.tsx'
 import { seoPages } from './seo/seoPagesData.js'
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/polls" element={<Polls />} />
           <Route path="/profile" element={<PersonalProfile />} />
+          <Route path="/sources" element={<Sources />} />
           {seoPages.map((page) => (
             <Route key={page.slug} path={`/${page.slug}`} element={<SeoLandingPage pageSlug={page.slug} />} />
           ))}

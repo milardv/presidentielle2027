@@ -1,3 +1,6 @@
+import { ArrowRight, CalendarDays, Landmark, UsersRound } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
 interface HomeSummaryProps {
   totalCount: number
   declaredCount: number
@@ -5,39 +8,75 @@ interface HomeSummaryProps {
   lastUpdateLabel: string
 }
 
-export function HomeSummary(_props: HomeSummaryProps) {
-  return (
-    <section className="relative overflow-hidden py-6 sm:py-8">
-      <div className="absolute inset-x-0 top-8 h-[22rem] rounded-[2rem] bg-[radial-gradient(circle_at_top_left,_rgba(26,34,127,0.14),_transparent_38%),radial-gradient(circle_at_bottom_right,_rgba(245,158,11,0.14),_transparent_28%)] pointer-events-none" />
+const summaryStats = (props: HomeSummaryProps) => [
+  { label: 'Profils suivis', value: `${props.totalCount}`, icon: UsersRound },
+  { label: 'Déclarés', value: `${props.declaredCount}`, icon: Landmark },
+  { label: 'Conditionnels', value: `${props.conditionalCount}`, icon: UsersRound },
+  { label: 'Mise à jour', value: props.lastUpdateLabel, icon: CalendarDays },
+]
 
-      <div className="relative rounded-[2rem] border border-slate-200/80 bg-white/88 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/88 sm:p-8">
-        <div className="grid gap-8 lg:items-end">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/10 bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-primary">
-              Candidats, sondages et intentions de vote 2027
+export function HomeSummary(props: HomeSummaryProps) {
+  return (
+    <section className="py-6 sm:py-8">
+      <div className="overflow-hidden rounded-[2.25rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.08)]">
+        <div className="grid xl:grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)]">
+          <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
+            <span className="hero-reveal inline-flex w-fit items-center gap-2 rounded-full border border-primary/15 bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-primary">
+              Élections présidentielles 2027
+            </span>
+
+            <h1 className="hero-reveal hero-reveal-delay-1 mt-4 max-w-4xl text-3xl font-black tracking-tight text-slate-950 sm:text-4xl lg:text-[3.25rem] lg:leading-[1.02]">
+              Qui sont les candidats aux <span className="text-primary">présidentielles 2027</span> ?
+            </h1>
+
+            <p className="hero-reveal hero-reveal-delay-2 mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+              Suivez les candidatures, comparez les sondages et retrouvez en un seul endroit les profils, interventions,
+              vidéos et signaux de campagne des principaux prétendants à l&apos;Élysée.
+            </p>
+
+            <div className="hero-reveal hero-reveal-delay-3 mt-7 flex flex-wrap gap-3">
+              <a
+                href="#home-candidates"
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-[0_16px_30px_rgba(236,91,19,0.22)] transition hover:bg-primary/92"
+              >
+                Voir les candidats
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <Link
+                to="/polls"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:border-primary/30 hover:text-primary"
+              >
+                Consulter les sondages
+              </Link>
             </div>
-            <h2 className="mt-4 max-w-3xl text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl lg:text-[2.85rem] lg:leading-[1.05]">
-              Qui sont les candidats aux{' '}
-              <span className="bg-gradient-to-r from-primary via-blue-600 to-sky-500 bg-clip-text text-transparent">
-                présidentielles 2027
-              </span>{' '}
-              ?
-            </h2>
-            <div className="mt-5 inline-flex max-w-2xl items-start gap-3 rounded-[1.4rem] border border-slate-200/80 bg-slate-50/80 px-4 py-3 text-sm text-slate-700 dark:border-slate-800 dark:bg-slate-950/60 dark:text-slate-300">
-              <span className="material-symbols-outlined text-primary">lightbulb</span>
-              <p>Candidats présidentielle 2027, sondages, intentions de vote, vidéos, tweets et analyses, au même endroit.</p>
+
+            <div className="hero-reveal hero-reveal-delay-4 mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              {summaryStats(props).map((stat) => {
+                const Icon = stat.icon
+
+                return (
+                  <div
+                    key={stat.label}
+                    className="rounded-[1.4rem] border border-slate-200 bg-slate-50 p-4 shadow-[0_10px_24px_rgba(15,23,42,0.04)]"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">{stat.label}</p>
+                      <Icon className="h-4 w-4 text-primary" />
+                    </div>
+                    <p className="mt-3 text-xl font-black tracking-tight text-slate-950">{stat.value}</p>
+                  </div>
+                )
+              })}
             </div>
-            <div className="mt-5 flex flex-wrap gap-2">
-              <span className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-semibold text-white dark:bg-white dark:text-slate-950">
-                Comparer plus vite
-              </span>
-              <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-semibold text-slate-600 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
-                Vérifier les sources
-              </span>
-              <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-semibold text-slate-600 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
-                Suivre la campagne
-              </span>
-            </div>
+          </div>
+
+          <div className="hero-image-reveal relative min-h-[22rem] border-t border-slate-200 xl:border-l xl:border-t-0">
+            <img
+              src="/elysee.png"
+              alt="Palais de l'Élysée"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-slate-950/58" />
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ export function HomeDesktopFooter() {
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-2xl">explore</span>
             <h3 className="text-lg font-extrabold tracking-tight text-primary">
-              La Boussole <span className="text-slate-500">2027</span>
+              Présidentielles <span className="text-slate-500">2027</span>
             </h3>
           </div>
           <p className="text-slate-500 text-sm max-w-xs leading-relaxed">
@@ -42,7 +42,7 @@ export function HomeDesktopFooter() {
             <h4 className="text-xs font-bold uppercase text-slate-400">Ressources</h4>
             <ul className="text-sm space-y-2 font-medium">
               <li>
-                <Link to="/" className="hover:text-primary">
+                <Link to="/sources" className="hover:text-primary">
                   Sources
                 </Link>
               </li>

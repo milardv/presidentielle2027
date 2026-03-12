@@ -1,6 +1,7 @@
 import { ChevronRight } from 'lucide-react'
 import { AppSiteHeader } from '../components/AppSiteHeader'
 import { MobileAppNav } from '../components/MobileAppNav'
+import { HomeDesktopFooter } from '../features/candidates/home/components/HomeDesktopFooter'
 import { appNavItems } from '../navigation/appNavItems'
 import { accentizeFrenchCopy } from '../seo/frenchCopy.js'
 import { SeoHead } from '../seo/SeoHead'
@@ -161,6 +162,7 @@ export default function SeoLandingPage({ pageSlug }: SeoLandingPageProps) {
       </main>
 
       <MobileAppNav items={appNavItems} />
+      <HomeDesktopFooter />
     </div>
   )
 }

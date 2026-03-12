@@ -421,6 +421,7 @@ export function parseCandidate(id: string, data: Record<string, unknown>): Candi
     id,
     name: data.name,
     photoUrl: typeof data.photoUrl === 'string' ? data.photoUrl : '',
+    videoUrl: typeof data.videoUrl === 'string' ? data.videoUrl : undefined,
     xUsername: typeof data.xUsername === 'string' ? data.xUsername : undefined,
     bloc: data.bloc,
     party: data.party,

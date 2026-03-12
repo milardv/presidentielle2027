@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { HomeAlert } from '../features/candidates/home/components/HomeAlert'
 import { CandidatesGrid } from '../features/candidates/home/components/CandidatesGrid'
 import { HomeDesktopFooter } from '../features/candidates/home/components/HomeDesktopFooter'
@@ -23,6 +24,16 @@ export default function Home() {
 
   const lastUpdateLabel = lastUpdated ? formatFrenchDate(lastUpdated) : 'Non disponible'
 
+  useEffect(() => {
+    document.documentElement.classList.add('home-viewport-scrollbar-hidden')
+    document.body.classList.add('home-viewport-scrollbar-hidden')
+
+    return () => {
+      document.documentElement.classList.remove('home-viewport-scrollbar-hidden')
+      document.body.classList.remove('home-viewport-scrollbar-hidden')
+    }
+  }, [])
+
   return (
     <div className="relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
       <SeoHead
@@ -31,7 +42,7 @@ export default function Home() {
         path="/"
         keywords={[
           'présidentielle 2027',
-          'élection présidentielle 2027',
+          'élections présidentielles 2027',
           'candidats présidentielle 2027',
           'sondage présidentielle 2027',
           'intentions de vote 2027',
@@ -45,7 +56,6 @@ export default function Home() {
           inLanguage: 'fr-FR',
         }}
       />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top_left,_rgba(26,34,127,0.10),_transparent_36%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.08),_transparent_28%),radial-gradient(circle_at_40%_40%,_rgba(245,158,11,0.08),_transparent_24%)]" />
       <HomeHeader />
 
       <main className="relative w-full px-4 pb-28 md:pb-24">
@@ -55,13 +65,13 @@ export default function Home() {
           conditionalCount={conditionalCount}
           lastUpdateLabel={lastUpdateLabel}
         />
-        <HomeSeoLinksSection />
 
         {loadError && <HomeAlert tone="error" message={loadError} />}
 
         {isLoading && <HomeLoadingGrid />}
         {!isLoading && !loadError && candidates.length === 0 && <HomeEmptyState />}
         {!isLoading && !loadError && candidates.length > 0 && <CandidatesGrid candidates={candidates} />}
+        <HomeSeoLinksSection />
       </main>
 
       <HomeMobileNav />

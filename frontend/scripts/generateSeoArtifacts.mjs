@@ -325,6 +325,20 @@ function renderSeoPage(page) {
       font-size: .92rem;
       line-height: 1.7;
     }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .footer-links a {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.86);
+      padding: 9px 13px;
+      font-size: .82rem;
+      font-weight: 700;
+    }
     @media (max-width: 920px) {
       .layout { grid-template-columns: 1fr; }
       .hero { padding: 24px; }
@@ -417,6 +431,11 @@ function renderSeoPage(page) {
 
     <footer>
       ${escapeHtml(footerText)}
+      <div class="footer-links">
+        <a href="${escapeHtml(buildAbsoluteUrl('/'))}">Accueil</a>
+        <a href="${escapeHtml(buildAbsoluteUrl('/polls'))}">Sondages</a>
+        <a href="${escapeHtml(buildAbsoluteUrl('/sources'))}">Sources</a>
+      </div>
     </footer>
   </main>
 </body>

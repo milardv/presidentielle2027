@@ -16,7 +16,7 @@ export function DesktopAppTabs({ items, className = '' }: DesktopAppTabsProps) {
   return (
     <nav
       aria-label="Navigation principale"
-      className={`hidden md:flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/75 p-1.5 shadow-[0_14px_34px_rgba(15,23,42,0.10)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/78 ${className}`.trim()}
+      className={`hidden md:flex items-center gap-2 rounded-full border border-slate-200 bg-white p-1.5 shadow-[0_14px_34px_rgba(15,23,42,0.08)] ${className}`.trim()}
     >
       {items.map((item) => (
         <NavLink
@@ -26,8 +26,8 @@ export function DesktopAppTabs({ items, className = '' }: DesktopAppTabsProps) {
           className={({ isActive }) =>
             `inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-semibold transition-all duration-300 ${
               isActive
-                ? 'bg-gradient-to-r from-primary to-blue-600 text-white shadow-[0_12px_24px_rgba(26,34,127,0.28)]'
-                : 'text-slate-500 dark:text-slate-400 hover:-translate-y-0.5 hover:bg-white hover:text-primary dark:hover:bg-slate-800'
+                ? 'bg-primary text-white shadow-[0_12px_24px_rgba(236,91,19,0.22)]'
+                : 'text-slate-500 hover:-translate-y-0.5 hover:bg-slate-50 hover:text-primary'
             }`
           }
         >

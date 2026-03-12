@@ -76,6 +76,7 @@ export interface Candidate {
   id: string
   name: string
   photoUrl: string
+  videoUrl?: string
   xUsername?: string
   bloc: string
   party: string
