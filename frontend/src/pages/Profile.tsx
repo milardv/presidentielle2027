@@ -4,7 +4,6 @@ import { MobileAppNav } from '../components/MobileAppNav'
 import { useAuthSession } from '../features/auth/hooks/useAuthSession'
 import { useFavoriteCandidates } from '../features/auth/hooks/useFavoriteCandidates'
 import { CandidateProfileTabs } from '../features/candidates/profile/components/CandidateProfileTabs'
-import { ProfileAnchorNav } from '../features/candidates/profile/components/ProfileAnchorNav'
 import { ProfileBioSection } from '../features/candidates/profile/components/ProfileBioSection'
 import { ProfileErrorState } from '../features/candidates/profile/components/ProfileErrorState'
 import { ProfileHeroSection } from '../features/candidates/profile/components/ProfileHeroSection'
@@ -100,7 +99,6 @@ export default function Profile() {
             await signIn()
           }}
         />
-        <ProfileAnchorNav />
 
         <div className="p-4 sm:p-6 space-y-8">
           <ProfileBioSection candidate={candidate} />
