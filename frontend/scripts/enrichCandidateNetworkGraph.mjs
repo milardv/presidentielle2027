@@ -5,43 +5,64 @@ import { getFirebaseConfig } from './firebaseConfig.mjs'
 const firebaseConfig = getFirebaseConfig()
 
 const CANDIDATES_COLLECTION = 'candidates_2027'
-const DATA_LAST_UPDATED = '2026-03-11'
+const DATA_LAST_UPDATED = '2026-03-13'
 const DRY_RUN = process.argv.includes('--dry-run')
 
 const actorImageSpecs = {
   Horizons: { type: 'wikimedia-file', file: 'Logo Horizons.svg' },
+  'Le Havre': { type: 'wikipedia', title: 'Le_Havre' },
   'Ville du Havre': { type: 'wikipedia', title: 'Le_Havre' },
   'Etat (Matignon)': { type: 'wikipedia', title: 'Hôtel_Matignon' },
-  'Région Hauts-de-France': { type: 'wikipedia', title: 'Hauts-de-France' },
-  'Region Hauts-de-France': { type: 'wikipedia', title: 'Hauts-de-France' },
-  'Les Républicains': { type: 'wikipedia', title: 'Les_Républicains' },
-  'Les Republicains': { type: 'wikipedia', title: 'Les_Républicains' },
+  'Hauts-de-France': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/2/2e/R%C3%A9gion_Hauts-de-France_logo_2016.svg/langfr-330px-R%C3%A9gion_Hauts-de-France_logo_2016.svg.png' },
+  'Région Hauts-de-France': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/2/2e/R%C3%A9gion_Hauts-de-France_logo_2016.svg/langfr-330px-R%C3%A9gion_Hauts-de-France_logo_2016.svg.png' },
+  'Region Hauts-de-France': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/2/2e/R%C3%A9gion_Hauts-de-France_logo_2016.svg/langfr-330px-R%C3%A9gion_Hauts-de-France_logo_2016.svg.png' },
+  'Saint-Quentin': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Saint-Quentin_Basilique_22.jpg/330px-Saint-Quentin_Basilique_22.jpg' },
+  'Les Républicains': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/CGLR2023_-_4.png/330px-CGLR2023_-_4.png' },
+  'Les Republicains': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/CGLR2023_-_4.png/330px-CGLR2023_-_4.png' },
+  'Xavier Bertrand': { type: 'wikipedia', title: 'Xavier_Bertrand' },
   'Lutte Ouvrière': { type: 'wikimedia-file', file: 'Logo Lutte Ouvrière.svg' },
   'Militantisme syndical et ouvrier': { type: 'wikimedia-file', file: 'Logo Lutte Ouvrière.svg' },
   'Campagnes présidentielles LO': { type: 'wikimedia-file', file: 'Logo Lutte Ouvrière.svg' },
   'Campagnes presidentielles LO': { type: 'wikimedia-file', file: 'Logo Lutte Ouvrière.svg' },
-  'Génération Écologie': { type: 'wikipedia', title: 'Génération_écologie' },
-  'Generation Écologie': { type: 'wikipedia', title: 'Génération_écologie' },
-  'Assemblee nationale': { type: 'wikipedia', title: 'Assemblée_nationale_(France)' },
-  'Assemblée nationale': { type: 'wikipedia', title: 'Assemblée_nationale_(France)' },
+  'Campagne présidentielle de Lutte Ouvrière': { type: 'wikimedia-file', file: 'Logo Lutte Ouvrière.svg' },
+  'Campagne presidentielle de Lutte Ouvriere': { type: 'wikimedia-file', file: 'Logo Lutte Ouvrière.svg' },
+  'Nathalie Arthaud': { type: 'wikipedia', title: 'Nathalie_Arthaud' },
+  'Ministère de l’Éducation nationale': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/e/ec/MIN_Education_Nationale_et_Jeunesse_RVB.jpg/330px-MIN_Education_Nationale_et_Jeunesse_RVB.jpg' },
+  'Ministere de l’Éducation nationale': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/e/ec/MIN_Education_Nationale_et_Jeunesse_RVB.jpg/330px-MIN_Education_Nationale_et_Jeunesse_RVB.jpg' },
+  'Ministere de l\'Education nationale': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/e/ec/MIN_Education_Nationale_et_Jeunesse_RVB.jpg/330px-MIN_Education_Nationale_et_Jeunesse_RVB.jpg' },
+  'Génération Écologie': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d8/G%C3%A9n%C3%A9ration_%C3%A9cologie_logo.png/330px-G%C3%A9n%C3%A9ration_%C3%A9cologie_logo.png' },
+  'Generation Écologie': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d8/G%C3%A9n%C3%A9ration_%C3%A9cologie_logo.png/330px-G%C3%A9n%C3%A9ration_%C3%A9cologie_logo.png' },
+  'Assemblee nationale': { type: 'official-meta', url: 'https://www.assemblee-nationale.fr/' },
+  'Assemblée nationale': { type: 'official-meta', url: 'https://www.assemblee-nationale.fr/' },
   'Ancien ministere de l’Écologie': { type: 'wikipedia', title: 'Ministère_de_la_Transition_écologique' },
   'Ancien ministère de l’Écologie': { type: 'wikipedia', title: 'Ministère_de_la_Transition_écologique' },
+  'Deux-Sèvres': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Deux-S%C3%A8vres-Position.svg/langfr-330px-Deux-S%C3%A8vres-Position.svg.png' },
+  'Deux-Sevres': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Deux-S%C3%A8vres-Position.svg/langfr-330px-Deux-S%C3%A8vres-Position.svg.png' },
+  'Delphine Batho': { type: 'wikipedia', title: 'Delphine_Batho' },
   'Les Écologistes': { type: 'official-meta', url: 'https://lesecologistes.fr' },
+  'Hénin-Beaumont': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Mairie_Henin_Beaumont.jpg/330px-Mairie_Henin_Beaumont.jpg' },
   'Primaire de la gauche': { type: 'wikipedia', title: 'Parti_socialiste_(France)' },
+  'Amiens': { type: 'wikipedia', title: 'Amiens' },
+  'Somme': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Drapeau_fr_d%C3%A9partement_Somme.svg/langfr-330px-Drapeau_fr_d%C3%A9partement_Somme.svg.png' },
   'Ancrage local (Pas-de-Calais)': { type: 'wikipedia', title: 'Pas-de-Calais' },
   'Rassemblement national': { type: 'wikimedia-file', file: 'Logo Rassemblement National.svg' },
+  'Groupe RN à l’Assemblée nationale': { type: 'wikimedia-file', file: 'Logo Rassemblement National.svg' },
+  'Groupe RN à l\'Assemblée nationale': { type: 'wikimedia-file', file: 'Logo Rassemblement National.svg' },
   'Groupe RN a l’Assemblee nationale': { type: 'wikimedia-file', file: 'Logo Rassemblement National.svg' },
   'Groupe RN a l\'Assemblee nationale': { type: 'wikimedia-file', file: 'Logo Rassemblement National.svg' },
   'Jordan Bardella': { type: 'wikipedia', title: 'Jordan_Bardella' },
   'Marine Le Pen': { type: 'wikipedia', title: 'Marine_Le_Pen' },
   'Tandem avec Marine Le Pen': { type: 'wikipedia', title: 'Marine_Le_Pen' },
-  'Place publique': { type: 'wikipedia', title: 'Place_publique_(parti_politique)' },
-  'Parlement européen': { type: 'wikipedia', title: 'Parlement_européen' },
-  'Parlement europeen': { type: 'wikipedia', title: 'Parlement_européen' },
+  'Raphaël Glucksmann': { type: 'wikipedia', title: 'Raphaël_Glucksmann' },
+  'Raphael Glucksmann': { type: 'wikipedia', title: 'Raphaël_Glucksmann' },
+  'Place publique': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Logo_Place_publique.svg/langfr-330px-Logo_Place_publique.svg.png' },
+  'Parlement européen': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/European_Parliament_logo.svg/langfr-330px-European_Parliament_logo.svg.png' },
+  'Parlement europeen': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/European_Parliament_logo.svg/langfr-330px-European_Parliament_logo.svg.png' },
   'Alliance PS-Place publique': { type: 'wikipedia', title: 'Place_publique_(parti_politique)' },
   'Aurore Lalucq': { type: 'wikipedia', title: 'Aurore_Lalucq' },
-  Renaissance: { type: 'wikipedia', title: 'Renaissance_(parti)' },
+  Renaissance: { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Renaissance-logotype-officiel.svg/langfr-330px-Renaissance-logotype-officiel.svg.png' },
   'Gabriel Attal': { type: 'wikipedia', title: 'Gabriel_Attal' },
+  'Emmanuel Macron': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Macron_Alden-Biesen_2026_%28cropped%29.jpg/330px-Macron_Alden-Biesen_2026_%28cropped%29.jpg' },
   'Édouard Philippe': { type: 'wikipedia', title: 'Édouard_Philippe' },
   'Edouard Philippe': { type: 'wikipedia', title: 'Édouard_Philippe' },
   'Gérald Darmanin': { type: 'wikipedia', title: 'Gérald_Darmanin' },
@@ -51,8 +72,8 @@ const actorImageSpecs = {
   'La France insoumise': { type: 'wikipedia', title: 'La_France_insoumise' },
   'Jean-Luc Mélenchon': { type: 'wikipedia', title: 'Jean-Luc_Mélenchon' },
   'Jean-Luc Melenchon': { type: 'wikipedia', title: 'Jean-Luc_Mélenchon' },
-  'Institut La Boétie': { type: 'wikipedia', title: 'Institut_La_Boétie_(2020)' },
-  'Institut La Boetie': { type: 'wikipedia', title: 'Institut_La_Boétie_(2020)' },
+  'Institut La Boétie': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/6/64/Institut_de_la_Bo%C3%A9tie.png/330px-Institut_de_la_Bo%C3%A9tie.png' },
+  'Institut La Boetie': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/6/64/Institut_de_la_Bo%C3%A9tie.png/330px-Institut_de_la_Bo%C3%A9tie.png' },
   'Écosystème insoumis': { type: 'wikipedia', title: 'La_France_insoumise' },
   'Ecosysteme insoumis': { type: 'wikipedia', title: 'La_France_insoumise' },
   'François Ruffin': { type: 'wikipedia', title: 'François_Ruffin' },
@@ -63,19 +84,23 @@ const actorImageSpecs = {
   'Droite regalienne': { type: 'wikipedia', title: 'Les_Républicains' },
   'Laurent Wauquiez': { type: 'wikipedia', title: 'Laurent_Wauquiez' },
   'Michel Barnier': { type: 'wikipedia', title: 'Michel_Barnier' },
-  'Ministère de la Justice': { type: 'wikipedia', title: 'Ministère_de_la_Justice_(France)' },
-  'Ministere de la Justice': { type: 'wikipedia', title: 'Ministère_de_la_Justice_(France)' },
+  'Bruno Retailleau': { type: 'wikipedia', title: 'Bruno_Retailleau' },
+  'Ministère de l’Intérieur': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/0/02/Logo_du_Minist%C3%A8re_de_l%27Int%C3%A9rieur_%282020%29.svg/langfr-330px-Logo_du_Minist%C3%A8re_de_l%27Int%C3%A9rieur_%282020%29.svg.png' },
+  'Ministère de l\'Intérieur': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/0/02/Logo_du_Minist%C3%A8re_de_l%27Int%C3%A9rieur_%282020%29.svg/langfr-330px-Logo_du_Minist%C3%A8re_de_l%27Int%C3%A9rieur_%282020%29.svg.png' },
+  'Ministere de l\'Interieur': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/fr/thumb/0/02/Logo_du_Minist%C3%A8re_de_l%27Int%C3%A9rieur_%282020%29.svg/langfr-330px-Logo_du_Minist%C3%A8re_de_l%27Int%C3%A9rieur_%282020%29.svg.png' },
+  'Ministère de la Justice': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Minist%C3%A8re_de_la_Justice.svg/langfr-330px-Minist%C3%A8re_de_la_Justice.svg.png' },
+  'Ministere de la Justice': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Minist%C3%A8re_de_la_Justice.svg/langfr-330px-Minist%C3%A8re_de_la_Justice.svg.png' },
   'Les Populaires': { type: 'official-meta', url: 'https://populaires.net/decouvrir-populaires/' },
   Populaires: { type: 'official-meta', url: 'https://populaires.net/decouvrir-populaires/' },
-  Tourcoing: { type: 'wikipedia', title: 'Tourcoing' },
+  Tourcoing: { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Collage_Tourcoing.png/330px-Collage_Tourcoing.png' },
   'Mouvement Debout': { type: 'wikipedia', title: 'Debout_!' },
-  'Debout !': { type: 'wikipedia', title: 'Debout_!' },
+  'Debout !': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Debout-Parti-Politique.jpg/330px-Debout-Parti-Politique.jpg' },
   'Marine Tondelier': { type: 'wikipedia', title: 'Marine_Tondelier' },
-  'Parti socialiste': { type: 'wikipedia', title: 'Parti_socialiste_(France)' },
-  'Nouveau Parti anticapitaliste': { type: 'wikipedia', title: 'Nouveau_Parti_anticapitaliste' },
-  'Arlette Laguiller': { type: 'wikipedia', title: 'Arlette_Laguiller' },
-  "Cour d'appel de Paris": { type: 'wikipedia', title: "Cour_d'appel_en_France" },
-  "Cour d’appel de Paris": { type: 'wikipedia', title: "Cour_d'appel_en_France" },
+  'Parti socialiste': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logotipo_del_PS.png/330px-Logotipo_del_PS.png' },
+  'Nouveau Parti anticapitaliste': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_du_NPA_-_l%27Anticapitaliste.jpg' },
+  'Arlette Laguiller': { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Arlette_Laguiller_1999.jpg/330px-Arlette_Laguiller_1999.jpg' },
+  "Cour d'appel de Paris": { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Palais_Justice_Paris.jpg/330px-Palais_Justice_Paris.jpg' },
+  "Cour d’appel de Paris": { type: 'direct', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Palais_Justice_Paris.jpg/330px-Palais_Justice_Paris.jpg' },
   'Primaire de la gauche unitaire': { type: 'wikipedia', title: 'Parti_socialiste_(France)' },
 }
 
@@ -222,6 +247,10 @@ async function resolveImageFromSpec(spec, fallbackSourceUrl) {
     return getWikimediaFileUrl(spec.file)
   }
 
+  if (spec.type === 'direct') {
+    return spec.url ?? null
+  }
+
   if (spec.type === 'source-meta' && fallbackSourceUrl) {
     return fetchOfficialMetadataImage(fallbackSourceUrl)
   }
@@ -229,7 +258,27 @@ async function resolveImageFromSpec(spec, fallbackSourceUrl) {
   return null
 }
 
-async function getNetworkImageUrl(entry) {
+function buildCandidateImageMap(snapshot) {
+  const candidateImageMap = new Map()
+
+  for (const entry of snapshot.docs) {
+    const data = entry.data()
+    if (typeof data?.name !== 'string' || typeof data?.photoUrl !== 'string' || data.photoUrl.length === 0) {
+      continue
+    }
+
+    candidateImageMap.set(normalizeText(data.name), data.photoUrl)
+  }
+
+  return candidateImageMap
+}
+
+async function getNetworkImageUrl(entry, candidateImageMap) {
+  const candidateImageUrl = candidateImageMap.get(normalizeText(entry.actor)) ?? null
+  if (candidateImageUrl) {
+    return candidateImageUrl
+  }
+
   const spec = actorImageSpecs[entry.actor] ?? { type: 'source-meta' }
   const sourceUrl = typeof entry?.source?.url === 'string' ? entry.source.url : null
   return resolveImageFromSpec(spec, sourceUrl)
@@ -239,6 +288,7 @@ async function main() {
   const app = initializeApp(firebaseConfig)
   const db = getFirestore(app)
   const snapshot = await getDocs(collection(db, CANDIDATES_COLLECTION))
+  const candidateImageMap = buildCandidateImageMap(snapshot)
 
   const candidatesToUpdate = []
 
@@ -250,7 +300,7 @@ async function main() {
 
     const nextNetwork = []
     for (const networkEntry of data.network) {
-      const imageUrl = await getNetworkImageUrl(networkEntry)
+      const imageUrl = await getNetworkImageUrl(networkEntry, candidateImageMap)
       nextNetwork.push({
         ...networkEntry,
         tone: networkEntry.tone ?? classifyNetworkTone(networkEntry),

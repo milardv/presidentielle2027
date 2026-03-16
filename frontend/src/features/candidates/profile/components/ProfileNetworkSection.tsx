@@ -1,6 +1,6 @@
 import type { Core } from 'cytoscape'
-import { Flag, Landmark, Users } from 'lucide-react'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { Flag, Landmark, RotateCcw, Users } from 'lucide-react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import CytoscapeComponent from 'react-cytoscapejs'
 import type { CandidateNetworkRelation } from '../../../../data/candidateTypes'
 import { formatFrenchDate, getCandidatePartyAccentColor } from '../../shared/candidateUi'
@@ -116,7 +116,8 @@ function buildElements(
   entries: NetworkViewEntry[],
 ) {
   const candidateNodeId = `${candidateId}-network-center`
-  const radius = entries.length >= 4 ? 360 : 320
+  const radius =
+    entries.length >= 7 ? 500 : entries.length >= 6 ? 460 : entries.length >= 5 ? 420 : entries.length >= 4 ? 360 : 320
 
   const nodes = entries.map((entry, index) => {
     const angle = (-Math.PI / 2) + (index * 2 * Math.PI) / Math.max(entries.length, 1)
@@ -127,7 +128,7 @@ function buildElements(
         label: entry.actor,
         subtitle: entry.role,
         tone: entry.tone,
-        imageUrl: entry.imageUrl ?? '',
+        ...(entry.imageUrl ? { imageUrl: entry.imageUrl } : {}),
       },
       position: {
         x: Math.cos(angle) * radius,
@@ -152,7 +153,7 @@ function buildElements(
         label: candidateName,
         subtitle: 'Candidat',
         tone: 'candidate',
-        imageUrl: candidatePhotoUrl ?? '',
+        ...(candidatePhotoUrl ? { imageUrl: candidatePhotoUrl } : {}),
       },
       position: { x: 0, y: 0 },
       locked: true,
@@ -186,6 +187,22 @@ export function ProfileNetworkSection({
     [candidateId, candidateName, candidatePhotoUrl, networkEntries],
   )
 
+  const recenterGraph = useCallback(() => {
+    const cy = cyRef.current
+    if (!cy) {
+      return
+    }
+
+    cy.animate({
+      fit: {
+        eles: cy.elements(),
+        padding: 72,
+      },
+      duration: 320,
+      easing: 'ease-out-cubic',
+    })
+  }, [])
+
   useEffect(() => {
     const cy = cyRef.current
     if (!cy) {
@@ -202,13 +219,12 @@ export function ProfileNetworkSection({
     }
 
     cy.on('tap', 'node', handleTap)
-    cy.fit(cy.elements(), 56)
-    cy.center()
+    recenterGraph()
 
     return () => {
       cy.off('tap', 'node', handleTap)
     }
-  }, [elements])
+  }, [elements, recenterGraph])
 
   const stylesheet = useMemo(
     () => [
@@ -216,24 +232,29 @@ export function ProfileNetworkSection({
         selector: 'node',
         style: {
           'background-color': '#ffffff',
-          'background-image': 'data(imageUrl)',
-          'background-fit': 'cover',
-          'background-clip': 'node',
           'background-opacity': 1,
           'border-width': 3,
           'border-color': '#cbd5e1',
           'label': 'data(label)',
           'text-wrap': 'wrap',
-          'text-max-width': 132,
+          'text-max-width': 196,
           'text-valign': 'bottom',
           'text-halign': 'center',
-          'text-margin-y': 92,
-          'font-size': 12,
-          'font-weight': 700,
+          'text-margin-y': 112,
+          'font-size': 22,
+          'font-weight': 800,
           color: '#0f172a',
           width: 120,
           height: 120,
           'overlay-opacity': 0,
+        },
+      },
+      {
+        selector: 'node[imageUrl]',
+        style: {
+          'background-image': 'data(imageUrl)',
+          'background-fit': 'cover',
+          'background-clip': 'node',
         },
       },
       {
@@ -244,9 +265,9 @@ export function ProfileNetworkSection({
           color: '#0f172a',
           width: 164,
           height: 164,
-          'font-size': 14,
-          'text-max-width': 180,
-          'text-margin-y': 116,
+          'font-size': 22,
+          'text-max-width': 240,
+          'text-margin-y': 136,
         },
       },
       {
@@ -320,12 +341,36 @@ export function ProfileNetworkSection({
             <p className="mt-2 text-sm leading-relaxed text-slate-600">
               Le graphe distingue les alliances, les appuis institutionnels et les relations de rivalité à partir des données sourcées du candidat.
             </p>
-            <p className="mt-2 text-xs font-medium uppercase tracking-[0.14em] text-slate-400">
+            <div className="mt-4 flex flex-wrap gap-2">
+              {(['ally', 'institution', 'rival'] as const).map((tone) => (
+                <div
+                  key={tone}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700"
+                >
+                  <span
+                    className="flex h-6 w-6 items-center justify-center rounded-full text-white"
+                    style={{ backgroundColor: getToneColor(tone) }}
+                  >
+                    {getToneIcon(tone)}
+                  </span>
+                  <span>{getToneLabel(tone)}</span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-3 text-xs font-medium uppercase tracking-[0.14em] text-slate-400">
               Molette ou pincement pour zoomer. Glisser pour déplacer la vue.
             </p>
           </div>
 
-          <div className="h-[40rem] bg-[radial-gradient(circle_at_top,_rgba(26,34,127,0.06),_transparent_48%)] p-2 sm:h-[46rem] sm:p-4">
+          <div className="relative h-[42rem] bg-[radial-gradient(circle_at_top,_rgba(26,34,127,0.06),_transparent_48%)] p-2 sm:h-[48rem] sm:p-4">
+            <button
+              type="button"
+              onClick={recenterGraph}
+              className="absolute right-5 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/96 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-slate-700 shadow-sm transition hover:border-primary/40 hover:text-primary"
+            >
+              <RotateCcw className="h-4 w-4" />
+              Recentrer
+            </button>
             <CytoscapeComponent
               elements={elements}
               stylesheet={stylesheet}
@@ -347,36 +392,6 @@ export function ProfileNetworkSection({
         </article>
 
         <div className="grid gap-4">
-          <article className="rounded-[1.75rem] border border-slate-200/80 bg-white/94 p-5 shadow-sm">
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Lecture</p>
-
-            <div className="mt-4 grid gap-3">
-              {(['ally', 'institution', 'rival'] as const).map((tone) => (
-                <div
-                  key={tone}
-                  className="flex items-center gap-3 rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3"
-                >
-                  <span
-                    className="flex h-8 w-8 items-center justify-center rounded-full text-white"
-                    style={{ backgroundColor: getToneColor(tone) }}
-                  >
-                    {getToneIcon(tone)}
-                  </span>
-                  <div>
-                    <p className="text-sm font-bold text-slate-950">{getToneLabel(tone)}</p>
-                    <p className="text-xs text-slate-500">
-                      {tone === 'ally'
-                        ? 'Partis, mouvements, relais ou soutiens politiques.'
-                        : tone === 'institution'
-                          ? 'Fonctions, mandats et points d’appui institutionnels.'
-                          : 'Concurrence, rapport de force ou opposition politique.'}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </article>
-
           {selectedEntry ? (
             <article className="rounded-[1.75rem] border border-slate-200/80 bg-white/94 p-5 shadow-sm">
               <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Lien sélectionné</p>

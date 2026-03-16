@@ -3,10 +3,10 @@ import { doc, getDoc, getFirestore, writeBatch } from 'firebase/firestore'
 import { getFirebaseConfig } from './firebaseConfig.mjs'
 
 const CANDIDATES_COLLECTION = 'candidates_2027'
-const DATA_LAST_UPDATED = '2026-03-12'
+const DATA_LAST_UPDATED = '2026-03-13'
 const DRY_RUN = process.argv.includes('--dry-run')
 
-const officialSource = (label, url, date = '2026-03-12') => ({ label, url, date })
+const officialSource = (label, url, date = '2026-03-13') => ({ label, url, date })
 const pressSource = (label, url, date) => ({ label, url, date })
 
 const candidateNetworks = {
@@ -447,6 +447,251 @@ const candidateNetworks = {
   ],
 }
 
+const supplementalCandidateNetworks = {
+  'edouard-philippe': [
+    {
+      actor: 'Le Havre',
+      role: 'Ancrage territorial',
+      relation: 'Sa base locale au Havre continue de nourrir sa crédibilité de gestionnaire et sa projection nationale.',
+      tone: 'institution',
+      source: officialSource('Ville du Havre', 'https://www.lehavre.fr/'),
+    },
+    {
+      actor: 'Marine Le Pen',
+      role: 'Adversaire ciblée',
+      relation: 'Philippe assume une confrontation directe avec Marine Le Pen dans la perspective du second tour.',
+      tone: 'rival',
+      source: pressSource(
+        'BFMTV',
+        'https://www.bfmtv.com/politique/elle-ne-me-fait-pas-peur-edouard-philippe-a-envie-de-battre-marine-le-pen-en-2027_AD-202502230404.html',
+        '2025-02-23',
+      ),
+    },
+  ],
+  'xavier-bertrand': [
+    {
+      actor: 'Hauts-de-France',
+      role: 'Base exécutive',
+      relation: 'La présidence de région lui sert de vitrine de gestion et de point d’appui durable dans la séquence 2027.',
+      tone: 'institution',
+      source: officialSource('Région Hauts-de-France', 'https://www.hautsdefrance.fr/'),
+    },
+    {
+      actor: 'Saint-Quentin',
+      role: 'Ancrage local',
+      relation: 'Son implantation à Saint-Quentin reste un élément structurant de son image de proximité.',
+      tone: 'institution',
+      source: officialSource('Ville de Saint-Quentin', 'https://www.saint-quentin.fr/'),
+    },
+  ],
+  'nathalie-arthaud': [
+    {
+      actor: 'Ministère de l’Éducation nationale',
+      role: 'Ancrage professionnel',
+      relation: 'Son parcours d’enseignante reste au cœur de son identité politique et de sa grille de lecture sociale.',
+      tone: 'institution',
+      source: officialSource('Ministère de l’Éducation nationale', 'https://www.education.gouv.fr/'),
+    },
+    {
+      actor: 'Campagne présidentielle de Lutte Ouvrière',
+      role: 'Relais militant',
+      relation: 'La campagne de Lutte Ouvrière prolonge son activité militante et structure sa présence récurrente à la présidentielle.',
+      tone: 'ally',
+      source: officialSource('Lutte Ouvrière', 'https://www.lutte-ouvriere.org/'),
+    },
+  ],
+  'delphine-batho': [
+    {
+      actor: 'Assemblée nationale',
+      role: 'Point d’appui institutionnel',
+      relation: 'Son mandat parlementaire reste l’un de ses principaux leviers de visibilité et d’intervention.',
+      tone: 'institution',
+      source: officialSource('Assemblée nationale', 'https://www.assemblee-nationale.fr/'),
+    },
+    {
+      actor: 'Deux-Sèvres',
+      role: 'Ancrage territorial',
+      relation: 'Son implantation dans les Deux-Sèvres continue de structurer son profil politique et sa base locale.',
+      tone: 'institution',
+      source: officialSource('Département des Deux-Sèvres', 'https://www.deux-sevres.fr/'),
+    },
+  ],
+  'marine-tondelier': [
+    {
+      actor: 'Delphine Batho',
+      role: 'Concurrence écologiste',
+      relation: 'La possibilité d’une candidature Batho entretient une tension stratégique dans l’espace écologiste autour de 2027.',
+      tone: 'rival',
+      source: pressSource(
+        'AFP / Yahoo Actualités',
+        'https://fr.news.yahoo.com/news/delphine-batho-d%C3%A9put%C3%A9e-%C3%A9colo-porte-080210656.html/',
+        '2025-11-25',
+      ),
+    },
+    {
+      actor: 'Hénin-Beaumont',
+      role: 'Ancrage local',
+      relation: 'Son travail d’opposition locale à Hénin-Beaumont reste un marqueur central de son identité politique.',
+      tone: 'institution',
+      source: officialSource('Ville d’Hénin-Beaumont', 'https://www.henin-beaumont.fr/'),
+    },
+  ],
+  'francois-ruffin': [
+    {
+      actor: 'Amiens',
+      role: 'Ancrage local',
+      relation: 'Son implantation en Picardie et autour d’Amiens reste au cœur de sa trajectoire publique.',
+      tone: 'institution',
+      source: officialSource('Ville d’Amiens', 'https://www.amiens.fr/'),
+    },
+    {
+      actor: 'Somme',
+      role: 'Base territoriale',
+      relation: 'Sa base électorale dans la Somme demeure l’un de ses principaux points d’appui politiques.',
+      tone: 'institution',
+      source: officialSource('Département de la Somme', 'https://www.somme.fr/'),
+    },
+  ],
+  'marine-le-pen': [
+    {
+      actor: "Cour d'appel de Paris",
+      role: 'Paramètre judiciaire',
+      relation: 'La procédure en appel est devenue un facteur déterminant de sa capacité à être candidate en 2027.',
+      tone: 'institution',
+      source: pressSource(
+        'AP',
+        'https://apnews.com/article/fa548e0280837fa277d9b5627846a93c',
+        '2026-02-27',
+      ),
+    },
+    {
+      actor: 'Assemblée nationale',
+      role: 'Point d’appui parlementaire',
+      relation: 'Son mandat de députée et la présence du RN au Palais-Bourbon restent un levier central de sa visibilité.',
+      tone: 'institution',
+      source: officialSource('Assemblée nationale', 'https://www.assemblee-nationale.fr/'),
+    },
+  ],
+  'jordan-bardella': [
+    {
+      actor: 'Parlement européen',
+      role: 'Base institutionnelle',
+      relation: 'Son mandat européen lui sert de vitrine institutionnelle et de plateforme politique permanente.',
+      tone: 'institution',
+      source: officialSource('Parlement européen', 'https://www.europarl.europa.eu/'),
+    },
+    {
+      actor: 'Groupe RN à l’Assemblée nationale',
+      role: 'Relais parlementaire',
+      relation: 'Même sans y siéger, Bardella bénéficie du relais politique et médiatique du groupe RN au Palais-Bourbon.',
+      tone: 'ally',
+      source: officialSource(
+        'Rassemblement national',
+        'https://rassemblementnational.fr/instances/bureau-executif',
+      ),
+    },
+  ],
+  'raphael-glucksmann': [
+    {
+      actor: 'Parti socialiste',
+      role: 'Partenaire social-démocrate',
+      relation: 'Sa stratégie repose aussi sur un dialogue privilégié avec la gauche sociale-démocrate et le Parti socialiste.',
+      tone: 'ally',
+      source: pressSource(
+        'Le Monde',
+        'https://www.lemonde.fr/en/politics/article/2025/06/24/raphael-glucksmann-sets-out-policy-platform-for-2027-french-presidential-election_6742671_5.html',
+        '2025-06-24',
+      ),
+    },
+    {
+      actor: 'Parlement européen',
+      role: 'Base institutionnelle',
+      relation: 'Son mandat européen nourrit sa crédibilité sur les questions industrielles, démocratiques et internationales.',
+      tone: 'institution',
+      source: officialSource(
+        'Parlement européen',
+        'https://www.europarl.europa.eu/meps/fr/197478/RAPHAEL_GLUCKSMANN/home',
+      ),
+    },
+  ],
+  'gabriel-attal': [
+    {
+      actor: 'Assemblée nationale',
+      role: 'Point d’appui institutionnel',
+      relation: 'Sa position de député et de chef de file du bloc macroniste reste un levier important dans sa précampagne.',
+      tone: 'institution',
+      source: officialSource('Assemblée nationale', 'https://www.assemblee-nationale.fr/dyn/deputes/PA722190'),
+    },
+    {
+      actor: 'Emmanuel Macron',
+      role: 'Héritage politique',
+      relation: 'Attal cherche à capter l’héritage macroniste tout en s’émancipant progressivement de la figure du président sortant.',
+      tone: 'ally',
+      source: pressSource(
+        'Le Monde',
+        'https://www.lemonde.fr/en/politics/article/2025/04/07/gabriel-attal-takes-first-step-toward-race-for-french-presidency_6739920_5.html',
+        '2025-04-07',
+      ),
+    },
+  ],
+  'jean-luc-melenchon': [
+    {
+      actor: 'Institut La Boétie',
+      role: 'Laboratoire idéologique',
+      relation: 'L’Institut La Boétie sert de relais doctrinal et d’outil d’influence dans son dispositif politique.',
+      tone: 'ally',
+      source: officialSource('Institut La Boétie', 'https://institutlaboetie.fr/'),
+    },
+    {
+      actor: 'Marine Tondelier',
+      role: 'Rivale stratégique à gauche',
+      relation: 'La stratégie d’union défendue par Tondelier se construit explicitement contre l’hypothèse d’une candidature Mélenchon.',
+      tone: 'rival',
+      source: pressSource(
+        'Le Parisien',
+        'https://www.leparisien.fr/politique/ca-va-murir-tout-lete-lidee-dune-primaire-pour-2027-cristallise-les-divisions-a-gauche-26-05-2025-34NOQMTTJBHBPHLG6MBW55557Y.php',
+        '2025-05-26',
+      ),
+    },
+  ],
+  'bruno-retailleau': [
+    {
+      actor: 'Ministère de l’Intérieur',
+      role: 'Base institutionnelle',
+      relation: 'Sa fonction gouvernementale renforce sa visibilité et nourrit son positionnement d’homme d’ordre.',
+      tone: 'institution',
+      source: officialSource('Ministère de l’Intérieur', 'https://www.interieur.gouv.fr/'),
+    },
+    {
+      actor: 'Xavier Bertrand',
+      role: 'Rival à droite',
+      relation: 'Bertrand refuse de lui laisser le monopole de la candidature de droite pour 2027.',
+      tone: 'rival',
+      source: pressSource(
+        'RMC BFMTV',
+        'https://rmc.bfmtv.com/actualites/politique/bruno-retailleau-meilleur-candidat-a-droite-pour-2027-ca-je-ne-suis-pas-sur-ironise-xavier-bertrand_AV-202502260476.html',
+        '2025-02-26',
+      ),
+    },
+  ],
+  'gerald-darmanin': [
+    {
+      actor: 'Ministère de la Justice',
+      role: 'Base institutionnelle',
+      relation: 'Sa place à la Chancellerie lui offre une forte exposition et un axe régalien distinct dans la précampagne.',
+      tone: 'institution',
+      source: officialSource('Ministère de la Justice', 'https://www.justice.gouv.fr/'),
+    },
+    {
+      actor: 'Tourcoing',
+      role: 'Ancrage territorial',
+      relation: 'Son réseau local à Tourcoing reste l’un des socles de sa légitimité politique.',
+      tone: 'institution',
+      source: officialSource('Ville de Tourcoing', 'https://www.tourcoing.fr/'),
+    },
+  ],
+}
+
 async function main() {
   const app = initializeApp(getFirebaseConfig())
   const db = getFirestore(app)
@@ -463,7 +708,10 @@ async function main() {
       throw new Error(`Candidate not found: ${candidateId}`)
     }
 
-    const network = candidateNetworks[candidateId]
+    const network = [
+      ...(candidateNetworks[candidateId] ?? []),
+      ...(supplementalCandidateNetworks[candidateId] ?? []),
+    ]
     console.log(`- ${candidateId}: ${network.length} researched nodes`)
 
     if (DRY_RUN) {
