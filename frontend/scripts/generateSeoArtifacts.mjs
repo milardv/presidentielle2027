@@ -462,13 +462,26 @@ Sitemap: ${SITE_URL}/sitemap.xml
 }
 
 async function generateSitemap() {
-  const urls = ['/', '/polls', ...seoPages.map((page) => `/${page.slug}/`)]
+  const lastModifiedAt = new Date().toISOString()
+  const urls = [
+    { path: '/', changefreq: 'daily', priority: '1.0' },
+    { path: '/polls', changefreq: 'daily', priority: '0.9' },
+    { path: '/sources', changefreq: 'weekly', priority: '0.6' },
+    ...seoPages.map((page) => ({
+      path: `/${page.slug}/`,
+      changefreq: 'weekly',
+      priority: '0.8',
+    })),
+  ]
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls
   .map(
-    (path) => `  <url>
+    ({ path, changefreq, priority }) => `  <url>
     <loc>${buildAbsoluteUrl(path)}</loc>
+    <lastmod>${lastModifiedAt}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
   </url>`,
   )
   .join('\n')}

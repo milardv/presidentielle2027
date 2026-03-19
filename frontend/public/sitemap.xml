@@ -2,53 +2,110 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://electionpresidentielle2027.com/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/polls/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://electionpresidentielle2027.com/sources/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/presidentielle-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/sondage-presidentielle-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/candidats-presidentielle-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/quand-aura-lieu-la-presidentielle-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/qui-peut-se-presenter-en-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/macron-peut-il-se-representer-en-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/comment-se-deroule-election-presidentielle/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/simulateur-presidentielle-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/bardella-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/le-pen-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/attal-president-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/edouard-philippe-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/melenchon-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/zemmour-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electionpresidentielle2027.com/glucksmann-2027/</loc>
+    <lastmod>2026-03-19T21:49:28.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
