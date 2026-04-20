@@ -461,6 +461,17 @@ Sitemap: ${SITE_URL}/sitemap.xml
   await writeFile(resolve(PUBLIC_DIR, 'robots.txt'), robotsContent, 'utf8')
 }
 
+const CANDIDATE_IDS = [
+  'edouard-philippe',
+  'xavier-bertrand',
+  'nathalie-arthaud',
+  'delphine-batho',
+  'marine-tondelier',
+  'francois-ruffin',
+  'marine-le-pen',
+  'jordan-bardella',
+]
+
 async function generateSitemap() {
   const lastModifiedAt = new Date().toISOString()
   const urls = [
@@ -471,6 +482,11 @@ async function generateSitemap() {
       path: `/${page.slug}/`,
       changefreq: 'weekly',
       priority: '0.8',
+    })),
+    ...CANDIDATE_IDS.map((id) => ({
+      path: `/candidats/${id}/`,
+      changefreq: 'weekly',
+      priority: '0.7',
     })),
   ]
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
