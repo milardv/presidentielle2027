@@ -12,6 +12,16 @@ import {
 
 const PROJECT_ROOT = resolve(new URL('..', import.meta.url).pathname)
 const PUBLIC_DIR = resolve(PROJECT_ROOT, 'public')
+const CANDIDATE_IDS = [
+  'edouard-philippe',
+  'xavier-bertrand',
+  'nathalie-arthaud',
+  'delphine-batho',
+  'marine-tondelier',
+  'francois-ruffin',
+  'marine-le-pen',
+  'jordan-bardella',
+]
 
 function normalizePath(path) {
   if (!path || path === '/') {
@@ -50,6 +60,18 @@ function escapeHtml(value) {
 
 function renderSeoPage(page) {
   const canonicalUrl = buildAbsoluteUrl(`/${page.slug}/`)
+  const crawlLinks = [
+    { label: 'Accueil', href: '/' },
+    { label: 'Sondages', href: '/polls' },
+    { label: 'Sources', href: '/sources' },
+    ...seoPages
+      .filter((entry) => entry.slug !== page.slug)
+      .map((entry) => ({ label: accentizeFrenchCopy(entry.heroTitle), href: `/${entry.slug}/` })),
+    ...CANDIDATE_IDS.map((candidateId) => ({
+      label: `Profil ${accentizeFrenchCopy(candidateId.replaceAll('-', ' '))}`,
+      href: `/candidats/${candidateId}/`,
+    })),
+  ]
   const siteName = accentizeFrenchCopy(SITE_NAME)
   const title = accentizeFrenchCopy(page.title)
   const description = accentizeFrenchCopy(page.description)
@@ -436,6 +458,14 @@ function renderSeoPage(page) {
         <a href="${escapeHtml(buildAbsoluteUrl('/polls'))}">Sondages</a>
         <a href="${escapeHtml(buildAbsoluteUrl('/sources'))}">Sources</a>
       </div>
+      <div class="footer-links" style="margin-top:10px;">
+        ${crawlLinks
+          .map(
+            (link) =>
+              `<a href="${escapeHtml(buildAbsoluteUrl(link.href))}">${escapeHtml(accentizeFrenchCopy(link.label))}</a>`,
+          )
+          .join('')}
+      </div>
     </footer>
   </main>
 </body>
@@ -460,17 +490,6 @@ Sitemap: ${SITE_URL}/sitemap.xml
 
   await writeFile(resolve(PUBLIC_DIR, 'robots.txt'), robotsContent, 'utf8')
 }
-
-const CANDIDATE_IDS = [
-  'edouard-philippe',
-  'xavier-bertrand',
-  'nathalie-arthaud',
-  'delphine-batho',
-  'marine-tondelier',
-  'francois-ruffin',
-  'marine-le-pen',
-  'jordan-bardella',
-]
 
 async function generateSitemap() {
   const lastModifiedAt = new Date().toISOString()
