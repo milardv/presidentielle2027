@@ -22,6 +22,7 @@ import {
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { analytics } from '../../../firebase'
 import { quizAnswerOptions, quizQuestions, type QuizAnswerValue } from '../../../data/quizData.js'
+import { recordQuizCompletion } from '../../../services/quizStatsRepository'
 import { useCandidates } from '../../candidates/home/hooks/useCandidates'
 import { computeQuizResult, type QuizAnswers } from '../quizEngine'
 import { QuizResultView } from './QuizResultView'
@@ -90,12 +91,17 @@ export function PoliticalQuiz({ variant, initialAnswers = null }: PoliticalQuizP
         if (analytics) {
           logEvent(analytics, 'quiz_completed', { answered: Object.values(nextAnswers).filter((value) => value !== null).length })
         }
+        if (candidates.length > 0) {
+          recordQuizCompletion(computeQuizResult(nextAnswers, candidates), nextAnswers).catch((error: unknown) => {
+            console.warn('Quiz stats not recorded', error)
+          })
+        }
       } else {
         setIndex(nextIndex)
       }
       setTransition('in')
     }, 160)
-  }, [])
+  }, [candidates])
 
   const answer = useCallback(
     (value: QuizAnswerValue | null) => {
@@ -159,7 +165,7 @@ export function PoliticalQuiz({ variant, initialAnswers = null }: PoliticalQuizP
                 <Timer className="h-3.5 w-3.5" /> 2 minutes
               </span>
               <span className="rounded-full bg-white/10 px-3 py-1.5">Résultat partageable</span>
-              <span className="rounded-full bg-white/10 px-3 py-1.5">Aucune donnée enregistrée</span>
+              <span className="rounded-full bg-white/10 px-3 py-1.5">Anonyme, sans inscription</span>
             </div>
           </div>
           <button

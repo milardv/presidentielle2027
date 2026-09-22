@@ -35,6 +35,10 @@ const CODE_BY_ANSWER = new Map<QuizAnswerValue | null, string>([
   [null, 'x'],
 ])
 
+export function answerCode(value: QuizAnswerValue | null): 'a' | 'b' | 'c' | 'd' | 'x' {
+  return (CODE_BY_ANSWER.get(value) ?? 'x') as 'a' | 'b' | 'c' | 'd' | 'x'
+}
+
 export function encodeAnswers(answers: QuizAnswers): string {
   return quizQuestions.map((question) => CODE_BY_ANSWER.get(answers[question.id] ?? null) ?? 'x').join('')
 }

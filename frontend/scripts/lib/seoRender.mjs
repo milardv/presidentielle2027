@@ -553,7 +553,8 @@ export function renderQuizFallback() {
         <li>${quizQuestions.length} affirmations sur les clivages de la campagne : immigration, retraites, énergie, fiscalité, Europe, sécurité, institutions, budget, salaires, laïcité, défense, écologie, services publics.</li>
         <li>Quatre réponses possibles (${quizAnswerOptions.map((option) => escapeHtml(option.label.toLowerCase())).join(', ')}) ou « sans avis ».</li>
         <li>Vos réponses sont comparées aux positions publiques de ${runningCandidates().length} candidats déclarés ou en primaire, documentées dans leurs fiches.</li>
-        <li>Vous obtenez votre top 3, un profil politique (avec un peu d’humour) et un lien de partage. Aucune donnée n’est enregistrée.</li>
+        <li>Vous obtenez votre top 3, un profil politique (avec un peu d’humour), le détail question par question face au podium et un lien de partage. Aucune réponse individuelle n’est enregistrée, seules des statistiques anonymes agrégées.</li>
+        <li>La page affiche aussi les candidats le plus souvent arrivés en tête chez les participants et la répartition des réponses pour chaque affirmation.</li>
       </ul>
       <p><a class="action" href="/quiz/#quiz">Lancer le quiz (JavaScript requis)</a></p>
     </section>

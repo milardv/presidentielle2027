@@ -1,10 +1,11 @@
-import { Check, Copy, ExternalLink, Link2, RotateCcw, Share2, X } from 'lucide-react'
+import { BarChart3, Check, ExternalLink, Link2, ListChecks, RotateCcw, Share2, X } from 'lucide-react'
 import { useState } from 'react'
 import type { Candidate } from '../../../data/candidateTypes'
 import { QUIZ_FEEDBACK_URL } from '../../../data/quizData.js'
 import { SITE_URL, withBasePath } from '../../../seo/site'
 import { getCandidateInitials, getCandidatePartyAccentColor } from '../../candidates/shared/candidateUi'
 import { buildResultPath, buildShareText, type QuizAnswers, type QuizMatch, type QuizResult } from '../quizEngine'
+import { QuizAnswerDetails } from './QuizAnswerDetails'
 
 interface QuizResultViewProps {
   result: QuizResult
@@ -65,6 +66,7 @@ function PodiumCard({ match, rank }: { match: QuizMatch; rank: 1 | 2 | 3 }) {
 
 export function QuizResultView({ result, answers, onRestart }: QuizResultViewProps) {
   const [copied, setCopied] = useState(false)
+  const [showDetails, setShowDetails] = useState(false)
   const top = result.matches[0]
   const shareUrl = `${SITE_URL}${buildResultPath(result, answers)}`
   const shareText = buildShareText(result)
@@ -205,6 +207,26 @@ export function QuizResultView({ result, answers, onRestart }: QuizResultViewPro
         </section>
       </div>
 
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <button
+          type="button"
+          onClick={() => setShowDetails((value) => !value)}
+          className={`inline-flex flex-1 items-center justify-center gap-2 rounded-2xl border px-5 py-4 text-sm font-bold transition ${
+            showDetails ? 'border-primary bg-primary text-white' : 'border-primary/30 bg-primary/5 text-primary hover:bg-primary/10'
+          }`}
+        >
+          <ListChecks className="h-4 w-4" /> {showDetails ? 'Masquer le détail' : 'Détailler mes réponses face au podium'}
+        </button>
+        <a
+          href={withBasePath('/quiz/#stats')}
+          className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm font-bold text-slate-700 transition hover:border-primary hover:text-primary"
+        >
+          <BarChart3 className="h-4 w-4" /> Comparer avec les autres participants
+        </a>
+      </div>
+
+      {showDetails ? <QuizAnswerDetails podium={podium} answers={answers} /> : null}
+
       <details className="group rounded-[1.8rem] border border-slate-200 bg-white p-6">
         <summary className="cursor-pointer list-none text-sm font-bold text-slate-900">
           Voir le classement complet ({result.matches.length} candidats)
@@ -228,7 +250,7 @@ export function QuizResultView({ result, answers, onRestart }: QuizResultViewPro
 
       <div className="flex flex-col items-start justify-between gap-3 text-xs text-slate-500 sm:flex-row sm:items-center">
         <p className="max-w-2xl leading-relaxed">
-          Les positions des candidats sont estimées à partir de leurs programmes et déclarations publiques (voir les fiches). Ce quiz mesure une proximité d’opinions, pas une intention de vote.{' '}
+          Les positions des candidats sont estimées à partir de leurs programmes et déclarations publiques (voir les fiches). Ce quiz mesure une proximité d’opinions, pas une intention de vote. Seules des statistiques anonymes et agrégées (candidat n°1, répartition des réponses) sont conservées.{' '}
           <a href={QUIZ_FEEDBACK_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">
             Signaler une erreur
           </a>
@@ -240,9 +262,6 @@ export function QuizResultView({ result, answers, onRestart }: QuizResultViewPro
         >
           <RotateCcw className="h-3.5 w-3.5" /> Refaire le quiz
         </button>
-        <span className="sr-only">
-          <Copy className="h-3 w-3" />
-        </span>
       </div>
     </div>
   )

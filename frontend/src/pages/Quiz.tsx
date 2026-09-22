@@ -4,6 +4,7 @@ import { AppSiteHeader } from '../components/AppSiteHeader'
 import { MobileAppNav } from '../components/MobileAppNav'
 import { HomeDesktopFooter } from '../features/candidates/home/components/HomeDesktopFooter'
 import { PoliticalQuiz } from '../features/quiz/components/PoliticalQuiz'
+import { QuizStatsSection } from '../features/quiz/components/QuizStatsSection'
 import { decodeAnswers } from '../features/quiz/quizEngine'
 import { QUIZ_UPDATED_AT, quizQuestions } from '../data/quizData.js'
 import { appNavItems } from '../navigation/appNavItems'
@@ -47,6 +48,8 @@ export default function Quiz() {
           <PoliticalQuiz variant="page" initialAnswers={initialAnswers} />
         </section>
 
+        <QuizStatsSection />
+
         <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.06)] sm:p-8">
           <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Méthode</p>
           <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-950">Quiz présidentielle 2027 : quel candidat vous correspond ?</h1>
@@ -69,7 +72,8 @@ export default function Quiz() {
                 économique (redistribution ou rigueur) et sociétal (ouverture ou ordre). Il ne prétend pas vous classer définitivement.
               </p>
               <p className="mt-3">
-                Aucune réponse n’est enregistrée sur nos serveurs : votre résultat est encodé dans le lien de partage, que vous seul décidez de diffuser.
+                Aucune réponse individuelle n’est enregistrée : votre résultat est encodé dans le lien de partage, que vous seul décidez de diffuser. Seuls des
+                compteurs anonymes et agrégés (candidat arrivé n°1, répartition des réponses par question) alimentent les statistiques ci-dessus.
                 Positions mises à jour le {new Date(`${QUIZ_UPDATED_AT}T12:00:00Z`).toLocaleDateString('fr-FR')}. Une erreur ? Signalez-la, elle sera
                 corrigée avec sa source.
               </p>
