@@ -13,12 +13,16 @@ import {
 } from '../../src/data/candidates2027.js'
 import {
   STATUS_ORDER,
+  buildCandidateFutureSeo,
   buildCandidateJsonLd,
   buildCandidateSeo,
+  candidateFuturePath,
   candidateProfilePath,
   latestMilestone,
   statusGroupLabel,
 } from '../../src/seo/candidateSeo.js'
+import { FUTURE_HORIZON_YEAR, FUTURE_MODEL_UPDATED_AT, policyLevers } from '../../src/data/futureIndicators.js'
+import { buildCandidateFutureModel } from '../../src/features/future/futureModel.js'
 import { pollsRouteSeo, quizRouteSeo, sourcesRouteSeo } from '../../src/seo/appRoutesSeo.js'
 import pollsSnapshot from '../../src/data/pollsSnapshot.json' with { type: 'json' }
 import { QUIZ_UPDATED_AT, quizAnswerOptions, quizQuestions } from '../../src/data/quizData.js'
@@ -297,6 +301,7 @@ export function renderCandidateFallback(candidate) {
     <section class="panel">
       <h2>Aller plus loin</h2>
       <div class="links">
+        ${candidate.status !== 'not_running' ? `<a href="${escapeHtml(candidateFuturePath(candidate))}">La France dans 5 ans avec ${escapeHtml(candidate.name)} : projection ${FUTURE_HORIZON_YEAR}</a>` : ''}
         ${landingPage ? `<a href="/${escapeHtml(landingPage.slug)}/">${escapeHtml(accentizeFrenchCopy(landingPage.heroTitle))}</a>` : ''}
         <a href="/candidats-presidentielle-2027/">Liste complète des candidats 2027</a>
         <a href="/polls/">Sondages présidentielle 2027</a>
@@ -313,6 +318,99 @@ export function renderCandidateFallback(candidate) {
       </div>
     </section>
   </main>`
+}
+
+function formatIndicatorValue(value, indicator) {
+  return value.toLocaleString('fr-FR', { minimumFractionDigits: indicator.decimals, maximumFractionDigits: indicator.decimals })
+}
+
+function formatDelta(value, indicator) {
+  const sign = value > 0 ? '+' : value < 0 ? '−' : '±'
+  return `${sign}${formatIndicatorValue(Math.abs(value), indicator)}`
+}
+
+export function renderCandidateFutureFallback(candidate) {
+  const model = buildCandidateFutureModel(candidate.id)
+  const seo = buildCandidateFutureSeo(candidate)
+  if (!model) {
+    return `<main id="seo-root-fallback"><h1>${escapeHtml(seo.title)}</h1><p class="lead">${escapeHtml(candidate.name)} ne se présente pas à l’élection : pas de projection.</p>${renderNav()}</main>`
+  }
+
+  const firstName = candidate.name.split(' ')[0]
+  const leverChips = Object.entries(model.levers.values)
+    .filter(([, value]) => value !== 0)
+    .map(([lever, value]) => `<li><strong>${escapeHtml(policyLevers[lever].label)} :</strong> ${escapeHtml(String(value))} ${escapeHtml(policyLevers[lever].unit)}</li>`)
+    .join('')
+
+  return `<main id="seo-root-fallback">
+    <p class="eyebrow">La France dans 5 ans · projection ${FUTURE_HORIZON_YEAR}</p>
+    <h1>${escapeHtml(seo.title)}</h1>
+    <p class="lead">${escapeHtml(seo.description)}</p>
+    <p class="meta">${model.improving} indicateurs en mieux que la tendance, ${model.worsening} en moins bien, ${model.neutral} sans écart significatif · modèle mis à jour le <time datetime="${FUTURE_MODEL_UPDATED_AT}">${escapeHtml(formatFrenchDate(FUTURE_MODEL_UPDATED_AT))}</time>.</p>
+    ${renderNav()}
+
+    <section class="panel">
+      <h2>Hypothèses retenues</h2>
+      <p>${escapeHtml(model.levers.notes)}</p>
+      <ul>${leverChips}</ul>
+    </section>
+
+    ${model.categories
+      .map(
+        (entry) => `<section class="panel">
+      <h2>${escapeHtml(entry.category.label)}</h2>
+      <table class="candidate-table">
+        <thead><tr><th scope="col">Indicateur</th><th scope="col">Aujourd’hui</th><th scope="col">Tendance ${FUTURE_HORIZON_YEAR}</th><th scope="col">Avec ${escapeHtml(firstName)} (intervalle 80 %)</th><th scope="col">Écart</th></tr></thead>
+        <tbody>
+          ${entry.projections
+            .map(
+              (projection) => `<tr>
+            <td>${escapeHtml(projection.indicator.label)} <span class="source">(${escapeHtml(projection.indicator.unit)})</span></td>
+            <td>${escapeHtml(formatIndicatorValue(projection.today, projection.indicator))} <span class="source">${escapeHtml(projection.indicator.baseline.label)}</span></td>
+            <td>${escapeHtml(formatIndicatorValue(projection.trend, projection.indicator))}</td>
+            <td><strong>${escapeHtml(formatIndicatorValue(projection.median, projection.indicator))}</strong> (${escapeHtml(formatIndicatorValue(projection.p10, projection.indicator))} à ${escapeHtml(formatIndicatorValue(projection.p90, projection.indicator))})</td>
+            <td>${escapeHtml(formatDelta(projection.deltaVsTrend, projection.indicator))} · ${projection.improvesVsTrend === null ? 'comme la tendance' : projection.improvesVsTrend ? 'mieux' : 'moins bien'}</td>
+          </tr>`,
+            )
+            .join('')}
+        </tbody>
+      </table>
+    </section>`,
+      )
+      .join('\n')}
+
+    <section class="panel">
+      <h2>Méthode</h2>
+      <p>Pour chaque indicateur, le modèle part de la dernière valeur publiée (Insee, Eurostat, Citepa, SSMSI, Cevipof…), prolonge la tendance sans changement de politique jusqu’en ${FUTURE_HORIZON_YEAR}, puis ajoute l’effet de chaque levier du programme (impulsion budgétaire, âge de la retraite, SMIC, fiscalité du patrimoine, transition écologique, justice pénale, immigration, institutions, rapport à l’Union européenne…) multiplié par une élasticité issue de la littérature économique. L’incertitude combine celle de la tendance et celle de chaque élasticité ; l’intervalle affiché couvre 80 % des cas. Le détail du calcul et les sources de chaque indicateur sont affichés sur la page interactive.</p>
+      <div class="links">
+        <a href="${escapeHtml(candidateProfilePath(candidate))}">Fiche de ${escapeHtml(candidate.name)}</a>
+        <a href="/candidats-presidentielle-2027/">Tous les candidats</a>
+        <a href="/quiz/">Quel candidat vous correspond ?</a>
+      </div>
+    </section>
+  </main>`
+}
+
+export function buildCandidateFutureHead(candidate) {
+  const seo = buildCandidateFutureSeo(candidate)
+  const canonicalPath = candidateFuturePath(candidate)
+  return renderHeadBlock({
+    title: seo.title,
+    description: seo.description,
+    canonicalPath,
+    ogType: 'article',
+    schemaGraph: [
+      buildOrganizationSchema(),
+      buildWebsiteSchema(),
+      buildWebpageSchema({ title: seo.title, description: seo.description, url: buildAbsoluteUrl(canonicalPath), dateModified: FUTURE_MODEL_UPDATED_AT, type: 'AnalysisNewsArticle' }),
+      buildBreadcrumbSchema([
+        { name: 'Accueil', path: '/' },
+        { name: 'Candidats présidentielle 2027', path: '/candidats-presidentielle-2027/' },
+        { name: candidate.name, path: candidateProfilePath(candidate) },
+        { name: 'La France dans 5 ans', path: canonicalPath },
+      ]),
+    ],
+  })
 }
 
 export function buildCandidateHead(candidate) {

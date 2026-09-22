@@ -13,6 +13,7 @@ import Quiz from './pages/Quiz.tsx'
 import { seoPages } from './seo/seoPagesData.js'
 
 const CandidateAnalysis = lazy(() => import('./pages/CandidateAnalysis.tsx'))
+const CandidateFuture = lazy(() => import('./pages/CandidateFuture.tsx'))
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route key={page.slug} path={`/${page.slug}`} element={<SeoLandingPage pageSlug={page.slug} />} />
           ))}
           <Route path="/candidats/:candidateId" element={<Profile />} />
+          <Route path="/candidats/:candidateId/france-2032" element={<CandidateFuture />} />
           <Route path="/candidats/:candidateId/videos" element={<CandidateVideos />} />
           <Route path="/candidats/:candidateId/tweets" element={<CandidateTweets />} />
           <Route path="/candidats/:candidateId/analysis" element={<CandidateAnalysis />} />

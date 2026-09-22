@@ -4,6 +4,8 @@ export const STATUS_ORDER: CandidateStatus[]
 export function statusGroupLabel(status: CandidateStatus): string
 export function latestMilestone(candidate: Candidate): CandidateTimelineEvent | null
 export function candidateProfilePath(candidate: Candidate): string
+export function candidateFuturePath(candidate: Candidate): string
+export function buildCandidateFutureSeo(candidate: Candidate): { title: string; description: string; keywords: string[] }
 export function buildCandidateSeo(candidate: Candidate): {
   title: string
   description: string

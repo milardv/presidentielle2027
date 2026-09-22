@@ -26,6 +26,23 @@ export function candidateProfilePath(candidate) {
   return `/candidats/${candidate.id}/`
 }
 
+export function candidateFuturePath(candidate) {
+  return `/candidats/${candidate.id}/france-2032/`
+}
+
+export function buildCandidateFutureSeo(candidate) {
+  return {
+    title: `${candidate.name} : la France dans 5 ans si son programme est appliqué (projection 2032)`,
+    description: `Chômage, dette, pauvreté, émissions, espérance de vie… 16 indicateurs projetés en 2032 si le programme de ${candidate.name} (${candidate.party}) est appliqué à la lettre, avec intervalle de confiance et méthode de calcul détaillée.`,
+    keywords: [
+      `${candidate.name} programme`,
+      `${candidate.name} bilan 2032`,
+      `${candidate.name} chômage dette`,
+      `programme ${candidate.name} conséquences`,
+    ],
+  }
+}
+
 export function buildCandidateSeo(candidate) {
   const isRunning = candidate.status !== 'not_running'
   const title = isRunning

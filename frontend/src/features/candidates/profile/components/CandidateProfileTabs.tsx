@@ -1,4 +1,4 @@
-import { AtSign, ChartSpline, FileText, SquarePlay } from 'lucide-react'
+import { AtSign, ChartSpline, FileText, SquarePlay, Telescope } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 
 interface CandidateProfileTabsProps {
@@ -8,6 +8,12 @@ interface CandidateProfileTabsProps {
 export function CandidateProfileTabs({ candidateId }: CandidateProfileTabsProps) {
   const tabs = [
     { label: 'Fiche', to: `/candidats/${candidateId}`, end: true, icon: <FileText className="h-[18px] w-[18px]" /> },
+    {
+      label: 'La France dans 5 ans',
+      to: `/candidats/${candidateId}/france-2032`,
+      end: true,
+      icon: <Telescope className="h-[18px] w-[18px]" />,
+    },
     { label: 'Vidéos', to: `/candidats/${candidateId}/videos`, end: true, icon: <SquarePlay className="h-[18px] w-[18px]" /> },
     { label: 'Tweets', to: `/candidats/${candidateId}/tweets`, end: true, icon: <AtSign className="h-[18px] w-[18px]" /> },
     {

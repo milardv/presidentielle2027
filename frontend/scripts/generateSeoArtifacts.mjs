@@ -3,7 +3,8 @@ import { resolve } from 'node:path'
 import { accentizeFrenchCopy } from '../src/seo/frenchCopy.js'
 import { SITE_FAVICON_PATH, SITE_URL, seoPages } from '../src/seo/seoPagesData.js'
 import { CANDIDATE_DATA_LAST_UPDATED } from '../src/data/candidates2027.js'
-import { candidateProfilePath } from '../src/seo/candidateSeo.js'
+import { candidateFuturePath, candidateProfilePath } from '../src/seo/candidateSeo.js'
+import { FUTURE_MODEL_UPDATED_AT } from '../src/data/futureIndicators.js'
 import { pollsRouteSeo, quizRouteSeo, sourcesRouteSeo } from '../src/seo/appRoutesSeo.js'
 import { QUIZ_UPDATED_AT } from '../src/data/quizData.js'
 import {
@@ -335,6 +336,12 @@ async function generateSitemap() {
       changefreq: 'weekly',
       priority: candidate.status === 'not_running' ? '0.5' : '0.7',
       lastmod: candidate.dataLastUpdated ?? CANDIDATE_DATA_LAST_UPDATED,
+    })),
+    ...runningCandidates().map((candidate) => ({
+      path: candidateFuturePath(candidate),
+      changefreq: 'monthly',
+      priority: '0.6',
+      lastmod: FUTURE_MODEL_UPDATED_AT,
     })),
   ]
 

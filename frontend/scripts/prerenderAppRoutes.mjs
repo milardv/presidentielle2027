@@ -7,9 +7,11 @@ import {
   HEAD_MARKERS,
   ROOT_MARKERS,
   buildAppRouteHead,
+  buildCandidateFutureHead,
   buildCandidateHead,
   buildQuizResultHead,
   renderCandidateFallback,
+  renderCandidateFutureFallback,
   renderPollsFallback,
   renderQuizFallback,
   renderQuizResultFallback,
@@ -47,6 +49,11 @@ const routes = [
     path: `/candidats/${candidate.id}/`,
     head: buildCandidateHead(candidate),
     root: renderCandidateFallback(candidate),
+  })),
+  ...runningCandidates().map((candidate) => ({
+    path: `/candidats/${candidate.id}/france-2032/`,
+    head: buildCandidateFutureHead(candidate),
+    root: renderCandidateFutureFallback(candidate),
   })),
 ]
 
