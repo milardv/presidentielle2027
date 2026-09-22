@@ -96,7 +96,7 @@ export default function CandidateFuture() {
                   {(Object.entries(model.levers.values) as Array<[PolicyLeverId, number]>).map(([lever, value]) => (
                     <span
                       key={lever}
-                      title={policyLevers[lever].description}
+                      title={model.evidence[lever]?.statement ?? policyLevers[lever].description}
                       className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${
                         value === 0 ? 'border-slate-200 text-slate-400' : 'border-slate-300 bg-slate-50 text-slate-700 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200'
                       }`}
@@ -105,10 +105,13 @@ export default function CandidateFuture() {
                     </span>
                   ))}
                 </div>
-                <p className="mt-3 text-xs text-slate-400">Les positions « issues du quiz » reprennent la grille du quiz « Quel candidat vous correspond ? » ; les autres sont lues dans le programme.</p>
+                <p className="mt-3 text-xs text-slate-400">
+                  Les positions « issues du quiz » reprennent la grille du quiz « Quel candidat vous correspond ? » ; les autres sont lues dans le programme. Survolez un levier pour lire
+                  l’engagement retenu ; la méthode de calcul de chaque indicateur détaille la déclaration, sa source et le raisonnement.
+                </p>
               </section>
 
-              <FutureCategoryList categories={model.categories} candidateFirstName={firstName} accent={accent} />
+              <FutureCategoryList categories={model.categories} candidateFirstName={firstName} accent={accent} evidence={model.evidence} />
             </>
           ) : (
             <section className="rounded-[2rem] border border-slate-200 bg-white p-8 text-center text-sm text-slate-500">

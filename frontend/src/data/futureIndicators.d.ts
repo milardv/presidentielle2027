@@ -33,7 +33,14 @@ export interface FutureEffect {
   lever: PolicyLeverId
   perUnit: number
   sigma: number
+  /** Keys of literatureSources giving the order of magnitude of the elasticity. */
+  refs: string[]
   note: string
+}
+
+export interface LiteratureSource {
+  label: string
+  url: string
 }
 
 export interface FutureIndicator {
@@ -52,6 +59,7 @@ export interface FutureIndicator {
 
 export const FUTURE_HORIZON_YEAR: number
 export const FUTURE_MODEL_UPDATED_AT: string
+export const literatureSources: Record<string, LiteratureSource>
 export const policyLevers: Record<PolicyLeverId, PolicyLeverDefinition>
 export const futureCategories: FutureCategory[]
 export const futureIndicators: FutureIndicator[]

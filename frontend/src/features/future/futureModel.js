@@ -1,3 +1,4 @@
+import { getCandidateLeverEvidence } from '../../data/candidateLeverEvidence.js'
 import { getCandidatePolicyLevers } from '../../data/candidatePolicyLevers.js'
 import { futureCategories, futureIndicators, policyLevers } from '../../data/futureIndicators.js'
 
@@ -73,6 +74,7 @@ export function buildCandidateFutureModel(candidateId) {
 
   return {
     levers,
+    evidence: getCandidateLeverEvidence(candidateId) ?? {},
     categories,
     improving,
     worsening,

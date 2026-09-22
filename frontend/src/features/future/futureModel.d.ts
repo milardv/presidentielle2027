@@ -1,3 +1,4 @@
+import type { LeverEvidence } from '../../data/candidateLeverEvidence'
 import type { CandidatePolicyLevers } from '../../data/candidatePolicyLevers'
 import type { FutureCategory, FutureIndicator, PolicyLeverId } from '../../data/futureIndicators'
 
@@ -35,6 +36,7 @@ export interface CategoryProjection {
 
 export interface CandidateFutureModel {
   levers: CandidatePolicyLevers
+  evidence: Partial<Record<PolicyLeverId, LeverEvidence>>
   categories: CategoryProjection[]
   improving: number
   worsening: number

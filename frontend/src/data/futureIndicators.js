@@ -100,6 +100,27 @@ export const futureCategories = [
   { id: 'democratie', label: 'Démocratie et confiance', icon: 'vote' },
 ]
 
+
+// Institutions whose published work gives the order of magnitude of each elasticity.
+// Links point to the institution, not to a single document: the values are ranges drawn from several studies.
+export const literatureSources = {
+  insee: { label: 'Insee', url: 'https://www.insee.fr/' },
+  ofce: { label: 'OFCE', url: 'https://www.ofce.sciences-po.fr/' },
+  cor: { label: 'Conseil d’orientation des retraites', url: 'https://www.cor-retraites.fr/' },
+  dares: { label: 'Dares', url: 'https://dares.travail-emploi.gouv.fr/' },
+  drees: { label: 'DREES', url: 'https://drees.solidarites-sante.gouv.fr/' },
+  ocde: { label: 'OCDE', url: 'https://www.oecd.org/' },
+  bdf: { label: 'Banque de France', url: 'https://www.banque-france.fr/' },
+  ipp: { label: 'Institut des politiques publiques', url: 'https://www.ipp.eu/' },
+  spf: { label: 'Santé publique France', url: 'https://www.santepubliquefrance.fr/' },
+  ined: { label: 'Ined', url: 'https://www.ined.fr/' },
+  hcc: { label: 'Haut Conseil pour le climat', url: 'https://www.hautconseilclimat.fr/' },
+  mte: { label: 'Ministère de la Transition écologique', url: 'https://www.ecologie.gouv.fr/' },
+  justice: { label: 'Ministère de la Justice', url: 'https://www.justice.gouv.fr/' },
+  cevipof: { label: 'CEVIPOF', url: 'https://www.sciencespo.fr/cevipof/' },
+  strategie: { label: 'France Stratégie', url: 'https://www.strategie.gouv.fr/' },
+}
+
 function src(label, url, date) {
   return { label, url, date }
 }
@@ -135,12 +156,12 @@ export const futureIndicators = [
         'L’Insee anticipe 8,6 % fin 2026. Sans changement de politique, le modèle retient un retour progressif vers le chômage structurel estimé (7,5 à 8 %) d’ici 2032, avec une forte incertitude conjoncturelle.',
     },
     effects: [
-      { lever: 'fiscalImpulse', perUnit: -0.35, sigma: 0.2, note: 'Multiplicateur budgétaire 0,8 et loi d’Okun (0,4 point de chômage par point de PIB).' },
-      { lever: 'smicHike', perUnit: 0.04, sigma: 0.03, note: 'Élasticité de l’emploi peu qualifié au coût du travail : +10 % de SMIC réel ≈ +0,4 point (fourchette des études françaises).' },
-      { lever: 'retirementAge', perUnit: 0.1, sigma: 0.1, note: 'Un départ plus tardif accroît la population active ; l’emploi s’ajuste avec retard (+0,1 point par année).' },
-      { lever: 'europeExit', perUnit: 1.0, sigma: 0.8, note: 'Choc de confiance et de change comparable aux estimations post-Brexit, transposé à une sortie de l’euro.' },
-      { lever: 'taxWealth', perUnit: 0.1, sigma: 0.15, note: 'Effet faible et incertain sur l’investissement et l’emploi.' },
-      { lever: 'immigrationRestriction', perUnit: 0, sigma: 0.1, note: 'La littérature ne trouve pas d’effet mesurable de l’immigration sur le taux de chômage agrégé.' },
+      { lever: 'fiscalImpulse', perUnit: -0.35, sigma: 0.2, refs: ['ofce', 'insee'], note: 'Multiplicateur budgétaire 0,8 et loi d’Okun (0,4 point de chômage par point de PIB).' },
+      { lever: 'smicHike', perUnit: 0.04, sigma: 0.03, refs: ['dares', 'insee'], note: 'Élasticité de l’emploi peu qualifié au coût du travail : +10 % de SMIC réel ≈ +0,4 point (fourchette des études françaises).' },
+      { lever: 'retirementAge', perUnit: 0.1, sigma: 0.1, refs: ['cor', 'insee'], note: 'Un départ plus tardif accroît la population active ; l’emploi s’ajuste avec retard (+0,1 point par année).' },
+      { lever: 'europeExit', perUnit: 1.0, sigma: 0.8, refs: ['bdf', 'ocde'], note: 'Choc de confiance et de change comparable aux estimations post-Brexit, transposé à une sortie de l’euro.' },
+      { lever: 'taxWealth', perUnit: 0.1, sigma: 0.15, refs: ['ipp'], note: 'Effet faible et incertain sur l’investissement et l’emploi.' },
+      { lever: 'immigrationRestriction', perUnit: 0, sigma: 0.1, refs: ['ocde', 'insee'], note: 'La littérature ne trouve pas d’effet mesurable de l’immigration sur le taux de chômage agrégé.' },
     ],
   },
   {
@@ -171,12 +192,12 @@ export const futureIndicators = [
         'Croissance potentielle estimée entre 0,8 et 1,1 % par an (Banque de France, OCDE) après le trou d’air de 2026.',
     },
     effects: [
-      { lever: 'fiscalImpulse', perUnit: 0.25, sigma: 0.2, note: 'Multiplicateur de court terme lissé sur cinq ans, minoré par l’effet d’éviction et la hausse des taux.' },
-      { lever: 'retirementAge', perUnit: 0.1, sigma: 0.08, note: 'Offre de travail : une année d’âge légal ≈ +0,1 point de croissance annuelle à moyen terme (COR).' },
-      { lever: 'europeExit', perUnit: -0.8, sigma: 0.6, note: 'Pertes de commerce et prime de risque ; ordre de grandeur des évaluations du Brexit (-4 à -6 % de PIB à long terme).' },
-      { lever: 'taxWealth', perUnit: -0.05, sigma: 0.1, note: 'Effet légèrement négatif sur l’investissement, très incertain.' },
-      { lever: 'ecologyIntensity', perUnit: -0.05, sigma: 0.1, note: 'Coût de transition à court terme, compensé partiellement par l’investissement vert.' },
-      { lever: 'educationInvestment', perUnit: 0.03, sigma: 0.05, note: 'Effets de long terme, à peine visibles à cinq ans.' },
+      { lever: 'fiscalImpulse', perUnit: 0.25, sigma: 0.2, refs: ['ofce', 'bdf'], note: 'Multiplicateur de court terme lissé sur cinq ans, minoré par l’effet d’éviction et la hausse des taux.' },
+      { lever: 'retirementAge', perUnit: 0.1, sigma: 0.08, refs: ['cor'], note: 'Offre de travail : une année d’âge légal ≈ +0,1 point de croissance annuelle à moyen terme (COR).' },
+      { lever: 'europeExit', perUnit: -0.8, sigma: 0.6, refs: ['bdf', 'ocde'], note: 'Pertes de commerce et prime de risque ; ordre de grandeur des évaluations du Brexit (-4 à -6 % de PIB à long terme).' },
+      { lever: 'taxWealth', perUnit: -0.05, sigma: 0.1, refs: ['ipp'], note: 'Effet légèrement négatif sur l’investissement, très incertain.' },
+      { lever: 'ecologyIntensity', perUnit: -0.05, sigma: 0.1, refs: ['strategie', 'hcc'], note: 'Coût de transition à court terme, compensé partiellement par l’investissement vert.' },
+      { lever: 'educationInvestment', perUnit: 0.03, sigma: 0.05, refs: ['ocde'], note: 'Effets de long terme, à peine visibles à cinq ans.' },
     ],
   },
   {
@@ -207,10 +228,10 @@ export const futureIndicators = [
         'Déficit ramené progressivement de 5,1 % à 4 % du PIB et écart taux d’intérêt-croissance proche de zéro : la dette continuerait de monter d’environ 2 points par an.',
     },
     effects: [
-      { lever: 'fiscalImpulse', perUnit: 5, sigma: 1.5, note: 'Un point de PIB de déficit supplémentaire chaque année pendant cinq ans, intérêts compris.' },
-      { lever: 'retirementAge', perUnit: -2.5, sigma: 1.5, note: 'Chaque année d’âge légal pèse 0,3 à 0,5 point de PIB par an sur les dépenses de retraite (COR).' },
-      { lever: 'taxWealth', perUnit: -2, sigma: 2, note: 'Rendement de 0,2 à 0,5 point de PIB par an selon les hypothèses d’assiette et d’exil fiscal.' },
-      { lever: 'europeExit', perUnit: 8, sigma: 6, note: 'Recul du PIB et hausse des taux ; effet dénominateur et prime de risque.' },
+      { lever: 'fiscalImpulse', perUnit: 5, sigma: 1.5, refs: ['insee', 'bdf'], note: 'Un point de PIB de déficit supplémentaire chaque année pendant cinq ans, intérêts compris.' },
+      { lever: 'retirementAge', perUnit: -2.5, sigma: 1.5, refs: ['cor'], note: 'Chaque année d’âge légal pèse 0,3 à 0,5 point de PIB par an sur les dépenses de retraite (COR).' },
+      { lever: 'taxWealth', perUnit: -2, sigma: 2, refs: ['ipp'], note: 'Rendement de 0,2 à 0,5 point de PIB par an selon les hypothèses d’assiette et d’exil fiscal.' },
+      { lever: 'europeExit', perUnit: 8, sigma: 6, refs: ['bdf'], note: 'Recul du PIB et hausse des taux ; effet dénominateur et prime de risque.' },
     ],
   },
   {
@@ -240,10 +261,10 @@ export const futureIndicators = [
       rationale: 'Trajectoire de consolidation lente inscrite dans le plan budgétaire pluriannuel, freinée par la faible croissance.',
     },
     effects: [
-      { lever: 'fiscalImpulse', perUnit: 1.0, sigma: 0.3, note: 'Impact direct des mesures nettes en régime de croisière.' },
-      { lever: 'retirementAge', perUnit: -0.4, sigma: 0.25, note: 'Économies ou dépenses de retraite par année d’âge légal.' },
-      { lever: 'taxWealth', perUnit: -0.3, sigma: 0.3, note: 'Recettes supplémentaires nettes des comportements d’évitement.' },
-      { lever: 'europeExit', perUnit: 1.5, sigma: 1.0, note: 'Perte de recettes liée au choc d’activité et hausse de la charge d’intérêts.' },
+      { lever: 'fiscalImpulse', perUnit: 1.0, sigma: 0.3, refs: ['insee'], note: 'Impact direct des mesures nettes en régime de croisière.' },
+      { lever: 'retirementAge', perUnit: -0.4, sigma: 0.25, refs: ['cor'], note: 'Économies ou dépenses de retraite par année d’âge légal.' },
+      { lever: 'taxWealth', perUnit: -0.3, sigma: 0.3, refs: ['ipp'], note: 'Recettes supplémentaires nettes des comportements d’évitement.' },
+      { lever: 'europeExit', perUnit: 1.5, sigma: 1.0, refs: ['bdf'], note: 'Perte de recettes liée au choc d’activité et hausse de la charge d’intérêts.' },
     ],
   },
   {
@@ -273,11 +294,11 @@ export const futureIndicators = [
       rationale: 'Niveau record depuis 1996 ; légère décrue attendue avec la reprise de l’emploi, sans retour au niveau des années 2010.',
     },
     effects: [
-      { lever: 'smicHike', perUnit: -0.05, sigma: 0.03, note: '+10 % de SMIC réel ≈ -0,5 point, net des pertes d’emploi induites.' },
-      { lever: 'fiscalImpulse', perUnit: -0.3, sigma: 0.3, note: 'Une partie de l’impulsion va aux prestations et aux services publics ; effet variable selon le ciblage.' },
-      { lever: 'retirementAge', perUnit: 0.2, sigma: 0.15, note: 'Un départ plus tardif accroît la pauvreté des seniors sans emploi (DREES).' },
-      { lever: 'taxWealth', perUnit: -0.2, sigma: 0.2, note: 'Effet redistributif indirect si les recettes financent des transferts.' },
-      { lever: 'europeExit', perUnit: 1.0, sigma: 0.8, note: 'Inflation importée et récession pèsent d’abord sur les ménages modestes.' },
+      { lever: 'smicHike', perUnit: -0.05, sigma: 0.03, refs: ['insee', 'dares'], note: '+10 % de SMIC réel ≈ -0,5 point, net des pertes d’emploi induites.' },
+      { lever: 'fiscalImpulse', perUnit: -0.3, sigma: 0.3, refs: ['drees', 'ipp'], note: 'Une partie de l’impulsion va aux prestations et aux services publics ; effet variable selon le ciblage.' },
+      { lever: 'retirementAge', perUnit: 0.2, sigma: 0.15, refs: ['drees', 'cor'], note: 'Un départ plus tardif accroît la pauvreté des seniors sans emploi (DREES).' },
+      { lever: 'taxWealth', perUnit: -0.2, sigma: 0.2, refs: ['ipp'], note: 'Effet redistributif indirect si les recettes financent des transferts.' },
+      { lever: 'europeExit', perUnit: 1.0, sigma: 0.8, refs: ['bdf', 'insee'], note: 'Inflation importée et récession pèsent d’abord sur les ménages modestes.' },
     ],
   },
   {
@@ -307,10 +328,10 @@ export const futureIndicators = [
       rationale: 'Progression réelle d’environ 0,5 % par an, en ligne avec la productivité et le partage de la valeur ajoutée observés depuis 2010.',
     },
     effects: [
-      { lever: 'fiscalImpulse', perUnit: 25, sigma: 25, note: 'Soutien au revenu disponible via transferts ou baisses d’impôts, atténué par l’inflation induite.' },
-      { lever: 'smicHike', perUnit: 3, sigma: 2, note: 'Diffusion partielle vers les salaires proches du SMIC ; le médian est peu affecté.' },
-      { lever: 'europeExit', perUnit: -120, sigma: 90, note: 'Dépréciation du change et inflation importée réduisent le pouvoir d’achat réel.' },
-      { lever: 'taxWealth', perUnit: -5, sigma: 15, note: 'Le ménage médian n’est pas concerné directement ; effet macroéconomique faible.' },
+      { lever: 'fiscalImpulse', perUnit: 25, sigma: 25, refs: ['insee', 'ipp'], note: 'Soutien au revenu disponible via transferts ou baisses d’impôts, atténué par l’inflation induite.' },
+      { lever: 'smicHike', perUnit: 3, sigma: 2, refs: ['dares'], note: 'Diffusion partielle vers les salaires proches du SMIC ; le médian est peu affecté.' },
+      { lever: 'europeExit', perUnit: -120, sigma: 90, refs: ['bdf'], note: 'Dépréciation du change et inflation importée réduisent le pouvoir d’achat réel.' },
+      { lever: 'taxWealth', perUnit: -5, sigma: 15, refs: ['ipp'], note: 'Le ménage médian n’est pas concerné directement ; effet macroéconomique faible.' },
     ],
   },
   {
@@ -340,8 +361,8 @@ export const futureIndicators = [
       rationale: 'Gains ralentis (+0,1 an par an) depuis 2015, hors choc sanitaire.',
     },
     effects: [
-      { lever: 'healthInvestment', perUnit: 0.1, sigma: 0.1, note: 'Accès aux soins et prévention : effets modestes à cinq ans (OCDE).' },
-      { lever: 'ecologyIntensity', perUnit: 0.05, sigma: 0.05, note: 'Qualité de l’air : la pollution aux particules fines coûte environ 0,5 an d’espérance de vie en France (Santé publique France).' },
+      { lever: 'healthInvestment', perUnit: 0.1, sigma: 0.1, refs: ['ocde', 'drees'], note: 'Accès aux soins et prévention : effets modestes à cinq ans (OCDE).' },
+      { lever: 'ecologyIntensity', perUnit: 0.05, sigma: 0.05, refs: ['spf'], note: 'Qualité de l’air : la pollution aux particules fines coûte environ 0,5 an d’espérance de vie en France (Santé publique France).' },
     ],
   },
   {
@@ -371,9 +392,9 @@ export const futureIndicators = [
       rationale: 'Stagnation depuis 2005 et légère hausse depuis 2011 ; la France est passée sous la moyenne européenne.',
     },
     effects: [
-      { lever: 'healthInvestment', perUnit: -0.15, sigma: 0.1, note: 'Maternités, suivi périnatal et PMI : principal levier documenté (Ined, 2025).' },
-      { lever: 'smicHike', perUnit: -0.005, sigma: 0.005, note: 'Réduction de la précarité des jeunes parents.' },
-      { lever: 'fiscalImpulse', perUnit: -0.05, sigma: 0.05, note: 'Effet indirect via les dépenses sociales et de santé.' },
+      { lever: 'healthInvestment', perUnit: -0.15, sigma: 0.1, refs: ['ined', 'drees'], note: 'Maternités, suivi périnatal et PMI : principal levier documenté (Ined, 2025).' },
+      { lever: 'smicHike', perUnit: -0.005, sigma: 0.005, refs: ['ined'], note: 'Réduction de la précarité des jeunes parents.' },
+      { lever: 'fiscalImpulse', perUnit: -0.05, sigma: 0.05, refs: ['drees'], note: 'Effet indirect via les dépenses sociales et de santé.' },
     ],
   },
   {
@@ -402,7 +423,7 @@ export const futureIndicators = [
       rationale: 'Baisse de long terme des performances et effet générationnel ; le cycle PISA 2029 sera le premier pleinement imputable au prochain mandat.',
     },
     effects: [
-      { lever: 'educationInvestment', perUnit: 4, sigma: 4, note: 'Effet des moyens (effectifs, formation des enseignants) avec un délai de plusieurs années ; élasticité faible dans la littérature.' },
+      { lever: 'educationInvestment', perUnit: 4, sigma: 4, refs: ['ocde'], note: 'Effet des moyens (effectifs, formation des enseignants) avec un délai de plusieurs années ; élasticité faible dans la littérature.' },
     ],
   },
   {
@@ -431,10 +452,10 @@ export const futureIndicators = [
       rationale: 'Indicateur très sensible au cycle économique ; retour lent vers le niveau de 2022.',
     },
     effects: [
-      { lever: 'fiscalImpulse', perUnit: -0.3, sigma: 0.2, note: 'Les jeunes bénéficient en premier des reprises d’embauche.' },
-      { lever: 'educationInvestment', perUnit: -0.3, sigma: 0.25, note: 'Lutte contre le décrochage, apprentissage et accompagnement.' },
-      { lever: 'smicHike', perUnit: 0.06, sigma: 0.04, note: 'L’emploi des jeunes peu qualifiés est le plus sensible au coût du travail.' },
-      { lever: 'europeExit', perUnit: 1.0, sigma: 0.8, note: 'Choc récessif concentré sur les entrants sur le marché du travail.' },
+      { lever: 'fiscalImpulse', perUnit: -0.3, sigma: 0.2, refs: ['dares'], note: 'Les jeunes bénéficient en premier des reprises d’embauche.' },
+      { lever: 'educationInvestment', perUnit: -0.3, sigma: 0.25, refs: ['dares', 'ocde'], note: 'Lutte contre le décrochage, apprentissage et accompagnement.' },
+      { lever: 'smicHike', perUnit: 0.06, sigma: 0.04, refs: ['dares'], note: 'L’emploi des jeunes peu qualifiés est le plus sensible au coût du travail.' },
+      { lever: 'europeExit', perUnit: 1.0, sigma: 0.8, refs: ['bdf'], note: 'Choc récessif concentré sur les entrants sur le marché du travail.' },
     ],
   },
   {
@@ -464,9 +485,9 @@ export const futureIndicators = [
       rationale: 'Stabilisation après la hausse 2020-2023 ; les homicides restent le seul indicateur de délinquance quasi exempt de biais de déclaration.',
     },
     effects: [
-      { lever: 'justiceRepressive', perUnit: -0.03, sigma: 0.05, note: 'Effet dissuasif faible et contesté dans la littérature ; effet d’incapacitation limité à cinq ans.' },
-      { lever: 'prisonBuilding', perUnit: -0.01, sigma: 0.02, note: 'Amélioration marginale de l’exécution des peines.' },
-      { lever: 'immigrationRestriction', perUnit: 0, sigma: 0.03, note: 'Pas d’effet agrégé établi sur le taux d’homicides.' },
+      { lever: 'justiceRepressive', perUnit: -0.03, sigma: 0.05, refs: ['justice'], note: 'Effet dissuasif faible et contesté dans la littérature ; effet d’incapacitation limité à cinq ans.' },
+      { lever: 'prisonBuilding', perUnit: -0.01, sigma: 0.02, refs: ['justice'], note: 'Amélioration marginale de l’exécution des peines.' },
+      { lever: 'immigrationRestriction', perUnit: 0, sigma: 0.03, refs: ['ocde'], note: 'Pas d’effet agrégé établi sur le taux d’homicides.' },
     ],
   },
   {
@@ -496,8 +517,8 @@ export const futureIndicators = [
       rationale: 'Hausse de 3 à 4 points par an depuis 2021 ; les livraisons du plan 15 000 places restent en retard.',
     },
     effects: [
-      { lever: 'justiceRepressive', perUnit: 8, sigma: 5, note: 'Peines planchers et exécution systématique augmentent la population détenue (retour d’expérience 2007-2014).' },
-      { lever: 'prisonBuilding', perUnit: -12, sigma: 6, note: '10 000 places supplémentaires livrées ≈ -15 points, sous réserve des délais de construction.' },
+      { lever: 'justiceRepressive', perUnit: 8, sigma: 5, refs: ['justice'], note: 'Peines planchers et exécution systématique augmentent la population détenue (retour d’expérience 2007-2014).' },
+      { lever: 'prisonBuilding', perUnit: -12, sigma: 6, refs: ['justice'], note: '10 000 places supplémentaires livrées ≈ -15 points, sous réserve des délais de construction.' },
     ],
   },
   {
@@ -527,10 +548,10 @@ export const futureIndicators = [
       rationale: 'Poursuite d’une baisse d’environ 2 % par an (Insee prévoit -2,3 % en 2026), loin des -4,6 % annuels requis par la SNBC 3.',
     },
     effects: [
-      { lever: 'ecologyIntensity', perUnit: -12, sigma: 8, note: 'Une politique alignée sur la SNBC 3 (+2) porte la baisse à environ 4 % par an ; un ralentissement (-2) la ramène vers 1 %.' },
-      { lever: 'fiscalImpulse', perUnit: 2, sigma: 2, note: 'Effet activité : plus de PIB, plus d’émissions à technologie donnée.' },
-      { lever: 'europeExit', perUnit: 5, sigma: 5, note: 'Sortie du marché carbone européen et des normes communes.' },
-      { lever: 'nuclearRelaunch', perUnit: 0, sigma: 2, note: 'Les nouveaux réacteurs n’entreront pas en service avant 2035 : aucun effet à l’horizon 2032.' },
+      { lever: 'ecologyIntensity', perUnit: -12, sigma: 8, refs: ['hcc', 'mte'], note: 'Une politique alignée sur la SNBC 3 (+2) porte la baisse à environ 4 % par an ; un ralentissement (-2) la ramène vers 1 %.' },
+      { lever: 'fiscalImpulse', perUnit: 2, sigma: 2, refs: ['hcc'], note: 'Effet activité : plus de PIB, plus d’émissions à technologie donnée.' },
+      { lever: 'europeExit', perUnit: 5, sigma: 5, refs: ['hcc'], note: 'Sortie du marché carbone européen et des normes communes.' },
+      { lever: 'nuclearRelaunch', perUnit: 0, sigma: 2, refs: ['mte'], note: 'Les nouveaux réacteurs n’entreront pas en service avant 2035 : aucun effet à l’horizon 2032.' },
     ],
   },
   {
@@ -560,9 +581,9 @@ export const futureIndicators = [
       rationale: 'Progression d’environ 0,6 point par an depuis 2017 ; l’objectif de 33 % en 2030 ne serait pas atteint sans accélération.',
     },
     effects: [
-      { lever: 'ecologyIntensity', perUnit: 1.5, sigma: 1.0, note: 'Rythme de déploiement éolien, solaire et chaleur renouvelable.' },
-      { lever: 'nuclearRelaunch', perUnit: -0.5, sigma: 0.5, note: 'Priorité donnée au nucléaire dans les arbitrages de la PPE.' },
-      { lever: 'europeExit', perUnit: -1, sigma: 1, note: 'Fin des objectifs contraignants de la directive européenne.' },
+      { lever: 'ecologyIntensity', perUnit: 1.5, sigma: 1.0, refs: ['mte'], note: 'Rythme de déploiement éolien, solaire et chaleur renouvelable.' },
+      { lever: 'nuclearRelaunch', perUnit: -0.5, sigma: 0.5, refs: ['mte'], note: 'Priorité donnée au nucléaire dans les arbitrages de la PPE.' },
+      { lever: 'europeExit', perUnit: -1, sigma: 1, refs: ['mte'], note: 'Fin des objectifs contraignants de la directive européenne.' },
     ],
   },
   {
@@ -592,8 +613,8 @@ export const futureIndicators = [
       rationale: 'Retour vers la moyenne de long terme (20-30 %) après l’état de grâce post-électoral ; indicateur très volatil.',
     },
     effects: [
-      { lever: 'institutionsReform', perUnit: 3, sigma: 3, note: 'Proportionnelle et référendum d’initiative citoyenne : les enquêtes montrent une demande forte, l’effet sur la confiance reste hypothétique.' },
-      { lever: 'europeExit', perUnit: -3, sigma: 5, note: 'Période de crise institutionnelle et économique.' },
+      { lever: 'institutionsReform', perUnit: 3, sigma: 3, refs: ['cevipof'], note: 'Proportionnelle et référendum d’initiative citoyenne : les enquêtes montrent une demande forte, l’effet sur la confiance reste hypothétique.' },
+      { lever: 'europeExit', perUnit: -3, sigma: 5, refs: ['cevipof'], note: 'Période de crise institutionnelle et économique.' },
     ],
   },
   {
@@ -622,7 +643,7 @@ export const futureIndicators = [
       rationale: 'Érosion de 2 à 4 points par scrutin depuis 2007 ; la projection porte sur la présidentielle de 2032.',
     },
     effects: [
-      { lever: 'institutionsReform', perUnit: 1.5, sigma: 1.5, note: 'Sentiment d’utilité du vote ; effet documenté mais modeste des réformes électorales.' },
+      { lever: 'institutionsReform', perUnit: 1.5, sigma: 1.5, refs: ['cevipof'], note: 'Sentiment d’utilité du vote ; effet documenté mais modeste des réformes électorales.' },
     ],
   },
 ]

@@ -11,6 +11,8 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { useState } from 'react'
+import type { LeverEvidence } from '../../../data/candidateLeverEvidence.js'
+import type { PolicyLeverId } from '../../../data/futureIndicators.js'
 import type { CategoryProjection } from '../futureEngine'
 import { IndicatorCard } from './IndicatorCard'
 
@@ -29,9 +31,10 @@ interface FutureCategoryListProps {
   categories: CategoryProjection[]
   candidateFirstName: string
   accent: string
+  evidence: Partial<Record<PolicyLeverId, LeverEvidence>>
 }
 
-export function FutureCategoryList({ categories, candidateFirstName, accent }: FutureCategoryListProps) {
+export function FutureCategoryList({ categories, candidateFirstName, accent, evidence }: FutureCategoryListProps) {
   const [openIds, setOpenIds] = useState<Set<string>>(() => new Set([categories[0]?.category.id ?? '']))
 
   const toggle = (id: string) => {
@@ -83,7 +86,7 @@ export function FutureCategoryList({ categories, candidateFirstName, accent }: F
             {isOpen ? (
               <div className="grid gap-4 border-t border-slate-200 bg-slate-50/60 p-4 dark:border-slate-800 dark:bg-slate-900/40 lg:grid-cols-2 sm:p-5">
                 {entry.projections.map((projection) => (
-                  <IndicatorCard key={projection.indicator.id} projection={projection} candidateFirstName={candidateFirstName} accent={accent} />
+                  <IndicatorCard key={projection.indicator.id} projection={projection} candidateFirstName={candidateFirstName} accent={accent} evidence={evidence} />
                 ))}
               </div>
             ) : null}
