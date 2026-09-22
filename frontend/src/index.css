@@ -225,3 +225,8 @@ body.home-viewport-scrollbar-hidden::-webkit-scrollbar {
     }
   }
 }
+
+@keyframes glossarySheetIn {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

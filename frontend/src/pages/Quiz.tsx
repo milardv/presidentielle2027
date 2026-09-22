@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { AppSiteHeader } from '../components/AppSiteHeader'
 import { MobileAppNav } from '../components/MobileAppNav'
+import { QuizStatement } from '../features/quiz/components/QuizStatement'
 import { HomeDesktopFooter } from '../features/candidates/home/components/HomeDesktopFooter'
 import { PoliticalQuiz } from '../features/quiz/components/PoliticalQuiz'
 import { QuizStatsSection } from '../features/quiz/components/QuizStatsSection'
@@ -85,7 +86,7 @@ export default function Quiz() {
               <li key={question.id} className="rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3">
                 <span className="mr-2 text-xs font-black text-primary">{index + 1}.</span>
                 <span className="font-semibold text-slate-500">{question.theme} — </span>
-                {question.statement}
+                <QuizStatement question={question} className="inline" showChips={false} />
               </li>
             ))}
           </ol>

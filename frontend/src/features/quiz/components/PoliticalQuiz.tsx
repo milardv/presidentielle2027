@@ -26,6 +26,7 @@ import { recordQuizCompletion } from '../../../services/quizStatsRepository'
 import { useCandidates } from '../../candidates/home/hooks/useCandidates'
 import { computeQuizResult, type QuizAnswers } from '../quizEngine'
 import { QuizResultView } from './QuizResultView'
+import { QuizStatement } from './QuizStatement'
 
 const icons: Record<string, LucideIcon> = {
   users: Users,
@@ -125,6 +126,7 @@ export function PoliticalQuiz({ variant, initialAnswers = null }: PoliticalQuizP
     if (stage !== 'question') return
     const onKey = (event: KeyboardEvent) => {
       if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return
+      if (document.body.dataset.glossaryOpen) return
       const option = quizAnswerOptions[Number.parseInt(event.key, 10) - 1]
       if (option) {
         answer(option.value)
@@ -227,7 +229,11 @@ export function PoliticalQuiz({ variant, initialAnswers = null }: PoliticalQuizP
         className={`mt-6 transition-all duration-200 ${transition === 'in' ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}
         key={question.id}
       >
-        <p className="min-h-[5.5rem] text-xl font-black leading-snug tracking-tight text-slate-950 sm:text-2xl lg:text-3xl">{question.statement}</p>
+        <QuizStatement
+          question={question}
+          className="min-h-[5.5rem] text-xl font-black leading-snug tracking-tight text-slate-950 sm:text-2xl lg:text-3xl"
+          chipsClassName="mt-3"
+        />
 
         <div className="mt-6 grid gap-3 sm:grid-cols-4">
           {quizAnswerOptions.map((option, optionIndex) => (
