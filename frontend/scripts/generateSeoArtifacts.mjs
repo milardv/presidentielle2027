@@ -2,9 +2,10 @@ import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { accentizeFrenchCopy } from '../src/seo/frenchCopy.js'
 import { SITE_FAVICON_PATH, SITE_URL, seoPages } from '../src/seo/seoPagesData.js'
-import { CANDIDATE_DATA_LAST_UPDATED, candidates2027 } from '../src/data/candidates2027.js'
+import { CANDIDATE_DATA_LAST_UPDATED } from '../src/data/candidates2027.js'
 import { candidateProfilePath } from '../src/seo/candidateSeo.js'
-import { pollsRouteSeo, sourcesRouteSeo } from '../src/seo/appRoutesSeo.js'
+import { pollsRouteSeo, quizRouteSeo, sourcesRouteSeo } from '../src/seo/appRoutesSeo.js'
+import { QUIZ_UPDATED_AT } from '../src/data/quizData.js'
 import {
   ROOT_MARKERS,
   buildAbsoluteAssetUrl,
@@ -187,6 +188,7 @@ function renderSeoPage(page) {
       </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="${escapeHtml(buildAbsoluteUrl('/'))}">Accueil</a>
+        <a href="${escapeHtml(buildAbsoluteUrl('/quiz/'))}">Quiz</a>
         <a href="${escapeHtml(buildAbsoluteUrl('/candidats-presidentielle-2027/'))}">Candidats</a>
         <a href="${escapeHtml(buildAbsoluteUrl('/polls/'))}">Sondages</a>
         <a href="${escapeHtml(buildAbsoluteUrl('/primaire-gauche-presidentielle-2027/'))}">Primaires</a>
@@ -320,6 +322,7 @@ async function generateSitemap() {
   const urls = [
     { path: '/', changefreq: 'daily', priority: '1.0', lastmod: latestEditorialUpdate },
     { path: pollsRouteSeo.path, changefreq: 'daily', priority: '0.9', lastmod: today },
+    { path: quizRouteSeo.path, changefreq: 'monthly', priority: '0.9', lastmod: QUIZ_UPDATED_AT },
     { path: sourcesRouteSeo.path, changefreq: 'monthly', priority: '0.5', lastmod: CANDIDATE_DATA_LAST_UPDATED },
     ...seoPages.map((page) => ({
       path: `/${page.slug}/`,
@@ -351,6 +354,7 @@ ${urls
 `
 
   await writeFile(resolve(PUBLIC_DIR, 'sitemap.xml'), sitemap, 'utf8')
+  return urls.length
 }
 
 async function refreshIndexHtmlFallback() {
@@ -360,9 +364,7 @@ async function refreshIndexHtmlFallback() {
 
 await generateSeoPages()
 await generateRobots()
-await generateSitemap()
+const sitemapUrlCount = await generateSitemap()
 await refreshIndexHtmlFallback()
 
-console.log(
-  `Generated ${seoPages.length} SEO pages, sitemap with ${3 + seoPages.length + candidates2027.length} URLs, refreshed index.html fallback.`,
-)
+console.log(`Generated ${seoPages.length} SEO pages, sitemap with ${sitemapUrlCount} URLs, refreshed index.html fallback.`)

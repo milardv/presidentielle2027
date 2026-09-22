@@ -19,8 +19,9 @@ import {
   latestMilestone,
   statusGroupLabel,
 } from '../../src/seo/candidateSeo.js'
-import { pollsRouteSeo, sourcesRouteSeo } from '../../src/seo/appRoutesSeo.js'
+import { pollsRouteSeo, quizRouteSeo, sourcesRouteSeo } from '../../src/seo/appRoutesSeo.js'
 import pollsSnapshot from '../../src/data/pollsSnapshot.json' with { type: 'json' }
+import { QUIZ_UPDATED_AT, quizAnswerOptions, quizQuestions } from '../../src/data/quizData.js'
 
 export const HEAD_MARKERS = ['<!-- seo:head:start -->', '<!-- seo:head:end -->']
 export const ROOT_MARKERS = ['<!-- seo:root:start -->', '<!-- seo:root:end -->']
@@ -134,14 +135,22 @@ export function buildBreadcrumbSchema(items) {
   }
 }
 
-export function renderHeadBlock({ title, description, canonicalPath, schemaGraph, ogType = 'website' }) {
+export function renderHeadBlock({
+  title,
+  description,
+  canonicalPath,
+  schemaGraph,
+  ogType = 'website',
+  image = SITE_SOCIAL_IMAGE_PATH,
+  robots = 'index,follow,max-image-preview:large',
+}) {
   const canonicalUrl = buildAbsoluteUrl(canonicalPath)
-  const socialImage = buildAbsoluteAssetUrl(SITE_SOCIAL_IMAGE_PATH)
+  const socialImage = buildAbsoluteAssetUrl(image)
   const graph = { '@context': 'https://schema.org', '@graph': schemaGraph }
 
   return `  <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}" />
-  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="robots" content="${escapeHtml(robots)}" />
   <meta name="theme-color" content="#1a227f" />
   <meta property="og:type" content="${ogType}" />
   <meta property="og:site_name" content="${escapeHtml(siteName)}" />
@@ -161,6 +170,7 @@ export function renderHeadBlock({ title, description, canonicalPath, schemaGraph
 function renderNav() {
   return `<nav class="actions" aria-label="Liens principaux">
       <a class="action" href="/">Accueil</a>
+      <a class="action" href="/quiz/">Quiz : quel candidat vous correspond ?</a>
       <a class="action" href="/candidats-presidentielle-2027/">Candidats</a>
       <a class="action" href="/polls/">Sondages</a>
       <a class="action" href="/primaire-gauche-presidentielle-2027/">Primaires</a>
@@ -335,6 +345,12 @@ export function renderHomeFallback() {
     </p>
     ${renderUpdatedLine(CANDIDATE_DATA_LAST_UPDATED)}
     ${renderNav()}
+
+    <section class="panel">
+      <h2>Quel candidat vous correspond ? Le quiz en 2 minutes</h2>
+      <p>${quizQuestions.length} affirmations sur les grands clivages de 2027, comparées aux positions publiques de ${running.length} candidats : obtenez votre top 3, votre profil politique et un résultat à partager.</p>
+      <p><a class="action" href="/quiz/">Faire le quiz</a></p>
+    </section>
 
     <section class="panel">
       <h2>Les candidats à la présidentielle 2027</h2>
@@ -523,11 +539,79 @@ export function renderSourcesFallback() {
   </main>`
 }
 
-export function buildAppRouteHead(routeSeo, { dateModified }) {
+export function renderQuizFallback() {
+  return `<main id="seo-root-fallback">
+    <p class="eyebrow">Quiz présidentielle 2027 · 2 minutes</p>
+    <h1>Quiz présidentielle 2027 : quel candidat vous correspond ?</h1>
+    <p class="lead">${escapeHtml(quizRouteSeo.description)}</p>
+    ${renderUpdatedLine(QUIZ_UPDATED_AT)}
+    ${renderNav()}
+
+    <section class="panel">
+      <h2>Comment ça marche</h2>
+      <ul>
+        <li>${quizQuestions.length} affirmations sur les clivages de la campagne : immigration, retraites, énergie, fiscalité, Europe, sécurité, institutions, budget, salaires, laïcité, défense, écologie, services publics.</li>
+        <li>Quatre réponses possibles (${quizAnswerOptions.map((option) => escapeHtml(option.label.toLowerCase())).join(', ')}) ou « sans avis ».</li>
+        <li>Vos réponses sont comparées aux positions publiques de ${runningCandidates().length} candidats déclarés ou en primaire, documentées dans leurs fiches.</li>
+        <li>Vous obtenez votre top 3, un profil politique (avec un peu d’humour) et un lien de partage. Aucune donnée n’est enregistrée.</li>
+      </ul>
+      <p><a class="action" href="/quiz/#quiz">Lancer le quiz (JavaScript requis)</a></p>
+    </section>
+
+    <section class="panel">
+      <h2>Les ${quizQuestions.length} affirmations</h2>
+      <ol>
+        ${quizQuestions.map((question) => `<li><strong>${escapeHtml(question.theme)} :</strong> ${escapeHtml(question.statement)}</li>`).join('')}
+      </ol>
+    </section>
+
+    <section class="panel">
+      <h2>Les candidats comparés</h2>
+      <div class="links">
+        ${runningCandidates()
+          .map((candidate) => `<a href="${escapeHtml(candidateProfilePath(candidate))}">${escapeHtml(candidate.name)} (${escapeHtml(candidate.party)})</a>`)
+          .join('')}
+      </div>
+    </section>
+  </main>`
+}
+
+export function renderQuizResultFallback(candidate) {
+  return `<main id="seo-root-fallback">
+    <p class="eyebrow">Résultat du quiz présidentielle 2027</p>
+    <h1>Mon candidat le plus compatible pour 2027 : ${escapeHtml(candidate.name)}</h1>
+    <p class="lead">Ce lien partage le résultat d’un internaute au quiz « Quel candidat vous correspond ? ». ${escapeHtml(candidate.name)} (${escapeHtml(candidate.party)}) est le candidat le plus proche de ses réponses. Faites le test à votre tour : ${quizQuestions.length} affirmations, 2 minutes, aucune inscription.</p>
+    ${renderNav()}
+    <section class="panel">
+      <div class="links">
+        <a class="action" href="/quiz/#quiz">Faire le quiz</a>
+        <a class="action" href="${escapeHtml(candidateProfilePath(candidate))}">Voir la fiche de ${escapeHtml(candidate.name)}</a>
+        <a class="action" href="/candidats-presidentielle-2027/">Tous les candidats</a>
+      </div>
+    </section>
+  </main>`
+}
+
+export function buildQuizResultHead(candidate) {
+  const path = `/quiz/resultat/${candidate.id}/`
+  const title = `Mon match présidentielle 2027 : ${candidate.name} - Quiz « Quel candidat vous correspond ? »`
+  const description = `Résultat du quiz présidentielle 2027 : ${candidate.name} (${candidate.party}) est le candidat le plus proche de mes idées. Faites le test en 2 minutes et comparez.`
+  return renderHeadBlock({
+    title,
+    description,
+    canonicalPath: path,
+    image: `/quiz/cards/${candidate.id}.jpg`,
+    robots: 'noindex,follow',
+    schemaGraph: [buildOrganizationSchema(), buildWebsiteSchema(), buildWebpageSchema({ title, description, url: buildAbsoluteUrl(path) })],
+  })
+}
+
+export function buildAppRouteHead(routeSeo, { dateModified, image }) {
   return renderHeadBlock({
     title: routeSeo.title,
     description: routeSeo.description,
     canonicalPath: routeSeo.path,
+    ...(image ? { image } : {}),
     schemaGraph: [
       buildOrganizationSchema(),
       buildWebsiteSchema(),

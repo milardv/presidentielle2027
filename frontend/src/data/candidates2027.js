@@ -283,7 +283,7 @@ const villepinSources = {
   wiki: wiki('Dominique_de_Villepin'),
 }
 
-const CLOUDINARY = 'https://res.cloudinary.com/dagxzno9s/image/upload'
+const CLOUDINARY = 'https://res.cloudinary.com/dagxzno9s/image/upload/f_auto,q_auto,w_800,c_limit'
 
 function commonsCredit(author, license, licenseUrl, fileName) {
   return {

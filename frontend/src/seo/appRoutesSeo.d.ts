@@ -6,4 +6,5 @@ export interface AppRouteSeo {
 }
 
 export const pollsRouteSeo: AppRouteSeo
+export const quizRouteSeo: AppRouteSeo
 export const sourcesRouteSeo: AppRouteSeo

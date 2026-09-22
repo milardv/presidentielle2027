@@ -10,6 +10,7 @@ import { HomeSeoLinksSection } from '../features/candidates/home/components/Home
 import { HomeSummary } from '../features/candidates/home/components/HomeSummary'
 import { useCandidates } from '../features/candidates/home/hooks/useCandidates'
 import { formatFrenchDate } from '../features/candidates/shared/candidateUi'
+import { PoliticalQuiz } from '../features/quiz/components/PoliticalQuiz'
 import { SeoHead } from '../seo/SeoHead'
 
 export default function Home() {
@@ -65,6 +66,10 @@ export default function Home() {
           conditionalCount={conditionalCount}
           lastUpdateLabel={lastUpdateLabel}
         />
+
+        <section id="quiz" className="mx-auto mb-10 max-w-6xl scroll-mt-24">
+          <PoliticalQuiz variant="embedded" />
+        </section>
 
         {loadError && <HomeAlert tone="error" message={loadError} />}
 

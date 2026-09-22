@@ -1,16 +1,21 @@
 import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { CANDIDATE_DATA_LAST_UPDATED, candidates2027 } from '../src/data/candidates2027.js'
-import { pollsRouteSeo, sourcesRouteSeo } from '../src/seo/appRoutesSeo.js'
+import { QUIZ_UPDATED_AT } from '../src/data/quizData.js'
+import { pollsRouteSeo, quizRouteSeo, sourcesRouteSeo } from '../src/seo/appRoutesSeo.js'
 import {
   HEAD_MARKERS,
   ROOT_MARKERS,
   buildAppRouteHead,
   buildCandidateHead,
+  buildQuizResultHead,
   renderCandidateFallback,
   renderPollsFallback,
+  renderQuizFallback,
+  renderQuizResultFallback,
   renderSourcesFallback,
   replaceBetweenMarkers,
+  runningCandidates,
 } from './lib/seoRender.mjs'
 
 const PROJECT_ROOT = resolve(new URL('..', import.meta.url).pathname)
@@ -28,6 +33,16 @@ const routes = [
     head: buildAppRouteHead(sourcesRouteSeo, { dateModified: CANDIDATE_DATA_LAST_UPDATED }),
     root: renderSourcesFallback(),
   },
+  {
+    path: quizRouteSeo.path,
+    head: buildAppRouteHead(quizRouteSeo, { dateModified: QUIZ_UPDATED_AT, image: '/quiz/cards/quiz.jpg' }),
+    root: renderQuizFallback(),
+  },
+  ...runningCandidates().map((candidate) => ({
+    path: `/quiz/resultat/${candidate.id}/`,
+    head: buildQuizResultHead(candidate),
+    root: renderQuizResultFallback(candidate),
+  })),
   ...candidates2027.map((candidate) => ({
     path: `/candidats/${candidate.id}/`,
     head: buildCandidateHead(candidate),

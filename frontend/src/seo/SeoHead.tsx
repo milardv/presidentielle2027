@@ -14,6 +14,7 @@ interface SeoHeadProps {
   path: string
   keywords?: string[]
   noindex?: boolean
+  image?: string
   jsonLd?: Record<string, unknown> | Record<string, unknown>[] | null
 }
 
@@ -111,15 +112,23 @@ function buildSeoGraph(
   return [organizationSchema, websiteSchema, webpageSchema, ...payloadItems]
 }
 
-export function SeoHead({ title, description, path, keywords, noindex = false, jsonLd = null }: SeoHeadProps) {
+export function SeoHead({
+  title,
+  description,
+  path,
+  keywords,
+  noindex = false,
+  image = SITE_SOCIAL_IMAGE_PATH,
+  jsonLd = null,
+}: SeoHeadProps) {
   useEffect(() => {
     const canonicalUrl = buildCanonicalUrl(path)
-    const socialImageUrl = buildAbsoluteAssetUrl(SITE_SOCIAL_IMAGE_PATH)
+    const socialImageUrl = buildAbsoluteAssetUrl(image)
     document.documentElement.lang = 'fr'
     document.title = title
 
     upsertMeta('name', 'description', description)
-    upsertMeta('name', 'robots', noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large')
+    upsertMeta('name', 'robots', noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large')
     upsertMeta('name', 'keywords', keywords?.join(', ') || '')
     upsertMeta('property', 'og:site_name', SITE_NAME)
     upsertMeta('property', 'og:type', 'website')
@@ -133,7 +142,7 @@ export function SeoHead({ title, description, path, keywords, noindex = false, j
     upsertMeta('name', 'twitter:image', socialImageUrl)
     upsertCanonical(canonicalUrl)
     upsertJsonLd(buildSeoGraph(jsonLd, title, description, canonicalUrl))
-  }, [description, jsonLd, keywords, noindex, path, title])
+  }, [description, image, jsonLd, keywords, noindex, path, title])
 
   return null
 }

@@ -12,6 +12,20 @@ export const pollsRouteSeo = {
   ],
 }
 
+export const quizRouteSeo = {
+  path: '/quiz/',
+  title: 'Quiz présidentielle 2027 : quel candidat vous correspond ? (2 minutes)',
+  description:
+    'Quiz présidentielle 2027 : 14 affirmations, 2 minutes, et découvrez le candidat le plus proche de vos idées parmi les candidats déclarés, avec votre profil politique et un résultat partageable.',
+  keywords: [
+    'quiz présidentielle 2027',
+    'quel candidat me correspond 2027',
+    'test candidat présidentielle 2027',
+    'pour qui voter 2027',
+    'quiz politique 2027',
+  ],
+}
+
 export const sourcesRouteSeo = {
   path: '/sources/',
   title: 'Sources et méthodologie - Présidentielles 2027',
