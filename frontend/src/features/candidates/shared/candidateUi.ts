@@ -5,6 +5,7 @@ export const candidateStatusBadgeStyles: Record<CandidateStatus, string> = {
   declared_primary: 'bg-teal-600 text-white border border-teal-500/50',
   intent: 'bg-sky-600 text-white border border-sky-500/50',
   conditional: 'bg-amber-500 text-white border border-amber-400/50',
+  not_running: 'bg-slate-500 text-white border border-slate-400/50',
 }
 
 function normalizePartyName(party: string): string {

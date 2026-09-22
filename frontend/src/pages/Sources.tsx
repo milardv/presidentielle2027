@@ -7,6 +7,7 @@ import { HomeDesktopFooter } from '../features/candidates/home/components/HomeDe
 import { HomeMobileNav } from '../features/candidates/home/components/HomeMobileNav'
 import { formatFrenchDate } from '../features/candidates/shared/candidateUi'
 import { useSourceInventory } from '../features/sources/hooks/useSourceInventory'
+import { sourcesRouteSeo } from '../seo/appRoutesSeo.js'
 import { SeoHead } from '../seo/SeoHead'
 
 function SummaryCard({ label, value, detail }: { label: string; value: string; detail: string }) {
@@ -131,19 +132,14 @@ export default function Sources() {
   return (
     <div className="relative min-h-screen bg-background-light font-display text-slate-900">
       <SeoHead
-        title="Sources et méthodologie - Présidentielles 2027"
-        description="Toutes les sources utilisées pour les profils candidats, les sondages, les vidéos, les tweets, les courbes média et les pages explicatives de Présidentielles 2027."
-        path="/sources"
-        keywords={[
-          'sources présidentielle 2027',
-          'méthodologie présidentielle 2027',
-          'sources sondages présidentielle 2027',
-          'sources candidats présidentielle 2027',
-        ]}
+        title={sourcesRouteSeo.title}
+        description={sourcesRouteSeo.description}
+        path={sourcesRouteSeo.path}
+        keywords={sourcesRouteSeo.keywords}
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'WebPage',
-          name: 'Sources et méthodologie - Présidentielles 2027',
+          name: sourcesRouteSeo.title,
           description:
             'Inventaire des sources éditoriales, institutionnelles et techniques utilisées pour alimenter les données du site.',
           inLanguage: 'fr-FR',

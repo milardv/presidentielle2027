@@ -15,7 +15,9 @@ import { ProfileTimelineSection } from '../features/candidates/profile/component
 import { useCandidateProfile } from '../features/candidates/profile/hooks/useCandidateProfile'
 import { buildProfileCandidateViewModel } from '../features/candidates/profile/utils/profileCandidateViewModel'
 import { appNavItems } from '../navigation/appNavItems'
+import { buildCandidateJsonLd, buildCandidateSeo, candidateProfilePath } from '../seo/candidateSeo.js'
 import { SeoHead } from '../seo/SeoHead'
+import { buildCanonicalUrl } from '../seo/site'
 
 export default function Profile() {
   const { candidateId } = useParams<{ candidateId: string }>()
@@ -34,6 +36,7 @@ export default function Profile() {
     [candidate],
   )
   const isFavorite = candidate ? favoriteCandidateIds.includes(candidate.id) : false
+  const candidateSeo = useMemo(() => (candidate ? buildCandidateSeo(candidate) : null), [candidate])
 
   useEffect(() => {
     if (!shouldAutoFavoriteAfterSignIn) {
@@ -57,28 +60,18 @@ export default function Profile() {
     return <ProfileLoadingState />
   }
 
-  if (loadError || candidate === null || viewModel === null) {
+  if (loadError || candidate === null || viewModel === null || candidateSeo === null) {
     return <ProfileErrorState errorMessage={loadError ?? 'Candidat indisponible.'} />
   }
 
   return (
     <div className="relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
       <SeoHead
-        title={`${candidate.name} 2027 : profil, positions, interventions et sondages`}
-        description={`${candidate.name} 2027 : fiche complète avec positions, interventions, vidéos, tweets, sources et lecture de campagne.`}
-        path={`/candidats/${candidate.id}`}
-        keywords={[
-          `${candidate.name} 2027`,
-          `${candidate.name} présidentielle 2027`,
-          `${candidate.name} candidat 2027`,
-        ]}
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'ProfilePage',
-          name: `${candidate.name} 2027`,
-          description: `${candidate.name} : profil, positions, interventions et sources pour la présidentielle 2027.`,
-          inLanguage: 'fr-FR',
-        }}
+        title={candidateSeo.title}
+        description={candidateSeo.description}
+        path={candidateProfilePath(candidate)}
+        keywords={candidateSeo.keywords}
+        jsonLd={buildCandidateJsonLd(candidate, buildCanonicalUrl(candidateProfilePath(candidate)))}
       />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_top,_rgba(26,34,127,0.10),_transparent_42%),radial-gradient(circle_at_top_right,_rgba(245,158,11,0.10),_transparent_26%)]" />
       <ProfilePageHeader />

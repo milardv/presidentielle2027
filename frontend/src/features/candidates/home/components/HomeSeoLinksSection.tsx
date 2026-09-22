@@ -7,7 +7,7 @@ const faqLinks = [
   {
     slug: 'quand-aura-lieu-la-presidentielle-2027',
     question: 'Quand aura lieu la présidentielle 2027 ?',
-    summary: 'Retrouvez les dates probables du premier tour, du second tour et les jalons institutionnels à connaître.',
+    summary: 'Dates officielles fixées par décret : premier tour le 18 avril 2027, second tour le 2 mai 2027, et les jalons à connaître.',
   },
   {
     slug: 'qui-peut-se-presenter-en-2027',
@@ -31,8 +31,13 @@ const faqLinks = [
   },
   {
     slug: 'candidats-presidentielle-2027',
-    question: 'Qui sont les candidats déjà cités pour 2027 ?',
-    summary: 'Un panorama des profils déclarés, conditionnels ou régulièrement testés dans les enquêtes d’opinion.',
+    question: 'Qui sont les candidats déclarés pour 2027 ?',
+    summary: 'La liste complète et à jour : candidats déclarés, en primaire, pressentis et renoncements, parti par parti.',
+  },
+  {
+    slug: 'primaire-gauche-presidentielle-2027',
+    question: 'Où en sont les primaires de la gauche ?',
+    summary: 'Dates et candidats de « Choisir 2027 », abandon de la primaire unitaire et situation de Tondelier, Ruffin et Mélenchon.',
   },
 ]
 

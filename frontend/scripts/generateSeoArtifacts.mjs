@@ -1,142 +1,73 @@
-import { mkdir, rm, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { accentizeFrenchCopy } from '../src/seo/frenchCopy.js'
+import { SITE_FAVICON_PATH, SITE_URL, seoPages } from '../src/seo/seoPagesData.js'
+import { CANDIDATE_DATA_LAST_UPDATED, candidates2027 } from '../src/data/candidates2027.js'
+import { candidateProfilePath } from '../src/seo/candidateSeo.js'
+import { pollsRouteSeo, sourcesRouteSeo } from '../src/seo/appRoutesSeo.js'
 import {
-  SITE_FAVICON_PATH,
-  SITE_LOGO_PATH,
-  SITE_NAME,
-  SITE_SOCIAL_IMAGE_PATH,
-  SITE_URL,
-  seoPages,
-} from '../src/seo/seoPagesData.js'
+  ROOT_MARKERS,
+  buildAbsoluteAssetUrl,
+  buildAbsoluteUrl,
+  buildBreadcrumbSchema,
+  buildOrganizationSchema,
+  buildWebpageSchema,
+  buildWebsiteSchema,
+  escapeHtml,
+  formatFrenchDate,
+  renderCandidateTable,
+  renderHomeFallback,
+  replaceBetweenMarkers,
+  runningCandidates,
+  siteName,
+  sortedCandidates,
+} from './lib/seoRender.mjs'
 
 const PROJECT_ROOT = resolve(new URL('..', import.meta.url).pathname)
 const PUBLIC_DIR = resolve(PROJECT_ROOT, 'public')
-const CANDIDATE_IDS = [
-  'edouard-philippe',
-  'xavier-bertrand',
-  'nathalie-arthaud',
-  'delphine-batho',
-  'marine-tondelier',
-  'francois-ruffin',
-  'marine-le-pen',
-  'jordan-bardella',
-]
-
-function normalizePath(path) {
-  if (!path || path === '/') {
-    return '/'
-  }
-
-  const withLeadingSlash = path.startsWith('/') ? path : `/${path}`
-  return withLeadingSlash.endsWith('/') ? withLeadingSlash : `${withLeadingSlash}/`
-}
-
-function normalizeAssetPath(path) {
-  if (!path) {
-    return '/'
-  }
-
-  return path.startsWith('/') ? path : `/${path}`
-}
-
-function buildAbsoluteUrl(path) {
-  const normalizedPath = normalizePath(path)
-  return normalizedPath === '/' ? `${SITE_URL}/` : `${SITE_URL}${normalizedPath}`
-}
-
-function buildAbsoluteAssetUrl(path) {
-  return `${SITE_URL}${normalizeAssetPath(path)}`
-}
-
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;')
-}
+const INDEX_HTML = resolve(PROJECT_ROOT, 'index.html')
+const today = new Date().toISOString().slice(0, 10)
 
 function renderSeoPage(page) {
-  const canonicalUrl = buildAbsoluteUrl(`/${page.slug}/`)
-  const crawlLinks = [
-    { label: 'Accueil', href: '/' },
-    { label: 'Sondages', href: '/polls' },
-    { label: 'Sources', href: '/sources' },
-    ...seoPages
-      .filter((entry) => entry.slug !== page.slug)
-      .map((entry) => ({ label: accentizeFrenchCopy(entry.heroTitle), href: `/${entry.slug}/` })),
-    ...CANDIDATE_IDS.map((candidateId) => ({
-      label: `Profil ${accentizeFrenchCopy(candidateId.replaceAll('-', ' '))}`,
-      href: `/candidats/${candidateId}/`,
-    })),
-  ]
-  const siteName = accentizeFrenchCopy(SITE_NAME)
+  const canonicalPath = `/${page.slug}/`
+  const canonicalUrl = buildAbsoluteUrl(canonicalPath)
   const title = accentizeFrenchCopy(page.title)
   const description = accentizeFrenchCopy(page.description)
   const heroEyebrow = accentizeFrenchCopy(page.heroEyebrow)
   const heroTitle = accentizeFrenchCopy(page.heroTitle)
   const heroIntro = accentizeFrenchCopy(page.heroIntro)
-  const footerText = accentizeFrenchCopy(
-    `Cette page fait partie de ${SITE_NAME} et renvoie vers les donnees de campagne, les profils candidats et les sondages 2027.`,
-  )
+  const crawlLinks = [
+    { label: 'Accueil', href: '/' },
+    { label: 'Sondages', href: '/polls/' },
+    { label: 'Sources', href: '/sources/' },
+    ...seoPages
+      .filter((entry) => entry.slug !== page.slug)
+      .map((entry) => ({ label: accentizeFrenchCopy(entry.heroTitle), href: `/${entry.slug}/` })),
+    ...sortedCandidates().map((candidate) => ({
+      label: `${candidate.name} (${candidate.party})`,
+      href: candidateProfilePath(candidate),
+    })),
+  ]
   const faqSchema = {
-    '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: page.faqs.map((faq) => ({
       '@type': 'Question',
       name: accentizeFrenchCopy(faq.question),
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: accentizeFrenchCopy(faq.answer),
-      },
+      acceptedAnswer: { '@type': 'Answer', text: accentizeFrenchCopy(faq.answer) },
     })),
-  }
-  const organizationSchema = {
-    '@type': 'Organization',
-    name: siteName,
-    url: SITE_URL,
-    logo: {
-      '@type': 'ImageObject',
-      url: buildAbsoluteAssetUrl(SITE_LOGO_PATH),
-    },
-    image: buildAbsoluteAssetUrl(SITE_SOCIAL_IMAGE_PATH),
-  }
-  const websiteSchema = {
-    '@type': 'WebSite',
-    name: siteName,
-    url: SITE_URL,
-    inLanguage: 'fr-FR',
-    image: buildAbsoluteAssetUrl(SITE_SOCIAL_IMAGE_PATH),
-    publisher: {
-      '@type': 'Organization',
-      name: siteName,
-      logo: {
-        '@type': 'ImageObject',
-        url: buildAbsoluteAssetUrl(SITE_LOGO_PATH),
-      },
-    },
-  }
-  const webpageSchema = {
-    '@type': 'WebPage',
-    name: title,
-    description,
-    url: canonicalUrl,
-    inLanguage: 'fr-FR',
-    primaryImageOfPage: {
-      '@type': 'ImageObject',
-      url: buildAbsoluteAssetUrl(SITE_SOCIAL_IMAGE_PATH),
-    },
-    isPartOf: {
-      '@type': 'WebSite',
-      name: siteName,
-      url: SITE_URL,
-    },
   }
   const schemaGraph = {
     '@context': 'https://schema.org',
-    '@graph': [organizationSchema, websiteSchema, webpageSchema, { ...faqSchema, '@context': undefined }],
+    '@graph': [
+      buildOrganizationSchema(),
+      buildWebsiteSchema(),
+      buildWebpageSchema({ title, description, url: canonicalUrl, dateModified: page.updatedAt }),
+      buildBreadcrumbSchema([
+        { name: 'Accueil', path: '/' },
+        { name: heroTitle, path: canonicalPath },
+      ]),
+      faqSchema,
+    ],
   }
 
   return `<!doctype html>
@@ -148,16 +79,18 @@ function renderSeoPage(page) {
   <meta name="description" content="${escapeHtml(description)}" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#1a227f" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="${escapeHtml(siteName)}" />
   <meta property="og:title" content="${escapeHtml(title)}" />
   <meta property="og:description" content="${escapeHtml(description)}" />
   <meta property="og:url" content="${escapeHtml(canonicalUrl)}" />
-  <meta property="og:image" content="${escapeHtml(buildAbsoluteAssetUrl(SITE_SOCIAL_IMAGE_PATH))}" />
+  <meta property="og:image" content="${escapeHtml(buildAbsoluteAssetUrl('/site-social-card.svg'))}" />
+  <meta property="article:modified_time" content="${escapeHtml(page.updatedAt)}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
-  <meta name="twitter:image" content="${escapeHtml(buildAbsoluteAssetUrl(SITE_SOCIAL_IMAGE_PATH))}" />
+  <meta name="twitter:image" content="${escapeHtml(buildAbsoluteAssetUrl('/site-social-card.svg'))}" />
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
   <link rel="icon" type="image/svg+xml" href="${escapeHtml(buildAbsoluteAssetUrl(SITE_FAVICON_PATH))}" />
   <link rel="manifest" href="${escapeHtml(buildAbsoluteAssetUrl('/site.webmanifest'))}" />
@@ -189,181 +122,52 @@ function renderSeoPage(page) {
     }
     a { color: inherit; text-decoration: none; }
     .shell { max-width: 1180px; margin: 0 auto; padding: 24px 16px 72px; }
-    .topbar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 16px 0 24px;
-    }
-    .brand-link {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
+    .topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0 24px; }
+    .brand-link { display: flex; align-items: center; gap: 14px; min-width: 0; }
     .brand-mark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 18px;
-      color: white;
-      font-size: 1.2rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--primary), #2563eb);
-      box-shadow: 0 16px 36px rgba(26,34,127,.24);
-      flex: none;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 18px; color: white; font-size: 1.2rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), #2563eb); box-shadow: 0 16px 36px rgba(26,34,127,.24); flex: none;
     }
-    .brand-copy {
-      min-width: 0;
-    }
-    .brand-title {
-      display: block;
-      font-weight: 900;
-      letter-spacing: -.03em;
-      font-size: clamp(1.05rem, 2vw, 1.2rem);
-    }
-    .brand-subtitle {
-      display: block;
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: .78rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    .brand-title { display: block; font-weight: 900; letter-spacing: -.03em; font-size: clamp(1.05rem, 2vw, 1.2rem); }
+    .brand-subtitle { display: block; margin-top: 2px; color: var(--muted); font-size: .78rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .nav { display: flex; flex-wrap: wrap; gap: 10px; }
-    .nav a {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.86);
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: .92rem;
-    }
-    .hero, .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
+    .nav a { border: 1px solid var(--border); background: rgba(255,255,255,.86); padding: 10px 14px; border-radius: 999px; font-weight: 700; font-size: .92rem; }
+    .hero, .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
     .hero { padding: 32px; }
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-size: .74rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      color: var(--primary);
-      background: rgba(26,34,127,.10);
+      display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 7px 12px;
+      font-size: .74rem; font-weight: 800; text-transform: uppercase; letter-spacing: .18em; color: var(--primary); background: rgba(26,34,127,.10);
     }
-    h1 {
-      margin: 18px 0 0;
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      line-height: 1.02;
-      letter-spacing: -.04em;
-    }
-    .lead {
-      max-width: 820px;
-      margin: 18px 0 0;
-      color: var(--muted);
-      font-size: 1.03rem;
-      line-height: 1.75;
-    }
+    h1 { margin: 18px 0 0; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.02; letter-spacing: -.04em; }
+    .lead { max-width: 820px; margin: 18px 0 0; color: var(--muted); font-size: 1.03rem; line-height: 1.75; }
+    .meta { margin: 14px 0 0; color: var(--muted); font-size: .9rem; }
     .chips, .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-    .chip {
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--surface-soft);
-      padding: 10px 14px;
-      font-size: .85rem;
-      font-weight: 700;
-      color: var(--muted);
-    }
-    .layout {
-      display: grid;
-      gap: 22px;
-      margin-top: 24px;
-      grid-template-columns: minmax(0,1.2fr) minmax(280px,.8fr);
-    }
-    .card {
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: var(--surface-soft);
-      padding: 22px;
-    }
-    h2 {
-      margin: 0;
-      font-size: 1.24rem;
-      line-height: 1.2;
-      letter-spacing: -.03em;
-    }
-    .card p, .faq p, li {
-      margin: 14px 0 0;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: .98rem;
-    }
+    .chip { border-radius: 999px; border: 1px solid var(--border); background: var(--surface-soft); padding: 10px 14px; font-size: .85rem; font-weight: 700; color: var(--muted); }
+    .layout { display: grid; gap: 22px; margin-top: 24px; grid-template-columns: minmax(0,1.2fr) minmax(280px,.8fr); }
+    .card { border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface-soft); padding: 22px; }
+    h2 { margin: 0; font-size: 1.24rem; line-height: 1.2; letter-spacing: -.03em; }
+    h3 { margin: 18px 0 0; font-size: 1.05rem; letter-spacing: -.02em; }
+    .card p, .faq p, li { margin: 14px 0 0; color: var(--muted); line-height: 1.75; font-size: .98rem; }
     ul { margin: 18px 0 0; padding: 0; list-style: none; }
     li { display: flex; gap: 12px; }
-    li::before {
-      content: "";
-      margin-top: 10px;
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      flex: none;
-    }
-    .cta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border: 1px solid var(--border);
-      background: white;
-      border-radius: 18px;
-      padding: 14px 16px;
-      font-weight: 800;
-      margin-top: 12px;
-    }
+    li::before { content: ""; margin-top: 10px; width: 9px; height: 9px; border-radius: 999px; background: linear-gradient(135deg, var(--primary), var(--accent)); flex: none; }
+    .cta { display: flex; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid var(--border); background: white; border-radius: 18px; padding: 14px 16px; font-weight: 800; margin-top: 12px; }
     .faq-grid { display: grid; gap: 14px; margin-top: 18px; }
-    .faq {
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: var(--surface-soft);
-      padding: 22px;
-    }
-    footer {
-      margin-top: 28px;
-      color: var(--muted);
-      font-size: .92rem;
-      line-height: 1.7;
-    }
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 14px;
-    }
-    .footer-links a {
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.86);
-      padding: 9px 13px;
-      font-size: .82rem;
-      font-weight: 700;
-    }
+    .faq { border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface-soft); padding: 22px; }
+    .candidate-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: .92rem; }
+    .candidate-table th, .candidate-table td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .candidate-table th { font-size: .74rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+    .candidate-table a { color: var(--primary); font-weight: 700; }
+    footer { margin-top: 28px; color: var(--muted); font-size: .92rem; line-height: 1.7; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+    .footer-links a { border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,.86); padding: 9px 13px; font-size: .82rem; font-weight: 700; }
     @media (max-width: 920px) {
       .layout { grid-template-columns: 1fr; }
       .hero { padding: 24px; }
+      .candidate-table thead { display: none; }
+      .candidate-table td { display: block; border-bottom: none; padding: 4px 0; }
+      .candidate-table tr { display: block; padding: 10px 0; border-bottom: 1px solid var(--border); }
     }
   </style>
 </head>
@@ -379,8 +183,9 @@ function renderSeoPage(page) {
       </a>
       <nav class="nav" aria-label="Navigation principale">
         <a href="${escapeHtml(buildAbsoluteUrl('/'))}">Accueil</a>
-        <a href="${escapeHtml(buildAbsoluteUrl('/polls'))}">Sondages</a>
         <a href="${escapeHtml(buildAbsoluteUrl('/candidats-presidentielle-2027/'))}">Candidats</a>
+        <a href="${escapeHtml(buildAbsoluteUrl('/polls/'))}">Sondages</a>
+        <a href="${escapeHtml(buildAbsoluteUrl('/primaire-gauche-presidentielle-2027/'))}">Primaires</a>
         <a href="${escapeHtml(buildAbsoluteUrl('/presidentielle-2027/'))}">Guide 2027</a>
       </nav>
     </header>
@@ -389,6 +194,7 @@ function renderSeoPage(page) {
       <span class="eyebrow">${escapeHtml(heroEyebrow)}</span>
       <h1>${escapeHtml(heroTitle)}</h1>
       <p class="lead">${escapeHtml(heroIntro)}</p>
+      <p class="meta">Mis à jour le <time datetime="${escapeHtml(page.updatedAt)}">${escapeHtml(formatFrenchDate(page.updatedAt))}</time></p>
 
       <div class="chips">
         ${page.queries.map((query) => `<span class="chip">${escapeHtml(accentizeFrenchCopy(query))}</span>`).join('')}
@@ -396,10 +202,19 @@ function renderSeoPage(page) {
 
       <div class="layout">
         <div>
+          ${
+            page.candidateTable
+              ? `<article class="card">
+              <h2>Tableau des candidats à la présidentielle 2027</h2>
+              <p>${runningCandidates().length} candidatures déclarées, en primaire ou pressenties au ${escapeHtml(formatFrenchDate(CANDIDATE_DATA_LAST_UPDATED))}. Cliquez sur un nom pour ouvrir la fiche sourcée.</p>
+              ${renderCandidateTable()}
+            </article>`
+              : ''
+          }
           ${page.sections
             .map(
               (section) => `
-            <article class="card">
+            <article class="card" style="margin-top:14px;">
               <h2>${escapeHtml(accentizeFrenchCopy(section.title))}</h2>
               ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(accentizeFrenchCopy(paragraph))}</p>`).join('')}
             </article>
@@ -410,7 +225,7 @@ function renderSeoPage(page) {
 
         <aside>
           <section class="panel" style="padding:22px;">
-            <div class="eyebrow">A retenir</div>
+            <div class="eyebrow">À retenir</div>
             <ul>
               ${page.summary.map((item) => `<li><span>${escapeHtml(accentizeFrenchCopy(item))}</span></li>`).join('')}
             </ul>
@@ -452,18 +267,10 @@ function renderSeoPage(page) {
     </section>
 
     <footer>
-      ${escapeHtml(footerText)}
+      ${escapeHtml(`Cette page fait partie de ${siteName} et renvoie vers les données de campagne, les profils candidats et les sondages 2027.`)}
       <div class="footer-links">
-        <a href="${escapeHtml(buildAbsoluteUrl('/'))}">Accueil</a>
-        <a href="${escapeHtml(buildAbsoluteUrl('/polls'))}">Sondages</a>
-        <a href="${escapeHtml(buildAbsoluteUrl('/sources'))}">Sources</a>
-      </div>
-      <div class="footer-links" style="margin-top:10px;">
         ${crawlLinks
-          .map(
-            (link) =>
-              `<a href="${escapeHtml(buildAbsoluteUrl(link.href))}">${escapeHtml(accentizeFrenchCopy(link.label))}</a>`,
-          )
+          .map((link) => `<a href="${escapeHtml(buildAbsoluteUrl(link.href))}">${escapeHtml(link.label)}</a>`)
           .join('')}
       </div>
     </footer>
@@ -482,39 +289,47 @@ async function generateSeoPages() {
 }
 
 async function generateRobots() {
-  const robotsContent = `User-agent: *
+  await writeFile(
+    resolve(PUBLIC_DIR, 'robots.txt'),
+    `User-agent: *
 Allow: /
 
 Sitemap: ${SITE_URL}/sitemap.xml
-`
-
-  await writeFile(resolve(PUBLIC_DIR, 'robots.txt'), robotsContent, 'utf8')
+`,
+    'utf8',
+  )
 }
 
 async function generateSitemap() {
-  const lastModifiedAt = new Date().toISOString()
+  const latestEditorialUpdate = seoPages.reduce(
+    (latest, page) => (page.updatedAt > latest ? page.updatedAt : latest),
+    CANDIDATE_DATA_LAST_UPDATED,
+  )
   const urls = [
-    { path: '/', changefreq: 'daily', priority: '1.0' },
-    { path: '/polls', changefreq: 'daily', priority: '0.9' },
-    { path: '/sources', changefreq: 'weekly', priority: '0.6' },
+    { path: '/', changefreq: 'daily', priority: '1.0', lastmod: latestEditorialUpdate },
+    { path: pollsRouteSeo.path, changefreq: 'daily', priority: '0.9', lastmod: today },
+    { path: sourcesRouteSeo.path, changefreq: 'monthly', priority: '0.5', lastmod: CANDIDATE_DATA_LAST_UPDATED },
     ...seoPages.map((page) => ({
       path: `/${page.slug}/`,
       changefreq: 'weekly',
-      priority: '0.8',
+      priority: page.slug === 'candidats-presidentielle-2027' ? '0.9' : '0.8',
+      lastmod: page.updatedAt,
     })),
-    ...CANDIDATE_IDS.map((id) => ({
-      path: `/candidats/${id}/`,
+    ...sortedCandidates().map((candidate) => ({
+      path: candidateProfilePath(candidate),
       changefreq: 'weekly',
-      priority: '0.7',
+      priority: candidate.status === 'not_running' ? '0.5' : '0.7',
+      lastmod: candidate.dataLastUpdated ?? CANDIDATE_DATA_LAST_UPDATED,
     })),
   ]
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls
   .map(
-    ({ path, changefreq, priority }) => `  <url>
+    ({ path, changefreq, priority, lastmod }) => `  <url>
     <loc>${buildAbsoluteUrl(path)}</loc>
-    <lastmod>${lastModifiedAt}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`,
@@ -526,6 +341,16 @@ ${urls
   await writeFile(resolve(PUBLIC_DIR, 'sitemap.xml'), sitemap, 'utf8')
 }
 
+async function refreshIndexHtmlFallback() {
+  const html = await readFile(INDEX_HTML, 'utf8')
+  await writeFile(INDEX_HTML, replaceBetweenMarkers(html, ROOT_MARKERS, renderHomeFallback()), 'utf8')
+}
+
 await generateSeoPages()
 await generateRobots()
 await generateSitemap()
+await refreshIndexHtmlFallback()
+
+console.log(
+  `Generated ${seoPages.length} SEO pages, sitemap with ${3 + seoPages.length + candidates2027.length} URLs, refreshed index.html fallback.`,
+)

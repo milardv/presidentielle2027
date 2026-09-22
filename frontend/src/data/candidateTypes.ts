@@ -1,4 +1,4 @@
-export type CandidateStatus = 'declared' | 'declared_primary' | 'intent' | 'conditional'
+export type CandidateStatus = 'declared' | 'declared_primary' | 'intent' | 'conditional' | 'not_running'
 
 export interface CandidateSource {
   label: string

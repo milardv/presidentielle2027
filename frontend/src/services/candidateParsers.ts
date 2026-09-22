@@ -15,7 +15,7 @@ import type {
 } from '../data/candidateTypes'
 import { decodeHtmlEntities } from '../utils/htmlEntities'
 
-const validStatuses: CandidateStatus[] = ['declared', 'declared_primary', 'intent', 'conditional']
+const validStatuses: CandidateStatus[] = ['declared', 'declared_primary', 'intent', 'conditional', 'not_running']
 const validNetworkTones: CandidateNetworkTone[] = ['ally', 'institution', 'rival']
 
 function isValidStatus(value: unknown): value is CandidateStatus {

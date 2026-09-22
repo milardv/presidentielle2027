@@ -1,26 +1,43 @@
 import { collection, doc, getDoc, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase'
 import type { Candidate } from '../data/candidateTypes'
+import { knownCandidates2027 } from '../data/candidates'
+import { getStaticCandidate, mergeCandidateListWithStatic, mergeCandidateWithStatic } from './candidateMerge'
 import { parseCandidate } from './candidateParsers'
 
 const CANDIDATES_COLLECTION = 'candidates_2027'
 
 export async function getCandidatesFromDatabase(): Promise<Candidate[]> {
-  const queryRef = query(collection(db, CANDIDATES_COLLECTION), orderBy('priority', 'asc'))
-  const snapshot = await getDocs(queryRef)
+  try {
+    const queryRef = query(collection(db, CANDIDATES_COLLECTION), orderBy('priority', 'asc'))
+    const snapshot = await getDocs(queryRef)
 
-  return snapshot.docs
-    .map((entry) => parseCandidate(entry.id, entry.data()))
-    .filter((candidate): candidate is Candidate => candidate !== null)
+    const dbCandidates = snapshot.docs
+      .map((entry) => parseCandidate(entry.id, entry.data()))
+      .filter((candidate): candidate is Candidate => candidate !== null)
+
+    return mergeCandidateListWithStatic(dbCandidates)
+  } catch (error) {
+    console.warn('Firestore unavailable, serving static candidate data.', error)
+    return [...knownCandidates2027].sort((a, b) => a.priority - b.priority)
+  }
 }
 
 export async function getCandidateByIdFromDatabase(candidateId: string): Promise<Candidate | null> {
-  const snapshot = await getDoc(doc(db, CANDIDATES_COLLECTION, candidateId))
-  if (!snapshot.exists()) {
-    return null
-  }
+  const staticCandidate = getStaticCandidate(candidateId)
 
-  return parseCandidate(snapshot.id, snapshot.data())
+  try {
+    const snapshot = await getDoc(doc(db, CANDIDATES_COLLECTION, candidateId))
+    if (!snapshot.exists()) {
+      return staticCandidate
+    }
+
+    const dbCandidate = parseCandidate(snapshot.id, snapshot.data())
+    return dbCandidate ? mergeCandidateWithStatic(dbCandidate) : staticCandidate
+  } catch (error) {
+    console.warn(`Firestore unavailable for ${candidateId}, serving static candidate data.`, error)
+    return staticCandidate
+  }
 }
 
 export async function getCandidatesByIdsFromDatabase(candidateIds: string[]): Promise<Candidate[]> {

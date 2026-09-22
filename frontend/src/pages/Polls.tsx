@@ -25,6 +25,7 @@ import {
 } from '../features/candidates/shared/candidateUi'
 import { PollsMobileNav } from '../features/polls/components/PollsMobileNav'
 import { usePolls } from '../features/polls/hooks/usePolls'
+import { pollsRouteSeo } from '../seo/appRoutesSeo.js'
 import { SeoHead } from '../seo/SeoHead'
 
 type PollTimeframe = '6m' | '1y' | 'total'
@@ -1372,16 +1373,10 @@ export default function Polls() {
   return (
     <div className="min-h-screen bg-background-light font-display text-slate-900">
       <SeoHead
-        title="Sondage présidentielle 2027 : intentions de vote, classement et instituts"
-        description="Sondage présidentielle 2027 : comparez les intentions de vote, les scénarios, les instituts et les dynamiques de campagne sur une page claire."
-        path="/polls"
-        keywords={[
-          'sondage présidentielle 2027',
-          'présidentielle 2027 sondage',
-          'intentions de vote 2027',
-          'sondage IFOP présidentielle 2027',
-          'classement candidats présidentielle 2027',
-        ]}
+        title={pollsRouteSeo.title}
+        description={pollsRouteSeo.description}
+        path={pollsRouteSeo.path}
+        keywords={pollsRouteSeo.keywords}
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
