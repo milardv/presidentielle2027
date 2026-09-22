@@ -221,9 +221,25 @@ export function renderCandidateFallback(candidate) {
     .filter((entry) => entry.id !== candidate.id)
     .slice(0, 12)
 
+  const photo = candidate.photoUrl
+    ? `<figure class="portrait">
+      <img src="${escapeHtml(candidate.photoUrl)}" alt="Portrait de ${escapeHtml(candidate.name)}" width="320" height="400" loading="eager" />
+      ${
+        candidate.photoCredit
+          ? `<figcaption class="source">Photo : ${escapeHtml(candidate.photoCredit.author)}, <a href="${escapeHtml(candidate.photoCredit.sourceUrl)}" rel="noopener nofollow" target="_blank">Wikimedia Commons</a>, ${
+              candidate.photoCredit.licenseUrl
+                ? `<a href="${escapeHtml(candidate.photoCredit.licenseUrl)}" rel="noopener nofollow" target="_blank">${escapeHtml(candidate.photoCredit.license)}</a>`
+                : escapeHtml(candidate.photoCredit.license)
+            }</figcaption>`
+          : ''
+      }
+    </figure>`
+    : ''
+
   return `<main id="seo-root-fallback">
     <p class="eyebrow">${escapeHtml(statusGroupLabel(candidate.status))} · ${escapeHtml(candidate.party)}</p>
     <h1>${escapeHtml(seo.title)}</h1>
+    ${photo}
     <p class="lead">${escapeHtml(candidate.summary)}</p>
     <p><strong>Statut :</strong> ${escapeHtml(candidate.statusLabel)} · <strong>Bloc :</strong> ${escapeHtml(candidate.bloc)} · <strong>Fonction :</strong> ${escapeHtml(candidate.currentRole)}</p>
     ${renderUpdatedLine(candidate.dataLastUpdated ?? CANDIDATE_DATA_LAST_UPDATED)}

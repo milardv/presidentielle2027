@@ -6,6 +6,7 @@ import type {
   CandidateNetworkTone,
   CandidateParcoursStep,
   CandidateParentBackground,
+  CandidatePhotoCredit,
   CandidatePosition,
   CandidateSource,
   CandidateStatus,
@@ -393,6 +394,28 @@ function parseInterventions(value: unknown): CandidateIntervention[] {
     .filter((entry): entry is CandidateIntervention => entry !== null)
 }
 
+function parsePhotoCredit(value: unknown): CandidatePhotoCredit | undefined {
+  if (typeof value !== 'object' || value === null) {
+    return undefined
+  }
+
+  const maybeCredit = value as Partial<CandidatePhotoCredit>
+  if (
+    typeof maybeCredit.author !== 'string' ||
+    typeof maybeCredit.license !== 'string' ||
+    typeof maybeCredit.sourceUrl !== 'string'
+  ) {
+    return undefined
+  }
+
+  return {
+    author: maybeCredit.author,
+    license: maybeCredit.license,
+    sourceUrl: maybeCredit.sourceUrl,
+    ...(typeof maybeCredit.licenseUrl === 'string' ? { licenseUrl: maybeCredit.licenseUrl } : {}),
+  }
+}
+
 export function parseCandidate(id: string, data: Record<string, unknown>): Candidate | null {
   if (
     typeof data.name !== 'string' ||
@@ -421,6 +444,7 @@ export function parseCandidate(id: string, data: Record<string, unknown>): Candi
     id,
     name: data.name,
     photoUrl: typeof data.photoUrl === 'string' ? data.photoUrl : '',
+    photoCredit: parsePhotoCredit(data.photoCredit),
     videoUrl: typeof data.videoUrl === 'string' ? data.videoUrl : undefined,
     xUsername: typeof data.xUsername === 'string' ? data.xUsername : undefined,
     bloc: data.bloc,

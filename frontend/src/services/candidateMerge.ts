@@ -35,7 +35,8 @@ export function mergeCandidateWithStatic(dbCandidate: Candidate): Candidate {
     keyPositions: staticCandidate.keyPositions,
     timeline: staticCandidate.timeline,
     sources: mergeSources(staticCandidate.sources, dbCandidate.sources),
-    photoUrl: dbCandidate.photoUrl || staticCandidate.photoUrl,
+    photoUrl: staticCandidate.photoUrl || dbCandidate.photoUrl,
+    photoCredit: staticCandidate.photoCredit ?? dbCandidate.photoCredit,
     dataLastUpdated: staticCandidate.dataLastUpdated,
   }
 }

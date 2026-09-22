@@ -43,12 +43,30 @@ export function ProfileHeroSection({
           <div className="flex flex-col gap-6 md:flex-row md:items-center">
             <div className="relative self-center md:self-start">
               {candidate.photoUrl ? (
-                <img
-                  src={candidate.photoUrl}
-                  alt={`Photo Wikipedia de ${candidate.name}`}
-                  className="h-32 w-32 rounded-[2rem] border-4 border-white object-cover shadow-xl dark:border-slate-800 sm:h-36 sm:w-36"
-                  loading="lazy"
-                />
+                <figure className="m-0">
+                  <img
+                    src={candidate.photoUrl}
+                    alt={`Portrait de ${candidate.name}`}
+                    className="h-32 w-32 rounded-[2rem] border-4 border-white object-cover shadow-xl dark:border-slate-800 sm:h-36 sm:w-36"
+                    loading="lazy"
+                  />
+                  {candidate.photoCredit ? (
+                    <figcaption className="mt-2 max-w-[9rem] text-center text-[10px] leading-snug text-slate-400 dark:text-slate-500">
+                      Photo :{' '}
+                      <a href={candidate.photoCredit.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline">
+                        {candidate.photoCredit.author}
+                      </a>
+                      {' · '}
+                      {candidate.photoCredit.licenseUrl ? (
+                        <a href={candidate.photoCredit.licenseUrl} target="_blank" rel="noopener noreferrer" className="underline">
+                          {candidate.photoCredit.license}
+                        </a>
+                      ) : (
+                        candidate.photoCredit.license
+                      )}
+                    </figcaption>
+                  ) : null}
+                </figure>
               ) : (
                 <div className="flex h-32 w-32 items-center justify-center rounded-[2rem] border-4 border-white bg-gradient-to-br from-slate-800 to-slate-700 text-3xl font-bold text-white shadow-xl dark:border-slate-800 sm:h-36 sm:w-36">
                   {getCandidateInitials(candidate.name)}

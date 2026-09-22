@@ -285,6 +285,21 @@ const villepinSources = {
 
 const CLOUDINARY = 'https://res.cloudinary.com/dagxzno9s/image/upload'
 
+function commonsCredit(author, license, licenseUrl, fileName) {
+  return {
+    author,
+    license,
+    ...(licenseUrl ? { licenseUrl } : {}),
+    sourceUrl: `https://commons.wikimedia.org/wiki/File:${fileName}`,
+  }
+}
+
+const CC_BY_SA_4 = 'https://creativecommons.org/licenses/by-sa/4.0'
+const CC_BY_SA_3 = 'https://creativecommons.org/licenses/by-sa/3.0'
+const CC_BY_SA_2 = 'https://creativecommons.org/licenses/by-sa/2.0'
+const CC_BY_4 = 'https://creativecommons.org/licenses/by/4.0'
+const CC0 = 'https://creativecommons.org/publicdomain/zero/1.0/deed.fr'
+
 export const candidates2027 = [
   {
     id: 'marine-le-pen',
@@ -675,7 +690,8 @@ export const candidates2027 = [
       'Président de Reconquête et candidat en 2022 (7,07 %), il a confirmé le 17 septembre 2026 qu’il serait candidat en 2027, soutenu par Sarah Knafo.',
     themes: ['Immigration', 'Identité', 'Union des droites'],
     priority: 7,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073765/presidentielles/candidats/eric-zemmour.jpg`,
+    photoCredit: commonsCredit('Anh De France', 'CC0', CC0, 'Portrait_d%27%C3%89ric_Zemmour,_avril_2022.jpg'),
     currentRole: 'Président de Reconquête',
     biography: [
       'Né en 1958, Éric Zemmour est journaliste et essayiste avant de fonder Reconquête fin 2021.',
@@ -789,7 +805,8 @@ export const candidates2027 = [
       'Maire de Cannes et président de l’Association des maires de France, il a quitté LR et déclaré sa candidature le 31 mars 2026 avec son mouvement Nouvelle Énergie.',
     themes: ['Libertés', 'Décentralisation', 'Dépense publique'],
     priority: 9,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073765/presidentielles/candidats/david-lisnard.jpg`,
+    photoCredit: commonsCredit('Frantogian', 'CC BY-SA 3.0', CC_BY_SA_3, 'David_Lisnard_-_2013.jpg'),
     currentRole: 'Maire de Cannes et président de l’Association des maires de France',
     biography: [
       'Né en 1969, David Lisnard est maire de Cannes depuis 2014 et président de l’Association des maires de France depuis 2021.',
@@ -846,7 +863,8 @@ export const candidates2027 = [
       'Secrétaire national du PCF et candidat en 2022, sa candidature a été validée par le parti le 6 septembre 2026.',
     themes: ['Travail', 'Salaires', 'Énergie'],
     priority: 10,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073766/presidentielles/candidats/fabien-roussel.jpg`,
+    photoCredit: commonsCredit('Zouhair Nakara', 'CC BY-SA 4.0', CC_BY_SA_4, 'Roussel_Fabien_1.jpg'),
     currentRole: 'Secrétaire national du Parti communiste français',
     biography: [
       'Né en 1969, Fabien Roussel dirige le Parti communiste français depuis 2018.',
@@ -1024,7 +1042,8 @@ export const candidates2027 = [
       'Premier secrétaire du PS, il a annoncé le 30 août 2026 sa candidature à la primaire « Choisir 2027 », après que les adhérents ont désavoué son projet de primaire ouverte à toute la gauche.',
     themes: ['Union de la gauche', 'Justice sociale', 'Services publics'],
     priority: 13,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073767/presidentielles/candidats/olivier-faure.png`,
+    photoCredit: commonsCredit('KimiRaikkonen3', 'Domaine public', null, 'OF_MATIGNON_-_MAXIME_CLAM_(cropped).png'),
     currentRole: 'Premier secrétaire du Parti socialiste et député de Seine-et-Marne',
     biography: [
       'Né en 1968, Olivier Faure dirige le Parti socialiste depuis 2018 et siège à l’Assemblée nationale pour la Seine-et-Marne.',
@@ -1081,7 +1100,8 @@ export const candidates2027 = [
       'Finaliste de la présidentielle 2007, elle a annoncé le 10 juillet 2026 sa candidature à la primaire socialiste « Choisir 2027 ».',
     themes: ['Écologie', 'Démocratie participative', 'Ordre juste'],
     priority: 14,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073769/presidentielles/candidats/segolene-royal.jpg`,
+    photoCredit: commonsCredit('Jackolan1', 'CC BY-SA 3.0', CC_BY_SA_3, 'Royal_Toulouse_2012.JPG'),
     currentRole: 'Ancienne ministre, ancienne présidente de la région Poitou-Charentes',
     biography: [
       'Née en 1953, Ségolène Royal a été plusieurs fois ministre et candidate du PS à la présidentielle de 2007 (46,94 % au second tour).',
@@ -1132,7 +1152,8 @@ export const candidates2027 = [
       'Député socialiste de l’Essonne, il a rejoint la primaire « Choisir 2027 » le 23 août 2026.',
     themes: ['Laïcité', 'Protection sociale', 'République'],
     priority: 15,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073770/presidentielles/candidats/jerome-guedj.jpg`,
+    photoCredit: commonsCredit('Audrey AK', 'CC BY-SA 2.0', CC_BY_SA_2, 'J%C3%A9r%C3%B4me_Guedj_2010.jpg'),
     currentRole: 'Député de l’Essonne',
     biography: [
       'Né en 1972, Jérôme Guedj est député de l’Essonne et ancien président du conseil général du département.',
@@ -1178,7 +1199,8 @@ export const candidates2027 = [
       'Député du Val-d’Oise et fondateur de la Gauche républicaine et socialiste, il est entré le 4 septembre 2026 dans la primaire « Choisir 2027 ».',
     themes: ['Souveraineté', 'Industrie', 'République sociale'],
     priority: 16,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073771/presidentielles/candidats/emmanuel-maurel.jpg`,
+    photoCredit: commonsCredit('Echwander', 'CC BY-SA 4.0', CC_BY_SA_4, 'Emmanuel_Maurel_en_2016.jpg'),
     currentRole: 'Député du Val-d’Oise et animateur de la GRS',
     biography: [
       'Né en 1973, Emmanuel Maurel a quitté le PS en 2018 pour fonder la Gauche républicaine et socialiste.',
@@ -1224,7 +1246,8 @@ export const candidates2027 = [
       'Ancien Premier ministre (2016-2017) et fondateur de La Convention, il a déclaré sa candidature le 16 juillet 2026 en contournant la primaire socialiste.',
     themes: ['Laïcité', 'Autorité de l’État', 'Social-démocratie'],
     priority: 17,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073772/presidentielles/candidats/bernard-cazeneuve.jpg`,
+    photoCredit: commonsCredit('Jérémy Barande', 'CC BY-SA 2.0', CC_BY_SA_2, 'Bernard_Cazeneuve,_(42399145362)_(cropped).jpg'),
     currentRole: 'Ancien Premier ministre, président de La Convention',
     biography: [
       'Né en 1963, Bernard Cazeneuve a été ministre de l’Intérieur puis Premier ministre de décembre 2016 à mai 2017.',
@@ -1270,7 +1293,8 @@ export const candidates2027 = [
       'Maire socialiste de Saint-Ouen-sur-Seine, il a déclaré sa candidature le 9 juin 2026, en dehors de la primaire « Choisir 2027 ».',
     themes: ['Égalité territoriale', 'Sécurité', 'République'],
     priority: 18,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073773/presidentielles/candidats/karim-bouamrane.jpg`,
+    photoCredit: commonsCredit('Oumma', 'CC BY 4.0', CC_BY_4, 'Karim_Bouamrane_en_2026_(cropped).jpg'),
     currentRole: 'Maire de Saint-Ouen-sur-Seine',
     biography: [
       'Maire de Saint-Ouen-sur-Seine depuis 2020, Karim Bouamrane s’est fait connaître par sa gestion de la ville-hôte du village olympique de 2024.',
@@ -1407,7 +1431,8 @@ export const candidates2027 = [
       'Président de Debout la France et candidat en 2012, 2017 et 2022, il a officialisé le 19 septembre 2026 une quatrième candidature.',
     themes: ['Souveraineté', 'Référendum', 'Sécurité'],
     priority: 21,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073773/presidentielles/candidats/nicolas-dupont-aignan.jpg`,
+    photoCredit: commonsCredit('Debout la France', 'CC BY-SA 4.0', CC_BY_SA_4, 'Nicolas_Dupont-Aignan,_homme_politique_fran%C3%A7ais.jpg'),
     currentRole: 'Président de Debout la France',
     biography: [
       'Né en 1961, Nicolas Dupont-Aignan a fondé Debout la France et a longtemps été maire d’Yerres et député de l’Essonne.',
@@ -1453,7 +1478,8 @@ export const candidates2027 = [
       'Président des Patriotes et ancien numéro deux du FN, il s’est déclaré candidat le 9 mai 2026 après avoir échoué à réunir les parrainages en 2022.',
     themes: ['Frexit', 'Souveraineté', 'Libertés'],
     priority: 22,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073774/presidentielles/candidats/florian-philippot.jpg`,
+    photoCredit: commonsCredit('Thomas Bresson', 'CC BY 4.0', CC_BY_4, '2022-04-16_16-49-26_MAM-Paris_02.jpg'),
     currentRole: 'Président des Patriotes',
     biography: [
       'Né en 1981, Florian Philippot a été vice-président du Front national avant de fonder Les Patriotes en 2017.',
@@ -1499,7 +1525,8 @@ export const candidates2027 = [
       'Président de l’UPR et candidat en 2017 (0,92 %), il est déclaré depuis le 31 août 2023 et défend la sortie de l’UE, de l’euro et de l’OTAN.',
     themes: ['Frexit', 'Indépendance nationale', 'Institutions'],
     priority: 23,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073775/presidentielles/candidats/francois-asselineau.jpg`,
+    photoCredit: commonsCredit('Union populaire républicaine', 'CC BY-SA 4.0', CC_BY_SA_4, 'Fran%C3%A7ois_ASSELINEAU.jpg'),
     currentRole: 'Président de l’Union populaire républicaine',
     biography: [
       'Né en 1957, François Asselineau est haut fonctionnaire et fondateur de l’Union populaire républicaine en 2007.',
@@ -1545,7 +1572,8 @@ export const candidates2027 = [
       'Ancien Premier ministre (2005-2007), il a lancé La France humaniste en juin 2025 pour préparer 2027. Non officiellement déclaré, il travaille à réunir les 500 parrainages.',
     themes: ['Diplomatie', 'Unité républicaine', 'Institutions'],
     priority: 24,
-    photoUrl: '',
+    photoUrl: `${CLOUDINARY}/v1790073776/presidentielles/candidats/dominique-de-villepin.jpg`,
+    photoCredit: commonsCredit('Georges Seguin (Okki)', 'CC BY-SA 3.0', CC_BY_SA_3, 'Dominique_de_Villepin_20100330_Salon_du_livre_de_Paris_2_cropped.jpg'),
     currentRole: 'Ancien Premier ministre, fondateur de La France humaniste',
     biography: [
       'Né en 1953, Dominique de Villepin a été ministre des Affaires étrangères, de l’Intérieur, puis Premier ministre de 2005 à 2007.',

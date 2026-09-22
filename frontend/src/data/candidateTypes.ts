@@ -72,10 +72,18 @@ export interface CandidateIntervention {
   source: CandidateSource
 }
 
+export interface CandidatePhotoCredit {
+  author: string
+  license: string
+  licenseUrl?: string
+  sourceUrl: string
+}
+
 export interface Candidate {
   id: string
   name: string
   photoUrl: string
+  photoCredit?: CandidatePhotoCredit
   videoUrl?: string
   xUsername?: string
   bloc: string
