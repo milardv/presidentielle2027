@@ -24,7 +24,9 @@ import {
   getCandidatePartyAccentColor,
 } from '../features/candidates/shared/candidateUi'
 import { PollsMobileNav } from '../features/polls/components/PollsMobileNav'
+import { SecondRoundSection } from '../features/polls/components/SecondRoundSection'
 import { usePolls } from '../features/polls/hooks/usePolls'
+import { useSecondRoundPolls } from '../features/polls/hooks/useSecondRoundPolls'
 import { pollsRouteSeo } from '../seo/appRoutesSeo.js'
 import { SeoHead } from '../seo/SeoHead'
 
@@ -73,6 +75,12 @@ const leftCandidateIds = new Set([
   'francois-hollande',
   'raphael-glucksmann',
   'marine-tondelier',
+  'segolene-royal',
+  'karim-bouamrane',
+  'bernard-cazeneuve',
+  'jerome-guedj',
+  'emmanuel-maurel',
+  'delphine-batho',
 ])
 
 const trendChartWidth = 960
@@ -1336,6 +1344,7 @@ function PollStudyCard({
 
 export default function Polls() {
   const { polls, isLoading, loadError, dataLastUpdated } = usePolls()
+  const secondRound = useSecondRoundPolls()
   const { candidates } = useCandidates()
   const [activePollster, setActivePollster] = useState<string | null>(null)
   const [trendTimeframe, setTrendTimeframe] = useState<PollTimeframe>('6m')
@@ -1477,6 +1486,13 @@ export default function Polls() {
 
             <CandidateLeaderboard candidates={topCandidates} candidatesById={candidatesById} />
 
+            <SecondRoundSection
+              matchups={secondRound.matchups}
+              candidatesById={candidatesById}
+              isLoading={secondRound.isLoading}
+              loadError={secondRound.loadError}
+            />
+
             <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.06)] sm:p-8">
               <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                 <div>
@@ -1502,7 +1518,7 @@ export default function Polls() {
                   <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">Ce que mesure la page</h2>
                 </div>
                 <p className="max-w-2xl text-sm leading-relaxed text-slate-500">
-                  Les scores ci-dessus décrivent des tests publiés à un instant donné. Ils ne remplacent ni un second tour ni une projection de résultat final.
+                  Les scores ci-dessus décrivent des tests publiés à un instant donné. Ils ne constituent pas une projection de résultat final, ni pour le premier tour du 18 avril 2027 ni pour le second tour du 2 mai.
                 </p>
               </div>
 

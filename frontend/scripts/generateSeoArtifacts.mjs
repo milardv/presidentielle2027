@@ -17,6 +17,7 @@ import {
   formatFrenchDate,
   renderCandidateTable,
   renderHomeFallback,
+  renderPollSnapshotTables,
   replaceBetweenMarkers,
   runningCandidates,
   siteName,
@@ -159,6 +160,9 @@ function renderSeoPage(page) {
     .candidate-table th, .candidate-table td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
     .candidate-table th { font-size: .74rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
     .candidate-table a { color: var(--primary); font-weight: 700; }
+    .poll-study { margin-top: 18px; }
+    .poll-study .source { margin-top: 8px; font-size: .82rem; color: var(--muted); }
+    .poll-study .source a { color: var(--primary); font-weight: 700; }
     footer { margin-top: 28px; color: var(--muted); font-size: .92rem; line-height: 1.7; }
     .footer-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
     .footer-links a { border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,.86); padding: 9px 13px; font-size: .82rem; font-weight: 700; }
@@ -208,6 +212,14 @@ function renderSeoPage(page) {
               <h2>Tableau des candidats à la présidentielle 2027</h2>
               <p>${runningCandidates().length} candidatures déclarées, en primaire ou pressenties au ${escapeHtml(formatFrenchDate(CANDIDATE_DATA_LAST_UPDATED))}. Cliquez sur un nom pour ouvrir la fiche sourcée.</p>
               ${renderCandidateTable()}
+            </article>`
+              : ''
+          }
+          ${
+            page.pollSnapshot
+              ? `<article class="card">
+              <h2>Les derniers sondages présidentielle 2027</h2>
+              ${renderPollSnapshotTables()}
             </article>`
               : ''
           }

@@ -20,6 +20,7 @@ import {
   statusGroupLabel,
 } from '../../src/seo/candidateSeo.js'
 import { pollsRouteSeo, sourcesRouteSeo } from '../../src/seo/appRoutesSeo.js'
+import pollsSnapshot from '../../src/data/pollsSnapshot.json' with { type: 'json' }
 
 export const HEAD_MARKERS = ['<!-- seo:head:start -->', '<!-- seo:head:end -->']
 export const ROOT_MARKERS = ['<!-- seo:root:start -->', '<!-- seo:root:end -->']
@@ -381,14 +382,78 @@ export function renderHomeFallback() {
   </main>`
 }
 
+function formatPercent(value) {
+  return Number.isInteger(value) ? `${value}` : String(value).replace('.', ',')
+}
+
+function fieldworkLabel(poll) {
+  return poll.fieldworkStart === poll.fieldworkEnd
+    ? formatFrenchDate(poll.fieldworkEnd)
+    : `${formatFrenchDate(poll.fieldworkStart)} – ${formatFrenchDate(poll.fieldworkEnd)}`
+}
+
+export function renderPollSnapshotTables() {
+  const studies = pollsSnapshot.firstRound.studies.slice(0, 4)
+  const firstRoundTables = studies
+    .map((study) => {
+      const scenario = study.scenarios[0]
+      return `<section class="poll-study">
+      <h3>${escapeHtml(study.pollster)} · terrain ${escapeHtml(fieldworkLabel(study))}${study.sampleSize ? ` · ${study.sampleSize.toLocaleString('fr-FR')} personnes` : ''}</h3>
+      <table class="candidate-table">
+        <thead><tr><th scope="col">Candidat</th><th scope="col">Intentions de vote (1er tour)</th></tr></thead>
+        <tbody>
+          ${scenario.scores
+            .map(
+              (score) =>
+                `<tr><td>${escapeHtml(score.candidateName)}</td><td>${escapeHtml(formatPercent(score.score))} %</td></tr>`,
+            )
+            .join('')}
+        </tbody>
+      </table>
+      <p class="source">${study.scenarios.length > 1 ? `${study.scenarios.length} scénarios testés, scénario principal affiché. ` : ''}<a href="${escapeHtml(study.sourceUrl)}" rel="noopener nofollow" target="_blank">Source de l’enquête</a></p>
+    </section>`
+    })
+    .join('\n')
+
+  const secondRoundTable = pollsSnapshot.secondRound.matchups.length
+    ? `<section class="poll-study">
+      <h3>Second tour : duels testés face à Marine Le Pen</h3>
+      <table class="candidate-table">
+        <thead><tr><th scope="col">Duel</th><th scope="col">Dernier sondage</th><th scope="col">Résultat</th></tr></thead>
+        <tbody>
+          ${pollsSnapshot.secondRound.matchups
+            .map((matchup) => {
+              const poll = matchup.polls[0]
+              return `<tr>
+              <td>${escapeHtml(matchup.label)}</td>
+              <td>${escapeHtml(poll.pollster)}, ${escapeHtml(fieldworkLabel(poll))}</td>
+              <td>${poll.scores.map((score) => `${escapeHtml(score.candidateName)} ${escapeHtml(formatPercent(score.score))} %`).join(' – ')}</td>
+            </tr>`
+            })
+            .join('')}
+        </tbody>
+      </table>
+    </section>`
+    : ''
+
+  return `<p class="meta">${pollsSnapshot.firstRound.studyCount} enquêtes de premier tour compilées · dernier terrain le ${escapeHtml(formatFrenchDate(pollsSnapshot.firstRound.latestFieldworkEnd))} · données consolidées le ${escapeHtml(formatFrenchDate(pollsSnapshot.generatedAt))} (source : <a href="${escapeHtml(pollsSnapshot.source.url)}" rel="noopener nofollow" target="_blank">${escapeHtml(pollsSnapshot.source.label)}</a> et notices des instituts).</p>
+    ${firstRoundTables}
+    ${secondRoundTable}`
+}
+
 export function renderPollsFallback() {
   const running = runningCandidates()
   return `<main id="seo-root-fallback">
     <p class="eyebrow">Sondages 2027</p>
     <h1>Sondage présidentielle 2027 : intentions de vote, classement et instituts</h1>
     <p class="lead">${escapeHtml(pollsRouteSeo.description)}</p>
-    ${renderUpdatedLine(CANDIDATE_DATA_LAST_UPDATED)}
+    ${renderUpdatedLine(pollsSnapshot.generatedAt)}
     ${renderNav()}
+
+    <section class="panel">
+      <h2>Les derniers sondages publiés</h2>
+      ${renderPollSnapshotTables()}
+    </section>
 
     <section class="panel">
       <h2>Ce que compare cette page</h2>

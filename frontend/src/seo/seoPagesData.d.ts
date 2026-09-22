@@ -27,6 +27,7 @@ export interface SeoPageContent {
   relatedLinks: SeoRelatedLink[]
   updatedAt: string
   candidateTable?: boolean
+  pollSnapshot?: boolean
 }
 
 export const SITE_NAME: string

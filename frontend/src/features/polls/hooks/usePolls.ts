@@ -26,6 +26,12 @@ const leftCandidateIds = new Set([
   'francois-hollande',
   'raphael-glucksmann',
   'marine-tondelier',
+  'segolene-royal',
+  'karim-bouamrane',
+  'bernard-cazeneuve',
+  'jerome-guedj',
+  'emmanuel-maurel',
+  'delphine-batho',
 ])
 
 function buildCandidateAverages(polls: VotingIntentPoll[]): PollCandidateAggregate[] {

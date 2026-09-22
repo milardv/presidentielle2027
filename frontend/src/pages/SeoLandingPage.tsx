@@ -4,6 +4,7 @@ import { MobileAppNav } from '../components/MobileAppNav'
 import { HomeDesktopFooter } from '../features/candidates/home/components/HomeDesktopFooter'
 import { appNavItems } from '../navigation/appNavItems'
 import { knownCandidates2027 } from '../data/candidates'
+import pollsSnapshot from '../data/pollsSnapshot.json'
 import { formatFrenchDate } from '../features/candidates/shared/candidateUi'
 import { STATUS_ORDER, candidateProfilePath, latestMilestone, statusGroupLabel } from '../seo/candidateSeo.js'
 import { accentizeFrenchCopy } from '../seo/frenchCopy.js'
@@ -66,6 +67,80 @@ function CandidateTable() {
           </div>
         </div>
       ))}
+    </article>
+  )
+}
+
+function formatPercent(value: number): string {
+  return Number.isInteger(value) ? `${value}` : String(value).replace('.', ',')
+}
+
+function fieldworkLabel(poll: { fieldworkStart: string; fieldworkEnd: string }): string {
+  return poll.fieldworkStart === poll.fieldworkEnd
+    ? formatFrenchDate(poll.fieldworkEnd)
+    : `${formatFrenchDate(poll.fieldworkStart)} – ${formatFrenchDate(poll.fieldworkEnd)}`
+}
+
+function LatestPollsTable() {
+  const studies = pollsSnapshot.firstRound.studies.slice(0, 4)
+
+  return (
+    <article className="rounded-[1.6rem] border border-slate-200/80 bg-slate-50/75 p-5">
+      <h2 className="text-lg font-black tracking-tight text-slate-950">Les derniers sondages présidentielle 2027</h2>
+      <p className="mt-2 text-xs text-slate-500">
+        {pollsSnapshot.firstRound.studyCount} enquêtes de premier tour compilées · dernier terrain le{' '}
+        {pollsSnapshot.firstRound.latestFieldworkEnd ? formatFrenchDate(pollsSnapshot.firstRound.latestFieldworkEnd) : '-'} ·{' '}
+        <a href={withBasePath('/polls/')} className="font-semibold text-primary">
+          voir toutes les études et les courbes
+        </a>
+      </p>
+      {studies.map((study) => (
+        <div key={study.id} className="mt-5">
+          <h3 className="text-sm font-bold text-slate-800">
+            {study.pollster} · terrain {fieldworkLabel(study)}
+            {study.sampleSize ? ` · ${study.sampleSize.toLocaleString('fr-FR')} personnes` : ''}
+          </h3>
+          <table className="mt-2 w-full text-left text-sm">
+            <tbody>
+              {study.scenarios[0].scores.map((score) => (
+                <tr key={score.candidateId} className="border-t border-slate-200/80">
+                  <td className="py-1.5 pr-3 text-slate-700">{score.candidateName}</td>
+                  <td className="py-1.5 text-right font-semibold tabular-nums text-slate-900">{formatPercent(score.score)} %</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="mt-1 text-xs text-slate-500">
+            {study.scenarios.length > 1 ? `${study.scenarios.length} scénarios testés, scénario principal affiché. ` : ''}
+            <a href={study.sourceUrl} target="_blank" rel="noopener noreferrer nofollow" className="font-semibold text-primary">
+              Source de l’enquête
+            </a>
+          </p>
+        </div>
+      ))}
+      {pollsSnapshot.secondRound.matchups.length > 0 ? (
+        <div className="mt-6">
+          <h3 className="text-sm font-bold text-slate-800">Second tour : duels testés face à Marine Le Pen</h3>
+          <table className="mt-2 w-full text-left text-sm">
+            <tbody>
+              {pollsSnapshot.secondRound.matchups.map((matchup) => {
+                const poll = matchup.polls[0]
+                return (
+                  <tr key={matchup.id} className="border-t border-slate-200/80 align-top">
+                    <td className="py-1.5 pr-3 font-semibold text-slate-800">{matchup.label}</td>
+                    <td className="py-1.5 pr-3 text-slate-500">
+                      {poll.pollster}, {fieldworkLabel(poll)}
+                    </td>
+                    <td className="py-1.5 text-right tabular-nums text-slate-900">
+                      {poll.scores.map((score) => `${score.candidateName} ${formatPercent(score.score)} %`).join(' – ')}
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      ) : null}
     </article>
   )
 }
@@ -152,6 +227,7 @@ export default function SeoLandingPage({ pageSlug }: SeoLandingPageProps) {
           <div className="mt-8 grid gap-4 lg:grid-cols-[minmax(0,1.25fr)_minmax(280px,0.75fr)]">
             <div className="space-y-4">
               {page.candidateTable && <CandidateTable />}
+              {page.pollSnapshot && <LatestPollsTable />}
               {page.sections.map((section) => (
                 <article
                   key={section.title}

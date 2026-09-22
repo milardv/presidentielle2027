@@ -117,7 +117,7 @@ export const seoPages = [
     heroEyebrow: 'Sondages 2027',
     heroTitle: 'Sondage présidentielle 2027 : ce que montrent vraiment les intentions de vote',
     heroIntro:
-      'Les sondages 2027 donnent une photographie utile du rapport de force, mais ils ne disent ni tout ni définitivement qui gagnera. Pour bien les lire, il faut comparer les instituts, les dates de terrain et les scénarios testés, d’autant que l’offre a changé : Marine Le Pen est redevenue éligible et le centre-droit compte cinq candidats.',
+      'À la rentrée 2026, les sondages de premier tour placent Marine Le Pen nettement en tête (32 à 35 %), devant Jean-Luc Mélenchon et Édouard Philippe (14 à 17 %), puis Raphaël Glucksmann, Gabriel Attal et Bruno Retailleau. Au second tour, les duels testés face à Marine Le Pen sont serrés ou favorables au RN. Pour bien lire ces chiffres, il faut comparer les instituts, les dates de terrain et les scénarios testés.',
     queries: [
       'présidentielle 2027 sondage',
       'sondage présidentielle 2027',
@@ -129,12 +129,20 @@ export const seoPages = [
       'probabilité victoire présidentielle 2027',
     ],
     summary: [
-      'Un sondage vaut surtout par sa date, son institut et la composition exacte de son scénario.',
-      'Les écarts faibles et les variations marginales ne doivent pas être surinterprétés.',
-      'La meilleure lecture vient de la comparaison entre plusieurs études, pas d’un seul chiffre isolé.',
+      'Marine Le Pen domine le premier tour dans toutes les enquêtes de septembre 2026 (Harris Interactive, Ipsos, OpinionWay, Elabe).',
+      'La deuxième place se joue entre Jean-Luc Mélenchon et Édouard Philippe, avec Raphaël Glucksmann et Gabriel Attal en embuscade.',
+      'Un sondage vaut surtout par sa date, son institut et la composition exacte de son scénario : comparez avant de conclure.',
     ],
     updatedAt: LAST_EDITORIAL_UPDATE,
+    pollSnapshot: true,
     sections: [
+      {
+        title: 'Où en sont les intentions de vote à la rentrée 2026 ?',
+        paragraphs: [
+          'Les enquêtes publiées début septembre 2026 convergent : Marine Le Pen, redevenue éligible et déclarée depuis le 7 juillet, recueille entre 32 et 35 % des intentions de vote au premier tour selon les scénarios. Jean-Luc Mélenchon (15 à 17 %) et Édouard Philippe (14 à 17 %) se disputent la qualification pour le second tour, devant Raphaël Glucksmann (9 à 13 %), Gabriel Attal (8 à 13 %) et Bruno Retailleau (6 à 10 %).',
+          'Au second tour, les duels testés face à Marine Le Pen donnent des résultats serrés : Édouard Philippe est le mieux placé pour la battre, tandis que Gabriel Attal et Jean-Luc Mélenchon sont donnés perdants dans les dernières enquêtes. Le tableau ci-dessous reprend les derniers sondages publiés, avec leurs sources.',
+        ],
+      },
       {
         title: 'Ce que disent vraiment les sondages 2027',
         paragraphs: [
@@ -159,9 +167,19 @@ export const seoPages = [
     ],
     faqs: [
       {
+        question: 'Qui est en tête des sondages pour la présidentielle 2027 ?',
+        answer:
+          'Marine Le Pen, avec 32 à 35 % des intentions de vote de premier tour dans les enquêtes de septembre 2026, loin devant Jean-Luc Mélenchon et Édouard Philippe (14 à 17 %).',
+      },
+      {
+        question: 'Qui peut battre Marine Le Pen au second tour ?',
+        answer:
+          'Dans les duels testés à l’été 2026, Édouard Philippe est le candidat le plus proche d’une victoire face à Marine Le Pen (46 à 49 % selon les instituts, contre 51 à 54 % pour elle), alors que Gabriel Attal (45 %) et Jean-Luc Mélenchon sont nettement distancés.',
+      },
+      {
         question: 'Où voir les derniers sondages présidentielle 2027 ?',
         answer:
-          'Il faut regarder les études les plus récentes, mais surtout les comparer entre elles. La date de terrain, l’institut et le scénario comptent davantage qu’un titre de publication isolé.',
+          'Notre page sondages compile toutes les enquêtes publiées (Ifop, Ipsos, Elabe, OpinionWay, Harris Interactive, Odoxa, Cluster17…) avec leur lien source, leur date de terrain et leur échantillon, pour le premier comme pour le second tour.',
       },
       {
         question: 'Le site affiche-t-il une probabilité de victoire ?',

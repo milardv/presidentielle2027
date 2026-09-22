@@ -9,6 +9,8 @@
     "build": "tsc -b && vite build",
     "postbuild": "node scripts/prerenderAppRoutes.mjs",
     "seo:generate": "node scripts/generateSeoArtifacts.mjs",
+    "sync:polls": "node scripts/syncPolls2027.mjs --reset",
+    "sync:polls:dry": "node scripts/syncPolls2027.mjs --dry-run",
     "upsert:candidates": "node scripts/upsertCandidates2027.mjs",
     "upsert:candidates:dry": "node scripts/upsertCandidates2027.mjs --dry-run",
     "lint": "eslint .",
