@@ -7,6 +7,7 @@ import { candidateFuturePath, candidateProfilePath } from '../src/seo/candidateS
 import { FUTURE_MODEL_UPDATED_AT } from '../src/data/futureIndicators.js'
 import { pollsRouteSeo, quizRouteSeo, sourcesRouteSeo } from '../src/seo/appRoutesSeo.js'
 import { QUIZ_UPDATED_AT } from '../src/data/quizData.js'
+import { actuArticles } from '../src/data/actuArticles.js'
 import {
   ROOT_MARKERS,
   buildAbsoluteAssetUrl,
@@ -323,6 +324,8 @@ async function generateSitemap() {
   const urls = [
     { path: '/', changefreq: 'daily', priority: '1.0', lastmod: latestEditorialUpdate },
     { path: pollsRouteSeo.path, changefreq: 'daily', priority: '0.9', lastmod: today },
+    { path: '/actu/', changefreq: 'weekly', priority: '0.8', lastmod: actuArticles.reduce((date, article) => article.publishedAt > date ? article.publishedAt : date, '2026-01-01') },
+    ...actuArticles.map((article) => ({ path: article.path, changefreq: 'monthly', priority: '0.8', lastmod: article.publishedAt })),
     { path: quizRouteSeo.path, changefreq: 'monthly', priority: '0.9', lastmod: QUIZ_UPDATED_AT },
     { path: sourcesRouteSeo.path, changefreq: 'monthly', priority: '0.5', lastmod: CANDIDATE_DATA_LAST_UPDATED },
     ...seoPages.map((page) => ({

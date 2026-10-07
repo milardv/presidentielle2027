@@ -10,6 +10,7 @@ import CandidateVideos from './pages/CandidateVideos.tsx'
 import Sources from './pages/Sources.tsx'
 import SeoLandingPage from './pages/SeoLandingPage.tsx'
 import Quiz from './pages/Quiz.tsx'
+import { ActuArticle, ActuIndex } from './pages/Actu.tsx'
 import { seoPages } from './seo/seoPagesData.js'
 
 const CandidateAnalysis = lazy(() => import('./pages/CandidateAnalysis.tsx'))
@@ -22,6 +23,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/polls" element={<Polls />} />
+          <Route path="/actu" element={<ActuIndex />} />
+          <Route path="/actu/:slug" element={<ActuArticle />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/quiz/resultat/:candidateId" element={<Quiz />} />
           <Route path="/profile" element={<PersonalProfile />} />

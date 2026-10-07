@@ -15,6 +15,7 @@ interface SeoHeadProps {
   keywords?: string[]
   noindex?: boolean
   image?: string
+  ogType?: 'website' | 'article'
   jsonLd?: Record<string, unknown> | Record<string, unknown>[] | null
 }
 
@@ -119,6 +120,7 @@ export function SeoHead({
   keywords,
   noindex = false,
   image = SITE_SOCIAL_IMAGE_PATH,
+  ogType = 'website',
   jsonLd = null,
 }: SeoHeadProps) {
   useEffect(() => {
@@ -131,7 +133,7 @@ export function SeoHead({
     upsertMeta('name', 'robots', noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large')
     upsertMeta('name', 'keywords', keywords?.join(', ') || '')
     upsertMeta('property', 'og:site_name', SITE_NAME)
-    upsertMeta('property', 'og:type', 'website')
+    upsertMeta('property', 'og:type', ogType)
     upsertMeta('property', 'og:title', title)
     upsertMeta('property', 'og:description', description)
     upsertMeta('property', 'og:url', canonicalUrl)
@@ -142,7 +144,7 @@ export function SeoHead({
     upsertMeta('name', 'twitter:image', socialImageUrl)
     upsertCanonical(canonicalUrl)
     upsertJsonLd(buildSeoGraph(jsonLd, title, description, canonicalUrl))
-  }, [description, image, jsonLd, keywords, noindex, path, title])
+  }, [description, image, jsonLd, keywords, noindex, ogType, path, title])
 
   return null
 }

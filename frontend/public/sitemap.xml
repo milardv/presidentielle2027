@@ -13,6 +13,18 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://electionpresidentielle2027.com/actu/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://electionpresidentielle2027.com/actu/500-parrainages-presidentielle-2027/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://electionpresidentielle2027.com/quiz/</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
