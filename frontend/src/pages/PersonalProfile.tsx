@@ -71,7 +71,7 @@ export default function PersonalProfile() {
           onSignOut={signOut}
         />
 
-        {user ? <KnowledgeProfileCard userId={user.uid} /> : null}
+        {user ? <KnowledgeProfileCard key={user.uid} userId={user.uid} /> : null}
 
         {user ? (
           <FavoriteMediaAttentionSection

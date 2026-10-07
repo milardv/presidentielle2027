@@ -61,25 +61,32 @@ export function getKnowledgeStats(answers: KnowledgeAnswer[]) {
   return { answered: answers.length, correct, score: correct * 10, categories, mastered: categories.filter((category) => category.mastered) }
 }
 
+export function parseKnowledgeSession(parsed: unknown): KnowledgeSession | null {
+  if (!parsed || typeof parsed !== 'object') return null
+  const value = parsed as Partial<KnowledgeSession>
+  if (value.version !== 1 || typeof value.seed !== 'number' || !Number.isInteger(value.seed) || value.seed < 0 || value.seed > 0xffffffff || !Array.isArray(value.answers) || typeof value.stopped !== 'boolean') return null
+  if (!['playing', 'feedback', 'checkpoint', 'result'].includes(value.phase ?? '')) return null
+  const order = createQuestionOrder(value.seed)
+  if (value.answers.length > order.length) return null
+  if (!value.answers.every((answer, index) => answer && answer.questionId === order[index].id && Number.isInteger(answer.selectedOptionIndex) && answer.selectedOptionIndex >= 0 && answer.selectedOptionIndex < 4)) return null
+  if (value.phase === 'feedback' && value.answers.length === 0) return null
+  if (value.phase === 'checkpoint' && (value.answers.length === 0 || value.answers.length % 10 !== 0)) return null
+  if (value.phase === 'playing' && value.answers.length === 100) return null
+  if (value.phase === 'result' && value.answers.length === 0) return null
+  return value as KnowledgeSession
+}
+
 export function loadKnowledgeSession(): KnowledgeSession | null {
   try {
     const stored = localStorage.getItem(GAME_STORAGE_KEY)
-    if (!stored) return null
-    const parsed: unknown = JSON.parse(stored)
-    if (!parsed || typeof parsed !== 'object') return null
-    const value = parsed as Partial<KnowledgeSession>
-    if (value.version !== 1 || typeof value.seed !== 'number' || !Number.isInteger(value.seed) || !Array.isArray(value.answers)) return null
-    if (!['playing', 'feedback', 'checkpoint', 'result'].includes(value.phase ?? '')) return null
-    const order = createQuestionOrder(value.seed)
-    if (value.answers.length > order.length) return null
-    if (!value.answers.every((answer, index) => answer && answer.questionId === order[index].id && Number.isInteger(answer.selectedOptionIndex) && answer.selectedOptionIndex >= 0 && answer.selectedOptionIndex < 4)) return null
-    if (value.phase === 'feedback' && value.answers.length === 0) return null
-    if (value.phase === 'checkpoint' && (value.answers.length === 0 || value.answers.length % 10 !== 0)) return null
-    if (value.phase === 'playing' && value.answers.length === 100) return null
-    return value as KnowledgeSession
+    return stored ? parseKnowledgeSession(JSON.parse(stored) as unknown) : null
   } catch {
     return null
   }
+}
+
+export function resumeKnowledgeSession(saved: KnowledgeSession): KnowledgeSession {
+  return { ...saved, phase: saved.answers.length === 100 ? 'result' : 'playing', stopped: false }
 }
 
 export function persistKnowledgeSession(session: KnowledgeSession | null) {
