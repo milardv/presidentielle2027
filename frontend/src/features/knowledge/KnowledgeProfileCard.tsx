@@ -14,7 +14,7 @@ export function KnowledgeProfileCard({ userId }: { userId: string }) {
       <Trophy size={25} aria-hidden="true" />
       <div>
         <h2>{best ? `${best.score.toLocaleString('fr-FR')} points : votre record` : 'Votre défi de connaissances'}</h2>
-        <p>{error ? 'Record momentanément indisponible.' : best ? `${best.answered} questions jouées · ${best.masteredCategoryIds.length} badge${best.masteredCategoryIds.length > 1 ? 's' : ''} de maîtrise. Vos réponses détaillées restent sur votre appareil.` : 'Testez 100 notions clés et enregistrez votre meilleur score ici.'}</p>
+        <p>{error ? 'Record momentanément indisponible.' : best ? `${best.answered} questions jouées · ${Math.floor(best.answered / 10)} badge${best.answered >= 20 ? 's' : ''} de parcours · ${best.masteredCategoryIds.length} maîtrise${best.masteredCategoryIds.length > 1 ? 's' : ''}. Vos réponses détaillées restent sur votre appareil.` : 'Testez 100 notions clés et enregistrez votre meilleur score ici.'}</p>
       </div>
       <Link to="/defi">{best ? 'Rejouer' : 'Commencer'} <ArrowRight size={16} aria-hidden="true" /></Link>
     </section>
