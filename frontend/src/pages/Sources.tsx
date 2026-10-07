@@ -130,7 +130,7 @@ export default function Sources() {
   const lastUpdatedLabel = inventory?.lastUpdated ? formatFrenchDate(inventory.lastUpdated) : 'Non disponible'
 
   return (
-    <div className="relative min-h-screen bg-background-light font-display text-slate-900">
+    <div className="edition-page relative min-h-screen bg-background-light font-display text-slate-900">
       <SeoHead
         title={sourcesRouteSeo.title}
         description={sourcesRouteSeo.description}
@@ -150,7 +150,7 @@ export default function Sources() {
 
       <AppSiteHeader />
 
-      <main className="relative w-full px-4 pb-28 md:pb-24">
+      <main className="edition-main relative w-full px-4 pb-28 md:pb-24">
         <section className="mx-auto mt-6 w-full rounded-[2rem] border border-slate-200/80 bg-white/88 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur md:p-8">
           <div className="max-w-4xl">
             <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">Transparence des données</p>

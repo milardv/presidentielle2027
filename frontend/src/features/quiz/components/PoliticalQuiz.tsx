@@ -13,13 +13,14 @@ import {
   Scale,
   Shield,
   Sparkles,
+  ArrowRight,
   Timer,
   Users,
   Vote,
   Wallet,
   type LucideIcon,
 } from 'lucide-react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { analytics } from '../../../firebase'
 import { quizAnswerOptions, quizQuestions, type QuizAnswerValue } from '../../../data/quizData.js'
 import { recordQuizCompletion } from '../../../services/quizStatsRepository'
@@ -52,14 +53,6 @@ const toneClasses: Record<string, string> = {
   emerald: 'border-emerald-200 bg-emerald-50 text-emerald-700 hover:border-emerald-500 hover:bg-emerald-500 hover:text-white focus-visible:ring-emerald-400',
 }
 
-const themeGradients = [
-  'from-primary/15 via-sky-100 to-white',
-  'from-amber-100 via-orange-50 to-white',
-  'from-emerald-100 via-teal-50 to-white',
-  'from-rose-100 via-pink-50 to-white',
-  'from-indigo-100 via-violet-50 to-white',
-]
-
 type QuizStage = 'intro' | 'question' | 'result'
 
 interface PoliticalQuizProps {
@@ -77,6 +70,7 @@ export function PoliticalQuiz({ variant, initialAnswers = null }: PoliticalQuizP
   const [index, setIndex] = useState(0)
   const [answers, setAnswers] = useState<QuizAnswers>(initialAnswers ?? emptyAnswers())
   const [transition, setTransition] = useState<'in' | 'out'>('in')
+  const changingQuestion = useRef(false)
 
   const question = quizQuestions[index]
   const result = useMemo(
@@ -85,6 +79,8 @@ export function PoliticalQuiz({ variant, initialAnswers = null }: PoliticalQuizP
   )
 
   const goTo = useCallback((nextIndex: number, nextAnswers: QuizAnswers) => {
+    if (changingQuestion.current) return
+    changingQuestion.current = true
     setTransition('out')
     window.setTimeout(() => {
       if (nextIndex >= quizQuestions.length) {
@@ -101,6 +97,7 @@ export function PoliticalQuiz({ variant, initialAnswers = null }: PoliticalQuizP
         setIndex(nextIndex)
       }
       setTransition('in')
+      changingQuestion.current = false
     }, 160)
   }, [candidates])
 
@@ -114,6 +111,7 @@ export function PoliticalQuiz({ variant, initialAnswers = null }: PoliticalQuizP
   )
 
   const restart = () => {
+    changingQuestion.current = false
     setAnswers(emptyAnswers())
     setIndex(0)
     setStage('question')
@@ -149,35 +147,15 @@ export function PoliticalQuiz({ variant, initialAnswers = null }: PoliticalQuizP
 
   if (stage === 'intro') {
     return (
-      <div className="relative overflow-hidden rounded-[2.2rem] border border-primary/20 bg-gradient-to-br from-primary via-indigo-700 to-sky-600 p-6 text-white shadow-[0_30px_80px_rgba(26,34,127,0.28)] sm:p-10">
-        <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/10 blur-2xl" />
-        <div className="pointer-events-none absolute -bottom-20 left-1/3 h-56 w-56 rounded-full bg-amber-300/20 blur-2xl" />
-        <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-2xl">
-            <p className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[11px] font-black uppercase tracking-[0.2em]">
-              <Sparkles className="h-3.5 w-3.5" /> Quiz présidentielle 2027
-            </p>
-            <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-5xl">Quel candidat vous correspond vraiment ?</h2>
-            <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
-              14 affirmations, 4 réponses possibles, zéro inscription. On compare vos réponses aux positions publiques des{' '}
-              {Math.max(candidates.filter((candidate) => candidate.status !== 'not_running').length, 20)} candidats déclarés et on vous rend un profil… avec un peu d’humour.
-            </p>
-            <div className="mt-5 flex flex-wrap items-center gap-3 text-xs font-semibold text-white/80">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5">
-                <Timer className="h-3.5 w-3.5" /> 2 minutes
-              </span>
-              <span className="rounded-full bg-white/10 px-3 py-1.5">Résultat partageable</span>
-              <span className="rounded-full bg-white/10 px-3 py-1.5">Anonyme, sans inscription</span>
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={restart}
-            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-black text-primary shadow-xl transition hover:-translate-y-0.5 hover:shadow-2xl"
-          >
-            Lancer le quiz
-          </button>
+      <div className="edition-quiz-intro">
+        <div className="edition-quiz-intro-content">
+          <div className="edition-quiz-seal" aria-hidden="true"><Vote size={30} /></div>
+          <h2>Et vous, où vous situez-vous dans la campagne ?</h2>
+          <p>14 prises de position. Quelques minutes pour confronter vos idées aux positions publiques des candidats, et découvrir vos accords comme vos désaccords.</p>
+          <div className="edition-quiz-facts"><span><Timer size={16} /> Environ 2 minutes</span><span>Sans inscription</span><span>Résultat partageable</span></div>
+          <button type="button" onClick={restart} className="edition-quiz-start">Commencer le quiz <ArrowRight size={19} /></button>
         </div>
+        <div className="edition-quiz-decor" aria-hidden="true"><span>POUR</span><span>CONTRE</span><span>À NUANCER</span><i>Vos idées méritent mieux qu’une étiquette.</i></div>
       </div>
     )
   }
@@ -194,19 +172,18 @@ export function PoliticalQuiz({ variant, initialAnswers = null }: PoliticalQuizP
   }
 
   const Icon = icons[question.icon] ?? Sparkles
-  const progress = (index / quizQuestions.length) * 100
-  const gradient = themeGradients[index % themeGradients.length]
+  const progress = ((index + 1) / quizQuestions.length) * 100
 
   return (
-    <div className={`relative overflow-hidden rounded-[2.2rem] border border-slate-200/80 bg-gradient-to-br ${gradient} p-6 shadow-[0_24px_60px_rgba(15,23,42,0.10)] sm:p-8`}>
+    <div className="edition-quiz-question">
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-primary shadow-sm">
+          <span className="edition-question-icon">
             <Icon className="h-5 w-5" />
           </span>
           <div>
-            <p className="text-[11px] font-black uppercase tracking-[0.2em] text-primary">{question.theme}</p>
-            <p className="text-xs font-semibold text-slate-500">
+            <p className="edition-question-theme">{question.theme}</p>
+            <p className="edition-question-count">
               Question {index + 1} sur {quizQuestions.length}
             </p>
           </div>
@@ -215,43 +192,43 @@ export function PoliticalQuiz({ variant, initialAnswers = null }: PoliticalQuizP
           type="button"
           onClick={() => setIndex(Math.max(0, index - 1))}
           disabled={index === 0}
-          className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-bold text-slate-600 disabled:opacity-40"
+          className="edition-question-back"
         >
           <ArrowLeft className="h-3.5 w-3.5" /> Précédent
         </button>
       </div>
 
-      <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/70">
-        <div className="h-full rounded-full bg-primary transition-all duration-300" style={{ width: `${progress}%` }} />
+      <div className="edition-quiz-progress" role="progressbar" aria-label="Progression du quiz" aria-valuenow={index + 1} aria-valuemin={1} aria-valuemax={quizQuestions.length}>
+        <div style={{ transform: `scaleX(${progress / 100})` }} />
       </div>
 
       <div
-        className={`mt-6 transition-all duration-200 ${transition === 'in' ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}
+        className={`edition-question-body ${transition === 'out' ? 'is-leaving' : ''}`}
         key={question.id}
       >
         <QuizStatement
           question={question}
-          className="min-h-[5.5rem] text-xl font-black leading-snug tracking-tight text-slate-950 sm:text-2xl lg:text-3xl"
+          className="edition-question-statement"
           chipsClassName="mt-3"
         />
 
-        <div className="mt-6 grid gap-3 sm:grid-cols-4">
+        <div className="edition-answer-grid">
           {quizAnswerOptions.map((option, optionIndex) => (
             <button
               key={option.value}
               type="button"
               onClick={() => answer(option.value)}
-              className={`group flex min-h-[4.5rem] flex-col items-center justify-center rounded-2xl border-2 px-3 py-3 text-center transition focus-visible:outline-none focus-visible:ring-4 ${toneClasses[option.tone]}`}
+              className={`edition-answer edition-answer-${option.tone} ${toneClasses[option.tone]}`}
             >
-              <span className="text-base font-black">{option.short}</span>
-              <span className="mt-0.5 text-[11px] font-semibold opacity-80">{option.label}</span>
-              <span className="mt-1 hidden text-[10px] font-bold opacity-50 sm:block">touche {optionIndex + 1}</span>
+              <span className="edition-answer-key">{optionIndex + 1}</span>
+              <span className="edition-answer-short">{option.short}</span>
+              <span className="edition-answer-label">{option.label}</span>
             </button>
           ))}
         </div>
 
-        <div className="mt-4 flex items-center justify-between text-xs text-slate-500">
-          <button type="button" onClick={() => answer(null)} className="font-semibold underline-offset-2 hover:text-primary hover:underline">
+        <div className="edition-question-footer">
+          <button type="button" onClick={() => answer(null)} className="edition-skip">
             Sans avis, passer cette question
           </button>
           <span className="hidden sm:block">Raccourcis : 1 à 4 pour répondre, retour arrière pour revenir</span>

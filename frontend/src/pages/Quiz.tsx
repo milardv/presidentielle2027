@@ -20,7 +20,7 @@ export default function Quiz() {
   const isSharedResult = initialAnswers !== null && Boolean(candidateId)
 
   return (
-    <div className="min-h-screen bg-background-light font-display text-slate-900">
+    <div className="edition-page edition-quiz-page min-h-screen bg-background-light font-display text-slate-900">
       <SeoHead
         title={quizRouteSeo.title}
         description={quizRouteSeo.description}
@@ -44,7 +44,7 @@ export default function Quiz() {
 
       <AppSiteHeader containerClassName="w-full" />
 
-      <main className="w-full space-y-8 px-4 py-8 pb-28 md:pb-16">
+      <main className="edition-main w-full space-y-8 px-4 py-8 pb-28 md:pb-16">
         <section id="quiz" className="scroll-mt-24">
           <PoliticalQuiz variant="page" initialAnswers={initialAnswers} />
         </section>

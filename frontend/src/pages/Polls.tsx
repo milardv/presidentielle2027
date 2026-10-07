@@ -808,6 +808,7 @@ function PollInsightsPanel({
   latestFieldworkEnd: string | null
   dataLastUpdated: string | null
 }) {
+  const [activeInsight, setActiveInsight] = useState(0)
   const insightCards = [
     {
       title: 'Lecture du moment',
@@ -831,28 +832,28 @@ function PollInsightsPanel({
 
   return (
     <aside className="space-y-6">
-      <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.07)]">
+      <section className="edition-insights rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.07)]">
         <div className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
             <Microscope className="h-5 w-5" />
           </div>
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Analyse & points clés</p>
-            <h2 className="mt-1 text-2xl font-black tracking-tight text-slate-950">Lecture rapide</h2>
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Lecture assistée des données</p>
+            <h2 className="mt-1 text-2xl font-black tracking-tight text-slate-950">Ce qui ressort</h2>
           </div>
         </div>
 
-        <div className="mt-6 space-y-5">
-          {insightCards.map((insight) => (
-            <TakeawayCard
-              key={insight.title}
-              title={insight.title}
-              description={insight.description}
-              icon={insight.icon}
-              toneClassName={insight.toneClassName}
-            />
+        <div className="edition-insight-tabs" role="group" aria-label="Angles de lecture">
+          {insightCards.map((insight, index) => (
+            <button key={insight.title} type="button" aria-pressed={activeInsight === index} aria-controls="insight-panel" onClick={() => setActiveInsight(index)}>
+              {index === 0 ? 'En bref' : index === 1 ? 'Écart' : 'Scénarios'}
+            </button>
           ))}
         </div>
+        <div id="insight-panel" aria-live="polite" className="edition-insight-answer">
+          <TakeawayCard {...insightCards[activeInsight]} />
+        </div>
+        <p className="edition-insight-note">Analyse calculée à partir des scénarios affichés. Changez d’institut pour voir ce qui évolue ; les moyennes ne sont pas une prévision électorale.</p>
 
         <div className="mt-6 space-y-3 border-t border-slate-100 pt-6">
           <div className="rounded-2xl bg-slate-50 p-4">
@@ -1380,7 +1381,7 @@ export default function Polls() {
   const meanLeader = topCandidates[0]
 
   return (
-    <div className="min-h-screen bg-background-light font-display text-slate-900">
+    <div className="edition-page edition-polls-page min-h-screen bg-background-light font-display text-slate-900">
       <SeoHead
         title={pollsRouteSeo.title}
         description={pollsRouteSeo.description}
@@ -1397,13 +1398,13 @@ export default function Polls() {
 
       <AppSiteHeader containerClassName="w-full" />
 
-      <main className="w-full space-y-8 px-4 py-8 pb-28 md:pb-16">
-        <section className="rounded-[2.2rem] border border-slate-200/80 bg-white/92 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur sm:p-8">
+      <main className="edition-main w-full space-y-8 px-4 py-8 pb-28 md:pb-16">
+        <section className="edition-polls-hero rounded-[2.2rem] border border-slate-200/80 bg-white/92 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur sm:p-8">
           <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
             <div className="max-w-4xl">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">Sondages 2027</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">Observatoire des intentions de vote</p>
               <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
-                Sondages d'intention de vote 2027
+                Ce que disent <em>vraiment</em> les sondages.
               </h1>
               <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-500 sm:text-base">
                 Données compilées en toute transparence à partir des liens publics des instituts. La page met en avant le

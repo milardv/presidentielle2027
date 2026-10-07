@@ -34,7 +34,7 @@ export default function CandidateFuture() {
   const firstName = candidate.name.split(' ')[0]
 
   return (
-    <div className="relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
+    <div className="edition-page edition-future-page relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
       <SeoHead
         title={seo.title}
         description={seo.description}
@@ -53,11 +53,11 @@ export default function CandidateFuture() {
       />
       <ProfilePageHeader />
 
-      <main className="relative w-full pb-16 sm:pb-24">
+      <main className="edition-main relative w-full pb-16 sm:pb-24">
         <CandidateProfileTabs candidateId={candidate.id} />
 
         <div className="space-y-6 p-4 sm:p-6">
-          <section className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/90 p-6 shadow-[0_24px_70px_rgba(15,23,42,0.10)] dark:border-slate-800 dark:bg-slate-900/90 sm:p-8">
+          <section className="edition-future-hero overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/90 p-6 shadow-[0_24px_70px_rgba(15,23,42,0.10)] dark:border-slate-800 dark:bg-slate-900/90 sm:p-8">
             <p className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em]" style={{ color: accent }}>
               <Telescope className="h-4 w-4" /> La France dans 5 ans
             </p>

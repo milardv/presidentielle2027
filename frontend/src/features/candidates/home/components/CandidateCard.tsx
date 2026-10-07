@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import type { Candidate } from '../../../../data/candidateTypes'
 import {
@@ -11,6 +12,57 @@ interface CandidateCardProps {
   candidate: Candidate
   variant?: 'default' | 'rail'
   revealIndex?: number
+}
+
+function CandidatePreviewVideo({ src, poster }: { src: string; poster: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let isVisible = false
+    const syncPlayback = () => {
+      if (isVisible && !reducedMotion.matches) {
+        void video.play().catch(() => {
+          // The poster remains visible when autoplay is blocked.
+        })
+      } else {
+        video.pause()
+      }
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting
+      syncPlayback()
+    }, { threshold: 0.2 })
+
+    observer.observe(video)
+    reducedMotion.addEventListener('change', syncPlayback)
+
+    return () => {
+      observer.disconnect()
+      reducedMotion.removeEventListener('change', syncPlayback)
+      video.pause()
+    }
+  }, [src])
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      poster={poster}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      disablePictureInPicture
+      controlsList="nodownload noplaybackrate noremoteplayback"
+      aria-hidden="true"
+      className="candidate-preview-video absolute inset-0 h-full w-full object-cover"
+    />
+  )
 }
 
 export function CandidateCard({ candidate, variant = 'default', revealIndex = 0 }: CandidateCardProps) {
@@ -54,34 +106,18 @@ export function CandidateCard({ candidate, variant = 'default', revealIndex = 0 
           </div>
 
           {candidate.photoUrl ? (
-            isRail && candidate.videoUrl ? (
-              <>
-                <video
-                  src={candidate.videoUrl}
-                  poster={candidate.photoUrl}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  disablePictureInPicture
-                  controlsList="nodownload noplaybackrate noremoteplayback"
-                  aria-hidden="true"
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.04)_0%,rgba(15,23,42,0.14)_48%,rgba(15,23,42,0.22)_100%)]" />
-              </>
-            ) : (
-              <>
-                <img
-                  src={candidate.photoUrl}
-                  alt={`Photo Wikipedia de ${candidate.name}`}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className={`absolute inset-0 ${isRail ? 'bg-slate-950/16' : 'bg-[linear-gradient(180deg,rgba(15,23,42,0.10)_0%,rgba(15,23,42,0.38)_58%,rgba(15,23,42,0.88)_100%)]'}`} />
-              </>
-            )
+            <>
+              <img
+                src={candidate.photoUrl}
+                alt={`Portrait de ${candidate.name}`}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              {isRail && candidate.videoUrl ? (
+                <CandidatePreviewVideo src={candidate.videoUrl} poster={candidate.photoUrl} />
+              ) : null}
+              <div className={`absolute inset-0 ${isRail ? 'bg-slate-950/16' : 'bg-[linear-gradient(180deg,rgba(15,23,42,0.10)_0%,rgba(15,23,42,0.38)_58%,rgba(15,23,42,0.88)_100%)]'}`} />
+            </>
           ) : (
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="flex h-24 w-24 items-center justify-center rounded-[1.75rem] border border-white/25 bg-white/12 text-3xl font-bold tracking-wider text-white backdrop-blur-sm">

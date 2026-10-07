@@ -41,7 +41,7 @@ export default function PersonalProfile() {
   const isAdmin = isAdminEmail(user?.email)
 
   return (
-    <div className="min-h-screen bg-background-light text-slate-900 font-display dark:bg-background-dark dark:text-slate-100">
+    <div className="edition-page min-h-screen bg-background-light text-slate-900 font-display dark:bg-background-dark dark:text-slate-100">
       <SeoHead
         title="Profil personnel | Présidentielles 2027"
         description="Espace personnel pour suivre vos candidats favoris sur Présidentielles 2027."
@@ -52,7 +52,7 @@ export default function PersonalProfile() {
 
       <AppSiteHeader containerClassName="w-full" />
 
-      <main className="relative flex w-full flex-col gap-5 px-4 py-8 pb-28 md:pb-16">
+      <main className="edition-main relative flex w-full flex-col gap-5 px-4 py-8 pb-28 md:pb-16">
         <section className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/92 p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] dark:border-slate-800 dark:bg-slate-900/92 sm:p-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Profil</p>
           <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-950 dark:text-white">Mon espace personnel</h1>

@@ -181,7 +181,7 @@ export default function SeoLandingPage({ pageSlug }: SeoLandingPageProps) {
   const displayHeroIntro = accentizeFrenchCopy(page.heroIntro)
 
   return (
-    <div className="min-h-screen bg-background-light font-display text-slate-900">
+    <div className="edition-page min-h-screen bg-background-light font-display text-slate-900">
       <SeoHead
         title={displayTitle}
         description={displayDescription}
@@ -206,7 +206,7 @@ export default function SeoLandingPage({ pageSlug }: SeoLandingPageProps) {
 
       <AppSiteHeader containerClassName="w-full" />
 
-      <main className="relative flex w-full flex-col gap-8 px-4 py-8 pb-28 md:pb-16">
+      <main className="edition-main relative flex w-full flex-col gap-8 px-4 py-8 pb-28 md:pb-16">
         <section className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/94 p-6 shadow-[0_20px_50px_rgba(15,23,42,0.08)] sm:p-8">
           <p className="max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">{displayHeroIntro}</p>
           <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">

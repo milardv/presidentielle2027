@@ -19,7 +19,7 @@ body {
   font-family: "Public Sans", sans-serif;
   overflow-x: hidden;
   background-color: var(--color-background-light);
-  color: #0f172a;
+  color: #142235;
 }
 
 #root {
@@ -54,9 +54,9 @@ body.home-viewport-scrollbar-hidden::-webkit-scrollbar {
 }
 
 @theme {
-  --color-primary: #1a227f;
-  --color-background-light: #f6f6f8;
-  --color-background-dark: #121320;
+  --color-primary: #25455c;
+  --color-background-light: #f7f5f0;
+  --color-background-dark: #142235;
   --color-neutral-slate: #475569;
   --color-accent-blue: #3b82f6;
   --font-display: "Public Sans", sans-serif;

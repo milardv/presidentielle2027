@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { HomeAlert } from '../features/candidates/home/components/HomeAlert'
 import { CandidatesGrid } from '../features/candidates/home/components/CandidatesGrid'
 import { HomeDesktopFooter } from '../features/candidates/home/components/HomeDesktopFooter'
@@ -25,18 +24,8 @@ export default function Home() {
 
   const lastUpdateLabel = lastUpdated ? formatFrenchDate(lastUpdated) : 'Non disponible'
 
-  useEffect(() => {
-    document.documentElement.classList.add('home-viewport-scrollbar-hidden')
-    document.body.classList.add('home-viewport-scrollbar-hidden')
-
-    return () => {
-      document.documentElement.classList.remove('home-viewport-scrollbar-hidden')
-      document.body.classList.remove('home-viewport-scrollbar-hidden')
-    }
-  }, [])
-
   return (
-    <div className="relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
+    <div className="edition-page edition-home relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
       <SeoHead
         title="Présidentielle 2027 : candidats, sondages, intentions de vote et analyses"
         description="Présidentielle 2027 : retrouvez les candidats suivis, les sondages, les intentions de vote, les profils détaillés, les vidéos, les tweets et les analyses de campagne."
@@ -59,7 +48,7 @@ export default function Home() {
       />
       <HomeHeader />
 
-      <main className="relative w-full px-4 pb-28 md:pb-24">
+      <main className="edition-main relative w-full px-4 pb-28 md:pb-24">
         <HomeSummary
           totalCount={candidates.length}
           declaredCount={declaredCount}

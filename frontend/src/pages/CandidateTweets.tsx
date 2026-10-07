@@ -129,7 +129,7 @@ export default function CandidateTweets() {
   }
 
   return (
-    <div className="relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
+    <div className="edition-page relative min-h-screen bg-background-light font-display text-slate-900 dark:bg-background-dark dark:text-slate-100">
       <SeoHead
         title={`${candidate.name} 2027 : tweets et prises de parole`}
         description={`Flux des tweets et publications publiques de ${candidate.name} dans le suivi Présidentielles 2027.`}
@@ -140,7 +140,7 @@ export default function CandidateTweets() {
       <ProfilePageHeader />
       <CandidateProfileTabs candidateId={candidate.id} />
 
-      <main className="relative w-full px-4 pb-16 pt-6 sm:px-6 sm:pb-24">
+      <main className="edition-main relative w-full px-4 pb-16 pt-6 sm:px-6 sm:pb-24">
         <section className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/92 shadow-[0_22px_60px_rgba(15,23,42,0.10)] dark:border-slate-800 dark:bg-slate-900/92">
           <div className="relative grid gap-6 p-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(240px,0.9fr)] lg:items-center sm:p-8">
             <div className="flex items-start gap-4">
