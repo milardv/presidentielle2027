@@ -26,6 +26,13 @@ export const quizRouteSeo = {
   ],
 }
 
+export const knowledgeRouteSeo = {
+  path: '/defi/',
+  title: 'Le Grand Décryptage : 100 questions pour comprendre avant de voter',
+  description: 'Un jeu gratuit en 10 manches pour tester vos connaissances en économie, travail, écologie, institutions et six autres thèmes. Explications sourcées, paliers et bilan personnel.',
+  keywords: ['quiz connaissances politique', 'jeu présidentielle 2027', 'comprendre avant de voter', 'quiz économie écologie institutions'],
+}
+
 export const sourcesRouteSeo = {
   path: '/sources/',
   title: 'Sources et méthodologie - Présidentielles 2027',

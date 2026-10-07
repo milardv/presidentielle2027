@@ -15,6 +15,7 @@ import { seoPages } from './seo/seoPagesData.js'
 
 const CandidateAnalysis = lazy(() => import('./pages/CandidateAnalysis.tsx'))
 const CandidateFuture = lazy(() => import('./pages/CandidateFuture.tsx'))
+const KnowledgeGame = lazy(() => import('./pages/KnowledgeGame.tsx'))
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/actu" element={<ActuIndex />} />
           <Route path="/actu/:slug" element={<ActuArticle />} />
           <Route path="/quiz" element={<Quiz />} />
+          <Route path="/defi" element={<KnowledgeGame />} />
           <Route path="/quiz/resultat/:candidateId" element={<Quiz />} />
           <Route path="/profile" element={<PersonalProfile />} />
           <Route path="/sources" element={<Sources />} />

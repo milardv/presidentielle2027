@@ -14,6 +14,7 @@ export function HomeDesktopFooter() {
           <Link to="/polls">Sondages</Link>
           <Link to="/actu">Actu</Link>
           <Link to="/quiz">Quiz</Link>
+          <Link to="/defi">Défi connaissances</Link>
           <Link to="/sources">Sources et méthode <ArrowUpRight size={14} /></Link>
         </nav>
       </div>

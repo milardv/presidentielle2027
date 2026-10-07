@@ -1,4 +1,4 @@
-import { BarChart3, Home, Newspaper, UserRound, Vote } from 'lucide-react'
+import { BarChart3, BrainCircuit, Home, Newspaper, UserRound, Vote } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 import type { DesktopAppTabItem } from './DesktopAppTabs'
 
@@ -8,7 +8,7 @@ interface MobileAppNavProps {
 }
 
 export function MobileAppNav({ items, className = '' }: MobileAppNavProps) {
-  const icons = { home: Home, poll: BarChart3, news: Newspaper, quiz: Vote, person: UserRound }
+  const icons = { home: Home, poll: BarChart3, news: Newspaper, quiz: Vote, challenge: BrainCircuit, person: UserRound }
   return (
     <nav
       aria-label="Navigation mobile"

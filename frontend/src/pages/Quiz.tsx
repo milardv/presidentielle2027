@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { AppSiteHeader } from '../components/AppSiteHeader'
 import { MobileAppNav } from '../components/MobileAppNav'
 import { QuizStatement } from '../features/quiz/components/QuizStatement'
@@ -45,6 +46,10 @@ export default function Quiz() {
       <AppSiteHeader containerClassName="w-full" />
 
       <main className="edition-main w-full space-y-8 px-4 py-8 pb-28 md:pb-16">
+        <section className="knowledge-quiz-invite">
+          <div><h2>Et si vous testiez aussi ce que vous savez ?</h2><p>Cent questions sur les notions derrière les promesses électorales. Dix manches, des explications sourcées et un bilan par thème.</p></div>
+          <Link to="/defi">Jouer au Grand Décryptage <ArrowRight size={17} aria-hidden="true" /></Link>
+        </section>
         <section id="quiz" className="scroll-mt-24">
           <PoliticalQuiz variant="page" initialAnswers={initialAnswers} />
         </section>

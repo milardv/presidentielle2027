@@ -5,7 +5,7 @@ import { SITE_FAVICON_PATH, SITE_URL, seoPages } from '../src/seo/seoPagesData.j
 import { CANDIDATE_DATA_LAST_UPDATED } from '../src/data/candidates2027.js'
 import { candidateFuturePath, candidateProfilePath } from '../src/seo/candidateSeo.js'
 import { FUTURE_MODEL_UPDATED_AT } from '../src/data/futureIndicators.js'
-import { pollsRouteSeo, quizRouteSeo, sourcesRouteSeo } from '../src/seo/appRoutesSeo.js'
+import { knowledgeRouteSeo, pollsRouteSeo, quizRouteSeo, sourcesRouteSeo } from '../src/seo/appRoutesSeo.js'
 import { QUIZ_UPDATED_AT } from '../src/data/quizData.js'
 import { actuArticles } from '../src/data/actuArticles.js'
 import {
@@ -327,6 +327,7 @@ async function generateSitemap() {
     { path: '/actu/', changefreq: 'weekly', priority: '0.8', lastmod: actuArticles.reduce((date, article) => article.publishedAt > date ? article.publishedAt : date, '2026-01-01') },
     ...actuArticles.map((article) => ({ path: article.path, changefreq: 'monthly', priority: '0.8', lastmod: article.publishedAt })),
     { path: quizRouteSeo.path, changefreq: 'monthly', priority: '0.9', lastmod: QUIZ_UPDATED_AT },
+    { path: knowledgeRouteSeo.path, changefreq: 'monthly', priority: '0.8', lastmod: '2026-10-07' },
     { path: sourcesRouteSeo.path, changefreq: 'monthly', priority: '0.5', lastmod: CANDIDATE_DATA_LAST_UPDATED },
     ...seoPages.map((page) => ({
       path: `/${page.slug}/`,

@@ -9,6 +9,7 @@ import { useAuthSession } from '../features/auth/hooks/useAuthSession'
 import { useFavoriteCandidateMediaAttention } from '../features/auth/hooks/useFavoriteCandidateMediaAttention'
 import { useFavoriteCandidates } from '../features/auth/hooks/useFavoriteCandidates'
 import { ProfileAuthCard } from '../features/candidates/profile/components/ProfileAuthCard'
+import { KnowledgeProfileCard } from '../features/knowledge/KnowledgeProfileCard'
 import { appNavItems } from '../navigation/appNavItems'
 import { SeoHead } from '../seo/SeoHead'
 
@@ -69,6 +70,8 @@ export default function PersonalProfile() {
           onSignIn={signIn}
           onSignOut={signOut}
         />
+
+        {user ? <KnowledgeProfileCard userId={user.uid} /> : null}
 
         {user ? (
           <FavoriteMediaAttentionSection

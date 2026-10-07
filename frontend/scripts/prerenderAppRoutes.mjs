@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import { CANDIDATE_DATA_LAST_UPDATED, candidates2027 } from '../src/data/candidates2027.js'
 import { QUIZ_UPDATED_AT } from '../src/data/quizData.js'
 import { actuArticles } from '../src/data/actuArticles.js'
-import { pollsRouteSeo, quizRouteSeo, sourcesRouteSeo } from '../src/seo/appRoutesSeo.js'
+import { knowledgeRouteSeo, pollsRouteSeo, quizRouteSeo, sourcesRouteSeo } from '../src/seo/appRoutesSeo.js'
 import {
   HEAD_MARKERS,
   ROOT_MARKERS,
@@ -33,6 +33,10 @@ const PROJECT_ROOT = resolve(new URL('..', import.meta.url).pathname)
 const DIST_DIR = resolve(PROJECT_ROOT, 'dist')
 const today = new Date().toISOString().slice(0, 10)
 
+function renderKnowledgeFallback() {
+  return '<main id="seo-root-fallback"><h1>Le Grand Décryptage : 100 questions pour comprendre avant de voter</h1><p class="lead">Dix manches de dix questions pour comprendre économie, budget, travail, retraites, écologie, logement, santé, institutions, Europe et lecture des chiffres. Une explication sourcée suit chaque réponse. Le jeu est gratuit et sans compte ; la connexion permet de conserver son meilleur score.</p><p><a class="action" href="/quiz/">Découvrir aussi le quiz d’opinions</a></p></main>'
+}
+
 function renderActuIndexFallback() {
   return `<main id="seo-root-fallback"><p class="eyebrow">Présidentielle 2027 · Actu</p><h1>Comprendre avant de choisir</h1><p class="lead">Articles gratuits, documentés et sourcés pour comprendre les enjeux de la présidentielle.</p><section class="panel"><h2>À la une</h2>${actuArticles.map((article) => `<p><a href="${escapeHtml(article.path)}">${escapeHtml(article.title)}</a> — ${escapeHtml(article.description)}</p>`).join('')}</section></main>`
 }
@@ -60,6 +64,11 @@ function buildActuArticleHead(article) {
 }
 
 const routes = [
+  {
+    path: knowledgeRouteSeo.path,
+    head: buildAppRouteHead(knowledgeRouteSeo, { dateModified: today }),
+    root: renderKnowledgeFallback(),
+  },
   {
     path: '/actu/',
     head: buildAppRouteHead({ path: '/actu/', title: 'Actu présidentielle 2027 : enquêtes et décryptages', description: 'Des articles de fond, gratuits et sourcés, pour comprendre les enjeux de la présidentielle 2027.' }, { dateModified: actuArticles[0].publishedAt }),

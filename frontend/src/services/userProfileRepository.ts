@@ -53,7 +53,7 @@ export async function upsertUserProfile(uid: string, input: UpsertUserProfileInp
       updatedAt: serverTimestamp(),
       lastSignInAt: serverTimestamp(),
     }
-    await setDoc(reference, createPayload)
+    await setDoc(reference, createPayload, { merge: true })
     return
   }
 

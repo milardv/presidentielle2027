@@ -5,5 +5,6 @@ export const appNavItems: DesktopAppTabItem[] = [
   { label: 'Sondage', to: '/polls', icon: 'poll' },
   { label: 'Actu', to: '/actu', icon: 'news' },
   { label: 'Quiz', to: '/quiz', icon: 'quiz' },
+  { label: 'Défi', to: '/defi', icon: 'challenge' },
   { label: 'Profil', to: '/profile', icon: 'person' },
 ]
