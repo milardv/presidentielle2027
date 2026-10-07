@@ -8,15 +8,15 @@ const badgePalettes = [
   ['#455f80', '#e4eaf1'], ['#9b665c', '#f5e9e5'], ['#718055', '#edf1e3'], ['#596790', '#e8eaf5'], ['#9b7642', '#f7eed9'],
 ]
 
-export function JourneyBadgeMark({ index, size = 'tile' }: { index: number; size?: 'hero' | 'tile' | 'profile' }) {
+export function JourneyBadgeMark({ index, size = 'tile', locked = false }: { index: number; size?: 'hero' | 'tile' | 'profile'; locked?: boolean }) {
   const Icon = badgeIcons[index] ?? Award
   const [ink, paper] = badgePalettes[index] ?? badgePalettes[0]
   return (
     <span
-      className={`knowledge-badge-mark knowledge-badge-mark--${size}`}
+      className={`knowledge-badge-mark knowledge-badge-mark--${size}${locked ? ' knowledge-badge-mark--locked' : ''}`}
       style={{ '--badge-ink': ink, '--badge-paper': paper } as CSSProperties}
       role="img"
-      aria-label={`Badge ${index + 1} : ${knowledgeRewards[index]}`}
+      aria-label={`Badge ${index + 1} ${locked ? 'à débloquer' : 'obtenu'} : ${knowledgeRewards[index]}`}
     >
       <span className="knowledge-badge-mark-inner"><Icon aria-hidden="true" strokeWidth={1.65} /><small>{String(index + 1).padStart(2, '0')}</small></span>
     </span>

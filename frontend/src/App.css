@@ -1,5 +1,6 @@
 @import './edition.css';
 @import './knowledge-game.css';
+@import './profile-dashboard.css';
 
 #root {
   width: 100%;

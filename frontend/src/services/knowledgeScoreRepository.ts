@@ -1,5 +1,6 @@
 import { doc, onSnapshot, runTransaction, serverTimestamp, type Unsubscribe } from 'firebase/firestore'
 import { db } from '../firebase'
+import { mergeKnowledgeAchievements } from './knowledgeProgressRepository'
 
 export interface KnowledgeBestScore {
   score: number
@@ -34,10 +35,9 @@ export async function saveKnowledgeBestScore(uid: string, result: KnowledgeBestS
     const reference = userDoc(uid)
     const snapshot = await transaction.get(reference)
     const previous = parseBestScore(snapshot.data()?.knowledgeBestScore)
-    if (previous && (previous.score > result.score || (previous.score === result.score && previous.answered >= result.answered))) {
-      return { best: previous, saved: false }
-    }
-    transaction.set(reference, { knowledgeBestScore: result, updatedAt: serverTimestamp() }, { merge: true })
-    return { best: result, saved: true }
+    const newRecord = !previous || result.score > previous.score || (result.score === previous.score && result.answered > previous.answered)
+    const knowledgeAchievements = mergeKnowledgeAchievements(snapshot.data()?.knowledgeAchievements, Math.floor(result.answered / 10), result.masteredCategoryIds)
+    transaction.set(reference, { ...(newRecord ? { knowledgeBestScore: result } : {}), knowledgeAchievements, updatedAt: serverTimestamp() }, { merge: true })
+    return { best: newRecord ? result : previous!, saved: newRecord }
   })
 }

@@ -6,6 +6,7 @@ import { SITE_URL, withBasePath } from '../../../seo/site'
 import { getCandidateInitials, getCandidatePartyAccentColor } from '../../candidates/shared/candidateUi'
 import { buildResultPath, buildShareText, type QuizAnswers, type QuizMatch, type QuizResult } from '../quizEngine'
 import { QuizAnswerDetails } from './QuizAnswerDetails'
+import { SaveQuizResultPanel } from './SaveQuizResultPanel'
 
 interface QuizResultViewProps {
   result: QuizResult
@@ -123,6 +124,8 @@ export function QuizResultView({ result, answers, onRestart }: QuizResultViewPro
           {result.answeredCount} réponses sur {Object.keys(answers).length} affirmations · comparées aux positions publiques de {result.matches.length} candidats.
         </p>
       </div>
+
+      <SaveQuizResultPanel result={result} answers={answers} />
 
       <div className="grid gap-4 sm:grid-cols-3 sm:items-end sm:pt-6">
         {ordered.map((match, index) => (

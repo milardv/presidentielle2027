@@ -78,8 +78,8 @@ export default function Quiz() {
                 économique (redistribution ou rigueur) et sociétal (ouverture ou ordre). Il ne prétend pas vous classer définitivement.
               </p>
               <p className="mt-3">
-                Aucune réponse individuelle n’est enregistrée : votre résultat est encodé dans le lien de partage, que vous seul décidez de diffuser. Seuls des
-                compteurs anonymes et agrégés (candidat arrivé n°1, répartition des réponses par question) alimentent les statistiques ci-dessus.
+                Vos réponses individuelles ne sont enregistrées dans votre profil que si vous choisissez de sauvegarder votre résultat après le quiz. Vous pouvez ensuite l’effacer depuis votre profil. Le lien de partage encode vos réponses et n’est diffusé que si vous décidez de le partager. Des
+                compteurs anonymes et agrégés (candidat arrivé n°1, répartition des réponses par question) alimentent aussi les statistiques ci-dessus.
                 Positions mises à jour le {new Date(`${QUIZ_UPDATED_AT}T12:00:00Z`).toLocaleDateString('fr-FR')}. Une erreur ? Signalez-la, elle sera
                 corrigée avec sa source.
               </p>

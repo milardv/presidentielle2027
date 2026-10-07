@@ -5,11 +5,13 @@ import { isAdminEmail } from '../config/admin'
 import { AdminVideoRefreshPanel } from '../features/auth/components/AdminVideoRefreshPanel'
 import { FavoriteCandidatesSection } from '../features/auth/components/FavoriteCandidatesSection'
 import { FavoriteMediaAttentionSection } from '../features/auth/components/FavoriteMediaAttentionSection'
+import { HomeDesktopFooter } from '../features/candidates/home/components/HomeDesktopFooter'
 import { useAuthSession } from '../features/auth/hooks/useAuthSession'
 import { useFavoriteCandidateMediaAttention } from '../features/auth/hooks/useFavoriteCandidateMediaAttention'
 import { useFavoriteCandidates } from '../features/auth/hooks/useFavoriteCandidates'
 import { ProfileAuthCard } from '../features/candidates/profile/components/ProfileAuthCard'
 import { KnowledgeProfileCard } from '../features/knowledge/KnowledgeProfileCard'
+import { PersonalQuizProfileCard } from '../features/quiz/components/PersonalQuizProfileCard'
 import { appNavItems } from '../navigation/appNavItems'
 import { SeoHead } from '../seo/SeoHead'
 
@@ -42,25 +44,17 @@ export default function PersonalProfile() {
   const isAdmin = isAdminEmail(user?.email)
 
   return (
-    <div className="edition-page min-h-screen bg-background-light text-slate-900 font-display dark:bg-background-dark dark:text-slate-100">
+    <div className="edition-page profile-page min-h-screen">
       <SeoHead
         title="Profil personnel | Présidentielles 2027"
-        description="Espace personnel pour suivre vos candidats favoris sur Présidentielles 2027."
+        description="Vos résultats aux quiz, badges de connaissances et candidats suivis sur Présidentielles 2027."
         path="/profile"
         noindex
       />
-      <div className="absolute inset-x-0 top-0 h-[28rem] bg-[radial-gradient(circle_at_top,_rgba(26,34,127,0.12),_transparent_55%),radial-gradient(circle_at_top_right,_rgba(245,158,11,0.10),_transparent_35%)] pointer-events-none" />
-
       <AppSiteHeader containerClassName="w-full" />
 
-      <main className="edition-main relative flex w-full flex-col gap-5 px-4 py-8 pb-28 md:pb-16">
-        <section className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/92 p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] dark:border-slate-800 dark:bg-slate-900/92 sm:p-6">
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Profil</p>
-          <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-950 dark:text-white">Mon espace personnel</h1>
-          <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-            Connexion simple, profil clair, et vos candidats suivis au même endroit.
-          </p>
-        </section>
+      <main className="profile-main">
+        <header className="profile-intro"><div><h1>Votre dossier personnel<span>.</span></h1><p>Vos idées, ce que vous avez appris et les personnalités que vous suivez, réunis au même endroit.</p></div></header>
 
         <ProfileAuthCard
           user={user}
@@ -71,16 +65,7 @@ export default function PersonalProfile() {
           onSignOut={signOut}
         />
 
-        {user ? <KnowledgeProfileCard key={user.uid} userId={user.uid} /> : null}
-
-        {user ? (
-          <FavoriteMediaAttentionSection
-            candidates={favoriteCandidates}
-            mediaAttentions={favoriteMediaAttentions}
-            isLoading={isFavoritesLoading || isFavoriteMediaAttentionLoading}
-            errorMessage={favoriteMediaAttentionError}
-          />
-        ) : null}
+        {user ? <div className="profile-results" key={user.uid}><PersonalQuizProfileCard userId={user.uid} /><KnowledgeProfileCard userId={user.uid} /></div> : null}
 
         {user ? (
           <FavoriteCandidatesSection
@@ -94,6 +79,8 @@ export default function PersonalProfile() {
           />
         ) : null}
 
+        {user ? <FavoriteMediaAttentionSection candidates={favoriteCandidates} mediaAttentions={favoriteMediaAttentions} isLoading={isFavoritesLoading || isFavoriteMediaAttentionLoading} errorMessage={favoriteMediaAttentionError} /> : null}
+
         {isAdmin && user?.email ? <AdminVideoRefreshPanel adminEmail={user.email} /> : null}
 
         {profileSyncStatus === 'error' ? (
@@ -103,6 +90,7 @@ export default function PersonalProfile() {
         ) : null}
       </main>
 
+      <HomeDesktopFooter />
       <MobileAppNav items={appNavItems} />
     </div>
   )
