@@ -1,4 +1,4 @@
-export const CANDIDATE_DATA_LAST_UPDATED = '2026-09-22'
+export const CANDIDATE_DATA_LAST_UPDATED = '2026-10-12'
 export const ELECTION_FIRST_ROUND_DATE = '2027-04-18'
 export const ELECTION_SECOND_ROUND_DATE = '2027-05-02'
 export const ELECTION_DECREE_DATE = '2026-07-01'
@@ -159,6 +159,9 @@ const melenchonSources = {
   strategy: src('Jean-Luc Mélenchon', 'https://melenchon.fr/wp-content/uploads/2026/02/1.-COMMENT-FAIRE-E2.pdf', '2026-02-10'),
   wiki: wiki('Jean-Luc_M%C3%A9lenchon'),
 }
+
+const primaryResultSource = src('LCP – Résultats de la primaire sociale-démocrate', 'https://lcp.fr/actualites/primaire-socialiste-vainqueur-des-le-1er-tour-raphael-glucksmann-sera-le-candidat-de-la', '2026-10-11')
+const primaryReactionsSource = src('RTL – Réactions après la primaire', 'https://www.rtl.fr/actu/politique/primaire-de-la-gauche-faure-salue-un-glucksmann-qui-a-su-convaincre-royal-appelle-a-un-rassemblement-de-la-gauche-tondelier-constate-le-choix-du-repli-7900683932', '2026-10-11')
 
 const glucksmannSources = {
   official: src('Place publique', 'https://place-publique.eu/nos-elus/raphael-glucksmann/', '2021-03-17'),
@@ -627,24 +630,24 @@ export const candidates2027 = [
     name: 'Raphaël Glucksmann',
     bloc: 'Centre gauche',
     party: 'Place publique',
-    status: 'declared_primary',
-    statusLabel: 'Candidat primaire « Choisir 2027 »',
+    status: 'declared',
+    statusLabel: "Désigné par le PS, Place publique et la GRS",
     summary:
-      'Député européen et coprésident de Place publique, il a rejoint le 23 août 2026 la primaire « Choisir 2027 » organisée par le PS, Place publique et la GRS (votes les 9-10 et 16-17 octobre 2026).',
+      "Vainqueur de « Choisir 2027 » dès le premier tour le 11 octobre 2026 avec 66,17 % des suffrages exprimés, il est le candidat du pôle social-démocrate pour 2027.",
     themes: ['Europe', 'Réindustrialisation', 'Social-démocratie'],
     priority: 6,
     photoUrl: `${CLOUDINARY}/v1773268684/presidentielles/candidats/raphael-glucksmann.jpg`,
     currentRole: 'Député européen et coprésident de Place publique',
     biography: [
       'Né en 1979, Raphaël Glucksmann s’est d’abord imposé comme essayiste avant de conduire les listes PS-Place publique aux européennes de 2019 et 2024.',
-      'Après avoir longtemps refusé l’idée d’une primaire, il a accepté de concourir dans « Choisir 2027 », la primaire fermée de l’arc social-démocrate, face à Olivier Faure, Jérôme Guedj, Emmanuel Maurel et Ségolène Royal.',
+      'Après avoir accepté de concourir dans « Choisir 2027 », il remporte le scrutin du 11 octobre 2026 dès le premier tour, devant Olivier Faure, Ségolène Royal, Emmanuel Maurel et Jérôme Guedj.',
       'Son opposition à l’élargissement de cette primaire aux écologistes et à François Ruffin lui vaut de vives critiques à gauche.',
     ],
     keyPositions: [
       {
-        topic: 'Primaire « Choisir 2027 »',
-        summary: 'Il entre en lice le 23 août 2026 ; le premier tour se tient les 9-10 octobre, le second les 16-17 octobre.',
-        source: shared.primaireChoisir2027,
+        topic: 'Victoire à la primaire « Choisir 2027 »',
+        summary: 'Il remporte le scrutin le 11 octobre 2026 avec 66,17 % des voix ; aucun second tour n’est nécessaire.',
+        source: primaryResultSource,
       },
       {
         topic: 'Périmètre de la primaire',
@@ -658,6 +661,7 @@ export const candidates2027 = [
       },
     ],
     timeline: [
+      { date: '2026-10-11', title: "Victoire à la primaire sociale-démocrate", description: "Il obtient 66,17 % des voix et est désigné sans second tour.", source: primaryResultSource },
       {
         date: '2024-06-09',
         title: 'Tête de liste PS-Place publique',
@@ -677,7 +681,7 @@ export const candidates2027 = [
         source: shared.primaireChoisir2027,
       },
     ],
-    sources: [shared.primaireChoisir2027, tondelierSources.cnews, glucksmannSources.platform, glucksmannSources.primaireRefus, glucksmannSources.official, glucksmannSources.wiki],
+    sources: [primaryResultSource, primaryReactionsSource, shared.primaireChoisir2027, tondelierSources.cnews, glucksmannSources.platform, glucksmannSources.primaireRefus, glucksmannSources.official, glucksmannSources.wiki],
   },
   {
     id: 'eric-zemmour',
@@ -982,7 +986,7 @@ export const candidates2027 = [
     status: 'declared',
     statusLabel: 'Déclaré (hors primaire)',
     summary:
-      'Député de la Somme et fondateur de Debout !, candidat à la primaire unitaire aujourd’hui enterrée, il maintient sa candidature et se dit « toujours prêt » à participer à la primaire socialiste dont il est exclu.',
+      'Député de la Somme et fondateur de Debout !, candidat à la primaire unitaire aujourd’hui enterrée, il maintient sa candidature autonome en dehors de « Choisir 2027 », dont le scrutin a désigné Raphaël Glucksmann le 11 octobre.',
     themes: ['Pouvoir d’achat', 'Justice fiscale', 'Union de la gauche'],
     priority: 12,
     photoUrl: `${CLOUDINARY}/v1773268671/presidentielles/candidats/francois-ruffin.jpg`,
@@ -1036,10 +1040,10 @@ export const candidates2027 = [
     name: 'Olivier Faure',
     bloc: 'Gauche',
     party: 'Parti socialiste',
-    status: 'declared_primary',
-    statusLabel: 'Candidat primaire « Choisir 2027 »',
+    status: 'not_running',
+    statusLabel: "Éliminé à la primaire — 14,46 %",
     summary:
-      'Premier secrétaire du PS, il a annoncé le 30 août 2026 sa candidature à la primaire « Choisir 2027 », après que les adhérents ont désavoué son projet de primaire ouverte à toute la gauche.',
+      "Deuxième de la primaire « Choisir 2027 » le 11 octobre 2026 avec 14,46 % des voix, le premier secrétaire du PS reconnaît la victoire de Raphaël Glucksmann.",
     themes: ['Union de la gauche', 'Justice sociale', 'Services publics'],
     priority: 13,
     photoUrl: `${CLOUDINARY}/v1790073767/presidentielles/candidats/olivier-faure.png`,
@@ -1068,6 +1072,7 @@ export const candidates2027 = [
       },
     ],
     timeline: [
+      { date: '2026-10-11', title: "Deuxième à la primaire", description: "Il obtient 14,46 % des voix et reconnaît la victoire de Raphaël Glucksmann.", source: primaryResultSource },
       {
         date: '2018-04-07',
         title: 'Premier secrétaire du PS',
@@ -1087,17 +1092,17 @@ export const candidates2027 = [
         source: shared.primaireChoisir2027,
       },
     ],
-    sources: [shared.primaireChoisir2027, shared.primaireUnitaireWiki, shared.listeTouteleurope, wiki('Olivier_Faure')],
+    sources: [primaryResultSource, primaryReactionsSource, shared.primaireChoisir2027, shared.primaireUnitaireWiki, shared.listeTouteleurope, wiki('Olivier_Faure')],
   },
   {
     id: 'segolene-royal',
     name: 'Ségolène Royal',
     bloc: 'Gauche',
     party: 'Parti socialiste',
-    status: 'declared_primary',
-    statusLabel: 'Candidate primaire « Choisir 2027 »',
+    status: 'not_running',
+    statusLabel: "Éliminée à la primaire — 7,62 %",
     summary:
-      'Finaliste de la présidentielle 2007, elle a annoncé le 10 juillet 2026 sa candidature à la primaire socialiste « Choisir 2027 ».',
+      "Troisième de « Choisir 2027 » avec 7,62 % des voix le 11 octobre 2026, elle annonce son soutien au vainqueur en appelant à un rassemblement de la gauche.",
     themes: ['Écologie', 'Démocratie participative', 'Ordre juste'],
     priority: 14,
     photoUrl: `${CLOUDINARY}/v1790073769/presidentielles/candidats/segolene-royal.jpg`,
@@ -1111,7 +1116,7 @@ export const candidates2027 = [
     keyPositions: [
       {
         topic: 'Primaire « Choisir 2027 »',
-        summary: 'Première candidate déclarée à la primaire, le 10 juillet 2026.',
+        summary: 'Elle a participé à la primaire de 2026 et y a terminé troisième avec 7,62 % des voix.',
         source: shared.primaireChoisir2027,
       },
       {
@@ -1126,6 +1131,7 @@ export const candidates2027 = [
       },
     ],
     timeline: [
+      { date: '2026-10-11', title: "Troisième à la primaire", description: "Elle obtient 7,62 % des suffrages exprimés.", source: primaryResultSource },
       {
         date: '2007-05-06',
         title: 'Second tour de la présidentielle 2007',
@@ -1139,17 +1145,17 @@ export const candidates2027 = [
         source: shared.primaireChoisir2027,
       },
     ],
-    sources: [shared.primaireChoisir2027, shared.listeLcp, shared.candidaturesWiki, wiki('S%C3%A9gol%C3%A8ne_Royal')],
+    sources: [primaryResultSource, primaryReactionsSource, shared.primaireChoisir2027, shared.listeLcp, shared.candidaturesWiki, wiki('S%C3%A9gol%C3%A8ne_Royal')],
   },
   {
     id: 'jerome-guedj',
     name: 'Jérôme Guedj',
     bloc: 'Gauche',
     party: 'Parti socialiste',
-    status: 'declared_primary',
-    statusLabel: 'Candidat primaire « Choisir 2027 »',
+    status: 'not_running',
+    statusLabel: "Éliminé à la primaire — 5,83 %",
     summary:
-      'Député socialiste de l’Essonne, il a rejoint la primaire « Choisir 2027 » le 23 août 2026.',
+      "Cinquième de la primaire « Choisir 2027 » le 11 octobre 2026 avec 5,83 % des suffrages exprimés ; Raphaël Glucksmann est désigné dès le premier tour.",
     themes: ['Laïcité', 'Protection sociale', 'République'],
     priority: 15,
     photoUrl: `${CLOUDINARY}/v1790073770/presidentielles/candidats/jerome-guedj.jpg`,
@@ -1173,6 +1179,7 @@ export const candidates2027 = [
       },
     ],
     timeline: [
+      { date: '2026-10-11', title: "Cinquième à la primaire", description: "Il obtient 5,83 % des suffrages exprimés.", source: primaryResultSource },
       {
         date: '2022-06-19',
         title: 'Élu député de l’Essonne',
@@ -1186,17 +1193,17 @@ export const candidates2027 = [
         source: shared.primaireChoisir2027,
       },
     ],
-    sources: [shared.primaireChoisir2027, shared.candidaturesWiki, wiki('J%C3%A9r%C3%B4me_Guedj')],
+    sources: [primaryResultSource, primaryReactionsSource, shared.primaireChoisir2027, shared.candidaturesWiki, wiki('J%C3%A9r%C3%B4me_Guedj')],
   },
   {
     id: 'emmanuel-maurel',
     name: 'Emmanuel Maurel',
     bloc: 'Gauche',
     party: 'Gauche républicaine et socialiste',
-    status: 'declared_primary',
-    statusLabel: 'Candidat primaire « Choisir 2027 »',
+    status: 'not_running',
+    statusLabel: "Éliminé à la primaire — 5,92 %",
     summary:
-      'Député du Val-d’Oise et fondateur de la Gauche républicaine et socialiste, il est entré le 4 septembre 2026 dans la primaire « Choisir 2027 ».',
+      "Quatrième de la primaire « Choisir 2027 » le 11 octobre 2026 avec 5,92 % des suffrages exprimés ; Raphaël Glucksmann est désigné dès le premier tour.",
     themes: ['Souveraineté', 'Industrie', 'République sociale'],
     priority: 16,
     photoUrl: `${CLOUDINARY}/v1790073771/presidentielles/candidats/emmanuel-maurel.jpg`,
@@ -1220,6 +1227,7 @@ export const candidates2027 = [
       },
     ],
     timeline: [
+      { date: '2026-10-11', title: "Quatrième à la primaire", description: "Il obtient 5,92 % des suffrages exprimés.", source: primaryResultSource },
       {
         date: '2019-02-03',
         title: 'Fondation de la GRS',
@@ -1233,7 +1241,7 @@ export const candidates2027 = [
         source: shared.primaireChoisir2027,
       },
     ],
-    sources: [shared.primaireChoisir2027, shared.candidaturesWiki, wiki('Emmanuel_Maurel')],
+    sources: [primaryResultSource, primaryReactionsSource, shared.primaireChoisir2027, shared.candidaturesWiki, wiki('Emmanuel_Maurel')],
   },
   {
     id: 'bernard-cazeneuve',

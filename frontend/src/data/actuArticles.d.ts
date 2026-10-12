@@ -1,7 +1,13 @@
 export interface ActuSource { id: number; label: string; publisher: string; url: string }
 export interface ActuParagraph { text: string; sources: number[] }
-export interface ActuSection { id: string; number: string; title: string; paragraphs: ActuParagraph[] }
+export interface ActuTable { caption: string; headers: string[]; rows: string[][]; sources: number[] }
+export interface ActuSection { id: string; number: string; title: string; paragraphs: ActuParagraph[]; table?: ActuTable }
 export interface ActuArticleData {
+  opening: string
+  keyPoints: { value: string; label: string }[]
+  keywords: string[]
+  method: string
+  imageLicenseUrl?: string
   slug: string
   path: string
   category: string

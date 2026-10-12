@@ -37,7 +37,7 @@ const faqLinks = [
   {
     slug: 'primaire-gauche-presidentielle-2027',
     question: 'Où en sont les primaires de la gauche ?',
-    summary: 'Dates et candidats de « Choisir 2027 », abandon de la primaire unitaire et situation de Tondelier, Ruffin et Mélenchon.',
+    summary: 'Victoire de Glucksmann à « Choisir 2027 », résultats et situation des autres candidatures à gauche.',
   },
 ]
 

@@ -4,7 +4,7 @@ export const SITE_LOGO_PATH = '/site-logo.svg'
 export const SITE_FAVICON_PATH = '/favicon.svg'
 export const SITE_SOCIAL_IMAGE_PATH = '/site-social-card.svg'
 
-const LAST_EDITORIAL_UPDATE = '2026-09-22'
+const LAST_EDITORIAL_UPDATE = '2026-10-12'
 
 function candidatePage({
   slug,
@@ -46,15 +46,15 @@ export const seoPages = [
     slug: 'presidentielle-2027',
     title: 'Présidentielle 2027 : candidats, sondages, dates et intentions de vote',
     description:
-      'Présidentielle 2027 : dates officielles (18 avril et 2 mai 2027), candidats déclarés, primaires en cours, sondages et règles utiles pour suivre la campagne.',
+      'Présidentielle 2027 : dates officielles (18 avril et 2 mai 2027), candidats déclarés, résultats des primaires, sondages et règles utiles pour suivre la campagne.',
     heroEyebrow: 'Guide 2027',
     heroTitle: 'Présidentielle 2027 : ce qu’il faut savoir à la rentrée 2026',
     heroIntro:
-      'Les dates sont fixées : premier tour le 18 avril 2027, second tour le 2 mai. Une vingtaine de candidatures sont déjà déclarées, de Marine Le Pen à Jean-Luc Mélenchon en passant par Édouard Philippe, Gabriel Attal et Bruno Retailleau, tandis que la gauche social-démocrate se départage dans une primaire en octobre.',
+      'Les dates sont fixées : premier tour le 18 avril 2027, second tour le 2 mai. Une vingtaine de candidatures sont déjà déclarées, de Marine Le Pen à Jean-Luc Mélenchon en passant par Édouard Philippe, Gabriel Attal et Bruno Retailleau, tandis que la gauche social-démocrate a désigné Raphaël Glucksmann le 11 octobre.',
     queries: ['présidentielle 2027', 'élection présidentielle 2027', 'qui sera président en 2027', 'qui sera candidat 2027'],
     summary: [
       'Le décret du 1er juillet 2026 a fixé le premier tour au 18 avril 2027 et le second au 2 mai 2027.',
-      'Plus de vingt personnalités sont officiellement candidates ; d’autres passent par une primaire ou cherchent encore leurs parrainages.',
+      'Les candidatures déclarées et les investitures restent distinctes de la liste officielle, qui dépendra notamment des parrainages.',
       'Le mandat d’Emmanuel Macron s’achève le 13 mai 2027 et il ne peut pas se représenter.',
     ],
     updatedAt: LAST_EDITORIAL_UPDATE,
@@ -63,7 +63,7 @@ export const seoPages = [
         title: 'Ce que l’on sait déjà sur 2027',
         paragraphs: [
           'Le calendrier est officiel depuis le Conseil des ministres du 1er juillet 2026 : les Français voteront les dimanches 18 avril et 2 mai 2027. Le paysage est exceptionnellement fragmenté, avec une trentaine de prétendants identifiés, bien au-delà des douze candidats de 2022.',
-          'Plusieurs blocs sont désormais lisibles. À l’extrême droite, Marine Le Pen, redevenue éligible après l’arrêt d’appel du 7 juillet 2026, forme un ticket avec Jordan Bardella, et Éric Zemmour est candidat. Au centre et à droite, Édouard Philippe, Gabriel Attal, Bruno Retailleau, Xavier Bertrand et David Lisnard se disputent un même espace. À gauche, Jean-Luc Mélenchon, Fabien Roussel, François Ruffin et Bernard Cazeneuve sont déclarés, pendant que le PS, Place publique et la GRS désignent leur champion via la primaire « Choisir 2027 ».',
+          'Plusieurs blocs sont désormais lisibles. À l’extrême droite, Marine Le Pen, redevenue éligible après l’arrêt d’appel du 7 juillet 2026, forme un ticket avec Jordan Bardella, et Éric Zemmour est candidat. Au centre et à droite, Édouard Philippe, Gabriel Attal, Bruno Retailleau, Xavier Bertrand et David Lisnard se disputent un même espace. À gauche, Jean-Luc Mélenchon, Fabien Roussel, François Ruffin et Bernard Cazeneuve sont déclarés, tandis que Raphaël Glucksmann a remporté la primaire « Choisir 2027 » le 11 octobre.',
         ],
       },
       {
@@ -90,7 +90,7 @@ export const seoPages = [
       {
         question: 'Qui est déjà candidat à la présidentielle 2027 ?',
         answer:
-          'Parmi les candidats déclarés figurent Marine Le Pen, Édouard Philippe, Gabriel Attal, Bruno Retailleau, Jean-Luc Mélenchon, Éric Zemmour, Xavier Bertrand, David Lisnard, Fabien Roussel, François Ruffin, Bernard Cazeneuve, Karim Bouamrane, Delphine Batho, Nathalie Arthaud, Nicolas Dupont-Aignan, Florian Philippot et François Asselineau. Cinq autres se départagent dans la primaire socialiste d’octobre.',
+          'Parmi les candidats déclarés figurent Marine Le Pen, Édouard Philippe, Gabriel Attal, Bruno Retailleau, Jean-Luc Mélenchon, Éric Zemmour, Xavier Bertrand, David Lisnard, Fabien Roussel, François Ruffin, Bernard Cazeneuve, Karim Bouamrane, Delphine Batho, Nathalie Arthaud, Nicolas Dupont-Aignan, Florian Philippot et François Asselineau. Raphaël Glucksmann a remporté la primaire sociale-démocrate le 11 octobre ; ses quatre concurrents y ont été éliminés.',
       },
       {
         question: 'Où voir les sondages de la présidentielle 2027 ?',
@@ -202,11 +202,11 @@ export const seoPages = [
     slug: 'candidats-presidentielle-2027',
     title: 'Candidats présidentielle 2027 : liste complète, partis et statuts',
     description:
-      'Liste des candidats à la présidentielle 2027 mise à jour : candidats déclarés, primaires en cours, candidatures pressenties et renoncements, avec parti, date de déclaration et fiche détaillée.',
+      'Liste des candidats à la présidentielle 2027 mise à jour : candidats déclarés, résultats des primaires, candidatures pressenties et renoncements, avec parti, date de déclaration et fiche détaillée.',
     heroEyebrow: 'Candidats',
     heroTitle: 'Candidats présidentielle 2027 : la liste complète et à jour',
     heroIntro:
-      'Plus de vingt personnalités sont officiellement candidates à l’élection des 18 avril et 2 mai 2027, cinq autres se départagent dans la primaire socialiste « Choisir 2027 », et quelques prétendants cherchent encore leurs parrainages. Le tableau ci-dessous distingue les candidatures déclarées, conditionnelles et abandonnées.',
+      'Plus de vingt personnalités sont officiellement candidates à l’élection des 18 avril et 2 mai 2027, Raphaël Glucksmann a été désigné par la primaire sociale-démocrate « Choisir 2027 », et quelques prétendants cherchent encore leurs parrainages. Le tableau ci-dessous distingue les candidatures déclarées, conditionnelles et abandonnées.',
     queries: [
       'candidats présidentielle 2027',
       'liste des candidats à la présidentielle 2027',
@@ -232,7 +232,7 @@ export const seoPages = [
       {
         title: 'Les primaires et les candidatures encore ouvertes',
         paragraphs: [
-          'La primaire « Choisir 2027 », organisée par le PS, Place publique et la Gauche républicaine et socialiste, oppose Olivier Faure, Raphaël Glucksmann, Jérôme Guedj, Emmanuel Maurel et Ségolène Royal. Premier tour les 9 et 10 octobre 2026, second tour les 16 et 17 octobre. La primaire de la gauche unitaire prévue le 11 octobre a été abandonnée de fait après le vote des adhérents PS du 9 juillet 2026.',
+          'La primaire « Choisir 2027 », organisée par le PS, Place publique et la Gauche républicaine et socialiste, a été remportée par Raphaël Glucksmann le 11 octobre 2026, dès le premier tour, avec 66,17 % des voix. Olivier Faure, Ségolène Royal, Emmanuel Maurel et Jérôme Guedj sont éliminés de cette désignation. La primaire de la gauche unitaire prévue le 11 octobre a été abandonnée de fait après le vote des adhérents PS du 9 juillet 2026.',
           'Parmi les candidatures pressenties : Dominique de Villepin (La France humaniste) cherche ses parrainages ; François Hollande doit se prononcer en décembre ; Bruno Le Maire et Élisabeth Borne réfléchissent. À l’inverse, Gérald Darmanin (rallié à Édouard Philippe), Sarah Knafo (soutien d’Éric Zemmour), Clémentine Autain et Benjamin Lucas ont renoncé, et Jordan Bardella n’est pas candidat.',
         ],
       },
@@ -248,7 +248,7 @@ export const seoPages = [
       {
         question: 'Combien de candidats à la présidentielle 2027 ?',
         answer:
-          'Au 22 septembre 2026, plus de vingt personnalités sont officiellement déclarées et cinq autres concourent dans la primaire socialiste. La liste définitive, fixée par le Conseil constitutionnel courant mars 2027 après vérification des 500 parrainages, sera nettement plus courte : douze candidats en 2022, seize au maximum en 2002.',
+          'Au 12 octobre 2026, les candidatures déclarées restent multiples. Raphaël Glucksmann a remporté la primaire sociale-démocrate et ses quatre concurrents ne sont plus en lice dans cette désignation. La liste définitive, fixée par le Conseil constitutionnel courant mars 2027 après vérification des 500 parrainages, sera nettement plus courte : douze candidats en 2022, seize au maximum en 2002.',
       },
       {
         question: 'Marine Le Pen est-elle candidate en 2027 ?',
@@ -300,7 +300,7 @@ export const seoPages = [
         title: 'Le calendrier avant le vote',
         paragraphs: [
           'Début 2027, le décret de convocation des électeurs ouvrira la période de collecte des 500 parrainages d’élus. Le Conseil constitutionnel publiera ensuite la liste officielle des candidats, attendue vers la mi-mars 2027, puis la campagne officielle s’ouvrira début avril avec l’égalité stricte des temps de parole.',
-          'D’ici là, plusieurs échéances structurent la pré-campagne : primaire socialiste « Choisir 2027 » les 9-10 et 16-17 octobre 2026, référendum interne des Écologistes du 10 au 13 décembre 2026 et décisions attendues de plusieurs prétendants, dont François Hollande en décembre.',
+          'D’ici là, plusieurs échéances structurent la pré-campagne : victoire de Raphaël Glucksmann à « Choisir 2027 » le 11 octobre 2026, référendum interne des Écologistes du 10 au 13 décembre 2026 et décisions attendues de plusieurs prétendants, dont François Hollande en décembre.',
         ],
       },
       {
@@ -550,76 +550,83 @@ export const seoPages = [
     ],
   },
   {
-    slug: 'primaire-gauche-presidentielle-2027',
-    title: 'Primaire de la gauche 2027 : « Choisir 2027 », candidats, dates et résultats',
-    description:
-      'Primaire de la gauche pour la présidentielle 2027 : dates de « Choisir 2027 » (9-10 et 16-17 octobre 2026), candidats Faure, Glucksmann, Guedj, Maurel et Royal, abandon de la primaire unitaire et situation de Tondelier, Ruffin et Mélenchon.',
-    heroEyebrow: 'Primaires',
-    heroTitle: 'Primaire de la gauche 2027 : qui, quand, comment ?',
-    heroIntro:
-      'La gauche arrive divisée à la présidentielle 2027. La primaire unitaire du 11 octobre est enterrée ; à sa place, le PS, Place publique et la GRS organisent « Choisir 2027 », une primaire fermée à cinq candidats les 9-10 et 16-17 octobre 2026. Jean-Luc Mélenchon, Fabien Roussel, François Ruffin et Bernard Cazeneuve sont candidats en dehors.',
-    queries: ['primaire gauche 2027', 'primaire ps 2027', 'choisir 2027 primaire', 'primaire présidentielle 2027 candidats', 'résultat primaire gauche 2027'],
-    summary: [
-      '« Choisir 2027 » : premier tour les 9-10 octobre 2026, second tour les 16-17 octobre, entre Faure, Glucksmann, Guedj, Maurel et Royal.',
-      'La primaire de la gauche unitaire prévue le 11 octobre a été abandonnée de fait après le vote des adhérents PS du 9 juillet 2026.',
-      'Mélenchon, Roussel, Ruffin, Cazeneuve et Bouamrane sont candidats hors primaire ; Tondelier attend un référendum interne en décembre.',
-    ],
-    updatedAt: LAST_EDITORIAL_UPDATE,
-    sections: [
-      {
-        title: '« Choisir 2027 » : la primaire du PS, de Place publique et de la GRS',
-        paragraphs: [
-          'Le premier tour se déroule les 9 et 10 octobre 2026, le second, si aucun candidat n’obtient la majorité, les 16 et 17 octobre. Peuvent voter les adhérents des partis organisateurs et les sympathisants inscrits sur la plateforme commune contre une participation de 15 euros (10 euros à tarif réduit), jusqu’à trois jours avant le scrutin.',
-          'Cinq candidats sont en lice : Ségolène Royal (déclarée le 10 juillet 2026), Raphaël Glucksmann et Jérôme Guedj (23 août), Olivier Faure (30 août) et Emmanuel Maurel (4 septembre). Des débats télévisés sont programmés le 23 septembre sur LCI, le 1er octobre sur France 2 et France Inter, puis sur BFMTV début octobre.',
-        ],
-      },
-      {
-        title: 'Pourquoi la primaire unitaire a échoué',
-        paragraphs: [
-          'Lancée le 15 novembre 2025 par Marine Tondelier, Olivier Faure, François Ruffin et Clémentine Autain, la primaire de la gauche unitaire devait désigner le 11 octobre 2026 un candidat commun de la gauche non mélenchoniste. Jean-Luc Mélenchon et, dans un premier temps, Raphaël Glucksmann avaient refusé d’y participer.',
-          'Le processus s’est effondré à l’été 2026 : retrait de Benjamin Lucas le 7 juillet, puis de Clémentine Autain le 11 juillet, et surtout vote des adhérents socialistes, le 9 juillet, à 55,5 % en faveur d’une primaire réservée à l’arc social-démocrate. Marine Tondelier et François Ruffin, écartés, dénoncent le « choix tragique » du PS et la position de Raphaël Glucksmann.',
-        ],
-      },
-      {
-        title: 'Les candidats de gauche hors primaire',
-        paragraphs: [
-          'Jean-Luc Mélenchon (LFI) a officialisé le 3 mai 2026 sa quatrième candidature. Fabien Roussel (PCF) a été investi le 6 septembre 2026. François Ruffin (Debout !) maintient sa candidature tout en se disant « toujours prêt » à rejoindre la primaire socialiste. Bernard Cazeneuve (La Convention) et Karim Bouamrane (PS, maire de Saint-Ouen) sont candidats sans passer par « Choisir 2027 ».',
-          'Chez les Écologistes, la candidature de Marine Tondelier est maintenue provisoirement ; un référendum interne des adhérents, du 10 au 13 décembre 2026, tranchera entre candidature autonome et retrait au profit d’un autre candidat. Delphine Batho (Génération Écologie) et Nathalie Arthaud (Lutte ouvrière) complètent l’offre à gauche.',
-        ],
-      },
-    ],
-    faqs: [
-      {
-        question: 'Quand a lieu la primaire de la gauche 2027 ?',
-        answer:
-          'La primaire « Choisir 2027 » du PS, de Place publique et de la GRS se tient les 9 et 10 octobre 2026 pour le premier tour, puis les 16 et 17 octobre pour le second tour éventuel.',
-      },
-      {
-        question: 'Qui sont les candidats à la primaire « Choisir 2027 » ?',
-        answer: 'Olivier Faure, Raphaël Glucksmann, Jérôme Guedj, Emmanuel Maurel et Ségolène Royal.',
-      },
-      {
-        question: 'Mélenchon participe-t-il à la primaire ?',
-        answer:
-          'Non. Jean-Luc Mélenchon a toujours refusé toute primaire et a officialisé sa propre candidature le 3 mai 2026.',
-      },
-      {
-        question: 'Marine Tondelier est-elle candidate ?',
-        answer:
-          'Sa candidature est maintenue provisoirement par les Écologistes, mais elle est exclue de « Choisir 2027 ». Un référendum interne des adhérents, du 10 au 13 décembre 2026, décidera de son maintien ou de son retrait.',
-      },
-      {
-        question: 'Qui peut voter à la primaire « Choisir 2027 » ?',
-        answer:
-          'Les adhérents des partis organisateurs et les sympathisants qui s’inscrivent sur la plateforme commune en versant 15 euros (10 euros à tarif réduit), jusqu’à trois jours avant le vote.',
-      },
-    ],
-    relatedLinks: [
-      { label: 'Raphaël Glucksmann 2027', href: '/glucksmann-2027/' },
-      { label: 'Jean-Luc Mélenchon 2027', href: '/melenchon-2027/' },
-      { label: 'Liste des candidats 2027', href: '/candidats-presidentielle-2027/' },
-    ],
-  },
+  "slug": "primaire-gauche-presidentielle-2027",
+  "title": "Primaire de la gauche 2027 : Glucksmann vainqueur, résultats et enjeux",
+  "description": "Raphaël Glucksmann a remporté « Choisir 2027 » le 11 octobre 2026 avec 66,17 % des voix. Résultats, périmètre social-démocrate et situation des autres candidatures à gauche.",
+  "heroEyebrow": "Primaires",
+  "heroTitle": "Primaire de la gauche : Glucksmann désigné dès le premier tour",
+  "heroIntro": "Raphaël Glucksmann remporte le 11 octobre 2026 la primaire du PS, de Place publique et de la GRS avec 66,17 % des suffrages exprimés. Le vote, ouvert le 9 octobre et prolongé jusqu’au 11 après une cyberattaque, désigne le candidat du pôle social-démocrate. Il n’y aura pas de second tour ; les autres forces de gauche restent hors de cette investiture.",
+  "queries": [
+    "primaire gauche 2027",
+    "résultats primaire PS 2026",
+    "Glucksmann victoire primaire",
+    "Choisir 2027"
+  ],
+  "summary": [
+    "Glucksmann est désigné dès le premier tour avec 66,17 % des voix.",
+    "Faure : 14,46 % ; Royal : 7,62 % ; Maurel : 5,92 % ; Guedj : 5,83 %.",
+    "Cette primaire ne désigne pas un candidat commun de toute la gauche."
+  ],
+  "updatedAt": "2026-10-12",
+  "sections": [
+    {
+      "title": "Le résultat du 11 octobre 2026",
+      "paragraphs": [
+        "Raphaël Glucksmann est arrivé en tête avec 79 613 voix, selon la proclamation rapportée par LCP. Ses quatre concurrents sont éliminés de cette désignation. Le second tour initialement envisagé les 16 et 17 octobre est devenu inutile."
+      ]
+    },
+    {
+      "title": "Les règles et le calendrier réellement appliqués",
+      "paragraphs": [
+        "Les adhérents des partis participants et les sympathisants inscrits pouvaient voter en ligne. La participation des sympathisants était fixée à 15 euros, avec un tarif social de 10 euros. Le vote devait se terminer le 10 octobre à 20 heures ; les organisateurs l’ont prolongé jusqu’au 11 octobre à 18 heures après les difficultés de connexion."
+      ]
+    },
+    {
+      "title": "Un pôle social-démocrate dans une gauche divisée",
+      "paragraphs": [
+        "Le projet de primaire unitaire plus large a laissé place à « Choisir 2027 », organisé par le PS, Place publique et la GRS. Jean-Luc Mélenchon, Fabien Roussel, François Ruffin, Bernard Cazeneuve et Karim Bouamrane restent dans des démarches distinctes. Marine Tondelier ne participait pas à ce scrutin et sa stratégie doit encore être soumise à un référendum interne en décembre."
+      ]
+    },
+    {
+      "title": "Sources du résultat et des règles",
+      "paragraphs": [
+        "LCP et Public Sénat publient les résultats de la primaire. Le communiqué du Parti socialiste du 9 octobre explique la prolongation du vote. Le dossier de l’Actu rassemble les liens précis, les réactions et les limites de l’interprétation du résultat."
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Qui a remporté la primaire de la gauche en 2026 ?",
+      "answer": "Raphaël Glucksmann a remporté la primaire sociale-démocrate « Choisir 2027 » le 11 octobre 2026, avec 66,17 % des suffrages exprimés."
+    },
+    {
+      "question": "Y aura-t-il un second tour les 16 et 17 octobre ?",
+      "answer": "Non. Glucksmann ayant obtenu la majorité dès le premier tour, aucun second tour n’est nécessaire."
+    },
+    {
+      "question": "Glucksmann est-il le candidat de toute la gauche ?",
+      "answer": "Il est le candidat désigné dans le périmètre du PS, de Place publique et de la GRS. La primaire ne réunissait pas toutes les forces de gauche."
+    },
+    {
+      "question": "Peut-on encore voter dans cette primaire ?",
+      "answer": "Non. Le vote s’est clos le dimanche 11 octobre 2026 à 18 heures."
+    }
+  ],
+  "relatedLinks": [
+    {
+      "label": "Dossier : primaires à gauche et victoire de Glucksmann",
+      "href": "/actu/primaires-gauche-victoire-glucksmann-2026/"
+    },
+    {
+      "label": "Raphaël Glucksmann 2027",
+      "href": "/glucksmann-2027/"
+    },
+    {
+      "label": "Liste des candidats 2027",
+      "href": "/candidats-presidentielle-2027/"
+    }
+  ]
+},
   {
     slug: 'simulateur-presidentielle-2027',
     title: 'Simulateur présidentielle 2027 : comparer les candidats et les scénarios',
@@ -929,7 +936,7 @@ export const seoPages = [
       'Jean-Luc Mélenchon est candidat à la présidentielle 2027, déclaré le 3 mai 2026 pour une quatrième candidature consécutive, hors de toute primaire. Ligne, stratégie et poids dans les sondages.',
     heroTitle: 'Mélenchon 2027 : une quatrième candidature hors primaire',
     heroIntro:
-      'Jean-Luc Mélenchon a officialisé le 3 mai 2026 sa quatrième candidature consécutive. Fidèle à son refus de toute primaire, il affronte une gauche éclatée entre la primaire socialiste « Choisir 2027 », Fabien Roussel, François Ruffin et les écologistes.',
+      'Jean-Luc Mélenchon a officialisé le 3 mai 2026 sa quatrième candidature consécutive. Fidèle à son refus de toute primaire, il affronte une gauche éclatée entre Raphaël Glucksmann, vainqueur de « Choisir 2027 », Fabien Roussel, François Ruffin et les écologistes.',
     queries: ['mélenchon 2027', 'jean-luc mélenchon 2027', 'mélenchon candidat 2027', 'gauche 2027'],
     summary: [
       'Candidat déclaré depuis le 3 mai 2026, pour la quatrième fois consécutive.',
@@ -1017,53 +1024,57 @@ export const seoPages = [
     ],
   }),
   candidatePage({
-    slug: 'glucksmann-2027',
-    title: 'Glucksmann 2027 : candidat à la primaire « Choisir 2027 », dates et enjeux',
-    description:
-      'Raphaël Glucksmann est candidat à la primaire socialiste « Choisir 2027 » (9-10 et 16-17 octobre 2026) face à Faure, Guedj, Maurel et Royal. Pourquoi il a accepté une primaire, ce que pèse sa ligne pro-européenne et comment lire ses sondages.',
-    heroTitle: 'Glucksmann 2027 : favori d’une primaire qu’il refusait',
-    heroIntro:
-      'Longtemps opposé à toute primaire, Raphaël Glucksmann a rejoint le 23 août 2026 « Choisir 2027 », la primaire fermée du PS, de Place publique et de la GRS. Il y affronte Olivier Faure, Jérôme Guedj, Emmanuel Maurel et Ségolène Royal, les 9-10 puis 16-17 octobre 2026.',
-    queries: ['glucksmann 2027', 'raphaël glucksmann 2027', 'glucksmann primaire', 'gauche sociale-démocrate 2027'],
-    summary: [
-      'Candidat à la primaire « Choisir 2027 » depuis le 23 août 2026.',
-      'Il défend une primaire limitée à l’arc social-démocrate, excluant Tondelier et Ruffin.',
-      'La clé est de savoir s’il peut élargir au-delà d’un public urbain, européen et réformiste.',
-    ],
-    candidatePath: '/candidats/raphael-glucksmann',
-    sections: [
-      {
-        title: 'Pourquoi il a finalement accepté une primaire',
-        paragraphs: [
-          'En mai 2025, Raphaël Glucksmann excluait de participer à une primaire de la gauche. Le vote des adhérents socialistes du 9 juillet 2026 en faveur d’une primaire réservée à l’arc social-démocrate a changé la donne : un périmètre restreint, sans LFI, sans les écologistes ni François Ruffin, correspond à son espace politique.',
-          'Il s’y est engagé le 23 août 2026. Marine Tondelier et François Ruffin lui reprochent d’avoir verrouillé ce périmètre et « enterré » la primaire unitaire.',
-        ],
-      },
-      {
-        title: 'Ce qu’il faut regarder pour le juger',
-        paragraphs: [
-          'Il faut d’abord suivre le résultat de la primaire, les 9-10 et 16-17 octobre 2026. En cas de victoire, la question sera sa capacité à rassembler au-delà de la social-démocratie face à Jean-Luc Mélenchon, Fabien Roussel et François Ruffin, tous candidats hors primaire.',
-          'Sa plateforme repose sur la réindustrialisation, la réforme de la gouvernance des entreprises, la justice sociale et une ligne résolument pro-européenne.',
-        ],
-      },
-    ],
-    faqs: [
-      {
-        question: 'Raphaël Glucksmann est-il candidat en 2027 ?',
-        answer:
-          'Il est candidat à la primaire « Choisir 2027 ». S’il la remporte, il sera le candidat commun du PS, de Place publique et de la GRS.',
-      },
-      {
-        question: 'Quand a lieu la primaire ?',
-        answer: 'Premier tour les 9 et 10 octobre 2026, second tour éventuel les 16 et 17 octobre 2026.',
-      },
-      {
-        question: 'Pourquoi le comparer à Mélenchon ?',
-        answer:
-          'Parce qu’ils représentent deux lignes différentes pour la gauche 2027, avec des électorats, des stratégies et des horizons de coalition distincts.',
-      },
-    ],
-  }),
+  "slug": "glucksmann-2027",
+  "title": "Glucksmann 2027 : vainqueur de la primaire, candidature et sondages",
+  "description": "Raphaël Glucksmann est désigné candidat du PS, de Place publique et de la GRS après sa victoire avec 66,17 % des voix le 11 octobre 2026. Profil, positions et sondages.",
+  "heroTitle": "Glucksmann 2027 : de la primaire à la campagne présidentielle",
+  "heroIntro": "Raphaël Glucksmann a remporté « Choisir 2027 » dès le premier tour le 11 octobre 2026 avec 66,17 % des suffrages exprimés. Désormais soutenu par le PS, Place publique et la GRS, il doit élargir son électorat au-delà des participants à cette primaire.",
+  "queries": [
+    "glucksmann 2027",
+    "raphaël glucksmann candidat",
+    "victoire Glucksmann primaire"
+  ],
+  "summary": [
+    "Vainqueur de la primaire sociale-démocrate du 11 octobre 2026.",
+    "Désigné avec 66,17 % des suffrages exprimés.",
+    "L’investiture ne vaut ni qualification au second tour ni validation des parrainages."
+  ],
+  "candidatePath": "/candidats/raphael-glucksmann",
+  "sections": [
+    {
+      "title": "Une investiture obtenue dès le premier tour",
+      "paragraphs": [
+        "Le député européen et coprésident de Place publique a devancé Olivier Faure, Ségolène Royal, Emmanuel Maurel et Jérôme Guedj. Le second tour prévu dans le calendrier initial n’a plus lieu."
+      ]
+    },
+    {
+      "title": "Le rassemblement reste à construire",
+      "paragraphs": [
+        "Le résultat tranche la compétition dans l’arc social-démocrate ; les candidatures de LFI, du PCF et d’autres forces de gauche restent distinctes. Glucksmann maintient son opposition à un accord avec LFI."
+      ]
+    },
+    {
+      "title": "Lire les sondages après la primaire",
+      "paragraphs": [
+        "Les 66,17 % mesurent le résultat du scrutin interne, pas une intention de vote présidentielle. Il faut distinguer les enquêtes réalisées avant et après le 11 octobre et comparer des hypothèses de candidatures similaires."
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Raphaël Glucksmann est-il candidat en 2027 ?",
+      "answer": "Il a été désigné candidat du PS, de Place publique et de la GRS à l’issue de la primaire du 11 octobre 2026."
+    },
+    {
+      "question": "Quel score a-t-il obtenu à la primaire ?",
+      "answer": "66,17 % des suffrages exprimés et 79 613 voix, selon les résultats proclamés rapportés par LCP."
+    },
+    {
+      "question": "Sa candidature est-elle déjà validée par le Conseil constitutionnel ?",
+      "answer": "Non. La désignation par les partis est distincte de la validation des conditions légales et des parrainages."
+    }
+  ]
+}),
   candidatePage({
     slug: 'villepin-2027',
     title: 'Villepin 2027 : candidature pressentie, La France humaniste et parrainages',

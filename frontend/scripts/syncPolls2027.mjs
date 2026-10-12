@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import { initializeApp } from 'firebase/app'
 import { collection, doc, getDocs, getFirestore, writeBatch } from 'firebase/firestore'
 import { getFirebaseConfig } from './firebaseConfig.mjs'
+import { reviewPollSources } from './lib/reviewPollSources.mjs'
 
 const FIRST_ROUND_COLLECTION = 'polls_2027'
 const SECOND_ROUND_COLLECTION = 'polls_second_round_2027'
@@ -372,7 +373,7 @@ async function replaceCollection(db, collectionName, documents) {
 
 async function main() {
   const wikitext = await fetchWikitext()
-  const firstRound = parseFirstRound(wikitext)
+  const firstRound = reviewPollSources(parseFirstRound(wikitext))
   const secondRound = parseSecondRound(wikitext)
 
   if (firstRound.length === 0) {

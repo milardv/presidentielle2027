@@ -18,6 +18,15 @@
 .actu-feature-link svg { transition: transform 180ms ease; }
 .actu-feature:hover .actu-feature-link svg { transform: translateX(4px); }
 .actu-feature-date { margin-top: auto; padding-top: 36px; color: var(--edition-muted); font-size: 11px; }
+.actu-more-articles { margin-top: 54px; }
+.actu-more-articles > h2 { margin: 0 0 22px; font-family: var(--edition-serif); font-size: 34px; }
+.actu-article-row { display: grid; grid-template-columns: 190px minmax(0, 1fr) auto; align-items: center; gap: 28px; padding: 24px 0; border-top: 1px solid var(--edition-rule); color: var(--edition-ink); }
+.actu-article-row img { width: 100%; aspect-ratio: 1.5; object-fit: cover; }
+.actu-article-row h3 { margin: 0 0 12px; font-family: var(--edition-serif); font-size: 30px; line-height: 1.15; }
+.actu-article-row p { max-width: 680px; margin: 0 0 12px; color: var(--edition-muted); font-size: 14px; line-height: 1.6; }
+.actu-article-row span { color: var(--edition-muted); font-size: 11px; }
+.actu-article-row:hover h3 { color: var(--edition-red); }
+.actu-feature:focus-visible, .actu-article-row:focus-visible { outline: 2px solid var(--edition-red); outline-offset: 5px; }
 .actu-index-note { display: flex; align-items: center; gap: 18px; max-width: 690px; margin: 40px 0 0 auto; color: var(--edition-muted); }
 .actu-index-note svg { flex: 0 0 auto; color: var(--edition-red); }
 .actu-index-note p { margin: 0; font-size: 12px; line-height: 1.6; }
@@ -34,7 +43,7 @@
 .actu-article-header h1 { margin: 20px 0 0; font-size: clamp(58px, 6.1vw, 96px); line-height: 1.01; }
 .actu-standfirst { max-width: 800px; margin: 24px auto 0; color: #425066; font-family: var(--edition-serif); font-size: clamp(23px, 2.4vw, 31px); line-height: 1.36; }
 .actu-byline { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px 17px; margin-top: 32px; color: var(--edition-muted); font-size: 11px; font-weight: 700; }
-.actu-byline span + span::before { content: '·'; position: relative; left: -9px; color: #a2a9ad; }
+.actu-byline > * + *::before { content: '·'; position: relative; left: -9px; color: #a2a9ad; }
 .actu-cover { margin: 0; }
 .actu-cover img { display: block; width: 100%; max-height: 610px; aspect-ratio: 1.9; object-fit: cover; }
 .actu-cover figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 20px; padding: 10px 0; color: var(--edition-muted); font-size: 10px; line-height: 1.5; }
@@ -100,6 +109,10 @@
   .actu-article-aside { display: none; }
 }
 @media (max-width: 700px) {
+  .actu-article-row { grid-template-columns: 90px minmax(0, 1fr); gap: 16px; }
+  .actu-article-row > svg { display: none; }
+  .actu-article-row h3 { font-size: 24px; }
+  .actu-article-row img { aspect-ratio: 1; }
   .actu-index-main { padding: 35px 16px 120px; }
   .actu-index-masthead { padding-bottom: 34px; }
   .actu-index-heading h1 { font-size: clamp(50px, 13vw, 75px); }
@@ -126,7 +139,7 @@
   .actu-article-content .actu-opening { font-size: 21px; }
   .actu-opening > span { font-size: 67px; }
   .actu-key-points { gap: 6px; margin: 42px 0 50px; }
-  .actu-key-points strong { font-size: 34px; }
+  .actu-key-points strong { font-size: clamp(20px, 5.5vw, 34px); overflow-wrap: anywhere; }
   .actu-key-points span { font-size: 9px; }
   .actu-section { margin-top: 55px; }
   .actu-section h2, .actu-sources h2 { font-size: 38px; }
@@ -142,3 +155,12 @@
 @media (prefers-reduced-motion: reduce) {
   .actu-feature-image img, .actu-feature-link svg, .actu-reading-progress span { transition: none; }
 }
+
+.actu-table-wrap { margin: 32px 0; overflow-x: auto; }
+.actu-table { width: 100%; border-collapse: collapse; font-family: 'Public Sans', sans-serif; font-size: 14px; }
+.actu-table caption { margin-bottom: 18px; text-align: left; font-weight: 700; line-height: 1.6; }
+.actu-table th, .actu-table td { padding: 16px 8px; border-bottom: 1px solid var(--edition-rule); text-align: left; }
+.actu-table thead th { border-top: 1px solid var(--edition-ink); font-size: 12px; }
+.actu-table tbody th { font-weight: 600; }
+.actu-table td { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.actu-table tbody tr:first-child { background: #eee8dc; }
