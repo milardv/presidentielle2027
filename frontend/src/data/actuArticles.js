@@ -9,12 +9,13 @@ export const actuArticles = [
   "standfirst": "Le 11 octobre 2026, Raphaël Glucksmann remporte dès le premier tour la primaire organisée par le PS, Place publique et la Gauche républicaine et socialiste. Cette victoire lui donne une investiture et tranche une compétition. Elle ouvre aussi une nouvelle bataille : élargir son camp dans une gauche toujours divisée.",
   "publishedAt": "2026-10-12",
   "readingMinutes": 7,
-  "image": "/actu/raphael-glucksmann.jpg",
-  "imageAlt": "Raphaël Glucksmann s’exprimant lors d’une rencontre à la librairie Mollat en 2023",
-  "imageCredit": "Librairie Mollat · Wikimedia Commons · CC BY-SA 4.0",
-  "imageCreditUrl": "https://commons.wikimedia.org/wiki/File:Rapha%C3%ABl_Glucksmann.jpg",
-  "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-  "imageCaption": "Raphaël Glucksmann à la librairie Mollat, le 24 juin 2023. Photo d’illustration antérieure à la primaire, reproduite sans modification du fichier : elle ne montre pas la soirée de victoire.",
+  "image": "/actu/raphael-glucksmann-2024.webp",
+  "imagePosition": "50% 24%",
+  "imageAlt": "Portrait de Raphaël Glucksmann au congrès du Parti socialiste européen en mars 2024",
+  "imageCredit": "Mathieu Delmestre · Wikimedia Commons · Domaine public",
+  "imageCreditUrl": "https://commons.wikimedia.org/wiki/File:2024-03-03_-_Congr%C3%A8s_du_PSE-_105_-_Raphael_Glucksmann.jpg",
+  "imageLicenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+  "imageCaption": "Raphaël Glucksmann au congrès du Parti socialiste européen en mars 2024. Photo d’illustration redimensionnée et compressée pour le web : elle ne montre pas la soirée de victoire de 2026.",
   "keywords": [
     "primaire gauche 2026",
     "victoire Raphaël Glucksmann",
@@ -36,7 +37,7 @@ export const actuArticles = [
       "label": "candidats dans cette primaire"
     }
   ],
-  "method": "Dossier établi au 12 octobre 2026. Les résultats détaillés sont ceux publiés par LCP après leur proclamation et recoupés avec Public Sénat. Des premiers comptes rendus divergent légèrement sur les décimales et les totaux de participation ; nous retenons le tableau concordant des pourcentages et indiquons un ordre de grandeur pour les votants. Les communiqués du PS documentent les règles et la réponse des organisateurs à la cyberattaque ; ils ne valent pas audit indépendant. Les analyses sont distinguées des résultats et des prises de position. La photo de 2023 ne documente aucun événement de la primaire.",
+  "method": "Dossier établi au 12 octobre 2026. Les résultats détaillés sont ceux publiés par LCP après leur proclamation et recoupés avec Public Sénat. Des premiers comptes rendus divergent légèrement sur les décimales et les totaux de participation ; nous retenons le tableau concordant des pourcentages et indiquons un ordre de grandeur pour les votants. Les communiqués du PS documentent les règles et la réponse des organisateurs à la cyberattaque ; ils ne valent pas audit indépendant. Les analyses sont distinguées des résultats et des prises de position. La photo de mars 2024 ne documente aucun événement de la primaire.",
   "sources": [
     {
       "id": 1,

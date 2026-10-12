@@ -74,7 +74,7 @@ function CaseStudy() {
 function ArticleCover({ article, eager = false }: { article: Article; eager?: boolean }) {
   return (
     <figure className="actu-cover">
-      <img src={article.image} alt={article.imageAlt} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : undefined} />
+      <img src={article.image} alt={article.imageAlt} style={{ objectPosition: article.imagePosition }} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : undefined} />
       <figcaption>{article.imageCaption} <a href={article.imageCreditUrl} target="_blank" rel="noreferrer">{article.imageCredit} <ArrowUpRight size={12} aria-hidden="true" /></a>{article.imageLicenseUrl ? <a href={article.imageLicenseUrl} target="_blank" rel="noreferrer">Licence de la photo</a> : null}</figcaption>
     </figure>
   )
@@ -93,10 +93,10 @@ export function ActuIndex() {
         </div>
         <div className="actu-index-rule"><span>À la une</span><span>01 / {String(actuArticles.length).padStart(2, '0')}</span></div>
         <Link to={featured.path} className="actu-feature">
-          <div className="actu-feature-image"><img src={featured.image} alt={featured.imageAlt} fetchPriority="high" /></div>
+          <div className="actu-feature-image"><img src={featured.image} alt={featured.imageAlt} style={{ objectPosition: featured.imagePosition }} fetchPriority="high" /></div>
           <div className="actu-feature-copy"><span className="actu-mini-label">{featured.category} · {featured.readingMinutes} min de lecture</span><h2>{featured.title}</h2><p>{featured.standfirst}</p><span className="actu-feature-link">Lire l’article complet <ArrowRight size={18} aria-hidden="true" /></span><span className="actu-feature-date">{formatArticleDate(featured.publishedAt)} · Sources consultables</span></div>
         </Link>
-        {actuArticles.slice(1).length > 0 ? <section className="actu-more-articles" aria-labelledby="actu-more-title"><h2 id="actu-more-title">À lire aussi</h2>{actuArticles.slice(1).map((item) => <Link key={item.slug} to={item.path} className="actu-article-row"><img src={item.image} alt={item.imageAlt} loading="lazy" /><div><h3>{item.title}</h3><p>{item.description}</p><span>{formatArticleDate(item.publishedAt)} · {item.readingMinutes} min de lecture</span></div><ArrowRight size={22} aria-hidden="true" /></Link>)}</section> : null}
+        {actuArticles.slice(1).length > 0 ? <section className="actu-more-articles" aria-labelledby="actu-more-title"><h2 id="actu-more-title">À lire aussi</h2>{actuArticles.slice(1).map((item) => <Link key={item.slug} to={item.path} className="actu-article-row"><img src={item.image} alt={item.imageAlt} style={{ objectPosition: item.imagePosition }} loading="lazy" /><div><h3>{item.title}</h3><p>{item.description}</p><span>{formatArticleDate(item.publishedAt)} · {item.readingMinutes} min de lecture</span></div><ArrowRight size={22} aria-hidden="true" /></Link>)}</section> : null}
         <div className="actu-index-note"><BookOpen size={22} aria-hidden="true" /><p>Les sujets sont publiés avec leurs documents de référence et leurs crédits visuels. Les simulations sont signalées comme telles.</p></div>
       </main>
       <HomeDesktopFooter />

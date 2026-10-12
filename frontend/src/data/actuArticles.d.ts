@@ -18,6 +18,7 @@ export interface ActuArticleData {
   publishedAt: string
   readingMinutes: number
   image: string
+  imagePosition?: string
   imageAlt: string
   imageCredit: string
   imageCreditUrl: string
