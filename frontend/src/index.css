@@ -1,6 +1,22 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+.poll-trend-replay { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 10px; color: #25455c; font-size: 12px; font-weight: 700; white-space: nowrap; transition: background-color 150ms ease; }
+.poll-trend-replay:hover { background-color: #edf1f3; }
+.poll-trend-replay:focus-visible, .poll-trend-date-control input:focus-visible { outline: 2px solid #25455c; outline-offset: 4px; }
+.poll-trend-date-control { display: grid; gap: 12px; margin-top: 20px; color: #475569; font-size: 12px; }
+.poll-trend-date-control > span { display: flex; justify-content: space-between; gap: 12px; }
+.poll-trend-date-control strong { color: #25455c; font-variant-numeric: tabular-nums; }
+.poll-trend-date-control input { width: 100%; min-height: 28px; cursor: pointer; accent-color: #25455c; }
+.poll-trend-chart text { font-size: 12px; }
+@media (max-width: 639px) {
+  .poll-trend-chart text { font-size: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .poll-trend-lines { clip-path: none !important; }
+  .poll-trend-replay { transition: none; }
+}
+
 :root {
   font-family: "Public Sans", sans-serif;
   line-height: 1.5;

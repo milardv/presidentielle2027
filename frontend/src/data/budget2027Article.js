@@ -1,0 +1,111 @@
+export const budget2027Article = {
+  slug: 'budget-2027-dette-services-publics',
+  path: '/actu/budget-2027-dette-services-publics/',
+  category: 'Grand dossier',
+  eyebrow: 'Le prix de nos choix',
+  title: 'Budget 2027 : la dette, les services publics et nous',
+  description: 'Dette, impôts, santé, emploi : ce que le projet de budget 2027 change pour la France. Chiffres vérifiés, études économiques et questions pour la présidentielle.',
+  standfirst: 'La France prépare une élection présidentielle avec une dette de 119 % du PIB et des intérêts qui pèseraient encore davantage en 2027. Derrière les milliards annoncés, une question très concrète se pose : qui contribuera au redressement, et quels services le pays veut-il pouvoir garantir ? Enquête sur les chiffres, les incertitudes et les choix qui attendent les électeurs.',
+  publishedAt: '2026-10-21',
+  readingMinutes: 10,
+  image: '/actu/budget-2027-services-publics.webp',
+  imagePosition: '50% 45%',
+  imageAlt: 'Illustration de l’Assemblée nationale derrière des documents budgétaires, un cahier et un stéthoscope',
+  imageCredit: 'Illustration originale générée par IA',
+  imageCreditUrl: '/actu/budget-2027-services-publics.webp',
+  imageCaption: 'Illustration éditoriale générée par intelligence artificielle. Elle symbolise les arbitrages budgétaires et ne représente ni une scène réelle ni un document officiel.',
+  keywords: ['budget 2027', 'dette publique France', 'services publics', 'présidentielle 2027', 'croissance OFCE', 'projet de loi de finances 2027'],
+  opening: 'Une classe qui attend un remplacement. Un rendez-vous médical repoussé. Une entreprise qui hésite à embaucher. Le budget ne décide pas seul de ces situations, mais il fixe une partie des moyens disponibles pour y répondre. À l’automne 2026, son examen engage déjà la campagne présidentielle : les candidats devront expliquer comment ils financeront leurs priorités dans une économie fragile. Ce dossier examine le projet présenté le 1er octobre, les données disponibles et les désaccords entre prévisionnistes, sans présenter les mesures proposées comme des décisions définitives.',
+  keyPoints: [
+    { value: '119,0 %', label: 'dette publique rapportée au PIB, constatée fin juin 2026' },
+    { value: '91,2 Md€', label: 'intérêts publics prévus pour 2027 par le gouvernement' },
+    { value: '1 % / 0,5 %', label: 'croissance 2027 : prévisions du gouvernement et de l’OFCE' },
+  ],
+  method: 'Dossier arrêté au 21 octobre 2026. Les chiffres observés proviennent de l’Insee ; les objectifs et mesures sont ceux du projet initial de budget présenté le 1er octobre, susceptible d’être modifié au Parlement. Le HCFP évalue leur réalisme ; l’OFCE publie une prévision économique distincte, conditionnelle à ses hypothèses. Les raisonnements et questions de lecture sont une analyse de la rédaction, pas une étude d’impact individualisée. Aucun montant d’impôt personnel n’est simulé. Les citations reproduites sont brèves et attribuées. Le graphique reprend les prévisions publiées, sans les moyenner. L’illustration de couverture est générée par IA. Les données de pauvreté portent sur 2024, pas sur la situation mesurée en octobre 2026.',
+  sources: [
+    { id: 1, label: 'Dette publique à la fin du deuxième trimestre 2026', publisher: 'Insee · Informations rapides n° 239 · 29 septembre 2026', url: 'https://www.insee.fr/fr/statistiques/9053525' },
+    { id: 2, label: 'Présentation politique du PLF et du PLFSS pour 2027', publisher: 'Élysée · Conseil des ministres · 1er octobre 2026', url: 'https://www.elysee.fr/emmanuel-macron/2026/10/01/compte-rendu-du-conseil-des-ministres-du-1-octobre-2026' },
+    { id: 3, label: 'Avis sur le réalisme des lois financières pour 2027', publisher: 'Haut Conseil des finances publiques · avis 2026-5 · 1er octobre 2026', url: 'https://www.hcfp.fr/liste-avis/avis-ndeg2026-5-lois-de-finances-2027' },
+    { id: 4, label: 'Financement de l’État : besoins, émissions et charge budgétaire', publisher: 'Agence France Trésor · rubrique Budget de l’État · consultée le 21 octobre 2026', url: 'https://www.aft.gouv.fr/fr/budget-etat' },
+    { id: 5, label: 'Prévisions gouvernementales de croissance et d’inflation', publisher: 'Ministère de l’Économie · communiqué du 11 septembre 2026', url: 'https://presse.economie.gouv.fr/le-gouvernement-actualise-ses-previsions-de-croissance-et-dinflation-pour-2026-et-2027/' },
+    { id: 6, label: 'Perspectives économiques 2026-2027 : croissance et finances publiques', publisher: 'OFCE · prévision d’octobre 2026 · étude économique, CC BY 4.0', url: 'https://www.ofce.fr/prev/prev2609/index.html' },
+    { id: 7, label: 'Emploi et chômage : observations et projection à fin 2027', publisher: 'OFCE · prévision d’octobre 2026 · étude économique, CC BY 4.0', url: 'https://www.ofce.fr/prev/prev2609/france/emploi.html' },
+    { id: 8, label: 'Pouvoir d’achat, inégalités et pauvreté : données 2024', publisher: 'Insee · synthèse publiée en octobre 2026', url: 'https://www.insee.fr/fr/statistiques/8996928' },
+    { id: 9, label: 'Dossier législatif du projet de loi de finances pour 2027', publisher: 'Assemblée nationale · texte n° 3210, déposé le 1er octobre 2026', url: 'https://www.assemblee-nationale.fr/dyn/17/dossiers/PLF_2027' },
+    { id: 10, label: 'Ce que recouvre la dette au sens de Maastricht', publisher: 'Insee · définition · mise à jour du 27 janvier 2021', url: 'https://www.insee.fr/fr/metadonnees/definition/c1091' },
+    { id: 11, label: 'Rapport sur les mesures de correction de la trajectoire budgétaire', publisher: 'Direction générale du Trésor · 6 octobre 2026', url: 'https://www.tresor.economie.gouv.fr/Articles/2026/10/06/le-rapport-relatif-aux-mesures-prises-dans-le-cadre-du-mecanisme-de-correction-2027-est-publie' },
+    { id: 12, label: 'Comprendre les budgets publics et les orientations annoncées pour 2027', publisher: 'Ministère de l’Économie · 1er octobre 2026', url: 'https://www.economie.gouv.fr/actualites/video-presentation-du-projet-de-budget-pour-2027' },
+    { id: 13, label: 'Le cadrage économique : énergie, incertitude et politique budgétaire', publisher: 'OFCE · prévision d’octobre 2026 · étude économique, CC BY 4.0', url: 'https://www.ofce.fr/prev/prev2609/france/cadrage.html' },
+  ],
+  sections: [
+    {
+      id: 'chiffres-et-realites', number: '01', title: 'La dette dépasse une année de richesse produite',
+      paragraphs: [
+        { text: 'Fin juin 2026, la dette publique atteint 3 595,5 milliards d’euros, soit 119,0 % du produit intérieur brut, selon l’Insee. Elle a augmenté de 59,6 milliards en trois mois. Cette photographie est la dernière mesure trimestrielle disponible à la date de rédaction ; l’institut rappelle que ses estimations peuvent être révisées. Le ratio mesure le poids de la dette par rapport à la production annuelle de l’économie.', sources: [1] },
+        { text: 'Le chiffre rassemble les dettes de l’État, des organismes publics, des collectivités et de la Sécurité sociale. Il s’agit d’une dette brute : les actifs financiers détenus par les administrations ne sont pas soustraits. Un montant élevé ne dit donc pas, à lui seul, quels investissements ont été financés, quels actifs sont détenus ou quelle est la qualité du service rendu. Il faut examiner ces questions en complément.', sources: [10] },
+        { text: 'Dette et déficit ne décrivent pas la même chose. La première est un stock à une date donnée ; le second mesure un déséquilibre de recettes et de dépenses sur une période. Réduire le déficit peut ralentir l’endettement sans diminuer immédiatement son montant. Pour un électeur, cette distinction évite un malentendu fréquent : annoncer un déficit plus faible ne signifie pas avoir commencé à rembourser toute la dette.', sources: [1, 10] },
+      ],
+    },
+    {
+      id: 'interets-et-marges', number: '02', title: 'Les intérêts prennent une place croissante',
+      paragraphs: [
+        { text: 'Le gouvernement prévoit une charge d’intérêts de 91,2 milliards d’euros pour l’ensemble des administrations publiques en 2027, après 79,2 milliards en 2026. Douze milliards supplémentaires seraient ainsi consacrés à la rémunération des créanciers. Ces sommes ne constituent pas le remboursement du capital emprunté. Elles rémunèrent le financement de dépenses déjà engagées et limitent les ressources disponibles pour de nouveaux choix.', sources: [2] },
+        { text: 'Attention aux périmètres : l’Agence France Trésor annonce, de son côté, 72,9 milliards de charge budgétaire de la dette de l’État en 2027. Ce chiffre ne contredit pas les 91,2 milliards portant sur l’ensemble des administrations. Comparer directement les deux montants conduirait à inventer un écart. Toute comparaison avec une mission ministérielle exige aussi de vérifier les conventions comptables et l’année concernée.', sources: [4, 10] },
+        { text: 'Une hausse des intérêts n’entraîne pas automatiquement une coupe du même montant dans les hôpitaux ou les écoles. Le gouvernement et le Parlement peuvent modifier les recettes, déplacer d’autres crédits ou accepter un déficit différent. Mais chaque option a un coût et des bénéficiaires différents. L’enjeu politique est de rendre ces arbitrages visibles, au lieu de présenter les contraintes financières comme une décision déjà prise à la place des citoyens.', sources: [] },
+      ],
+      table: { caption: 'Trois montants à lire avec leur périmètre — prévisions pour 2027', headers: ['Indicateur', 'Montant', 'Ce qu’il mesure'], rows: [['Intérêts des administrations publiques', '91,2 Md€', 'Prévision gouvernementale, toutes administrations'], ['Charge budgétaire de la dette de l’État', '72,9 Md€', 'Périmètre budgétaire de l’État'], ['Besoin de financement de l’État', '339,7 Md€', 'Inclut notamment le refinancement des échéances']], sources: [2, 4] },
+    },
+    {
+      id: 'croissance-incertaine', number: '03', title: 'Le budget repose sur une croissance qui fait débat',
+      paragraphs: [
+        { text: 'Pour 2027, Bercy retient une croissance de 1,0 % et une inflation de 1,8 %. Ce sont des prévisions, pas des résultats. Le scénario donne aux parlementaires un cadre pour calculer les recettes et les dépenses ; sa crédibilité compte autant que les mesures annoncées. Si l’activité déçoit, une partie des rentrées fiscales peut manquer au rendez-vous, même si les taux d’imposition ne changent pas.', sources: [5] },
+        { text: 'L’OFCE propose un scénario plus dégradé : 0,5 % de croissance en 2027 et un déficit public de 5,4 % du PIB. Sa prévision d’octobre examine notamment les chocs énergétiques, les politiques budgétaires et l’incertitude. L’écart avec le gouvernement ne permet pas de connaître à l’avance le résultat final ; il montre que plusieurs trajectoires restent possibles à partir d’hypothèses différentes.', sources: [6, 13] },
+        { text: 'Le Haut Conseil des finances publiques juge la croissance gouvernementale optimiste et les risques orientés à la baisse. Son rôle est d’évaluer le réalisme du cadrage, pas de choisir un programme électoral. La question à poser aux candidats est donc précise : si leur scénario de croissance ne se réalise pas, quelles mesures maintiennent-ils, lesquelles changent-ils et à quel moment ? Une promesse crédible doit pouvoir résister à une mauvaise année.', sources: [3] },
+      ],
+      quote: { text: 'Au total, les aléas à la baisse sont majoritaires.', attribution: 'Haut Conseil des finances publiques, avis du 1er octobre 2026', sources: [3] },
+      figure: { image: '/actu/budget-2027-croissance.webp', alt: 'Croissance du PIB prévue pour 2027 : gouvernement 1,0 %, OFCE 0,5 %. Les deux chiffres sont des prévisions.', caption: 'Deux scénarios pour 2027. Graphique de la rédaction à partir du communiqué de Bercy du 11 septembre et de la prévision OFCE d’octobre 2026. Même indicateur : variation annuelle du PIB réel. Il ne s’agit ni de résultats constatés ni d’une moyenne des prévisions.', sources: [5, 6] },
+    },
+    {
+      id: 'services-et-menages', number: '04', title: 'Le vrai débat : qui supportera l’effort ?',
+      paragraphs: [
+        { text: 'Le discours officiel promet de préserver les priorités et de poursuivre le redressement. Les mesures recensées par le HCFP touchent pourtant plusieurs canaux très concrets : rémunérations publiques, pensions, prestations, arrêts maladie, produits de santé et ressources des collectivités. À ce stade, il s’agit de propositions et d’hypothèses du projet initial. Leur adoption, leurs exceptions et leur calendrier peuvent encore changer.', sources: [3] },
+        { text: 'Le ministère de l’Économie met en avant les priorités sanitaires et l’organisation de l’accès aux soins. Pour juger leurs effets, le montant national ne suffira pas : il faudra suivre les crédits effectivement répartis, les recrutements, les coûts et la disponibilité réelle des services. Une enveloppe en hausse peut accompagner des besoins qui progressent encore plus vite. À l’inverse, une réorganisation peut parfois améliorer l’accès sans augmentation équivalente des dépenses.', sources: [12] },
+        { text: 'Le même réflexe s’impose pour les ménages. Un retraité, une famille locataire avec enfants et un salarié qui dépend de sa voiture ne sont pas exposés aux mêmes décisions. Une baisse de prélèvement peut être compensée par une prestation moins dynamique ou un reste à charge accru. Notre analyse : demander des effets par niveau de revenu, âge et situation familiale éclaire davantage le débat qu’un seul montant moyen pour tous les Français.', sources: [] },
+      ],
+      quote: { text: 'Les efforts d’aujourd’hui permettent d’éviter d’avoir à faire des sacrifices demain.', attribution: 'Gouvernement, compte rendu du Conseil des ministres du 1er octobre 2026 : justification politique du projet', sources: [2] },
+    },
+    {
+      id: 'fragilite-sociale', number: '05', title: 'Une société déjà fragile face aux nouveaux arbitrages',
+      paragraphs: [
+        { text: 'Les dernières données de revenu disponibles portent sur 2024. L’Insee dénombre 9,8 millions de personnes sous le seuil de pauvreté monétaire en France métropolitaine, en logement ordinaire. Le taux atteint 15,4 %, pour un seuil fixé à 1 337 euros par mois pour une personne seule. Cette mesure est relative au niveau de vie médian ; son champ ne couvre pas toute la population, notamment les personnes sans logement ordinaire.', sources: [8] },
+        { text: 'Ces chiffres ne permettent pas d’attribuer au budget 2027 une pauvreté mesurée deux ans auparavant. Ils donnent en revanche le contexte social dans lequel ses effets devront être évalués. Une perte de quelques dizaines d’euros n’a pas le même poids selon qu’un ménage dispose d’une épargne de précaution ou consacre déjà presque tout son revenu aux dépenses courantes. La moyenne nationale décrit mal cette différence de capacité à absorber un choc.', sources: [8] },
+        { text: 'Du côté de l’emploi, l’OFCE projette un taux de chômage de 8,8 % à la fin de 2027. La date compte : il s’agit d’une valeur de fin d’année, pas d’une moyenne annuelle. L’étude souligne aussi les précautions nécessaires pour interpréter les évolutions de la population active et les effets de la loi pour le plein emploi. Cette projection demeure un scénario ; elle ne signifie pas que ce niveau de chômage est déjà atteint.', sources: [7] },
+      ],
+    },
+    {
+      id: 'emprunter-et-investir', number: '06', title: 'Emprunter reste possible ; choisir l’usage reste décisif',
+      paragraphs: [
+        { text: 'Le besoin prévisionnel de financement de l’État atteindrait 339,7 milliards d’euros en 2027, selon l’Agence France Trésor. Il ne correspond pas uniquement au déficit de l’année : l’État doit également refinancer des dettes arrivant à échéance. Le confondre avec une dépense nouvelle donnerait une image fausse de la situation. L’AFT prévoit de préciser le programme de financement à moyen et long terme en décembre 2026.', sources: [4] },
+        { text: 'Dans ses données pour 2026, l’agence indique également une demande de titres supérieure à l’offre lors des émissions. Ce constat ne dispense pas d’examiner le coût des nouveaux emprunts, mais il interdit de déduire d’un ratio de dette élevé que plus personne ne finance la France. Disponibilité du financement, prix payé pour l’obtenir et soutenabilité sur plusieurs années sont trois questions distinctes.', sources: [4] },
+        { text: 'Notre analyse : la qualité de la dépense doit être discutée avec son financement. Rénover un bâtiment, entretenir une infrastructure ou former des professionnels peut produire des bénéfices futurs. Cela ne rend pas chaque investissement automatiquement rentable. Pour convaincre, une proposition devrait préciser le coût initial, les dépenses récurrentes, le délai de réalisation, les résultats attendus et ce qui serait fait si ces résultats déçoivent.', sources: [] },
+      ],
+    },
+    {
+      id: 'parlement-et-controle', number: '07', title: 'Un projet peut changer ; son exécution devra être contrôlée',
+      paragraphs: [
+        { text: 'Le projet de loi de finances n° 3210 a été déposé à l’Assemblée nationale le 1er octobre 2026. Le dossier législatif permet de suivre les amendements, les rapports et les débats. Le texte initial renseigne l’intention du gouvernement ; il ne suffit pas à établir les règles qui seront finalement appliquées. Pour une décision personnelle ou professionnelle, il faut vérifier le texte adopté, sa promulgation et sa date d’entrée en vigueur.', sources: [9] },
+        { text: 'L’État et la Sécurité sociale sont examinés dans des textes financiers différents. Les finances locales ont encore leurs propres décisions et mécanismes. Une annonce sur le budget de l’État n’épuise donc pas le bilan des prélèvements ou des prestations. Pour suivre une réforme, il faut identifier le bon texte et le bon niveau de décision, puis vérifier si la mesure dépend d’un décret ou d’un autre acte de mise en œuvre.', sources: [12] },
+        { text: 'Le rapport publié le 6 octobre par la direction générale du Trésor répond au mécanisme de correction déclenché par le HCFP pour un écart à la trajectoire de programmation. Cette procédure rappelle que les engagements doivent être confrontés aux résultats. Après le vote, les recettes encaissées, les dépenses exécutées et les révisions économiques resteront déterminantes : l’adoption d’un budget n’en garantit pas mécaniquement l’issue.', sources: [11] },
+      ],
+    },
+    {
+      id: 'questions-presidentielle', number: '08', title: 'Les engagements à demander aux candidats de 2027',
+      paragraphs: [
+        { text: 'Le débat présidentiel peut dépasser l’opposition entre dépense et économies. Une même somme peut protéger une urgence sociale, préparer une capacité future ou prolonger un dispositif inefficace. Un même prélèvement peut avoir des effets très différents selon son assiette et ses exemptions. La discussion démocratique gagne en précision lorsqu’elle nomme les personnes concernées et les résultats recherchés, plutôt que d’additionner seulement des milliards.', sources: [] },
+        { text: 'Notre grille de lecture propose quatre exigences : chiffrer les mesures sur plusieurs années ; distinguer les recettes durables des ressources exceptionnelles ; publier les effets par catégorie de ménages ; présenter un scénario moins favorable de croissance et de taux. Ces critères ne désignent aucun candidat à la place du lecteur. Ils permettent de comparer des choix politiques différents avec les mêmes questions.', sources: [] },
+        { text: 'La dette contraint la campagne, mais elle ne supprime pas le choix. Les électeurs peuvent préférer des répartitions différentes de l’effort, des rythmes différents de réduction du déficit et des priorités différentes d’investissement. Ce qui leur est dû, c’est une explication vérifiable de ces choix. Le budget 2027 ouvre cette discussion : quel service collectif voulons-nous garantir, à qui demandons-nous de contribuer et comment mesurerons-nous le résultat ?', sources: [] },
+      ],
+      table: { caption: 'Grille de lecture de la rédaction pour comparer les programmes', headers: ['Question', 'Élément concret à rechercher'], rows: [['Qui contribue ?', 'Répartition par revenu, âge, famille et type d’entreprise'], ['Quel financement ?', 'Recettes identifiées, pérennes ou exceptionnelles'], ['Quel résultat ?', 'Indicateurs de service rendu et calendrier'], ['Quel plan si la croissance déçoit ?', 'Hypothèses alternatives et arbitrages annoncés'], ['Quel contrôle ?', 'Publication des coûts et des résultats après mise en œuvre']], sources: [] },
+    },
+  ],
+}

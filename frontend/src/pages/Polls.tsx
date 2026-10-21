@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
+import { motion, useReducedMotion } from 'motion/react'
 import {
   BarChart3,
   Building2,
@@ -8,6 +9,7 @@ import {
   FileStack,
   Lightbulb,
   Microscope,
+  RotateCcw,
   Sparkles,
   Users2,
 } from 'lucide-react'
@@ -293,6 +295,13 @@ function buildTrendPath(points: PollTrendPoint[]): string {
   return points.map((point, index) => `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`).join(' ')
 }
 
+function trendDateX(date: string, dates: string[]): number {
+  if (dates.length < 2) return trendChartWidth / 2
+  const start = Date.parse(dates[0])
+  const end = Date.parse(dates[dates.length - 1])
+  return trendChartPaddingX + (trendChartWidth - trendChartPaddingX * 2) * (Date.parse(date) - start) / (end - start)
+}
+
 function buildPollTrendOverlay(
   polls: VotingIntentPoll[],
   trackedCandidateIds: string[],
@@ -346,15 +355,9 @@ function buildPollTrendOverlay(
     aggregatesByDate.set(poll.fieldworkEnd, dateAggregate)
   })
 
-  const usableWidth = trendChartWidth - trendChartPaddingX * 2
   const usableHeight = trendChartHeight - trendChartPaddingTop - trendChartPaddingBottom
   const xPositionByDate = new Map(
-    dates.map((date, index) => [
-      date,
-      dates.length === 1
-        ? trendChartWidth / 2
-        : trendChartPaddingX + (usableWidth * index) / Math.max(1, dates.length - 1),
-    ]),
+    dates.map((date) => [date, trendDateX(date, dates)]),
   )
 
   let maxValue = 0
@@ -1004,6 +1007,9 @@ function PollTrendChartSection({
   onTimeframeChange: (timeframe: PollTimeframe) => void
 }) {
   const [hoveredDate, setHoveredDate] = useState<string | null>(null)
+  const [showTooltip, setShowTooltip] = useState(false)
+  const [replay, setReplay] = useState(0)
+  const reducedMotion = useReducedMotion()
 
   const timeframePolls = useMemo(() => filterPollsByTimeframe(polls, timeframe), [polls, timeframe])
   const trackedCandidateIds = useMemo(
@@ -1016,19 +1022,15 @@ function PollTrendChartSection({
     [timeframePolls, trackedCandidateIds, candidatesById],
   )
 
-  const usableWidth = trendChartWidth - trendChartPaddingX * 2
-  const hoverIndex = hoveredDate ? dates.indexOf(hoveredDate) : -1
-  const hoverX =
-    hoverIndex >= 0
-      ? dates.length === 1
-        ? trendChartWidth / 2
-        : trendChartPaddingX + (usableWidth * hoverIndex) / Math.max(1, dates.length - 1)
-      : null
+  const selectedDate = hoveredDate && dates.includes(hoveredDate) ? hoveredDate : null
+  const animationKey = `${timeframe}-${activePollster ?? 'all'}-${dates.join(',')}-${replay}`
+  const hoverIndex = selectedDate ? dates.indexOf(selectedDate) : -1
+  const hoverX = selectedDate ? trendDateX(selectedDate, dates) : null
 
   const hoveredSeries = series
     .map((entry) => ({
       ...entry,
-      hoveredPoint: hoveredDate ? entry.points.find((point) => point.date === hoveredDate) ?? null : null,
+      hoveredPoint: selectedDate ? entry.points.find((point) => point.date === selectedDate) ?? null : null,
     }))
     .sort((first, second) => (second.hoveredPoint?.value ?? 0) - (first.hoveredPoint?.value ?? 0))
 
@@ -1042,7 +1044,6 @@ function PollTrendChartSection({
     <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.06)] sm:p-8">
       <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Évolution agrégée</p>
           <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">Évolution des intentions de vote</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-500">
             Courbe agrégée à partir des scénarios actuellement stockés. Les lignes suivent les principaux candidats du moment en moyenne par date de terrain.
@@ -1061,6 +1062,7 @@ function PollTrendChartSection({
                 key={entry.id}
                 type="button"
                 onClick={() => onTimeframeChange(entry.id)}
+                aria-pressed={timeframe === entry.id}
                 className={`rounded-lg px-4 py-1.5 text-xs font-bold transition ${
                   timeframe === entry.id ? 'bg-primary text-white' : 'text-slate-500 hover:text-primary'
                 }`}
@@ -1069,6 +1071,7 @@ function PollTrendChartSection({
               </button>
             ))}
           </div>
+          {!reducedMotion ? <button type="button" onClick={() => setReplay((value) => value + 1)} className="poll-trend-replay"><RotateCcw size={15} aria-hidden="true" />Rejouer le tracé</button> : null}
         </div>
       </div>
 
@@ -1085,10 +1088,14 @@ function PollTrendChartSection({
       ) : (
         <div className="mt-8 grid gap-6 xl:grid-cols-[minmax(0,1.55fr)_minmax(18rem,0.9fr)]">
           <div className="rounded-[1.7rem] border border-slate-200/80 bg-slate-50/85 p-4">
-            <div className="relative" onMouseLeave={() => setHoveredDate(null)}>
-              <svg
+            <div className="relative" onMouseLeave={() => setShowTooltip(false)}>
+              <motion.svg
+                key={animationKey}
+                initial={reducedMotion ? false : 'hidden'}
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.35 }}
                 viewBox={`0 0 ${trendChartWidth} ${trendChartHeight}`}
-                className="h-80 w-full overflow-visible"
+                className="poll-trend-chart h-auto w-full overflow-visible"
                 role="img"
                 aria-label="Évolution agrégée des intentions de vote"
               >
@@ -1124,6 +1131,13 @@ function PollTrendChartSection({
                   />
                 ) : null}
 
+                <motion.g
+                  className="poll-trend-lines"
+                  variants={{
+                    hidden: { clipPath: 'inset(0 100% 0 0)' },
+                    visible: { clipPath: 'inset(0 0% 0 0)', transition: { duration: reducedMotion ? 0 : 1.6, ease: 'linear' } },
+                  }}
+                >
                 {series.map((entry) => (
                   <path
                     key={`poll-trend-${entry.candidateId}`}
@@ -1136,6 +1150,11 @@ function PollTrendChartSection({
                     opacity={hoveredSeries[0]?.candidateId === entry.candidateId || hoveredDate === null ? 0.98 : 0.74}
                   />
                 ))}
+                {series.map((entry) => {
+                  const point = entry.points[entry.points.length - 1]
+                  return <circle key={`poll-trend-end-${entry.candidateId}`} cx={point.x} cy={point.y} r="4.5" fill={entry.accentColor} stroke="white" strokeWidth="2" />
+                })}
+                </motion.g>
 
                 {hoveredSeries.map((entry) =>
                   entry.hoveredPoint ? (
@@ -1152,30 +1171,29 @@ function PollTrendChartSection({
                 )}
 
                 {dates.map((date, index) => {
-                  const x =
-                    dates.length === 1
-                      ? trendChartWidth / 2
-                      : trendChartPaddingX + (usableWidth * index) / Math.max(1, dates.length - 1)
+                  const x = trendDateX(date, dates)
+                  const left = index === 0 ? trendChartPaddingX : (trendDateX(dates[index - 1], dates) + x) / 2
+                  const right = index === dates.length - 1 ? trendChartWidth - trendChartPaddingX : (trendDateX(dates[index + 1], dates) + x) / 2
 
                   return (
                     <rect
                       key={`poll-trend-hit-${date}`}
-                      x={x - 8}
+                      x={left}
                       y={trendChartPaddingTop}
-                      width="16"
+                      width={Math.max(1, right - left)}
                       height={trendChartHeight - trendChartPaddingTop - trendChartPaddingBottom}
                       fill="transparent"
-                      onMouseEnter={() => setHoveredDate(date)}
+                      onMouseEnter={() => { setHoveredDate(date); setShowTooltip(true) }}
                     />
                   )
                 })}
-              </svg>
+              </motion.svg>
 
-              {hoveredDate && hoverX !== null ? (
+              {showTooltip && hoveredDate && hoverX !== null ? (
                 <div
                   className="pointer-events-none absolute z-10 w-[min(18rem,calc(100%-0.5rem))] -translate-x-1/2 -translate-y-[calc(100%+0.75rem)] rounded-[1.3rem] border border-slate-200/90 bg-white/96 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur"
                   style={{
-                    left: `${Math.min(84, Math.max(16, (hoverX / trendChartWidth) * 100))}%`,
+                    left: `clamp(min(9rem, 50%), ${(hoverX / trendChartWidth) * 100}%, max(50%, calc(100% - 9rem)))`,
                     top: '1rem',
                   }}
                 >
@@ -1208,8 +1226,12 @@ function PollTrendChartSection({
             </div>
 
             <p className="mt-3 text-xs text-slate-500">
-              Passe la souris sur la courbe pour comparer les candidats à une date donnée. Le calcul agrège les scénarios stockés pour chaque fin de terrain.
+              Survolez la courbe ou choisissez une date ci-dessous. Ces moyennes de scénarios différents sont indicatives : elles ne constituent pas une prévision électorale.
             </p>
+            <label className="poll-trend-date-control">
+              <span>Date à comparer <strong>{formatFrenchDate(selectedDate ?? dates[dates.length - 1])}</strong></span>
+              <input type="range" min="0" max={Math.max(0, dates.length - 1)} value={hoverIndex >= 0 ? hoverIndex : dates.length - 1} disabled={dates.length < 2} aria-label="Date à comparer sur le graphique" aria-valuetext={formatFrenchDate(selectedDate ?? dates[dates.length - 1])} onChange={(event) => { setHoveredDate(dates[Number(event.target.value)]); setShowTooltip(false) }} />
+            </label>
           </div>
 
           <div className="grid content-start gap-3">
@@ -1239,7 +1261,7 @@ function PollTrendChartSection({
                     <p className="mt-1 text-lg font-black tracking-tight text-slate-950">{formatScore(entry.latestValue)}%</p>
                   </div>
                   <div className="rounded-2xl bg-slate-50/90 px-3 py-2">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">Dans le survol</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">Date sélectionnée</p>
                     <p className="mt-1 text-lg font-black tracking-tight text-slate-950">
                       {entry.hoveredPoint ? `${formatScore(entry.hoveredPoint.value)}%` : '—'}
                     </p>

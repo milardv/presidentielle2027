@@ -25,7 +25,7 @@ import { FUTURE_HORIZON_YEAR, FUTURE_MODEL_UPDATED_AT, policyLevers } from '../.
 import { buildCandidateFutureModel } from '../../src/features/future/futureModel.js'
 import { pollsRouteSeo, quizRouteSeo, sourcesRouteSeo } from '../../src/seo/appRoutesSeo.js'
 import pollsSnapshot from '../../src/data/pollsSnapshot.json' with { type: 'json' }
-import { QUIZ_UPDATED_AT, quizAnswerOptions, quizQuestions } from '../../src/data/quizData.js'
+import { QUIZ_UPDATED_AT, candidateStances, quizAnswerOptions, quizQuestions } from '../../src/data/quizData.js'
 
 export const HEAD_MARKERS = ['<!-- seo:head:start -->', '<!-- seo:head:end -->']
 export const ROOT_MARKERS = ['<!-- seo:root:start -->', '<!-- seo:root:end -->']
@@ -448,7 +448,7 @@ export function renderHomeFallback() {
 
     <section class="panel">
       <h2>Quel candidat vous correspond ? Le quiz en 2 minutes</h2>
-      <p>${quizQuestions.length} affirmations sur les grands clivages de 2027, comparées aux positions publiques de ${running.length} candidats : obtenez votre top 3, votre profil politique et un résultat à partager.</p>
+      <p>${quizQuestions.length} affirmations sur les grands clivages de 2027, comparées aux positions publiques de ${running.filter((candidate) => candidateStances[candidate.id]).length} candidats : obtenez votre top 3, votre profil politique et un résultat à partager.</p>
       <p><a class="action" href="/quiz/">Faire le quiz</a></p>
     </section>
 
@@ -652,7 +652,7 @@ export function renderQuizFallback() {
       <ul>
         <li>${quizQuestions.length} affirmations sur les clivages de la campagne : immigration, retraites, énergie, fiscalité, Europe, sécurité, institutions, budget, salaires, laïcité, défense, écologie, services publics.</li>
         <li>Quatre réponses possibles (${quizAnswerOptions.map((option) => escapeHtml(option.label.toLowerCase())).join(', ')}) ou « sans avis ».</li>
-        <li>Vos réponses sont comparées aux positions publiques de ${runningCandidates().length} candidats déclarés ou en primaire, documentées dans leurs fiches.</li>
+        <li>Vos réponses sont comparées aux positions publiques de ${runningCandidates().filter((candidate) => candidateStances[candidate.id]).length} candidats déclarés, pressentis ou en primaire, documentées dans leurs fiches.</li>
         <li>Vous obtenez votre top 3, un profil politique (avec un peu d’humour), le détail question par question face au podium et un lien de partage. Aucune réponse individuelle n’est enregistrée, seules des statistiques anonymes agrégées.</li>
         <li>La page affiche aussi les candidats le plus souvent arrivés en tête chez les participants et la répartition des réponses pour chaque affirmation.</li>
       </ul>

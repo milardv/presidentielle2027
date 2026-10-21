@@ -1,4 +1,7 @@
+import { budget2027Article } from './budget2027Article.js'
+
 export const actuArticles = [
+budget2027Article,
 {
   "slug": "primaires-gauche-victoire-glucksmann-2026",
   "path": "/actu/primaires-gauche-victoire-glucksmann-2026/",

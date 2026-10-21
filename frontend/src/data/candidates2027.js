@@ -1,4 +1,6 @@
-export const CANDIDATE_DATA_LAST_UPDATED = '2026-10-12'
+import { recentCandidates20261021 } from './recentCandidates20261021.js'
+
+export const CANDIDATE_DATA_LAST_UPDATED = '2026-10-21'
 export const ELECTION_FIRST_ROUND_DATE = '2027-04-18'
 export const ELECTION_SECOND_ROUND_DATE = '2027-05-02'
 export const ELECTION_DECREE_DATE = '2026-07-01'
@@ -22,7 +24,7 @@ const shared = {
   listeLcp: src(
     'LCP',
     'https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373',
-    '2026-09-16',
+    '2026-10-14',
   ),
   listeCnews: src(
     'CNews',
@@ -1736,6 +1738,7 @@ export const candidates2027 = [
     ],
     sources: [darmaninSources.orange, darmaninSources.renoncement, darmaninSources.participates, darmaninSources.populaires, darmaninSources.wiki],
   },
+  ...recentCandidates20261021,
 ].map((candidate) => ({ ...candidate, dataLastUpdated: CANDIDATE_DATA_LAST_UPDATED }))
 
 export const electionCalendar = {

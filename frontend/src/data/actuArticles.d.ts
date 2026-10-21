@@ -1,7 +1,15 @@
 export interface ActuSource { id: number; label: string; publisher: string; url: string }
 export interface ActuParagraph { text: string; sources: number[] }
 export interface ActuTable { caption: string; headers: string[]; rows: string[][]; sources: number[] }
-export interface ActuSection { id: string; number: string; title: string; paragraphs: ActuParagraph[]; table?: ActuTable }
+export interface ActuSection {
+  id: string
+  number: string
+  title: string
+  paragraphs: ActuParagraph[]
+  table?: ActuTable
+  quote?: { text: string; attribution: string; sources: number[] }
+  figure?: { image: string; alt: string; caption: string; sources: number[] }
+}
 export interface ActuArticleData {
   opening: string
   keyPoints: { value: string; label: string }[]

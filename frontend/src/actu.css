@@ -84,6 +84,9 @@
 .actu-case-result small { color: #aebdc9; font-size: 10px; line-height: 1.5; }
 .actu-section blockquote { margin: 48px -42px; padding: 7px 0 7px 32px; border-left: 3px solid var(--edition-red); color: var(--edition-ink); font-family: var(--edition-serif); font-size: 29px; font-style: italic; line-height: 1.4; }
 .actu-section blockquote cite { display: block; margin-top: 12px; color: var(--edition-muted); font-family: 'Public Sans', sans-serif; font-size: 10px; font-style: normal; font-weight: 700; line-height: 1.5; }
+.actu-section-figure { margin: 36px 0; }
+.actu-section-figure img { display: block; width: 100%; height: auto; }
+.actu-section-figure figcaption { margin-top: 12px; color: var(--edition-muted); font-size: 12px; line-height: 1.65; }
 .actu-sources { margin-top: 85px; padding: 34px 0 0; border-top: 2px solid var(--edition-ink); scroll-margin-top: 120px; }
 .actu-sources > p { color: var(--edition-muted); font-family: 'Public Sans', sans-serif; font-size: 12px; line-height: 1.7; }
 .actu-sources ol { padding: 0; margin: 30px 0 0; list-style: none; }

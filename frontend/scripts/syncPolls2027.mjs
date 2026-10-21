@@ -1,9 +1,9 @@
-import { writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { initializeApp } from 'firebase/app'
 import { collection, doc, getDocs, getFirestore, writeBatch } from 'firebase/firestore'
 import { getFirebaseConfig } from './firebaseConfig.mjs'
-import { reviewPollSources } from './lib/reviewPollSources.mjs'
+import { reviewPollSources, useReviewedPollSource } from './lib/reviewPollSources.mjs'
 
 const FIRST_ROUND_COLLECTION = 'polls_2027'
 const SECOND_ROUND_COLLECTION = 'polls_second_round_2027'
@@ -20,6 +20,8 @@ const MONTHS = {
 }
 
 const SECTION_LABELS_FR = {
+  'October 2026': 'Octobre 2026',
+  'September 2026': 'Septembre 2026',
   'Since September 2026': 'Depuis septembre 2026',
   'July 2026 – August 2026': 'Juillet – août 2026',
   'January 2026 – June 2026': 'Janvier – juin 2026',
@@ -372,9 +374,14 @@ async function replaceCollection(db, collectionName, documents) {
 }
 
 async function main() {
-  const wikitext = await fetchWikitext()
+  const sourceFileIndex = process.argv.indexOf('--source-file')
+  if (sourceFileIndex >= 0 && !process.argv[sourceFileIndex + 1]) throw new Error('--source-file requires a wikitext file path.')
+  const wikitext = sourceFileIndex >= 0
+    ? await readFile(process.argv[sourceFileIndex + 1], 'utf8')
+    : await fetchWikitext()
   const firstRound = reviewPollSources(parseFirstRound(wikitext))
   const secondRound = parseSecondRound(wikitext)
+  secondRound.polls = secondRound.polls.map(useReviewedPollSource)
 
   if (firstRound.length === 0) {
     throw new Error('No first-round poll study was parsed from the source page.')
