@@ -34,7 +34,7 @@ const DIST_DIR = resolve(PROJECT_ROOT, 'dist')
 const today = new Date().toISOString().slice(0, 10)
 
 function renderKnowledgeFallback() {
-  return '<main id="seo-root-fallback"><h1>Le Grand Décryptage : 100 questions pour comprendre avant de voter</h1><p class="lead">Dix manches de dix questions pour comprendre économie, budget, travail, retraites, écologie, logement, santé, institutions, Europe et lecture des chiffres. Une explication sourcée suit chaque réponse. Le jeu est gratuit et sans compte ; la connexion permet de conserver son meilleur score.</p><p><a class="action" href="/quiz/">Découvrir aussi le quiz d’opinions</a></p></main>'
+  return '<main id="seo-root-fallback"><h1>Le Grand Décryptage : 100 questions pour comprendre avant de voter</h1><p class="lead">Choisissez une catégorie pour dix questions ciblées, consultez son nombre de participants, ou jouez dix manches de dix questions pour comprendre économie, budget, travail, retraites, écologie, logement, santé, institutions, Europe et lecture des chiffres. Une explication sourcée suit chaque réponse. Le jeu est gratuit et sans compte ; la connexion permet de conserver son meilleur score.</p><p><a class="action" href="/quiz/">Découvrir aussi le quiz d’opinions</a></p></main>'
 }
 
 function renderActuIndexFallback() {

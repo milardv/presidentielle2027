@@ -3,14 +3,14 @@ import { ArrowRight, BookOpen, Trophy } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { knowledgeCategories, knowledgeRewards } from '../../data/knowledgeQuestions'
 import { CategoryBadgeMark, JourneyBadgeMark } from './JourneyBadge'
-import { getKnowledgeStats, loadKnowledgeSession, type KnowledgeSession } from './knowledgeGame'
+import { getKnowledgeStats, loadKnowledgeCategorySession, type KnowledgeSession } from './knowledgeGame'
 import { subscribeToKnowledgeBestScore, type KnowledgeBestScore } from '../../services/knowledgeScoreRepository'
 import { subscribeToKnowledgeProgress, type KnowledgeAchievements } from '../../services/knowledgeProgressRepository'
 
 export function KnowledgeProfileCard({ userId }: { userId: string }) {
   const [best, setBest] = useState<KnowledgeBestScore | null>(null)
   const [progress, setProgress] = useState<KnowledgeSession | null>(null)
-  const [localSession] = useState<KnowledgeSession | null>(loadKnowledgeSession)
+  const [localSession] = useState<KnowledgeSession | null>(() => loadKnowledgeCategorySession())
   const [achievements, setAchievements] = useState<KnowledgeAchievements>({ journeyBadgeCount: 0, masteredCategoryIds: [] })
   const [bestLoaded, setBestLoaded] = useState(false)
   const [progressLoaded, setProgressLoaded] = useState(false)

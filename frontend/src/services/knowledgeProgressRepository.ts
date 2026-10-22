@@ -36,9 +36,11 @@ export function subscribeToKnowledgeProgress(
   uid: string,
   onNext: (progress: KnowledgeSession | null, achievements: KnowledgeAchievements) => void,
   onError: (error: unknown) => void,
+  categoryId?: string,
 ): Unsubscribe {
   return onSnapshot(userDoc(uid), (snapshot) => {
-    onNext(parseSavedProgress(snapshot.data()?.knowledgeProgress), parseKnowledgeAchievements(snapshot.data()?.knowledgeAchievements))
+    const data = snapshot.data()
+    onNext(parseSavedProgress(categoryId ? data?.knowledgeCategoryProgress?.[categoryId] : data?.knowledgeProgress), parseKnowledgeAchievements(data?.knowledgeAchievements))
   }, onError)
 }
 
@@ -54,14 +56,16 @@ export async function saveKnowledgeProgress(
   return runTransaction(db, async (transaction) => {
     const reference = userDoc(uid)
     const snapshot = await transaction.get(reference)
-    const previous = parseSavedProgress(snapshot.data()?.knowledgeProgress)
+    const data = snapshot.data()
+    const previous = parseSavedProgress(session.categoryId ? data?.knowledgeCategoryProgress?.[session.categoryId] : data?.knowledgeProgress)
     const earned = getKnowledgeStats(session.answers).mastered.map((category) => category.id)
-    const knowledgeAchievements = mergeKnowledgeAchievements(snapshot.data()?.knowledgeAchievements, session.answers.length / 10, earned)
+    const knowledgeAchievements = mergeKnowledgeAchievements(data?.knowledgeAchievements, session.categoryId ? 0 : session.answers.length / 10, earned)
     if (!overwrite && previous && previous.answers.length > session.answers.length) {
       transaction.set(reference, { knowledgeAchievements, updatedAt: serverTimestamp() }, { merge: true })
       return { saved: false, progress: previous }
     }
-    transaction.set(reference, { knowledgeProgress: session, knowledgeAchievements, updatedAt: serverTimestamp() }, { merge: true })
+    const progress = session.categoryId ? { knowledgeCategoryProgress: { [session.categoryId]: session } } : { knowledgeProgress: session }
+    transaction.set(reference, { ...progress, knowledgeAchievements, updatedAt: serverTimestamp() }, { merge: true })
     return { saved: true, progress: session }
   })
 }

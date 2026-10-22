@@ -10,6 +10,7 @@ export interface KnowledgeSession {
   answers: KnowledgeAnswer[]
   phase: 'playing' | 'feedback' | 'checkpoint' | 'result'
   stopped: boolean
+  categoryId?: string
 }
 
 function hash(seed: number, value: string): number {
@@ -33,20 +34,22 @@ function shuffled<T>(items: T[], seed: number): T[] {
   return result
 }
 
-export function createQuestionOrder(seed: number): KnowledgeQuestion[] {
-  return Array.from({ length: 10 }, (_, round) =>
+export function createQuestionOrder(seed: number, categoryId?: string): KnowledgeQuestion[] {
+  const order = Array.from({ length: 10 }, (_, round) =>
     shuffled(knowledgeQuestions.filter((question) => question.round === round + 1), hash(seed, `round-${round}`)),
   ).flat()
+  return categoryId ? order.filter((question) => question.categoryId === categoryId) : order
 }
 
 export function getShuffledOptions(question: KnowledgeQuestion, seed: number) {
   return shuffled(question.options.map((text, originalIndex) => ({ text, originalIndex })), hash(seed, question.id))
 }
 
-export function createKnowledgeSession(): KnowledgeSession {
+export function createKnowledgeSession(categoryId?: string): KnowledgeSession {
+  if (categoryId && !knowledgeCategories.some((category) => category.id === categoryId)) throw new Error('invalid-knowledge-category')
   const random = new Uint32Array(1)
   crypto.getRandomValues(random)
-  return { version: 1, seed: random[0], answers: [], phase: 'playing', stopped: false }
+  return { version: 1, seed: random[0], answers: [], phase: 'playing', stopped: false, ...(categoryId ? { categoryId } : {}) }
 }
 
 export function getKnowledgeStats(answers: KnowledgeAnswer[]) {
@@ -66,12 +69,13 @@ export function parseKnowledgeSession(parsed: unknown): KnowledgeSession | null 
   const value = parsed as Partial<KnowledgeSession>
   if (value.version !== 1 || typeof value.seed !== 'number' || !Number.isInteger(value.seed) || value.seed < 0 || value.seed > 0xffffffff || !Array.isArray(value.answers) || typeof value.stopped !== 'boolean') return null
   if (!['playing', 'feedback', 'checkpoint', 'result'].includes(value.phase ?? '')) return null
-  const order = createQuestionOrder(value.seed)
+  if (value.categoryId !== undefined && !knowledgeCategories.some((category) => category.id === value.categoryId)) return null
+  const order = createQuestionOrder(value.seed, value.categoryId)
   if (value.answers.length > order.length) return null
   if (!value.answers.every((answer, index) => answer && answer.questionId === order[index].id && Number.isInteger(answer.selectedOptionIndex) && answer.selectedOptionIndex >= 0 && answer.selectedOptionIndex < 4)) return null
   if (value.phase === 'feedback' && value.answers.length === 0) return null
   if (value.phase === 'checkpoint' && (value.answers.length === 0 || value.answers.length % 10 !== 0)) return null
-  if (value.phase === 'playing' && value.answers.length === 100) return null
+  if (value.phase === 'playing' && value.answers.length === order.length) return null
   if (value.phase === 'result' && value.answers.length === 0) return null
   return value as KnowledgeSession
 }
@@ -86,12 +90,23 @@ export function loadKnowledgeSession(): KnowledgeSession | null {
 }
 
 export function resumeKnowledgeSession(saved: KnowledgeSession): KnowledgeSession {
-  return { ...saved, phase: saved.answers.length === 100 ? 'result' : 'playing', stopped: false }
+  return { ...saved, phase: saved.answers.length === createQuestionOrder(saved.seed, saved.categoryId).length ? 'result' : 'playing', stopped: false }
+}
+
+export function loadKnowledgeCategorySession(categoryId?: string): KnowledgeSession | null {
+  try {
+    const stored = localStorage.getItem(`${GAME_STORAGE_KEY}:${categoryId ?? 'all'}`)
+    const saved = stored ? parseKnowledgeSession(JSON.parse(stored)) : loadKnowledgeSession()
+    return saved?.categoryId === categoryId ? saved : null
+  } catch { return null }
 }
 
 export function persistKnowledgeSession(session: KnowledgeSession | null) {
   try {
-    if (session) localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(session))
+    if (session) {
+      localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(session))
+      localStorage.setItem(`${GAME_STORAGE_KEY}:${session.categoryId ?? 'all'}`, JSON.stringify(session))
+    }
     else localStorage.removeItem(GAME_STORAGE_KEY)
   } catch { /* Le jeu reste utilisable si le stockage local est bloqué. */ }
 }

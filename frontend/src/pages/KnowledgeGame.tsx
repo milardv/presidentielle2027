@@ -9,15 +9,17 @@ import { knowledgeCategories, knowledgeQuestions, knowledgeRewards } from '../da
 import { HomeDesktopFooter } from '../features/candidates/home/components/HomeDesktopFooter'
 import { useAuthSession } from '../features/auth/hooks/useAuthSession'
 import { CategoryBadgeMark, JourneyBadgeMark, JourneyBadgeTile } from '../features/knowledge/JourneyBadge'
+import { KnowledgeCategoryPicker } from '../features/knowledge/KnowledgeCategoryPicker'
 import {
   createKnowledgeSession, createQuestionOrder, getKnowledgeStats, getShuffledOptions,
-  loadKnowledgeSession, persistKnowledgeSession, resumeKnowledgeSession, type KnowledgeSession,
+  loadKnowledgeCategorySession, loadKnowledgeSession, persistKnowledgeSession, resumeKnowledgeSession, type KnowledgeSession,
 } from '../features/knowledge/knowledgeGame'
 import { appNavItems } from '../navigation/appNavItems'
 import { signInWithGoogle } from '../services/authService'
 import { saveKnowledgeBestScore, subscribeToKnowledgeBestScore, type KnowledgeBestScore } from '../services/knowledgeScoreRepository'
 import { saveKnowledgeProgress, subscribeToKnowledgeProgress } from '../services/knowledgeProgressRepository'
 import { upsertUserProfile } from '../services/userProfileRepository'
+import { recordKnowledgeCategoryStart, subscribeToKnowledgeParticipation } from '../services/knowledgeParticipationRepository'
 import { SeoHead } from '../seo/SeoHead'
 import { knowledgeRouteSeo } from '../seo/appRoutesSeo.js'
 import { buildCanonicalUrl } from '../seo/site'
@@ -50,9 +52,15 @@ export default function KnowledgeGame() {
   const [progressError, setProgressError] = useState<string | null>(null)
   const [progressConflict, setProgressConflict] = useState<KnowledgeSession | null>(null)
   const feedbackRef = useRef<HTMLDivElement>(null)
+  const [participation, setParticipation] = useState<Record<string, number>>({})
+  const [participationStatus, setParticipationStatus] = useState<'loading' | 'ready' | 'error'>('loading')
+  const recordedStarts = useRef(new Set<string>())
   const { user } = useAuthSession()
   const seed = session?.seed
-  const order = useMemo(() => seed === undefined ? [] : createQuestionOrder(seed), [seed])
+  const selectedCategoryId = session?.categoryId
+  const selectedCategory = knowledgeCategories.find((item) => item.id === selectedCategoryId)
+  const totalQuestions = selectedCategory ? 10 : 100
+  const order = useMemo(() => seed === undefined ? [] : createQuestionOrder(seed, selectedCategoryId), [seed, selectedCategoryId])
   const stats = getKnowledgeStats(session?.answers ?? [])
   const answered = session?.answers.length ?? 0
   const question = session ? order[session.phase === 'feedback' ? answered - 1 : answered] : null
@@ -72,8 +80,8 @@ export default function KnowledgeGame() {
     const item = knowledgeQuestions.find((entry) => entry.id === answer.questionId)
     return item?.correctIndex === answer.selectedOptionIndex
   }).length ?? 0
-  const visibleCloudProgress = user?.uid === cloudOwner ? cloudProgress : null
-  const visibleBest = user?.uid === bestOwner ? best : null
+  const visibleCloudProgress = user?.uid === cloudOwner && cloudProgress?.categoryId === selectedCategoryId ? cloudProgress : null
+  const visibleBest = user?.uid === bestOwner && best?.categoryId === selectedCategoryId ? best : null
   const visibleProgressConflict = user?.uid === cloudOwner ? progressConflict : null
   const visibleProgressMessage = user?.uid === cloudOwner ? progressMessage : null
   const checkpointSaved = Boolean(user && session && visibleCloudProgress?.seed === session.seed && visibleCloudProgress.answers.length >= answered)
@@ -81,13 +89,23 @@ export default function KnowledgeGame() {
 
   useEffect(() => {
     if (!user) return
-    return subscribeToKnowledgeBestScore(user.uid, (value) => { setBest(value); setBestOwner(user.uid); setBestError(false) }, () => { setBestOwner(user.uid); setBestError(true) })
-  }, [user])
+    return subscribeToKnowledgeBestScore(user.uid, (value) => { setBest(value); setBestOwner(user.uid); setBestError(false) }, () => { setBestOwner(user.uid); setBestError(true) }, selectedCategoryId)
+  }, [user, selectedCategoryId])
 
   useEffect(() => {
     if (!user) return
-    return subscribeToKnowledgeProgress(user.uid, (value) => { setCloudProgress(value); setCloudOwner(user.uid); setCloudError(false) }, () => { setCloudOwner(user.uid); setCloudError(true) })
-  }, [user])
+    return subscribeToKnowledgeProgress(user.uid, (value) => { setCloudProgress(value); setCloudOwner(user.uid); setCloudError(false) }, () => { setCloudOwner(user.uid); setCloudError(true) }, selectedCategoryId)
+  }, [user, selectedCategoryId])
+
+  useEffect(() => subscribeToKnowledgeParticipation((counts) => { setParticipation(counts); setParticipationStatus('ready') }, () => setParticipationStatus('error')), [])
+
+  useEffect(() => {
+    if (!question || !['playing', 'feedback'].includes(session?.phase ?? '')) return
+    const key = `${question.categoryId}:${user?.uid ?? 'visitor'}`
+    if (recordedStarts.current.has(key)) return
+    recordedStarts.current.add(key)
+    void recordKnowledgeCategoryStart(question.categoryId, user?.uid).catch(() => { recordedStarts.current.delete(key) })
+  }, [question, session?.phase, user?.uid])
 
   useEffect(() => {
     if (session?.phase !== 'feedback') return
@@ -103,6 +121,12 @@ export default function KnowledgeGame() {
     setProgressMessage(null)
     setProgressError(null)
     setProgressConflict(null)
+  }
+
+  const chooseCategory = (categoryId?: string) => {
+    const saved = loadKnowledgeCategorySession(categoryId)
+    updateSession(saved ? resumeKnowledgeSession(saved) : createKnowledgeSession(categoryId))
+    window.scrollTo({ top: 0, behavior: 'instant' })
   }
 
   const resumeCloud = () => {
@@ -156,7 +180,7 @@ export default function KnowledgeGame() {
 
   const leaveCheckpoint = (stop: boolean) => {
     if (!session || session.phase !== 'checkpoint') return
-    updateSession({ ...session, phase: stop || answered === 100 ? 'result' : 'playing', stopped: stop && answered < 100 })
+    updateSession({ ...session, phase: stop || answered === totalQuestions ? 'result' : 'playing', stopped: stop && answered < totalQuestions })
     window.scrollTo({ top: 0, behavior: 'instant' })
   }
 
@@ -175,7 +199,8 @@ export default function KnowledgeGame() {
       })
       const outcome = await saveKnowledgeBestScore(activeUser.uid, {
         score: stats.score, answered: stats.answered, correct: stats.correct,
-        completed: stats.answered === 100,
+        completed: stats.answered === totalQuestions,
+        ...(session.categoryId ? { categoryId: session.categoryId } : {}),
         masteredCategoryIds: stats.mastered.map((item) => item.id),
       })
       setBest(outcome.best)
@@ -198,30 +223,37 @@ export default function KnowledgeGame() {
       <SeoHead title={knowledgeRouteSeo.title} description={knowledgeRouteSeo.description} path={knowledgeRouteSeo.path} keywords={knowledgeRouteSeo.keywords} jsonLd={knowledgeJsonLd} />
       <AppSiteHeader />
       <main className="knowledge-main">
-        <div className="knowledge-topline"><Link to="/quiz"><ArrowLeft size={16} aria-hidden="true" /> Les quiz</Link><span>Le Grand Décryptage · Édition 2027</span></div>
+        <div className="knowledge-topline"><Link to="/quiz"><ArrowLeft size={16} aria-hidden="true" /> Les quiz</Link>{session ? <button type="button" className="knowledge-change-category" onClick={() => updateSession(null)}>Choisir une autre catégorie</button> : <span>Le Grand Décryptage · Édition 2027</span>}</div>
 
         {canResumeCloud && visibleCloudProgress ? (
           <section className="knowledge-cloud-resume" aria-label="Partie sauvegardée">
-            <JourneyBadgeMark index={Math.floor(visibleCloudProgress.answers.length / 10) - 1} size="profile" />
-            <div><strong>Votre partie sauvegardée vous attend.</strong><p>{visibleCloudProgress.answers.length} questions terminées · {visibleCloudProgress.answers.length === 100 ? 'votre bilan est prêt.' : 'reprenez au palier suivant, même sur cet appareil.'}</p></div>
-            <button type="button" onClick={resumeCloud}>{visibleCloudProgress.answers.length === 100 ? 'Voir mon bilan' : 'Reprendre ma sauvegarde'} <ArrowRight size={16} aria-hidden="true" /></button>
+            {selectedCategory ? <BookOpen size={30} aria-hidden="true" /> : <JourneyBadgeMark index={Math.floor(visibleCloudProgress.answers.length / 10) - 1} size="profile" />}
+            <div><strong>Votre partie sauvegardée vous attend.</strong><p>{visibleCloudProgress.answers.length} questions terminées · {visibleCloudProgress.answers.length === totalQuestions ? 'votre bilan est prêt.' : 'reprenez au palier suivant, même sur cet appareil.'}</p></div>
+            <button type="button" onClick={resumeCloud}>{visibleCloudProgress.answers.length === totalQuestions ? 'Voir mon bilan' : 'Reprendre ma sauvegarde'} <ArrowRight size={16} aria-hidden="true" /></button>
           </section>
         ) : null}
 
         {!session ? (
           <>
             <section className="knowledge-intro">
-              <div className="knowledge-intro-copy"><p className="knowledge-overline">Un jeu de connaissances · Sans opinion à deviner</p><h1>Comprendre change <em>la donne.</em></h1><p className="knowledge-intro-lede">Le PIB, le climat, le droit du travail, les institutions… Saurez-vous reconnaître les mécanismes derrière les promesses ? Cent questions, dix manches, une explication après chaque réponse et un badge tous les dix défis.</p><div className="knowledge-intro-actions"><button type="button" onClick={() => updateSession(createKnowledgeSession())}>Lancer la première manche <ArrowRight size={18} aria-hidden="true" /></button><span>Gratuit · À votre rythme · Sans compte</span></div></div>
+              <div className="knowledge-intro-copy"><p className="knowledge-overline">Un jeu de connaissances · Sans opinion à deviner</p><h1>Comprendre change <em>la donne.</em></h1><p className="knowledge-intro-lede">Le PIB, le climat, le droit du travail, les institutions… Saurez-vous reconnaître les mécanismes derrière les promesses ? Choisissez un thème pour dix questions ciblées, ou explorez le parcours complet en cent questions. Une explication vous accompagne après chaque réponse.</p><div className="knowledge-intro-actions"><button type="button" onClick={() => chooseCategory()}>Ouvrir le parcours complet <ArrowRight size={18} aria-hidden="true" /></button><span>Gratuit · À votre rythme · Sans compte</span></div></div>
               <div className="knowledge-intro-art" aria-hidden="true"><span className="knowledge-art-top">LE PARCOURS</span><strong>100</strong><span className="knowledge-art-bottom">questions<br />pour voir plus clair.</span><div className="knowledge-art-steps">{Array.from({ length: 10 }, (_, index) => <i key={index} />)}</div></div>
             </section>
-            <section className="knowledge-categories-intro"><div><h2>Dix portes d’entrée sur le débat public.</h2><p>Chaque manche traverse les dix thèmes. La réponse juste compte ; comprendre pourquoi compte davantage.</p></div><div className="knowledge-categories-list">{knowledgeCategories.map((item, index) => <div key={item.id}><span>{String(index + 1).padStart(2, '0')}</span><strong>{item.title}</strong><span className="knowledge-category-dot" style={{ background: item.color }} /></div>)}</div></section>
+            <KnowledgeCategoryPicker onChoose={chooseCategory} counts={participation} status={participationStatus} />
           </>
         ) : null}
 
         {session && (session.phase === 'playing' || session.phase === 'feedback') && question && category ? (
           <div className="knowledge-play-layout">
-            <aside className="knowledge-play-aside"><div className="knowledge-round-label">Manche {currentRound} / 10</div><h2>Votre parcours</h2><div className="knowledge-round-track" aria-label={`${answered} questions sur 100 terminées`}>{Array.from({ length: 10 }, (_, index) => <span key={index} className={index < Math.floor(answered / 10) ? 'is-done' : index === currentRound - 1 ? 'is-current' : ''} />)}</div><div className="knowledge-aside-score"><strong>{formatScore(stats.score)}</strong><span>points cumulés</span></div><p>{currentStreak > 1 ? `${currentStreak} bonnes réponses d’affilée.` : 'Une notion comprise vaut plus qu’un coup de chance.'}</p><div className="knowledge-aside-next"><span>Prochain badge</span><strong>{knowledgeRewards[currentRound - 1]}</strong><small>{session.phase === 'feedback' && answered % 10 === 0 ? 'Palier prêt à débloquer' : `Dans ${10 - (answered % 10)} réponse${10 - (answered % 10) > 1 ? 's' : ''}`}</small></div></aside>
-            <section className="knowledge-question-card" aria-labelledby="knowledge-question-title"><div className="knowledge-question-meta"><span className="knowledge-topic" style={{ '--topic-color': category.color } as React.CSSProperties}>{category.title}</span><span>Question {session.phase === 'feedback' ? answered : answered + 1} / 100</span></div><div className="knowledge-question-progress"><span style={{ width: `${answered}%` }} /></div><p className="knowledge-concept">À vous de jouer</p><h1 id="knowledge-question-title">{question.prompt}</h1>{termNote ? <aside className="knowledge-term-note" aria-label={`Repère : ${termNote.term}`}><BookOpen size={18} aria-hidden="true" /><div><strong>{termNote.term}</strong><p>{termNote.definition}</p></div></aside> : null}<div className="knowledge-options" role="group" aria-label="Choisir une réponse">{displayedOptions.map((option, index) => {
+            <aside className="knowledge-play-aside">
+              <div className="knowledge-round-label">{selectedCategory ? 'Entraînement ciblé' : `Manche ${currentRound} / 10`}</div>
+              <h2>{selectedCategory?.title ?? 'Votre parcours'}</h2>
+              <div className="knowledge-round-track" aria-label={`${answered} questions sur ${totalQuestions} terminées`}>{Array.from({ length: 10 }, (_, index) => <span key={index} className={index < (selectedCategory ? answered : Math.floor(answered / 10)) ? 'is-done' : index === (selectedCategory ? answered : currentRound - 1) ? 'is-current' : ''} />)}</div>
+              <div className="knowledge-aside-score"><strong>{formatScore(stats.score)}</strong><span>points cumulés</span></div>
+              <p>{currentStreak > 1 ? `${currentStreak} bonnes réponses d’affilée.` : 'Une notion comprise vaut plus qu’un coup de chance.'}</p>
+              <div className="knowledge-aside-next"><span>{selectedCategory ? 'Badge de maîtrise' : 'Prochain badge'}</span><strong>{selectedCategory ? '7 bonnes réponses sur 10' : knowledgeRewards[currentRound - 1]}</strong><small>{selectedCategory ? 'Chaque réponse est expliquée.' : session.phase === 'feedback' && answered % 10 === 0 ? 'Palier prêt à débloquer' : `Dans ${10 - (answered % 10)} réponses`}</small></div>
+            </aside>
+            <section className="knowledge-question-card" aria-labelledby="knowledge-question-title"><div className="knowledge-question-meta"><span className="knowledge-topic" style={{ '--topic-color': category.color } as React.CSSProperties}>{category.title}</span><span>Question {session.phase === 'feedback' ? answered : answered + 1} / {totalQuestions}</span></div><div className="knowledge-question-progress"><span style={{ width: `${answered / totalQuestions * 100}%` }} /></div><p className="knowledge-concept">À vous de jouer</p><h1 id="knowledge-question-title">{question.prompt}</h1>{termNote ? <aside className="knowledge-term-note" aria-label={`Repère : ${termNote.term}`}><BookOpen size={18} aria-hidden="true" /><div><strong>{termNote.term}</strong><p>{termNote.definition}</p></div></aside> : null}<div className="knowledge-options" role="group" aria-label="Choisir une réponse">{displayedOptions.map((option, index) => {
               const isCorrectOption = option.originalIndex === question.correctIndex
               const isSelected = option.originalIndex === selectedOptionIndex
               return <button key={option.originalIndex} type="button" disabled={session.phase === 'feedback'} className={`${session.phase === 'feedback' && isCorrectOption ? 'is-correct' : ''} ${session.phase === 'feedback' && isSelected && !isCorrectOption ? 'is-incorrect' : ''}`} onClick={() => answerQuestion(option.originalIndex)}><span>{String.fromCharCode(65 + index)}</span><strong>{option.text}</strong>{session.phase === 'feedback' && isCorrectOption ? <Check size={19} aria-hidden="true" /> : null}</button>
@@ -231,19 +263,19 @@ export default function KnowledgeGame() {
 
         {session?.phase === 'checkpoint' ? (
           <section className="knowledge-checkpoint">
-            <JourneyBadgeMark index={lastRound - 1} size="hero" />
-            <p className="knowledge-overline">Bravo ! Manche {lastRound} terminée · Badge {lastRound} / 10</p>
-            <h1>{knowledgeRewards[lastRound - 1]}</h1>
+            {selectedCategory ? <BookOpen size={64} aria-hidden="true" /> : <JourneyBadgeMark index={lastRound - 1} size="hero" />}
+            <p className="knowledge-overline">{selectedCategory ? 'Catégorie terminée' : `Bravo ! Manche ${lastRound} terminée · Badge ${lastRound} / 10`}</p>
+            <h1>{selectedCategory?.title ?? knowledgeRewards[lastRound - 1]}</h1>
             <p className="knowledge-checkpoint-lede">
-              {lastRound === 1 ? 'Votre premier badge est à vous.' : 'Un nouveau badge rejoint votre collection.'} Vous avez {roundCorrect} bonne{roundCorrect > 1 ? 's' : ''} réponse{roundCorrect > 1 ? 's' : ''} sur cette manche.
+              {selectedCategory ? (roundCorrect >= 7 ? 'Votre badge de maîtrise est débloqué.' : 'Chaque essai vous aide à progresser.') : lastRound === 1 ? 'Votre premier badge est à vous.' : 'Un nouveau badge rejoint votre collection.'} Vous avez {roundCorrect} bonne{roundCorrect > 1 ? 's' : ''} réponse{roundCorrect > 1 ? 's' : ''} sur ces dix questions.
               <span>{formatScore(stats.score)} points au total.</span>
             </p>
-            <div className="knowledge-checkpoint-progress">{Array.from({ length: 10 }, (_, index) => <span key={index} className={index < lastRound ? 'is-done' : ''} />)}</div>
+            {!selectedCategory ? <div className="knowledge-checkpoint-progress">{Array.from({ length: 10 }, (_, index) => <span key={index} className={index < lastRound ? 'is-done' : ''} />)}</div> : null}
             <div className="knowledge-checkpoint-save">
               <Cloud size={21} aria-hidden="true" />
               <div>
                 <h2>{checkpointSaved ? 'Palier sauvegardé.' : 'Retrouvez votre partie partout.'}</h2>
-                <p>{checkpointSaved ? 'Votre progression est liée à votre profil. Vous pourrez reprendre depuis un autre appareil.' : user ? 'Enregistrez ce palier dans votre profil pour le reprendre sur un autre appareil.' : 'Connectez-vous pour garder ce badge et reprendre au prochain palier sur un autre appareil.'}</p>
+                <p>{checkpointSaved ? 'Votre progression est liée à votre profil. Vous pourrez reprendre depuis un autre appareil.' : user ? 'Enregistrez ce palier dans votre profil pour le reprendre sur un autre appareil.' : 'Connectez-vous pour sauvegarder votre progression dans votre profil.'}</p>
                 {visibleProgressMessage ? <span className="knowledge-save-success" role="status">{visibleProgressMessage}</span> : null}
                 {progressError ? <span className="knowledge-save-error" role="alert">{progressError}</span> : null}
                 {cloudError && user?.uid === cloudOwner ? <span className="knowledge-save-error" role="alert">Impossible de lire votre progression enregistrée pour le moment.</span> : null}
@@ -253,15 +285,15 @@ export default function KnowledgeGame() {
             </div>
             <p className="knowledge-small-note">Votre partie reste aussi disponible sur cet appareil.</p>
             <div className="knowledge-checkpoint-actions">
-              <button type="button" className="knowledge-primary-button" onClick={() => leaveCheckpoint(false)}>{answered === 100 ? 'Voir mon bilan final' : 'Continuer l’aventure'} <ArrowRight size={18} aria-hidden="true" /></button>
-              {answered < 100 ? <button type="button" className="knowledge-secondary-button" onClick={() => leaveCheckpoint(true)}>M’arrêter et voir mon bilan</button> : null}
+              <button type="button" className="knowledge-primary-button" onClick={() => leaveCheckpoint(false)}>{answered === totalQuestions ? 'Voir mon bilan final' : 'Continuer l’aventure'} <ArrowRight size={18} aria-hidden="true" /></button>
+              {answered < totalQuestions ? <button type="button" className="knowledge-secondary-button" onClick={() => leaveCheckpoint(true)}>M’arrêter et voir mon bilan</button> : null}
             </div>
           </section>
         ) : null}
 
-        {session?.phase === 'result' ? <div className="knowledge-results"><section className="knowledge-result-hero"><div><p className="knowledge-overline">{answered === 100 ? 'Parcours complet' : `Pause après ${answered} questions`}</p><h1>Votre carte des connaissances.</h1><p>Un point de départ pour comprendre les choix publics, jamais une étiquette sur votre intelligence ou vos opinions.</p><div className="knowledge-result-actions">{answered < 100 ? <button type="button" className="knowledge-primary-button" onClick={() => { updateSession({ ...session, phase: 'playing', stopped: false }); window.scrollTo({ top: 0, behavior: 'instant' }) }}>Reprendre la manche suivante <ArrowRight size={17} /></button> : null}<button type="button" className="knowledge-secondary-button" onClick={() => { updateSession(createKnowledgeSession()); window.scrollTo({ top: 0, behavior: 'instant' }) }}><RotateCcw size={16} /> Rejouer depuis le début</button></div></div><div className="knowledge-result-score"><Trophy size={25} aria-hidden="true" /><strong>{formatScore(stats.score)}</strong><span>sur 1 000 points possibles</span><small>{stats.correct} bonnes réponses · {answered} questions jouées</small></div></section>
-          <section className="knowledge-result-categories"><div className="knowledge-results-section-head"><div><h2>Votre bilan par thème</h2><p>Le badge d’un thème se gagne à partir de 7 bonnes réponses sur ses 10 questions.</p></div><span>{stats.mastered.length} / 10 badges</span></div><div className="knowledge-category-results">{stats.categories.map((item) => <div key={item.id} className={`knowledge-category-result ${item.mastered ? 'is-mastered' : ''}`}> <div className="knowledge-category-result-head"><span className="knowledge-category-dot" style={{ background: item.color }} /><strong>{item.title}</strong><span>{item.correct} / {item.answered}</span></div><div className="knowledge-category-bar" aria-label={`${item.correct} bonnes réponses sur ${item.answered} en ${item.title}`}><span style={{ width: `${item.correct * 10}%`, background: item.color }} /></div><p>{item.mastered ? <span className="knowledge-mastered-label"><CategoryBadgeMark title={item.title} color={item.color} /> Badge de maîtrise débloqué</span> : item.answered < 10 ? `${10 - item.answered} question${10 - item.answered > 1 ? 's' : ''} avant le bilan complet` : 'Encore quelques notions à consolider'}</p></div>)}</div></section>
-          <div className="knowledge-result-lower"><section className="knowledge-result-rewards"><h2>Votre collection de badges</h2><p>Bravo pour le chemin parcouru ! Votre distinction : <strong>{answered === 100 ? 'Grand décodeur du débat' : 'Éclaireur du débat'}</strong>. Chaque palier franchi ajoute un sceau à votre passeport.</p><div className="knowledge-badge-collection">{knowledgeRewards.slice(0, Math.floor(answered / 10)).map((reward, index) => <JourneyBadgeTile key={reward} index={index} />)}</div>{stats.mastered.length > 0 ? <div className="knowledge-mastery-collection"><h3>Maîtrises débloquées</h3><div>{stats.mastered.map((item) => <span key={item.id}><CategoryBadgeMark title={item.title} color={item.color} />{item.title}</span>)}</div></div> : null}</section><section className="knowledge-result-revise"><h2>Trois notions à revoir</h2>{weakConcepts.length ? <ul>{weakConcepts.map((item) => <li key={item.id}><BookOpen size={17} aria-hidden="true" /><div><strong>{item.concept}</strong><p>{item.explanation}</p></div></li>)}</ul> : <p>Aucune erreur dans cette partie : poursuivez pour explorer d’autres notions.</p>}</section></div>
+        {session?.phase === 'result' ? <div className="knowledge-results"><section className="knowledge-result-hero"><div><p className="knowledge-overline">{answered === totalQuestions ? 'Parcours complet' : `Pause après ${answered} questions`}</p><h1>{selectedCategory ? `Votre bilan : ${selectedCategory.title}.` : 'Votre carte des connaissances.'}</h1><p>Un point de départ pour comprendre les choix publics, jamais une étiquette sur votre intelligence ou vos opinions.</p><div className="knowledge-result-actions">{answered < totalQuestions ? <button type="button" className="knowledge-primary-button" onClick={() => { updateSession({ ...session, phase: 'playing', stopped: false }); window.scrollTo({ top: 0, behavior: 'instant' }) }}>Reprendre la manche suivante <ArrowRight size={17} /></button> : null}<button type="button" className="knowledge-secondary-button" onClick={() => { updateSession(createKnowledgeSession(session.categoryId)); window.scrollTo({ top: 0, behavior: 'instant' }) }}><RotateCcw size={16} /> Rejouer depuis le début</button></div></div><div className="knowledge-result-score"><Trophy size={25} aria-hidden="true" /><strong>{formatScore(stats.score)}</strong><span>sur {formatScore(totalQuestions * 10)} points possibles</span><small>{stats.correct} bonnes réponses · {answered} questions jouées</small></div></section>
+          <section className="knowledge-result-categories"><div className="knowledge-results-section-head"><div><h2>Votre bilan par thème</h2><p>Le badge d’un thème se gagne à partir de 7 bonnes réponses sur ses 10 questions.</p></div><span>{stats.mastered.length} / {selectedCategory ? 1 : 10} badges</span></div><div className="knowledge-category-results">{stats.categories.filter((item) => !selectedCategory || item.id === selectedCategory.id).map((item) => <div key={item.id} className={`knowledge-category-result ${item.mastered ? 'is-mastered' : ''}`}> <div className="knowledge-category-result-head"><span className="knowledge-category-dot" style={{ background: item.color }} /><strong>{item.title}</strong><span>{item.correct} / {item.answered}</span></div><div className="knowledge-category-bar" aria-label={`${item.correct} bonnes réponses sur ${item.answered} en ${item.title}`}><span style={{ width: `${item.correct * 10}%`, background: item.color }} /></div><p>{item.mastered ? <span className="knowledge-mastered-label"><CategoryBadgeMark title={item.title} color={item.color} /> Badge de maîtrise débloqué</span> : item.answered < 10 ? `${10 - item.answered} question${10 - item.answered > 1 ? 's' : ''} avant le bilan complet` : 'Encore quelques notions à consolider'}</p></div>)}</div></section>
+          <div className="knowledge-result-lower"><section className="knowledge-result-rewards"><h2>Votre collection de badges</h2>{!selectedCategory ? <><p>Bravo pour le chemin parcouru ! Votre distinction : <strong>{answered === totalQuestions ? 'Grand décodeur du débat' : 'Éclaireur du débat'}</strong>. Chaque palier franchi ajoute un sceau à votre passeport.</p><div className="knowledge-badge-collection">{knowledgeRewards.slice(0, Math.floor(answered / 10)).map((reward, index) => <JourneyBadgeTile key={reward} index={index} />)}</div></> : <p>{stats.mastered.length ? 'Votre maîtrise de ce thème rejoint votre collection.' : 'Atteignez 7 bonnes réponses sur 10 pour débloquer le badge de ce thème.'}</p>}{stats.mastered.length > 0 ? <div className="knowledge-mastery-collection"><h3>Maîtrises débloquées</h3><div>{stats.mastered.map((item) => <span key={item.id}><CategoryBadgeMark title={item.title} color={item.color} />{item.title}</span>)}</div></div> : null}</section><section className="knowledge-result-revise"><h2>Trois notions à revoir</h2>{weakConcepts.length ? <ul>{weakConcepts.map((item) => <li key={item.id}><BookOpen size={17} aria-hidden="true" /><div><strong>{item.concept}</strong><p>{item.explanation}</p></div></li>)}</ul> : <p>Aucune erreur dans cette partie : poursuivez pour explorer d’autres notions.</p>}</section></div>
           <section className="knowledge-save"><div><p className="knowledge-overline">Votre record, si vous le souhaitez</p><h2>Gardez votre meilleur score.</h2><p>Connectez-vous avec Google pour enregistrer ce résultat dans votre profil. Votre meilleur score rejoint votre profil. Si vous avez sauvegardé un palier, les réponses de cette partie servent aussi à la reprendre.</p>{visibleBest ? <span className="knowledge-best">Record enregistré : {formatScore(visibleBest.score)} points sur {visibleBest.answered} questions</span> : null}{bestError && user?.uid === bestOwner ? <span className="knowledge-save-error">Impossible de lire votre record pour le moment.</span> : null}{saveMessage ? <span className="knowledge-save-success" role="status">{saveMessage}</span> : null}{saveError ? <span className="knowledge-save-error" role="alert">{saveError}</span> : null}</div><button type="button" onClick={() => void saveScore()} disabled={isSaving}>{isSaving ? 'Enregistrement…' : user ? 'Enregistrer mon score' : 'Me connecter et enregistrer'} <ChevronRight size={18} aria-hidden="true" /></button></section>
         </div> : null}
       </main>
