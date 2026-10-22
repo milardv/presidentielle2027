@@ -1,3 +1,4 @@
+import { lisnardResearch } from './davidLisnardResearch20261022.js'
 import { recentCandidates20261021 } from './recentCandidates20261021.js'
 
 export const CANDIDATE_DATA_LAST_UPDATED = '2026-10-21'
@@ -814,49 +815,7 @@ export const candidates2027 = [
     photoUrl: `${CLOUDINARY}/v1790073765/presidentielles/candidats/david-lisnard.jpg`,
     photoCredit: commonsCredit('Frantogian', 'CC BY-SA 3.0', CC_BY_SA_3, 'David_Lisnard_-_2013.jpg'),
     currentRole: 'Maire de Cannes et président de l’Association des maires de France',
-    biography: [
-      'Né en 1969, David Lisnard est maire de Cannes depuis 2014 et président de l’Association des maires de France depuis 2021.',
-      'Fondateur du mouvement Nouvelle Énergie, il défend une droite libérale, décentralisatrice et attachée à la réduction de la dépense publique.',
-      'Il a quitté Les Républicains fin mars 2026 et officialisé sa candidature le 31 mars, tout en restant favorable à une primaire de la droite.',
-    ],
-    keyPositions: [
-      {
-        topic: 'Candidature 2027',
-        summary: 'Il annonce sa candidature le 31 mars 2026 après avoir quitté LR.',
-        source: shared.listeTouteleurope,
-      },
-      {
-        topic: 'Primaire à droite',
-        summary: 'Avec Darmanin et Wauquiez, il figure parmi les partisans d’une primaire, refusée par Bertrand et Philippe.',
-        source: shared.droitePublicSenat,
-      },
-      {
-        topic: 'Ancrage local',
-        summary: 'Il s’appuie sur son mandat cannois et sur la présidence de l’AMF pour incarner la voix des élus locaux.',
-        source: wiki('David_Lisnard'),
-      },
-    ],
-    timeline: [
-      {
-        date: '2014-04-04',
-        title: 'Élection à la mairie de Cannes',
-        description: 'Il succède à Bernard Brochand.',
-        source: wiki('David_Lisnard'),
-      },
-      {
-        date: '2021-11-17',
-        title: 'Présidence de l’AMF',
-        description: 'Il est élu président de l’Association des maires de France.',
-        source: wiki('David_Lisnard'),
-      },
-      {
-        date: '2026-03-31',
-        title: 'Déclaration de candidature',
-        description: 'Il quitte LR et se déclare candidat à la présidentielle.',
-        source: shared.candidaturesWiki,
-      },
-    ],
-    sources: [shared.listeTouteleurope, shared.listeLcp, shared.droitePublicSenat, wiki('David_Lisnard')],
+    ...lisnardResearch,
   },
   {
     id: 'fabien-roussel',
@@ -1739,7 +1698,7 @@ export const candidates2027 = [
     sources: [darmaninSources.orange, darmaninSources.renoncement, darmaninSources.participates, darmaninSources.populaires, darmaninSources.wiki],
   },
   ...recentCandidates20261021,
-].map((candidate) => ({ ...candidate, dataLastUpdated: CANDIDATE_DATA_LAST_UPDATED }))
+].map((candidate) => ({ ...candidate, dataLastUpdated: candidate.dataLastUpdated ?? CANDIDATE_DATA_LAST_UPDATED }))
 
 export const electionCalendar = {
   firstRound: ELECTION_FIRST_ROUND_DATE,

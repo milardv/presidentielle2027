@@ -22,6 +22,7 @@ export interface CandidateTweet {
   authorUsername: string
   authorProfileImageUrl: string | null
   authorVerified: boolean
+  metricsAvailable?: boolean
   metrics: CandidateTweetMetrics
   media: CandidateTweetMedia[]
 }

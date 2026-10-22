@@ -89,12 +89,12 @@ function TweetCard({ tweet, isLead = false }: { tweet: CandidateTweet; isLead?: 
 
           <p className="mt-5 whitespace-pre-wrap text-[15px] leading-7 text-slate-700 dark:text-slate-200">{tweet.text}</p>
 
-          <div className="mt-5 flex flex-wrap items-center gap-2.5">
+          {tweet.metricsAvailable !== false ? <div className="mt-5 flex flex-wrap items-center gap-2.5">
             <TweetMetric label="Mentions j’aime" value={tweet.metrics.likes} icon={<Heart className="h-[15px] w-[15px]" />} />
             <TweetMetric label="Réponses" value={tweet.metrics.replies} icon={<MessageCircle className="h-[15px] w-[15px]" />} />
             <TweetMetric label="Reposts" value={tweet.metrics.reposts} icon={<Repeat2 className="h-[15px] w-[15px]" />} />
             <TweetMetric label="Vues" value={tweet.metrics.views} icon={<Eye className="h-[15px] w-[15px]" />} />
-          </div>
+          </div> : null}
         </div>
 
         {leadMedia ? (
@@ -161,7 +161,7 @@ export default function CandidateTweets() {
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Tweets</p>
                 <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-950 dark:text-white">{candidate.name}</h1>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                  Les 10 derniers posts publics du compte X officiel du candidat, récupérés automatiquement puis stockés en base.
+                  Jusqu’à dix publications publiques enregistrées du compte officiel. Les extraits sont signalés ; chaque lien permet de lire le message original sur X.
                 </p>
               </div>
             </div>

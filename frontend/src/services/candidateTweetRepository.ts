@@ -96,6 +96,7 @@ function parseCandidateTweet(id: string, data: Record<string, unknown>): Candida
       ? data.authorProfileImageUrl
       : null,
     authorVerified: data.authorVerified,
+    metricsAvailable: data.metricsAvailable !== false && isMetrics(data.metrics),
     metrics: isMetrics(data.metrics)
       ? data.metrics
       : { likes: 0, replies: 0, reposts: 0, views: 0 },

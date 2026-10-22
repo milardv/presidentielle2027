@@ -99,7 +99,7 @@ export default function CandidateVideos() {
                   {candidate.name}
                 </h1>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                  Sélection des vidéos YouTube détectées automatiquement pour ce candidat.
+                  Sélection de vidéos YouTube documentées pour ce candidat, avec leur chaîne de publication et leur lien d’origine.
                 </p>
               </div>
             </div>
