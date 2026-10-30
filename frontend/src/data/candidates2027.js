@@ -62,6 +62,26 @@ const shared = {
     'https://www.boursorama.com/actualite-economique/actualites/presidentielle-philippe-tend-la-main-a-la-droite-et-au-centre-retailleau-la-refuse-b6c13d84f1aad7e9f933889e195f4b91',
     '2026-09-08',
   ),
+  primaireDemocratesLcp: src(
+    'LCP',
+    'https://lcp.fr/actualites/presidentielle-2027-gabriel-attal-veut-une-grande-primaire-des-democrates-444417',
+    '2026-10-28',
+  ),
+  primaireDemocratesReactions: src(
+    'franceinfo',
+    'https://www.franceinfo.fr/elections/presidentielle/ce-serait-du-suicide-la-primaire-proposee-par-gabriel-attal-en-vue-de-la-presidentielle-ne-convainc-ni-edouard-philippe-ni-bruno-retailleau_8258924.html',
+    '2026-10-29',
+  ),
+  philippeProgrammeEuronews: src(
+    'Euronews',
+    'https://fr.euronews.com/2026/10/09/presidentielle-2027-edouard-philippe-mise-sur-le-travail-et-la-reduction-des-depenses-publ',
+    '2026-10-09',
+  ),
+  glucksmannPropositionsPublicSenat: src(
+    'Public Sénat',
+    'https://www.publicsenat.fr/actualites/politique/fiscalite-ecole-immigration-ce-que-propose-raphael-glucksmann',
+    '2026-08-24',
+  ),
   datesInfoGouv: src(
     'info.gouv.fr',
     'https://www.info.gouv.fr/actualite/presidentielle-2027-date-a-retenir-et-informations-cles',
@@ -383,6 +403,7 @@ export const candidates2027 = [
   },
   {
     id: 'edouard-philippe',
+    dataLastUpdated: '2026-10-30',
     name: 'Édouard Philippe',
     bloc: 'Centre droit',
     party: 'Horizons',
@@ -400,6 +421,18 @@ export const candidates2027 = [
       'À la rentrée 2026, il engrange le soutien de Gérald Darmanin et propose un rassemblement de la droite et du centre autour de sa candidature, sans passer par une primaire.',
     ],
     keyPositions: [
+      {
+        topic: 'Programme : immigration, retraites, dépenses',
+        summary:
+          'Selon Euronews (9 octobre 2026), il propose de diviser par deux l’immigration légale, de porter progressivement l’âge légal à 65 ans et de faire de la baisse des dépenses publiques la priorité, avec le non-remplacement d’un fonctionnaire sur trois.',
+        source: shared.philippeProgrammeEuronews,
+      },
+      {
+        topic: 'Primaire des démocrates',
+        summary:
+          'Son camp refuse la primaire proposée par Gabriel Attal le 28 octobre 2026 : son porte-parole estime qu’elle « n’aurait que des inconvénients ».',
+        source: shared.primaireDemocratesReactions,
+      },
       {
         topic: 'Candidature 2027',
         summary: 'Il a officialisé sa candidature le 3 septembre 2024 en promettant des « changements majeurs, systémiques ».',
@@ -449,10 +482,11 @@ export const candidates2027 = [
         source: shared.philippeRetailleauAfp,
       },
     ],
-    sources: [philippeSources.tf1, shared.philippeRetailleauAfp, philippeSources.darmanin, philippeSources.gouv, philippeSources.wiki],
+    sources: [shared.philippeProgrammeEuronews, shared.primaireDemocratesReactions, philippeSources.tf1, shared.philippeRetailleauAfp, philippeSources.darmanin, philippeSources.gouv, philippeSources.wiki],
   },
   {
     id: 'bruno-retailleau',
+    dataLastUpdated: '2026-10-30',
     name: 'Bruno Retailleau',
     bloc: 'Droite',
     party: 'Les Républicains',
@@ -467,9 +501,15 @@ export const candidates2027 = [
     biography: [
       'Né en 1960, Bruno Retailleau s’est imposé comme l’une des principales figures de la droite conservatrice au Sénat.',
       'Ancien ministre de l’Intérieur, élu président des Républicains en mai 2025, il a été désigné candidat de LR à la présidentielle par un vote des adhérents le 19 avril 2026.',
-      'Face à Édouard Philippe et Gabriel Attal au centre, et à Xavier Bertrand et David Lisnard à droite, il défend une candidature LR autonome sans primaire élargie.',
+      'Face à Édouard Philippe et Gabriel Attal au centre, et à Xavier Bertrand et David Lisnard à droite, il défend une candidature LR autonome et ne conçoit une primaire élargie qu’avec la participation d’Édouard Philippe.',
     ],
     keyPositions: [
+      {
+        topic: 'Primaire des démocrates',
+        summary:
+          'Il se dit favorable à une primaire à condition qu’Édouard Philippe y participe ; son entourage juge « fantaisiste et ridicule » la version proposée par Gabriel Attal le 28 octobre 2026.',
+        source: shared.primaireDemocratesReactions,
+      },
       {
         topic: 'Désignation LR',
         summary: 'Les adhérents des Républicains l’ont investi candidat le 19 avril 2026 lors d’une consultation interne.',
@@ -512,10 +552,11 @@ export const candidates2027 = [
         source: shared.philippeRetailleauAfp,
       },
     ],
-    sources: [shared.listeLcp, shared.philippeRetailleauAfp, retailleauSources.tf1, retailleauSources.lr, retailleauSources.senate, retailleauSources.wiki],
+    sources: [shared.primaireDemocratesReactions, shared.listeLcp, shared.philippeRetailleauAfp, retailleauSources.tf1, retailleauSources.lr, retailleauSources.senate, retailleauSources.wiki],
   },
   {
     id: 'gabriel-attal',
+    dataLastUpdated: '2026-10-30',
     name: 'Gabriel Attal',
     bloc: 'Centre',
     party: 'Renaissance',
@@ -533,6 +574,12 @@ export const candidates2027 = [
       'Il a déclaré sa candidature le 22 mai 2026 : le bloc central se retrouve avec deux candidats, lui et Édouard Philippe.',
     ],
     keyPositions: [
+      {
+        topic: 'Primaire des démocrates',
+        summary:
+          'Le 28 octobre 2026 sur TF1, il appelle à une « grande primaire des démocrates » pour éviter un second tour RN-LFI, ouverte aux candidats refusant toute alliance avec les extrêmes ; les modalités restent à définir.',
+        source: shared.primaireDemocratesLcp,
+      },
       {
         topic: 'Candidature 2027',
         summary: 'Il officialise sa candidature le 22 mai 2026, après avoir dit vouloir « proposer un chemin aux Français ».',
@@ -568,8 +615,14 @@ export const candidates2027 = [
         description: 'Il annonce officiellement sa candidature à l’élection présidentielle.',
         source: shared.candidaturesWiki,
       },
+      {
+        date: '2026-10-28',
+        title: 'Appel à une primaire des démocrates',
+        description: 'Sur TF1, il propose une primaire ouverte au centre et à la droite républicaine ; Horizons et LR répondent avec réserve.',
+        source: shared.primaireDemocratesLcp,
+      },
     ],
-    sources: [shared.listeTouteleurope, shared.listeLcp, attalSources.speech2027, attalSources.path2027, attalSources.assembly, attalSources.wiki],
+    sources: [shared.primaireDemocratesLcp, shared.listeTouteleurope, shared.listeLcp, attalSources.speech2027, attalSources.path2027, attalSources.assembly, attalSources.wiki],
   },
   {
     id: 'jean-luc-melenchon',
@@ -630,6 +683,7 @@ export const candidates2027 = [
   },
   {
     id: 'raphael-glucksmann',
+    dataLastUpdated: '2026-10-30',
     name: 'Raphaël Glucksmann',
     bloc: 'Centre gauche',
     party: 'Place publique',
@@ -647,6 +701,12 @@ export const candidates2027 = [
       'Son opposition à l’élargissement de cette primaire aux écologistes et à François Ruffin lui vaut de vives critiques à gauche.',
     ],
     keyPositions: [
+      {
+        topic: 'Retraites',
+        summary:
+          'Il écarte un retour de la retraite à 60 ans et promet « une réforme juste et ambitieuse », estimant que les personnes en bonne santé à l’espérance de vie plus longue doivent partir plus tard.',
+        source: shared.glucksmannPropositionsPublicSenat,
+      },
       {
         topic: 'Victoire à la primaire « Choisir 2027 »',
         summary: 'Il remporte le scrutin le 11 octobre 2026 avec 66,17 % des voix ; aucun second tour n’est nécessaire.',
@@ -684,7 +744,7 @@ export const candidates2027 = [
         source: shared.primaireChoisir2027,
       },
     ],
-    sources: [primaryResultSource, primaryReactionsSource, shared.primaireChoisir2027, tondelierSources.cnews, glucksmannSources.platform, glucksmannSources.primaireRefus, glucksmannSources.official, glucksmannSources.wiki],
+    sources: [primaryResultSource, shared.glucksmannPropositionsPublicSenat, primaryReactionsSource, shared.primaireChoisir2027, tondelierSources.cnews, glucksmannSources.platform, glucksmannSources.primaireRefus, glucksmannSources.official, glucksmannSources.wiki],
   },
   {
     id: 'eric-zemmour',

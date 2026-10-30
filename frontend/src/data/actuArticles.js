@@ -1,6 +1,8 @@
 import { budget2027Article } from './budget2027Article.js'
+import { primaireDemocratesArticle } from './primaireDemocratesArticle.js'
 
 export const actuArticles = [
+primaireDemocratesArticle,
 budget2027Article,
 {
   "slug": "primaires-gauche-victoire-glucksmann-2026",

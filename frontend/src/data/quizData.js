@@ -1,4 +1,4 @@
-export const QUIZ_UPDATED_AT = '2026-09-22'
+export const QUIZ_UPDATED_AT = '2026-10-30'
 export const QUIZ_ANSWER_VALUES = [-2, -1, 1, 2]
 
 export const quizAnswerOptions = [
@@ -141,13 +141,15 @@ export const quizQuestions = [
 
 // Stance per candidate and question, from -2 (strongly against the statement) to +2 (strongly for).
 // null = position not clearly established. Estimated from programmes and public statements (see fiches).
+// 2026-10-30: Philippe immigration 1 -> 2 (halving legal immigration, Euronews 9 Oct 2026);
+//             Glucksmann retraites 1 -> 0 (rejects a return to 60, later departures for some, Public Sénat 24 Aug 2026).
 export const candidateStances = {
   'marine-le-pen':        { immigration: 2, retraites: 2, nucleaire: 2, fiscalite: -1, europe: 0, justice: 2, proportionnelle: 2, ric: 2, depense: 0, smic: -1, laicite: 2, ukraine: -1, ecologie: -2, 'services-publics': 1 },
-  'edouard-philippe':     { immigration: 1, retraites: -2, nucleaire: 2, fiscalite: -2, europe: 2, justice: 1, proportionnelle: 0, ric: -1, depense: 2, smic: -2, laicite: 1, ukraine: 2, ecologie: 1, 'services-publics': -1 },
+  'edouard-philippe':     { immigration: 2, retraites: -2, nucleaire: 2, fiscalite: -2, europe: 2, justice: 1, proportionnelle: 0, ric: -1, depense: 2, smic: -2, laicite: 1, ukraine: 2, ecologie: 1, 'services-publics': -1 },
   'bruno-retailleau':     { immigration: 2, retraites: -2, nucleaire: 2, fiscalite: -2, europe: 1, justice: 2, proportionnelle: -1, ric: -1, depense: 2, smic: -2, laicite: 2, ukraine: 1, ecologie: -1, 'services-publics': -1 },
   'gabriel-attal':        { immigration: 1, retraites: -2, nucleaire: 2, fiscalite: -1, europe: 2, justice: 1, proportionnelle: 1, ric: -1, depense: 1, smic: -1, laicite: 2, ukraine: 2, ecologie: 1, 'services-publics': -1 },
   'jean-luc-melenchon':   { immigration: -2, retraites: 2, nucleaire: -2, fiscalite: 2, europe: -1, justice: -2, proportionnelle: 2, ric: 2, depense: -2, smic: 2, laicite: -2, ukraine: -1, ecologie: 2, 'services-publics': 2 },
-  'raphael-glucksmann':   { immigration: 0, retraites: 1, nucleaire: 1, fiscalite: 2, europe: 2, justice: 0, proportionnelle: 2, ric: 0, depense: -1, smic: 1, laicite: 0, ukraine: 2, ecologie: 2, 'services-publics': 1 },
+  'raphael-glucksmann':   { immigration: 0, retraites: 0, nucleaire: 1, fiscalite: 2, europe: 2, justice: 0, proportionnelle: 2, ric: 0, depense: -1, smic: 1, laicite: 0, ukraine: 2, ecologie: 2, 'services-publics': 1 },
   'eric-zemmour':         { immigration: 2, retraites: -2, nucleaire: 2, fiscalite: -2, europe: 0, justice: 2, proportionnelle: 1, ric: 1, depense: 2, smic: -2, laicite: 2, ukraine: -1, ecologie: -2, 'services-publics': -1 },
   'xavier-bertrand':      { immigration: 1, retraites: -1, nucleaire: 2, fiscalite: -1, europe: 1, justice: 2, proportionnelle: -1, ric: 0, depense: 1, smic: -1, laicite: 2, ukraine: 1, ecologie: 0, 'services-publics': 0 },
   'david-lisnard':        { immigration: 1, retraites: -2, nucleaire: 2, fiscalite: -2, europe: 1, justice: 2, proportionnelle: -1, ric: -1, depense: 2, smic: -2, laicite: 1, ukraine: 1, ecologie: 0, 'services-publics': -2 },
