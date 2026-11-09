@@ -90,6 +90,10 @@ const trendChartHeight = 320
 const trendChartPaddingX = 26
 const trendChartPaddingTop = 22
 const trendChartPaddingBottom = 34
+const trendFeaturedCount = 5
+const trendTooltipLimit = 8
+// Repli quand deux candidats partagent la couleur de leur parti.
+const trendFallbackColors = ['#7c3aed', '#db2777', '#65a30d', '#ea580c', '#0d9488', '#9333ea', '#ca8a04', '#be123c', '#4f46e5', '#15803d', '#c2410c', '#0369a1', '#a16207', '#6d28d9', '#047857', '#b91c1c']
 
 function formatScore(score: number): string {
   return new Intl.NumberFormat('fr-FR', {
@@ -364,8 +368,12 @@ function buildPollTrendOverlay(
 
   const rawSeries: RawPollTrendSeries[] = []
 
+  const usedColors = new Set<string>()
+  let fallbackIndex = 0
+
   trackedCandidateIds.forEach((candidateId) => {
       const candidate = candidatesById.get(candidateId) ?? null
+      let scoreName = ''
       const points = dates.flatMap((date) => {
         const aggregate = aggregatesByDate.get(date)?.get(candidateId)
         if (!aggregate || aggregate.count === 0) {
@@ -373,6 +381,7 @@ function buildPollTrendOverlay(
         }
 
         const averageValue = aggregate.totalScore / aggregate.count
+        scoreName = aggregate.candidateName
         maxValue = Math.max(maxValue, averageValue)
 
         return [
@@ -389,10 +398,17 @@ function buildPollTrendOverlay(
         return
       }
 
+      let accentColor = getCandidatePartyAccentColor(candidate?.party ?? '')
+      while (usedColors.has(accentColor) && fallbackIndex < trendFallbackColors.length) {
+        accentColor = trendFallbackColors[fallbackIndex]
+        fallbackIndex += 1
+      }
+      usedColors.add(accentColor)
+
       rawSeries.push({
         candidateId,
-        candidateName: candidate?.name ?? candidateId,
-        accentColor: getCandidatePartyAccentColor(candidate?.party ?? ''),
+        candidateName: candidate?.name ?? (scoreName || candidateId),
+        accentColor,
         latestValue: points[points.length - 1]?.value ?? 0,
         party: candidate?.party ?? '',
         photoUrl: candidate?.photoUrl,
@@ -1009,30 +1025,46 @@ function PollTrendChartSection({
   const [hoveredDate, setHoveredDate] = useState<string | null>(null)
   const [showTooltip, setShowTooltip] = useState(false)
   const [replay, setReplay] = useState(0)
+  const [hiddenCandidateIds, setHiddenCandidateIds] = useState<Set<string>>(() => new Set())
+  const [focusedCandidateId, setFocusedCandidateId] = useState<string | null>(null)
   const reducedMotion = useReducedMotion()
 
   const timeframePolls = useMemo(() => filterPollsByTimeframe(polls, timeframe), [polls, timeframe])
   const trackedCandidateIds = useMemo(
-    () => topCandidates.slice(0, 5).map((candidate) => candidate.candidateId),
+    () => topCandidates.map((candidate) => candidate.candidateId),
     [topCandidates],
   )
 
-  const { series, dates, chartMax } = useMemo(
+  const { series: allSeries, dates, chartMax } = useMemo(
     () => buildPollTrendOverlay(timeframePolls, trackedCandidateIds, candidatesById),
     [timeframePolls, trackedCandidateIds, candidatesById],
   )
+  const series = allSeries.filter((entry) => !hiddenCandidateIds.has(entry.candidateId))
+  const featuredIds = allSeries.slice(0, trendFeaturedCount).map((entry) => entry.candidateId)
+  const showsOnlyFeatured = allSeries.length > trendFeaturedCount && allSeries.every((entry) => featuredIds.includes(entry.candidateId) !== hiddenCandidateIds.has(entry.candidateId))
+
+  const toggleCandidate = (candidateId: string) => {
+    setHiddenCandidateIds((current) => {
+      const next = new Set(current)
+      if (next.has(candidateId)) next.delete(candidateId)
+      else next.add(candidateId)
+      return next
+    })
+  }
 
   const selectedDate = hoveredDate && dates.includes(hoveredDate) ? hoveredDate : null
   const animationKey = `${timeframe}-${activePollster ?? 'all'}-${dates.join(',')}-${replay}`
   const hoverIndex = selectedDate ? dates.indexOf(selectedDate) : -1
   const hoverX = selectedDate ? trendDateX(selectedDate, dates) : null
 
-  const hoveredSeries = series
+  const hoveredSeries = allSeries
     .map((entry) => ({
       ...entry,
       hoveredPoint: selectedDate ? entry.points.find((point) => point.date === selectedDate) ?? null : null,
     }))
-    .sort((first, second) => (second.hoveredPoint?.value ?? 0) - (first.hoveredPoint?.value ?? 0))
+    .sort((first, second) => (second.hoveredPoint?.value ?? second.latestValue) - (first.hoveredPoint?.value ?? first.latestValue))
+  const legendColumns = selectedDate ? 'grid-cols-[auto_minmax(0,1fr)_auto_auto]' : 'grid-cols-[auto_minmax(0,1fr)_auto]'
+  const visibleHoveredSeries = hoveredSeries.filter((entry) => !hiddenCandidateIds.has(entry.candidateId) && entry.hoveredPoint)
 
   const timeframes: Array<{ id: PollTimeframe; label: string }> = [
     { id: '6m', label: '6 mois' },
@@ -1046,7 +1078,7 @@ function PollTrendChartSection({
         <div>
           <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">Évolution des intentions de vote</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-500">
-            Courbe agrégée à partir des scénarios actuellement stockés. Les lignes suivent les principaux candidats du moment en moyenne par date de terrain.
+            Courbe agrégée à partir des scénarios actuellement stockés. Chaque ligne suit un candidat testé sur la période, en moyenne par date de terrain. Cliquez sur un nom pour masquer ou afficher sa courbe.
           </p>
         </div>
 
@@ -1075,7 +1107,7 @@ function PollTrendChartSection({
         </div>
       </div>
 
-      {series.length === 0 ? (
+      {allSeries.length === 0 ? (
         <div className="mt-6 rounded-[1.6rem] border border-dashed border-slate-300 bg-slate-50/80 p-6 text-center">
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
             <BarChart3 className="h-6 w-6" />
@@ -1138,25 +1170,30 @@ function PollTrendChartSection({
                     visible: { clipPath: 'inset(0 0% 0 0)', transition: { duration: reducedMotion ? 0 : 1.6, ease: 'linear' } },
                   }}
                 >
-                {series.map((entry) => (
-                  <path
-                    key={`poll-trend-${entry.candidateId}`}
-                    d={buildTrendPath(entry.points)}
-                    fill="none"
-                    stroke={entry.accentColor}
-                    strokeWidth="3.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    opacity={hoveredSeries[0]?.candidateId === entry.candidateId || hoveredDate === null ? 0.98 : 0.74}
-                  />
-                ))}
+                {series.map((entry) => {
+                  const featured = featuredIds.includes(entry.candidateId)
+                  const dimmed = focusedCandidateId !== null && focusedCandidateId !== entry.candidateId
+                  return (
+                    <path
+                      key={`poll-trend-${entry.candidateId}`}
+                      d={buildTrendPath(entry.points)}
+                      fill="none"
+                      stroke={entry.accentColor}
+                      strokeWidth={focusedCandidateId === entry.candidateId ? 4.5 : featured ? 3.5 : 2.25}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      opacity={dimmed ? 0.15 : featured ? 0.98 : 0.8}
+                    />
+                  )
+                })}
                 {series.map((entry) => {
                   const point = entry.points[entry.points.length - 1]
-                  return <circle key={`poll-trend-end-${entry.candidateId}`} cx={point.x} cy={point.y} r="4.5" fill={entry.accentColor} stroke="white" strokeWidth="2" />
+                  const dimmed = focusedCandidateId !== null && focusedCandidateId !== entry.candidateId
+                  return <circle key={`poll-trend-end-${entry.candidateId}`} cx={point.x} cy={point.y} r={featuredIds.includes(entry.candidateId) ? 4.5 : 3.5} fill={entry.accentColor} stroke="white" strokeWidth="2" opacity={dimmed ? 0.2 : 1} />
                 })}
                 </motion.g>
 
-                {hoveredSeries.map((entry) =>
+                {visibleHoveredSeries.map((entry) =>
                   entry.hoveredPoint ? (
                     <circle
                       key={`poll-trend-point-${entry.candidateId}-${entry.hoveredPoint.date}`}
@@ -1200,7 +1237,7 @@ function PollTrendChartSection({
                   <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-primary">Point suivi</p>
                   <p className="mt-2 text-sm font-semibold text-slate-900">{formatFrenchDate(hoveredDate)}</p>
                   <div className="mt-3 grid gap-2">
-                    {hoveredSeries.map((entry) =>
+                    {visibleHoveredSeries.slice(0, trendTooltipLimit).map((entry) =>
                       entry.hoveredPoint ? (
                         <div
                           key={`poll-trend-hover-${entry.candidateId}-${hoveredDate}`}
@@ -1214,6 +1251,9 @@ function PollTrendChartSection({
                         </div>
                       ) : null,
                     )}
+                    {visibleHoveredSeries.length > trendTooltipLimit ? (
+                      <p className="px-1 text-xs text-slate-500">+ {visibleHoveredSeries.length - trendTooltipLimit} autres candidats, détail dans la légende</p>
+                    ) : null}
                   </div>
                 </div>
               ) : null}
@@ -1234,41 +1274,77 @@ function PollTrendChartSection({
             </label>
           </div>
 
-          <div className="grid content-start gap-3">
-            {hoveredSeries.map((entry) => (
-              <article key={`poll-trend-legend-${entry.candidateId}`} className="rounded-[1.4rem] border border-slate-200/80 bg-white/92 p-4 shadow-sm">
-                <div className="flex items-center gap-3">
-                  {entry.photoUrl ? (
-                    <img src={entry.photoUrl} alt={entry.candidateName} className="h-12 w-12 rounded-2xl object-cover" loading="lazy" />
-                  ) : (
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900 text-sm font-bold text-white">
-                      {getCandidateInitials(entry.candidateName)}
-                    </div>
-                  )}
-
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
-                      <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: entry.accentColor }} />
-                      <p className="truncate text-base font-bold tracking-tight text-slate-950">{entry.candidateName}</p>
-                    </div>
-                    <p className="mt-1 text-sm text-slate-500">{entry.party || 'Bloc non précisé'}</p>
-                  </div>
-                </div>
-
-                <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">
-                  <div className="rounded-2xl bg-slate-50/90 px-3 py-2">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">Dernier niveau</p>
-                    <p className="mt-1 text-lg font-black tracking-tight text-slate-950">{formatScore(entry.latestValue)}%</p>
-                  </div>
-                  <div className="rounded-2xl bg-slate-50/90 px-3 py-2">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">Date sélectionnée</p>
-                    <p className="mt-1 text-lg font-black tracking-tight text-slate-950">
-                      {entry.hoveredPoint ? `${formatScore(entry.hoveredPoint.value)}%` : '—'}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            ))}
+          <div className="content-start">
+            <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
+                {series.length} / {allSeries.length} candidats affichés
+              </p>
+              <div className="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-1">
+                <button
+                  type="button"
+                  onClick={() => setHiddenCandidateIds(new Set())}
+                  aria-pressed={hiddenCandidateIds.size === 0}
+                  className={`rounded-lg px-3 py-1 text-xs font-bold transition ${hiddenCandidateIds.size === 0 ? 'bg-primary text-white' : 'text-slate-500 hover:text-primary'}`}
+                >
+                  Tous
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setHiddenCandidateIds(new Set(allSeries.slice(trendFeaturedCount).map((entry) => entry.candidateId)))}
+                  aria-pressed={showsOnlyFeatured}
+                  className={`rounded-lg px-3 py-1 text-xs font-bold transition ${showsOnlyFeatured ? 'bg-primary text-white' : 'text-slate-500 hover:text-primary'}`}
+                >
+                  {trendFeaturedCount} premiers
+                </button>
+              </div>
+            </div>
+            <div className={`grid ${legendColumns} gap-x-3 px-3 pb-1 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400`}>
+              <span className="w-8" aria-hidden="true" />
+              <span>Candidat</span>
+              <span className="w-14 text-right">Dernier</span>
+              {selectedDate ? <span className="w-14 text-right">{formatFrenchDate(selectedDate).slice(0, 5)}</span> : null}
+            </div>
+            <ul className="grid max-h-[34rem] gap-1.5 overflow-y-auto pr-1">
+              {hoveredSeries.map((entry) => {
+                const hidden = hiddenCandidateIds.has(entry.candidateId)
+                return (
+                  <li key={`poll-trend-legend-${entry.candidateId}`}>
+                    <button
+                      type="button"
+                      onClick={() => toggleCandidate(entry.candidateId)}
+                      onMouseEnter={() => !hidden && setFocusedCandidateId(entry.candidateId)}
+                      onMouseLeave={() => setFocusedCandidateId(null)}
+                      onFocus={() => !hidden && setFocusedCandidateId(entry.candidateId)}
+                      onBlur={() => setFocusedCandidateId(null)}
+                      aria-pressed={!hidden}
+                      aria-label={`${hidden ? 'Afficher' : 'Masquer'} la courbe de ${entry.candidateName}`}
+                      className={`grid w-full ${legendColumns} items-center gap-x-3 rounded-2xl border px-3 py-2 text-left transition ${hidden ? 'border-dashed border-slate-200 bg-transparent opacity-55' : 'border-slate-200/80 bg-white/92 shadow-sm hover:border-slate-300'}`}
+                    >
+                      {entry.photoUrl ? (
+                        <img src={entry.photoUrl} alt="" className="h-8 w-8 rounded-xl object-cover" loading="lazy" />
+                      ) : (
+                        <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-slate-900 text-[11px] font-bold text-white">
+                          {getCandidateInitials(entry.candidateName)}
+                        </span>
+                      )}
+                      <span className="min-w-0">
+                        <span className="flex items-center gap-2">
+                          <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: hidden ? '#cbd5e1' : entry.accentColor }} />
+                          <span className="truncate text-sm font-bold tracking-tight text-slate-950">{entry.candidateName}</span>
+                        </span>
+                        <span className="block truncate text-xs text-slate-500">{entry.party || 'Parti non renseigné'}</span>
+                      </span>
+                      <span className="w-14 text-right text-sm font-black tabular-nums text-slate-950">{formatScore(entry.latestValue)}%</span>
+                      {selectedDate ? (
+                        <span className="w-14 text-right text-sm font-semibold tabular-nums text-slate-500">
+                          {entry.hoveredPoint ? `${formatScore(entry.hoveredPoint.value)}%` : '—'}
+                        </span>
+                      ) : null}
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
         </div>
       )}
