@@ -20,6 +20,7 @@ const MONTHS = {
 }
 
 const SECTION_LABELS_FR = {
+  'November 2026': 'Novembre 2026',
   'October 2026': 'Octobre 2026',
   'September 2026': 'Septembre 2026',
   'Since September 2026': 'Depuis septembre 2026',

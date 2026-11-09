@@ -1,12 +1,13 @@
 import { lisnardResearch } from './davidLisnardResearch20261022.js'
 import { recentCandidates20261021 } from './recentCandidates20261021.js'
+import { recentCandidates20261109 } from './recentCandidates20261109.js'
 
-export const CANDIDATE_DATA_LAST_UPDATED = '2026-10-21'
+export const CANDIDATE_DATA_LAST_UPDATED = '2026-11-09'
 export const ELECTION_FIRST_ROUND_DATE = '2027-04-18'
 export const ELECTION_SECOND_ROUND_DATE = '2027-05-02'
 export const ELECTION_DECREE_DATE = '2026-07-01'
 
-const ACCESS_DATE = CANDIDATE_DATA_LAST_UPDATED
+const ACCESS_DATE = '2026-10-21'
 
 function src(label, url, date) {
   return { label, url, date }
@@ -81,6 +82,31 @@ const shared = {
     'Public Sénat',
     'https://www.publicsenat.fr/actualites/politique/fiscalite-ecole-immigration-ce-que-propose-raphael-glucksmann',
     '2026-08-24',
+  ),
+  melenchonProgrammeLcp: src(
+    'LCP',
+    'https://lcp.fr/actualites/presidentielle-2027-ce-qui-change-dans-le-nouveau-programme-de-jean-luc-melenchon-444841',
+    '2026-11-06',
+  ),
+  melenchonProgrammeAfp: src(
+    'AFP, via Bourse Direct',
+    'https://www.boursedirect.fr/fr/actualites/categorie/politique/pour-2027-lfi-presente-un-programme-fidele-a-sa-volonte-de-rupture-afp-756b72dfa87a534448dbb17b657b6ba86a839fda',
+    '2026-11-06',
+  ),
+  melenchonBourget: src(
+    'franceinfo',
+    'https://www.franceinfo.fr/elections/presidentielle/reportage-nous-allons-gagner-au-bourget-jean-luc-melenchon-devoile-son-programme-pour-2027-et-poursuit-sa-demonstration-de-force_8272679.html',
+    '2026-11-07',
+  ),
+  primaireAccelerationAfp: src(
+    'AFP, via Boursorama',
+    'https://www.boursorama.com/actualite-economique/actualites/une-primaire-de-la-droite-et-du-centre-pourrait-aboutir-rapidement-selon-attal-1a1f1a150f3989b4477c115901bc58bb',
+    '2026-11-06',
+  ),
+  primaireRefusPhilippe: src(
+    'Public Sénat',
+    'https://www.publicsenat.fr/actualites/politique/la-febrilite-est-de-leur-cote-pas-du-sien-sous-pression-du-camp-attal-et-retailleau-edouard-philippe-reste-droit-dans-ses-bottes-et-refuse-la-primaire',
+    '2026-11-09',
   ),
   datesInfoGouv: src(
     'info.gouv.fr',
@@ -403,7 +429,7 @@ export const candidates2027 = [
   },
   {
     id: 'edouard-philippe',
-    dataLastUpdated: '2026-10-30',
+    dataLastUpdated: '2026-11-09',
     name: 'Édouard Philippe',
     bloc: 'Centre droit',
     party: 'Horizons',
@@ -430,8 +456,8 @@ export const candidates2027 = [
       {
         topic: 'Primaire des démocrates',
         summary:
-          'Son camp refuse la primaire proposée par Gabriel Attal le 28 octobre 2026 : son porte-parole estime qu’elle « n’aurait que des inconvénients ».',
-        source: shared.primaireDemocratesReactions,
+          'Il reste seul des quatre principaux candidats de la droite et du centre à refuser la primaire : « Édouard Philippe ne participera pas à la primaire », affirme Maël de Calan début novembre 2026. Il propose plutôt qu’entre Noël et février les candidats les moins bien placés se retirent au profit du mieux placé.',
+        source: shared.primaireRefusPhilippe,
       },
       {
         topic: 'Candidature 2027',
@@ -482,11 +508,11 @@ export const candidates2027 = [
         source: shared.philippeRetailleauAfp,
       },
     ],
-    sources: [shared.philippeProgrammeEuronews, shared.primaireDemocratesReactions, philippeSources.tf1, shared.philippeRetailleauAfp, philippeSources.darmanin, philippeSources.gouv, philippeSources.wiki],
+    sources: [shared.primaireRefusPhilippe, shared.philippeProgrammeEuronews, shared.primaireDemocratesReactions, philippeSources.tf1, shared.philippeRetailleauAfp, philippeSources.darmanin, philippeSources.gouv, philippeSources.wiki],
   },
   {
     id: 'bruno-retailleau',
-    dataLastUpdated: '2026-10-30',
+    dataLastUpdated: '2026-11-09',
     name: 'Bruno Retailleau',
     bloc: 'Droite',
     party: 'Les Républicains',
@@ -501,14 +527,14 @@ export const candidates2027 = [
     biography: [
       'Né en 1960, Bruno Retailleau s’est imposé comme l’une des principales figures de la droite conservatrice au Sénat.',
       'Ancien ministre de l’Intérieur, élu président des Républicains en mai 2025, il a été désigné candidat de LR à la présidentielle par un vote des adhérents le 19 avril 2026.',
-      'Face à Édouard Philippe et Gabriel Attal au centre, et à Xavier Bertrand et David Lisnard à droite, il défend une candidature LR autonome et ne conçoit une primaire élargie qu’avec la participation d’Édouard Philippe.',
+      'Face à Édouard Philippe et Gabriel Attal au centre, et à Xavier Bertrand et David Lisnard à droite, il se rallie début novembre 2026 au principe d’une primaire élargie, qu’il conditionne à la participation d’Édouard Philippe.',
     ],
     keyPositions: [
       {
         topic: 'Primaire des démocrates',
         summary:
-          'Il se dit favorable à une primaire à condition qu’Édouard Philippe y participe ; son entourage juge « fantaisiste et ridicule » la version proposée par Gabriel Attal le 28 octobre 2026.',
-        source: shared.primaireDemocratesReactions,
+          'Après avoir jugé « fantaisiste » la version initiale de Gabriel Attal, il accepte début novembre 2026 le principe d’une primaire de la droite et du centre, qui pourrait se tenir au plus tard dans la première quinzaine de février si Édouard Philippe y participe.',
+        source: shared.primaireAccelerationAfp,
       },
       {
         topic: 'Désignation LR',
@@ -552,11 +578,11 @@ export const candidates2027 = [
         source: shared.philippeRetailleauAfp,
       },
     ],
-    sources: [shared.primaireDemocratesReactions, shared.listeLcp, shared.philippeRetailleauAfp, retailleauSources.tf1, retailleauSources.lr, retailleauSources.senate, retailleauSources.wiki],
+    sources: [shared.primaireAccelerationAfp, shared.primaireDemocratesReactions, shared.listeLcp, shared.philippeRetailleauAfp, retailleauSources.tf1, retailleauSources.lr, retailleauSources.senate, retailleauSources.wiki],
   },
   {
     id: 'gabriel-attal',
-    dataLastUpdated: '2026-10-30',
+    dataLastUpdated: '2026-11-09',
     name: 'Gabriel Attal',
     bloc: 'Centre',
     party: 'Renaissance',
@@ -577,7 +603,7 @@ export const candidates2027 = [
       {
         topic: 'Primaire des démocrates',
         summary:
-          'Le 28 octobre 2026 sur TF1, il appelle à une « grande primaire des démocrates » pour éviter un second tour RN-LFI, ouverte aux candidats refusant toute alliance avec les extrêmes ; les modalités restent à définir.',
+          'Le 28 octobre 2026 sur TF1, il appelle à une « grande primaire des démocrates » pour éviter un second tour RN-LFI. Rejoint par Bruno Retailleau et David Lisnard, il estime le 6 novembre qu’elle pourrait aboutir « rapidement » et que ceux qui resteront à l’écart « porteront la responsabilité de la division ».',
         source: shared.primaireDemocratesLcp,
       },
       {
@@ -621,18 +647,25 @@ export const candidates2027 = [
         description: 'Sur TF1, il propose une primaire ouverte au centre et à la droite républicaine ; Horizons et LR répondent avec réserve.',
         source: shared.primaireDemocratesLcp,
       },
+      {
+        date: '2026-11-06',
+        title: 'Une primaire qui « pourrait aboutir rapidement »',
+        description: 'Après le ralliement de Bruno Retailleau au principe, il juge que les discussions s’accélèrent ; Édouard Philippe maintient son refus.',
+        source: shared.primaireAccelerationAfp,
+      },
     ],
-    sources: [shared.primaireDemocratesLcp, shared.listeTouteleurope, shared.listeLcp, attalSources.speech2027, attalSources.path2027, attalSources.assembly, attalSources.wiki],
+    sources: [shared.primaireAccelerationAfp, shared.primaireDemocratesLcp, shared.listeTouteleurope, shared.listeLcp, attalSources.speech2027, attalSources.path2027, attalSources.assembly, attalSources.wiki],
   },
   {
     id: 'jean-luc-melenchon',
+    dataLastUpdated: '2026-11-09',
     name: 'Jean-Luc Mélenchon',
     bloc: 'Gauche radicale',
     party: 'La France insoumise',
     status: 'declared',
     statusLabel: 'Déclaré',
     summary:
-      'Chef de file de La France insoumise, il a annoncé le 3 mai 2026 sa quatrième candidature consécutive, hors de toute primaire.',
+      'Chef de file de La France insoumise, il a annoncé le 3 mai 2026 sa quatrième candidature consécutive, hors de toute primaire, et présenté son programme L’Avenir en commun au Bourget le 7 novembre 2026.',
     themes: ['Union populaire', 'Rupture', 'Institutions'],
     priority: 5,
     photoUrl: `${CLOUDINARY}/v1773268676/presidentielles/candidats/jean-luc-melenchon.jpg`,
@@ -641,8 +674,27 @@ export const candidates2027 = [
       'Né en 1951, Jean-Luc Mélenchon est une figure majeure de la gauche radicale française depuis plusieurs décennies.',
       'Fondateur de La France insoumise, il a été candidat en 2012, 2017 et 2022, frôlant le second tour lors de cette dernière élection.',
       'Après avoir écarté toute primaire, il a officialisé le 3 mai 2026 une quatrième candidature.',
+      'Le 6 novembre 2026, LFI publie la nouvelle édition de L’Avenir en commun (1 069 mesures, dont 238 nouvelles), présentée le lendemain lors d’un meeting au Bourget.',
     ],
     keyPositions: [
+      {
+        topic: 'Programme : salaires et retraites',
+        summary:
+          'L’Avenir en commun prévoit un Smic à 1 700 euros net, l’indexation des salaires sur les prix, une hausse de 10 % du point d’indice et des APL, un retour à 62 ans puis la retraite à taux plein à 60 ans après 40 annuités.',
+        source: shared.melenchonProgrammeLcp,
+      },
+      {
+        topic: 'Programme : écologie et institutions',
+        summary:
+          'La planification écologique devient la première partie du programme : baisse de 65 % des émissions d’ici 2033, 100 % renouvelable en 2060 au plus tard, sortie du nucléaire, conscription écologique obligatoire, puis VIe République et sortie de l’OTAN.',
+        source: shared.melenchonProgrammeLcp,
+      },
+      {
+        topic: 'Financement',
+        summary:
+          'LFI annonce pour 2027 environ 106,4 milliards d’euros de recettes nouvelles et 81,7 milliards de dépenses supplémentaires ; le chiffrage complet doit être publié début 2027 et n’a pas été évalué de façon indépendante.',
+        source: shared.melenchonProgrammeAfp,
+      },
       {
         topic: 'Quatrième candidature',
         summary: 'Il confirme le 3 mai 2026 qu’il sera sur la ligne de départ pour la quatrième fois consécutive.',
@@ -678,8 +730,20 @@ export const candidates2027 = [
         description: 'Il officialise sa quatrième candidature présidentielle.',
         source: shared.candidaturesWiki,
       },
+      {
+        date: '2026-11-06',
+        title: 'Publication de L’Avenir en commun',
+        description: 'Le livre-programme de 212 pages revendique 1 069 mesures, dont 238 nouvelles ; l’écologie passe en tête.',
+        source: shared.melenchonProgrammeLcp,
+      },
+      {
+        date: '2026-11-07',
+        title: 'Meeting du Bourget',
+        description: 'Devant plus de 20 000 personnes selon franceinfo, il présente une trentaine de mesures et promet : « Il faut tout changer ».',
+        source: shared.melenchonBourget,
+      },
     ],
-    sources: [shared.listeTouteleurope, melenchonSources.insoumise2027, melenchonSources.strategy, melenchonSources.official, melenchonSources.wiki],
+    sources: [shared.melenchonProgrammeLcp, shared.melenchonProgrammeAfp, shared.melenchonBourget, shared.listeTouteleurope, melenchonSources.insoumise2027, melenchonSources.strategy, melenchonSources.official, melenchonSources.wiki],
   },
   {
     id: 'raphael-glucksmann',
@@ -1758,6 +1822,7 @@ export const candidates2027 = [
     sources: [darmaninSources.orange, darmaninSources.renoncement, darmaninSources.participates, darmaninSources.populaires, darmaninSources.wiki],
   },
   ...recentCandidates20261021,
+  ...recentCandidates20261109,
 ].map((candidate) => ({ ...candidate, dataLastUpdated: candidate.dataLastUpdated ?? CANDIDATE_DATA_LAST_UPDATED }))
 
 export const electionCalendar = {

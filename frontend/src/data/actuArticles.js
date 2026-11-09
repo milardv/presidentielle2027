@@ -1,7 +1,9 @@
 import { budget2027Article } from './budget2027Article.js'
 import { primaireDemocratesArticle } from './primaireDemocratesArticle.js'
+import { programmeMelenchonArticle } from './programmeMelenchonArticle.js'
 
 export const actuArticles = [
+programmeMelenchonArticle,
 primaireDemocratesArticle,
 budget2027Article,
 {

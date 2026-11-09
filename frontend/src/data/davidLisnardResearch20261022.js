@@ -13,6 +13,7 @@ export const lisnardResearchSources = {
   bfm: source('Nouvelle Énergie · entretien BFMTV du 10 octobre', 'https://www.unenouvelleenergie.fr/david-lisnard-sur-bfmtv-retablir-lordre-liberer-lecole-redresser-la-france/', '2026-10-15'),
   rmc: source('Nouvelle Énergie · entretien BFMTV–RMC du 13 octobre', 'https://www.unenouvelleenergie.fr/david-lisnard-sur-bfmtv-et-rmc-lhyper-bureaucratisation-et-lhyper-centralisation-sont-en-train-de-flinguer-nos-enfants/', '2026-10-14'),
   lci: source('Le Parisien avec AFP · échange sur LCI', 'https://www.leparisien.fr/politique/je-men-fous-david-lisnard-sagace-apres-avoir-ete-interroge-sur-le-17-octobre-1961-20-10-2026-67QQ72XSNJGMBHDQG3MQNZYXKM.php', '2026-10-20'),
+  primaire: source('Public Sénat · primaire de la droite et du centre', 'https://www.publicsenat.fr/actualites/politique/la-febrilite-est-de-leur-cote-pas-du-sien-sous-pression-du-camp-attal-et-retailleau-edouard-philippe-reste-droit-dans-ses-bottes-et-refuse-la-primaire', '2026-11-09'),
   amfDebate: source('Le Monde · critiques à l’AMF et réponse de David Lisnard', 'https://www.lemonde.fr/politique/article/2026/10/21/des-maires-de-gauche-reprochent-a-david-lisnard-ses-propos-sur-le-massacre-du-17-octobre-1961_6798298_823448.html', '2026-10-21'),
 }
 const s = lisnardResearchSources
@@ -61,7 +62,7 @@ export const lisnardResearch = {
     { topic: 'Retraites', summary: 'Il défend un étage obligatoire de capitalisation. Les modalités de transition doivent être distinguées du principe annoncé.', source: s.crayon },
     { topic: 'École', summary: 'Il propose davantage d’autonomie pour les établissements et leurs recrutements, la fin de la sectorisation et un financement suivant le choix des familles.', source: s.rmc },
     { topic: 'Sécurité et manifestations', summary: 'Il distingue la liberté de manifester des dégradations et veut des interventions plus précoces contre les auteurs de violences.', source: s.bfm },
-    { topic: 'Désignation à droite', summary: 'Candidat déclaré depuis le 31 mars 2026, il demande une primaire ouverte de la droite et du centre.', source: s.candidature },
+    { topic: 'Désignation à droite', summary: 'Candidat déclaré depuis le 31 mars 2026, il demande une primaire ouverte de la droite et du centre. Début novembre 2026, il soutient la démarche relancée par Gabriel Attal et Bruno Retailleau, mais souhaite y inclure Sarah Knafo, ce que le camp d’Édouard Philippe juge incompatible avec le périmètre proposé par Gabriel Attal.', source: s.primaire },
   ],
   timeline: [
     { date: '1969-02-02', title: 'Naissance à Limoges', description: 'Une enfance en Haute-Vienne avant une scolarité poursuivie à Cannes.', source: s.wiki },
@@ -80,5 +81,5 @@ export const lisnardResearch = {
     { id: 'lisnard-france2-20260331', type: 'quote', title: 'France 2 : l’annonce de candidature et le départ de LR', excerpt: 'Au 20 heures du 31 mars, il se déclare candidat et annonce son départ des Républicains. Il défend une primaire ouverte à droite. LCP restitue l’annonce et les réactions le 1er avril.', context: 'Date de l’intervention distincte de celle de l’article.', source: s.candidature },
   ],
   sources: Object.values(s),
-  dataLastUpdated: '2026-10-22',
+  dataLastUpdated: '2026-11-09',
 }
