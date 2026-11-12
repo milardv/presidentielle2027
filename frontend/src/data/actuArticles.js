@@ -1,8 +1,10 @@
 import { budget2027Article } from './budget2027Article.js'
 import { primaireDemocratesArticle } from './primaireDemocratesArticle.js'
 import { programmeMelenchonArticle } from './programmeMelenchonArticle.js'
+import { primaireDroiteCentreDatesArticle } from './primaireDroiteCentreDatesArticle.js'
 
 export const actuArticles = [
+primaireDroiteCentreDatesArticle,
 programmeMelenchonArticle,
 primaireDemocratesArticle,
 budget2027Article,
