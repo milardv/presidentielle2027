@@ -1,23 +1,308 @@
 {
-  "generatedAt": "2026-11-09",
+  "generatedAt": "2026-11-23",
   "source": {
     "label": "Wikipédia – Opinion polling for the 2027 French presidential election",
     "url": "https://en.wikipedia.org/wiki/Opinion_polling_for_the_2027_French_presidential_election"
   },
   "firstRound": {
-    "studyCount": 62,
-    "latestFieldworkEnd": "2026-11-05",
+    "studyCount": 70,
+    "latestFieldworkEnd": "2026-11-19",
     "studies": [
       {
-        "id": "harris-interactive-2026-11-05",
+        "id": "harris-interactive-2026-11-19",
         "pollster": "Harris Interactive",
-        "sourceUrl": "https://tolunacorporate.com/wp-content/uploads/2026/11/Rapport-Toluna-Barometre-Presidentielle-2027-Vague-9-M6-RTL-9-novembre-2026.pdf",
-        "sampleSize": 2101,
-        "fieldworkStart": "2026-11-03",
-        "fieldworkEnd": "2026-11-05",
+        "sourceUrl": "https://tolunacorporate.com/wp-content/uploads/2026/11/Rapport-Toluna-Barometre-Presidentielle-2027-Vague-10-M6-RTL-LExpress-23-novembre-2026.pdf",
+        "sampleSize": 2088,
+        "fieldworkStart": "2026-11-18",
+        "fieldworkEnd": "2026-11-19",
         "scenarios": [
           {
-            "label": "Marine Le Pen 34% / Jean-Luc Mélenchon 19% / Édouard Philippe 12% / Raphaël Glucksmann 11%",
+            "label": "Marine Le Pen 31% / Jean-Luc Mélenchon 18% / Raphaël Glucksmann 11% / David Lisnard 11%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 31
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 18
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 11
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 11
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 9
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 4
+              },
+              {
+                "candidateId": "teddy-riner",
+                "candidateName": "Teddy Riner",
+                "score": 4
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 4
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 4
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 1
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 1
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 1
+              },
+              {
+                "candidateId": "dominique-de-villepin",
+                "candidateName": "Dominique de Villepin",
+                "score": 1
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 1
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 31% / Jean-Luc Mélenchon 19% / Raphaël Glucksmann 11% / David Lisnard 11%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 31
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 19
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 11
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 11
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 10
+              },
+              {
+                "candidateId": "teddy-riner",
+                "candidateName": "Teddy Riner",
+                "score": 4
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 4
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 4
+              },
+              {
+                "candidateId": "dominique-de-villepin",
+                "candidateName": "Dominique de Villepin",
+                "score": 2
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 1
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 1
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 1
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 1
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 30% / Jean-Luc Mélenchon 19% / David Lisnard 12% / Raphaël Glucksmann 11%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 30
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 19
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 12
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 11
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 7
+              },
+              {
+                "candidateId": "teddy-riner",
+                "candidateName": "Teddy Riner",
+                "score": 5
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 5
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 4
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 2
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 1
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 1
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "yougov-2026-11-17",
+        "pollster": "YouGov",
+        "sourceUrl": "https://ygo-assets-websites-editorial-emea.yougov.net/documents/R%C3%A9sultats_YouGov_pour_le_HuffPost_Intentions_de_vote_Novembre_2026_17.11.2026.pdf",
+        "sampleSize": 952,
+        "fieldworkStart": "2026-11-12",
+        "fieldworkEnd": "2026-11-17",
+        "scenarios": [
+          {
+            "label": "Marine Le Pen 32% / Jean-Luc Mélenchon 19% / Raphaël Glucksmann 9% / David Lisnard 9%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 32
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 19
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 9
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 9
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 8
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 6
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 5
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 4
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 3
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 2
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 2
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 1
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 34% / Jean-Luc Mélenchon 19% / Raphaël Glucksmann 10% / David Lisnard 10%",
             "scores": [
               {
                 "candidateId": "marine-le-pen",
@@ -30,204 +315,14 @@
                 "score": 19
               },
               {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
-                "score": 12
-              },
-              {
                 "candidateId": "raphael-glucksmann",
                 "candidateName": "Raphaël Glucksmann",
-                "score": 11
+                "score": 10
               },
               {
                 "candidateId": "david-lisnard",
                 "candidateName": "David Lisnard",
-                "score": 9
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 5
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 3
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 2
-              },
-              {
-                "candidateId": "dominique-de-villepin",
-                "candidateName": "Dominique de Villepin",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 1
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 1
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 1
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 35% / Jean-Luc Mélenchon 19% / Raphaël Glucksmann 12% / Gabriel Attal 9%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 35
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 19
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 12
-              },
-              {
-                "candidateId": "gabriel-attal",
-                "candidateName": "Gabriel Attal",
-                "score": 9
-              },
-              {
-                "candidateId": "david-lisnard",
-                "candidateName": "David Lisnard",
-                "score": 9
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 6
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 3
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 2
-              },
-              {
-                "candidateId": "dominique-de-villepin",
-                "candidateName": "Dominique de Villepin",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 1
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 1
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 1
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 36% / Jean-Luc Mélenchon 18% / Raphaël Glucksmann 11% / Édouard Philippe 11%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 36
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 18
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 11
-              },
-              {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
-                "score": 11
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 7
-              },
-              {
-                "candidateId": "gabriel-attal",
-                "candidateName": "Gabriel Attal",
-                "score": 6
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 4
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 2
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 2
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 1
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 36% / Jean-Luc Mélenchon 19% / Édouard Philippe 14% / Raphaël Glucksmann 12%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 36
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 19
-              },
-              {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
-                "score": 14
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 12
+                "score": 10
               },
               {
                 "candidateId": "bruno-retailleau",
@@ -235,344 +330,39 @@
                 "score": 8
               },
               {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 4
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 2
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 2
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 1
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 36% / Jean-Luc Mélenchon 19% / Raphaël Glucksmann 13% / Gabriel Attal 10%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 36
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 19
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 13
-              },
-              {
                 "candidateId": "gabriel-attal",
                 "candidateName": "Gabriel Attal",
-                "score": 10
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 10
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 4
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 3
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 2
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 1
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "ifop-2026-10-29",
-        "pollster": "Ifop",
-        "sourceUrl": "https://www.tf1info.fr/politique/elections/presidentielle/sondage-lci-a-six-mois-de-la-presidentielle-2027-marine-le-pen-et-jean-luc-melenchon-sans-adversaires-au-premier-tour-philippe-attal-retailleau-lisnard-2473663.html",
-        "sampleSize": 1928,
-        "fieldworkStart": "2026-10-27",
-        "fieldworkEnd": "2026-10-29",
-        "scenarios": [
-          {
-            "label": "Marine Le Pen 35% / Jean-Luc Mélenchon 18% / Raphaël Glucksmann 10% / Édouard Philippe 9.5%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 35
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 18
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 10
-              },
-              {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
-                "score": 9.5
-              },
-              {
-                "candidateId": "david-lisnard",
-                "candidateName": "David Lisnard",
                 "score": 7
               },
               {
-                "candidateId": "gabriel-attal",
-                "candidateName": "Gabriel Attal",
-                "score": 5
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 6
               },
               {
                 "candidateId": "eric-zemmour",
                 "candidateName": "Éric Zemmour",
-                "score": 4.5
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 4
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
                 "score": 3
               },
               {
                 "candidateId": "fabien-roussel",
                 "candidateName": "Fabien Roussel",
                 "score": 2
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 1.5
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 0.5
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 36% / Jean-Luc Mélenchon 17.5% / Raphaël Glucksmann 13% / Gabriel Attal 9%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 36
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 17.5
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 13
-              },
-              {
-                "candidateId": "gabriel-attal",
-                "candidateName": "Gabriel Attal",
-                "score": 9
-              },
-              {
-                "candidateId": "david-lisnard",
-                "candidateName": "David Lisnard",
-                "score": 7.5
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 5
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 4.5
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 3
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 2
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 0.5
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 37% / Jean-Luc Mélenchon 17.5% / Édouard Philippe 15% / Raphaël Glucksmann 11.5%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 37
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 17.5
-              },
-              {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
-                "score": 15
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 11.5
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 7
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 4
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 3.5
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 2
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 1.5
               },
               {
                 "candidateId": "nathalie-arthaud",
                 "candidateName": "Nathalie Arthaud",
                 "score": 1
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 36% / Jean-Luc Mélenchon 17.5% / Édouard Philippe 15% / Raphaël Glucksmann 11%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 36
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 17.5
-              },
-              {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
-                "score": 15
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 11
-              },
-              {
-                "candidateId": "david-lisnard",
-                "candidateName": "David Lisnard",
-                "score": 9
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 4
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 3
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 2
               },
               {
                 "candidateId": "nicolas-dupont-aignan",
                 "candidateName": "Nicolas Dupont-Aignan",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 0.5
+                "score": 1
               }
             ]
-          }
-        ]
-      },
-      {
-        "id": "cluster17-2026-10-22",
-        "pollster": "Cluster17",
-        "sourceUrl": "https://cluster17.com/wp-content/uploads/2026/10/ITV-Politico-Octobre-C17.pdf",
-        "sampleSize": 3000,
-        "fieldworkStart": "2026-10-19",
-        "fieldworkEnd": "2026-10-22",
-        "scenarios": [
+          },
           {
-            "label": "Marine Le Pen 33% / Jean-Luc Mélenchon 18.5% / Édouard Philippe 16% / Raphaël Glucksmann 13%",
+            "label": "Marine Le Pen 33% / Jean-Luc Mélenchon 19% / Raphaël Glucksmann 10% / David Lisnard 10%",
             "scores": [
               {
                 "candidateId": "marine-le-pen",
@@ -582,127 +372,22 @@
               {
                 "candidateId": "jean-luc-melenchon",
                 "candidateName": "Jean-Luc Mélenchon",
-                "score": 18.5
-              },
-              {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
-                "score": 16
+                "score": 19
               },
               {
                 "candidateId": "raphael-glucksmann",
                 "candidateName": "Raphaël Glucksmann",
-                "score": 13
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 8
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 4
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 3
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 2
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 0.5
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 32.5% / Jean-Luc Mélenchon 19.5% / Raphaël Glucksmann 14% / Gabriel Attal 12%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 32.5
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 19.5
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 14
-              },
-              {
-                "candidateId": "gabriel-attal",
-                "candidateName": "Gabriel Attal",
-                "score": 12
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
                 "score": 10
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 4
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 3.5
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 2
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 0.5
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 30.5% / Jean-Luc Mélenchon 19.5% / Édouard Philippe 17% / David Lisnard 8%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 30.5
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 19.5
-              },
-              {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
-                "score": 17
               },
               {
                 "candidateId": "david-lisnard",
                 "candidateName": "David Lisnard",
-                "score": 8
+                "score": 10
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 9
               },
               {
                 "candidateId": "bruno-retailleau",
@@ -710,84 +395,54 @@
                 "score": 7
               },
               {
-                "candidateId": "francois-hollande",
-                "candidateName": "François Hollande",
-                "score": 6.5
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 3.5
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 3
-              },
-              {
                 "candidateId": "marine-tondelier",
                 "candidateName": "Marine Tondelier",
-                "score": 2.5
+                "score": 4
               },
               {
                 "candidateId": "fabien-roussel",
                 "candidateName": "Fabien Roussel",
+                "score": 3
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 3
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
                 "score": 2
               },
               {
                 "candidateId": "nathalie-arthaud",
                 "candidateName": "Nathalie Arthaud",
-                "score": 0.5
+                "score": 1
               }
             ]
-          }
-        ]
-      },
-      {
-        "id": "opinionway-2026-10-22",
-        "pollster": "OpinionWay",
-        "sourceUrl": "https://www.opinion-way.com/wp-content/uploads/2026/10/OpinionWay-pour-CNEWS-Les-intentions-de-vote-a-lelection-presidentielle-2027-22-octobre-2026.pdf",
-        "sampleSize": 973,
-        "fieldworkStart": "2026-10-21",
-        "fieldworkEnd": "2026-10-22",
-        "scenarios": [
+          },
           {
-            "label": "Marine Le Pen 36% / Jean-Luc Mélenchon 16% / Raphaël Glucksmann 13% / Édouard Philippe 12%",
+            "label": "Marine Le Pen 40% / Jean-Luc Mélenchon 22% / Édouard Philippe 16% / Raphaël Glucksmann 12%",
             "scores": [
               {
                 "candidateId": "marine-le-pen",
                 "candidateName": "Marine Le Pen",
-                "score": 36
+                "score": 40
               },
               {
                 "candidateId": "jean-luc-melenchon",
                 "candidateName": "Jean-Luc Mélenchon",
+                "score": 22
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
                 "score": 16
               },
               {
                 "candidateId": "raphael-glucksmann",
                 "candidateName": "Raphaël Glucksmann",
-                "score": 13
-              },
-              {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
                 "score": 12
-              },
-              {
-                "candidateId": "david-lisnard",
-                "candidateName": "David Lisnard",
-                "score": 6
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 6
-              },
-              {
-                "candidateId": "gabriel-attal",
-                "candidateName": "Gabriel Attal",
-                "score": 4
               },
               {
                 "candidateId": "eric-zemmour",
@@ -797,212 +452,107 @@
               {
                 "candidateId": "fabien-roussel",
                 "candidateName": "Fabien Roussel",
-                "score": 1
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 1
+                "score": 3
               },
               {
                 "candidateId": "nicolas-dupont-aignan",
                 "candidateName": "Nicolas Dupont-Aignan",
-                "score": 1
+                "score": 2
               },
               {
                 "candidateId": "nathalie-arthaud",
                 "candidateName": "Nathalie Arthaud",
-                "score": 0.5
+                "score": 1
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 32% / Jean-Luc Mélenchon 17% / Raphaël Glucksmann 9% / David Lisnard 9%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 32
               },
               {
-                "candidateId": "karim-bouamrane",
-                "candidateName": "Karim Bouamrane",
-                "score": 0.5
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 17
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 9
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 9
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 7
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 6
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 5
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 4
+              },
+              {
+                "candidateId": "teddy-riner",
+                "candidateName": "Teddy Riner",
+                "score": 3
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 3
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 2
+              },
+              {
+                "candidateId": "dominique-de-villepin",
+                "candidateName": "Dominique de Villepin",
+                "score": 2
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 2
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 1
               }
             ]
           }
         ]
       },
       {
-        "id": "ipsos-2026-10-22",
-        "pollster": "Ipsos",
-        "sourceUrl": "https://www.ipsos.com/fr-fr/presidentielle-2027-melenchon-progresse-le-pen-reste-en-tete",
-        "sampleSize": 1500,
-        "fieldworkStart": "2026-10-21",
-        "fieldworkEnd": "2026-10-22",
+        "id": "ifop-2026-11-16",
+        "pollster": "Ifop",
+        "sourceUrl": "https://www.tf1info.fr/politique/elections/presidentielle/en-direct-election-presidentielle-2027-en-panne-dans-les-sondages-edouard-philippe-presente-son-projet-a-date-conference-de-presse-2476527.html",
+        "sampleSize": 1690,
+        "fieldworkStart": "2026-11-13",
+        "fieldworkEnd": "2026-11-16",
         "scenarios": [
           {
-            "label": "Marine Le Pen 33.5% / Jean-Luc Mélenchon 17% / Raphaël Glucksmann 13% / Édouard Philippe 13%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 33.5
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 17
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 13
-              },
-              {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
-                "score": 13
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 7.5
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 4.5
-              },
-              {
-                "candidateId": "gabriel-attal",
-                "candidateName": "Gabriel Attal",
-                "score": 4
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 3.5
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 2
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 1.5
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 0.5
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 33.5% / Jean-Luc Mélenchon 17% / Édouard Philippe 15% / Raphaël Glucksmann 14%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 33.5
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 17
-              },
-              {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
-                "score": 15
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 14
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 8
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 4.5
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 3.5
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 2
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 0.5
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 33.5% / Jean-Luc Mélenchon 17% / Raphaël Glucksmann 15.5% / Bruno Retailleau 11.5%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 33.5
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 17
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 15.5
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 11.5
-              },
-              {
-                "candidateId": "gabriel-attal",
-                "candidateName": "Gabriel Attal",
-                "score": 9.5
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 4.5
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 3.5
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 2.5
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 0.5
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 32% / Jean-Luc Mélenchon 17% / Édouard Philippe 14% / Raphaël Glucksmann 13%",
+            "label": "Marine Le Pen 32% / Jean-Luc Mélenchon 17% / Édouard Philippe 10% / Raphaël Glucksmann 8%",
             "scores": [
               {
                 "candidateId": "marine-le-pen",
@@ -1017,32 +567,117 @@
               {
                 "candidateId": "edouard-philippe",
                 "candidateName": "Édouard Philippe",
-                "score": 14
+                "score": 10
               },
               {
                 "candidateId": "raphael-glucksmann",
                 "candidateName": "Raphaël Glucksmann",
-                "score": 13
+                "score": 8
               },
               {
                 "candidateId": "david-lisnard",
                 "candidateName": "David Lisnard",
-                "score": 6.5
+                "score": 8
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 4.5
+              },
+              {
+                "candidateId": "teddy-riner",
+                "candidateName": "Teddy Riner",
+                "score": 4
               },
               {
                 "candidateId": "bruno-retailleau",
                 "candidateName": "Bruno Retailleau",
-                "score": 5.5
+                "score": 4
               },
               {
                 "candidateId": "eric-zemmour",
                 "candidateName": "Éric Zemmour",
+                "score": 3
+              },
+              {
+                "candidateId": "francois-ruffin",
+                "candidateName": "François Ruffin",
+                "score": 2
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 2
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 1.5
+              },
+              {
+                "candidateId": "dominique-de-villepin",
+                "candidateName": "Dominique de Villepin",
+                "score": 1.5
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 1.5
+              },
+              {
+                "candidateId": "natacha-polony",
+                "candidateName": "Natacha Polony",
+                "score": 1
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 34% / Jean-Luc Mélenchon 19% / Édouard Philippe 11% / Raphaël Glucksmann 10%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 34
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 19
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 11
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 10
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 9
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 4
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
                 "score": 4
               },
               {
                 "candidateId": "marine-tondelier",
                 "candidateName": "Marine Tondelier",
-                "score": 3.5
+                "score": 3
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 3
               },
               {
                 "candidateId": "fabien-roussel",
@@ -1060,19 +695,249 @@
                 "score": 0.5
               }
             ]
+          },
+          {
+            "label": "Marine Le Pen 35% / Jean-Luc Mélenchon 19.5% / Édouard Philippe 12% / Raphaël Glucksmann 10%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 35
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 19.5
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 12
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 10
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 10
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 4
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 3
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 2.5
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 2.5
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 1.5
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 0.5
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 35% / Jean-Luc Mélenchon 19% / Raphaël Glucksmann 11% / David Lisnard 11%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 35
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 19
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 11
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 11
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 9
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 5
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 3
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 2.5
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 2
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 2
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 0.5
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 34% / Jean-Luc Mélenchon 19.5% / Édouard Philippe 14% / David Lisnard 12%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 34
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 19.5
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 14
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 12
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 11
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 3
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 2.5
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 2
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 1.5
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 0.5
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 36% / Jean-Luc Mélenchon 19% / Édouard Philippe 15% / Raphaël Glucksmann 11.5%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 36
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 19
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 15
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 11.5
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 7
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 3.5
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 3
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 2.5
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 2
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 0.5
+              }
+            ]
           }
         ]
       },
       {
-        "id": "harris-interactive-2026-10-21",
-        "pollster": "Harris Interactive",
-        "sourceUrl": "https://tolunacorporate.com/wp-content/uploads/2026/10/Rapport-Toluna-Barometre-Presidentielle-2027-Vague-8-M6-RTL-23-octobre-2026-1.pdf",
-        "sampleSize": 2094,
-        "fieldworkStart": "2026-10-19",
-        "fieldworkEnd": "2026-10-21",
+        "id": "elabe-2026-11-13",
+        "pollster": "Elabe",
+        "sourceUrl": "https://www.bfmtv.com/politique/elections/presidentielle/sondage-bfmtv-presidentielle-2027-jean-luc-melenchon-continue-sa-progression-teddy-riner-devant-gabriel-attal-dans-l-un-des-scenarios-testes_AN-202611140315.html",
+        "sampleSize": 1391,
+        "fieldworkStart": "2026-11-12",
+        "fieldworkEnd": "2026-11-13",
         "scenarios": [
           {
-            "label": "Marine Le Pen 33% / Jean-Luc Mélenchon 17% / Édouard Philippe 15% / Raphaël Glucksmann 12%",
+            "label": "Marine Le Pen 33% / Jean-Luc Mélenchon 17% / Édouard Philippe 15% / Raphaël Glucksmann 13.5%",
             "scores": [
               {
                 "candidateId": "marine-le-pen",
@@ -1092,22 +957,32 @@
               {
                 "candidateId": "raphael-glucksmann",
                 "candidateName": "Raphaël Glucksmann",
-                "score": 12
-              },
-              {
-                "candidateId": "david-lisnard",
-                "candidateName": "David Lisnard",
-                "score": 7
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 5
+                "score": 13.5
               },
               {
                 "candidateId": "bruno-retailleau",
                 "candidateName": "Bruno Retailleau",
-                "score": 4
+                "score": 6
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 4.5
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 3
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 3
+              },
+              {
+                "candidateId": "dominique-de-villepin",
+                "candidateName": "Dominique de Villepin",
+                "score": 2.5
               },
               {
                 "candidateId": "fabien-roussel",
@@ -1115,29 +990,14 @@
                 "score": 2
               },
               {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 2
-              },
-              {
                 "candidateId": "nathalie-arthaud",
                 "candidateName": "Nathalie Arthaud",
-                "score": 1
-              },
-              {
-                "candidateId": "dominique-de-villepin",
-                "candidateName": "Dominique de Villepin",
-                "score": 1
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 1
+                "score": 0.5
               }
             ]
           },
           {
-            "label": "Marine Le Pen 33% / Jean-Luc Mélenchon 17% / Raphaël Glucksmann 14% / Gabriel Attal 10%",
+            "label": "Marine Le Pen 33% / Jean-Luc Mélenchon 17.5% / Raphaël Glucksmann 14% / Gabriel Attal 10%",
             "scores": [
               {
                 "candidateId": "marine-le-pen",
@@ -1147,7 +1007,7 @@
               {
                 "candidateId": "jean-luc-melenchon",
                 "candidateName": "Jean-Luc Mélenchon",
-                "score": 17
+                "score": 17.5
               },
               {
                 "candidateId": "raphael-glucksmann",
@@ -1160,6 +1020,486 @@
                 "score": 10
               },
               {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 9
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 4.5
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 3
+              },
+              {
+                "candidateId": "dominique-de-villepin",
+                "candidateName": "Dominique de Villepin",
+                "score": 3
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 2.5
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 2.5
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 1
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 33% / Jean-Luc Mélenchon 17.5% / Raphaël Glucksmann 13% / Édouard Philippe 12%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 33
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 17.5
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 13
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 12
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 6
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 5.5
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 4
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 3.5
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 3
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 2
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 0.5
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 32% / Jean-Luc Mélenchon 17.5% / Raphaël Glucksmann 14% / David Lisnard 10.5%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 32
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 17.5
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 14
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 10.5
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 8.5
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 6
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 4
+              },
+              {
+                "candidateId": "francois-ruffin",
+                "candidateName": "François Ruffin",
+                "score": 3
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 2.5
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 1.5
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 0.5
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 32.5% / Jean-Luc Mélenchon 18.5% / Raphaël Glucksmann 13.5% / Édouard Philippe 13%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 32.5
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 18.5
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 13.5
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 13
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 9
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 4
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 3.5
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 3
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 2.5
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 0.5
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 31% / Jean-Luc Mélenchon 17% / Raphaël Glucksmann 10.5% / Édouard Philippe 9.5%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 31
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 17
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 10.5
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 9.5
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 8
+              },
+              {
+                "candidateId": "teddy-riner",
+                "candidateName": "Teddy Riner",
+                "score": 4.5
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 4
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 4
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 3
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 3
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 2
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 1.5
+              },
+              {
+                "candidateId": "natacha-polony",
+                "candidateName": "Natacha Polony",
+                "score": 1.5
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 0.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "opinionway-2026-11-12",
+        "pollster": "OpinionWay",
+        "sourceUrl": "https://www.cnews.fr/france/2026-11-12/presidentielle-2027-marine-le-pen-reste-en-tete-des-intentions-de-vote-teddy",
+        "sampleSize": 964,
+        "fieldworkStart": "2026-11-10",
+        "fieldworkEnd": "2026-11-12",
+        "scenarios": [
+          {
+            "label": "Marine Le Pen 31% / Jean-Luc Mélenchon 16% / Édouard Philippe 12% / Raphaël Glucksmann 10%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 31
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 16
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 12
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 10
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 9
+              },
+              {
+                "candidateId": "teddy-riner",
+                "candidateName": "Teddy Riner",
+                "score": 4
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 4
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 3
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 3
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 3
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 2
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 2
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 1
+              },
+              {
+                "candidateId": "karim-bouamrane",
+                "candidateName": "Karim Bouamrane",
+                "score": 0.5
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 32% / Jean-Luc Mélenchon 16% / Édouard Philippe 12% / Raphaël Glucksmann 10%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 32
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 16
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 12
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 10
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 10
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 5
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 4
+              },
+              {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 3
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 2
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 2
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 2
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 1
+              },
+              {
+                "candidateId": "karim-bouamrane",
+                "candidateName": "Karim Bouamrane",
+                "score": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cluster17-2026-11-10",
+        "pollster": "Cluster17",
+        "sourceUrl": "https://www.politico.eu/article/sondage-exclusif-2027-christine-lagarde-bien-accueillie-par-les-electeurs-du-centre/",
+        "sampleSize": 1242,
+        "fieldworkStart": "2026-11-09",
+        "fieldworkEnd": "2026-11-10",
+        "scenarios": [
+          {
+            "label": "Marine Le Pen 27% / Jean-Luc Mélenchon 19% / Raphaël Glucksmann 8% / Christine Lagarde 8%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 27
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 19
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 8
+              },
+              {
+                "candidateId": "christine-lagarde",
+                "candidateName": "Christine Lagarde",
+                "score": 8
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 8
+              },
+              {
                 "candidateId": "david-lisnard",
                 "candidateName": "David Lisnard",
                 "score": 8
@@ -1170,184 +1510,104 @@
                 "score": 5
               },
               {
+                "candidateId": "natacha-polony",
+                "candidateName": "Natacha Polony",
+                "score": 3
+              },
+              {
+                "candidateId": "francois-ruffin",
+                "candidateName": "François Ruffin",
+                "score": 2
+              },
+              {
+                "candidateId": "gabriel-attal",
+                "candidateName": "Gabriel Attal",
+                "score": 2
+              },
+              {
+                "candidateId": "teddy-riner",
+                "candidateName": "Teddy Riner",
+                "score": 2
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 2
+              },
+              {
                 "candidateId": "eric-zemmour",
                 "candidateName": "Éric Zemmour",
-                "score": 5
+                "score": 2
               },
               {
                 "candidateId": "fabien-roussel",
                 "candidateName": "Fabien Roussel",
-                "score": 2
+                "score": 1.5
               },
               {
                 "candidateId": "marine-tondelier",
                 "candidateName": "Marine Tondelier",
-                "score": 2
+                "score": 1
               },
               {
                 "candidateId": "dominique-de-villepin",
                 "candidateName": "Dominique de Villepin",
-                "score": 2
+                "score": 1
+              },
+              {
+                "candidateId": "francois-asselineau",
+                "candidateName": "François Asselineau",
+                "score": 1
               },
               {
                 "candidateId": "nathalie-arthaud",
                 "candidateName": "Nathalie Arthaud",
-                "score": 1
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 1
+                "score": 0.5
               }
             ]
           },
           {
-            "label": "Marine Le Pen 35% / Jean-Luc Mélenchon 17% / Édouard Philippe 13% / Raphaël Glucksmann 12%",
+            "label": "Marine Le Pen 30.5% / Jean-Luc Mélenchon 20% / Édouard Philippe 13.5% / Raphaël Glucksmann 11%",
             "scores": [
               {
                 "candidateId": "marine-le-pen",
                 "candidateName": "Marine Le Pen",
-                "score": 35
+                "score": 30.5
               },
               {
                 "candidateId": "jean-luc-melenchon",
                 "candidateName": "Jean-Luc Mélenchon",
-                "score": 17
+                "score": 20
               },
               {
                 "candidateId": "edouard-philippe",
                 "candidateName": "Édouard Philippe",
-                "score": 13
+                "score": 13.5
               },
               {
                 "candidateId": "raphael-glucksmann",
                 "candidateName": "Raphaël Glucksmann",
-                "score": 12
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 6
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 6
-              },
-              {
-                "candidateId": "gabriel-attal",
-                "candidateName": "Gabriel Attal",
-                "score": 5
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 2
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 1
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 1
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 35% / Jean-Luc Mélenchon 17% / Édouard Philippe 16% / Raphaël Glucksmann 13%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 35
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 17
-              },
-              {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
-                "score": 16
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 13
-              },
-              {
-                "candidateId": "bruno-retailleau",
-                "candidateName": "Bruno Retailleau",
-                "score": 7
-              },
-              {
-                "candidateId": "eric-zemmour",
-                "candidateName": "Éric Zemmour",
-                "score": 5
-              },
-              {
-                "candidateId": "fabien-roussel",
-                "candidateName": "Fabien Roussel",
-                "score": 2
-              },
-              {
-                "candidateId": "marine-tondelier",
-                "candidateName": "Marine Tondelier",
-                "score": 2
-              },
-              {
-                "candidateId": "nicolas-dupont-aignan",
-                "candidateName": "Nicolas Dupont-Aignan",
-                "score": 2
-              },
-              {
-                "candidateId": "nathalie-arthaud",
-                "candidateName": "Nathalie Arthaud",
-                "score": 1
-              }
-            ]
-          },
-          {
-            "label": "Marine Le Pen 35% / Jean-Luc Mélenchon 19% / Raphaël Glucksmann 13% / Gabriel Attal 11%",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 35
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 19
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 13
-              },
-              {
-                "candidateId": "gabriel-attal",
-                "candidateName": "Gabriel Attal",
                 "score": 11
               },
               {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 10
+              },
+              {
                 "candidateId": "bruno-retailleau",
                 "candidateName": "Bruno Retailleau",
-                "score": 9
+                "score": 5
+              },
+              {
+                "candidateId": "nicolas-dupont-aignan",
+                "candidateName": "Nicolas Dupont-Aignan",
+                "score": 3
               },
               {
                 "candidateId": "eric-zemmour",
                 "candidateName": "Éric Zemmour",
-                "score": 6
+                "score": 3
               },
               {
                 "candidateId": "fabien-roussel",
@@ -1357,7 +1617,57 @@
               {
                 "candidateId": "marine-tondelier",
                 "candidateName": "Marine Tondelier",
-                "score": 2
+                "score": 1.5
+              },
+              {
+                "candidateId": "nathalie-arthaud",
+                "candidateName": "Nathalie Arthaud",
+                "score": 0.5
+              }
+            ]
+          },
+          {
+            "label": "Marine Le Pen 30.5% / Jean-Luc Mélenchon 21% / Christine Lagarde 14% / Raphaël Glucksmann 10%",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 30.5
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 21
+              },
+              {
+                "candidateId": "christine-lagarde",
+                "candidateName": "Christine Lagarde",
+                "score": 14
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 10
+              },
+              {
+                "candidateId": "david-lisnard",
+                "candidateName": "David Lisnard",
+                "score": 10
+              },
+              {
+                "candidateId": "bruno-retailleau",
+                "candidateName": "Bruno Retailleau",
+                "score": 6
+              },
+              {
+                "candidateId": "fabien-roussel",
+                "candidateName": "Fabien Roussel",
+                "score": 3
+              },
+              {
+                "candidateId": "eric-zemmour",
+                "candidateName": "Éric Zemmour",
+                "score": 3
               },
               {
                 "candidateId": "nicolas-dupont-aignan",
@@ -1365,9 +1675,14 @@
                 "score": 2
               },
               {
+                "candidateId": "marine-tondelier",
+                "candidateName": "Marine Tondelier",
+                "score": 1.5
+              },
+              {
                 "candidateId": "nathalie-arthaud",
                 "candidateName": "Nathalie Arthaud",
-                "score": 1
+                "score": 0.5
               }
             ]
           }
@@ -1391,6 +1706,25 @@
           }
         ],
         "polls": [
+          {
+            "pollster": "Harris Interactive",
+            "sourceUrl": "https://tolunacorporate.com/wp-content/uploads/2026/11/Rapport-Toluna-Barometre-Presidentielle-2027-Vague-9-M6-RTL-9-novembre-2026.pdf",
+            "sampleSize": 2101,
+            "fieldworkStart": "2026-11-03",
+            "fieldworkEnd": "2026-11-05",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 58
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 42
+              }
+            ]
+          },
           {
             "pollster": "OpinionWay",
             "sourceUrl": "https://www.opinion-way.com/wp-content/uploads/2026/10/OpinionWay-pour-CNEWS-Les-intentions-de-vote-a-lelection-presidentielle-2027-22-octobre-2026.pdf",
@@ -1445,25 +1779,6 @@
                 "candidateId": "edouard-philippe",
                 "candidateName": "Édouard Philippe",
                 "score": 44
-              }
-            ]
-          },
-          {
-            "pollster": "Elabe",
-            "sourceUrl": "https://www.bfmtv.com/politique/elections/presidentielle/sondage-bfmtv-presidentielle-2027-edouard-philippe-raphael-glucksmann-et-jean-luc-melenchon-donnes-au-coude-a-coude-derriere-marine-le-pen_AN-202610170298.html",
-            "sampleSize": 1701,
-            "fieldworkStart": "2026-10-14",
-            "fieldworkEnd": "2026-10-16",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 52.5
-              },
-              {
-                "candidateId": "edouard-philippe",
-                "candidateName": "Édouard Philippe",
-                "score": 47.5
               }
             ]
           }
@@ -1576,6 +1891,25 @@
         ],
         "polls": [
           {
+            "pollster": "Harris Interactive",
+            "sourceUrl": "https://tolunacorporate.com/wp-content/uploads/2026/11/Rapport-Toluna-Barometre-Presidentielle-2027-Vague-9-M6-RTL-9-novembre-2026.pdf",
+            "sampleSize": 2101,
+            "fieldworkStart": "2026-11-03",
+            "fieldworkEnd": "2026-11-05",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 60
+              },
+              {
+                "candidateId": "raphael-glucksmann",
+                "candidateName": "Raphaël Glucksmann",
+                "score": 40
+              }
+            ]
+          },
+          {
             "pollster": "OpinionWay",
             "sourceUrl": "https://www.opinion-way.com/wp-content/uploads/2026/10/OpinionWay-pour-CNEWS-Les-intentions-de-vote-a-lelection-presidentielle-2027-22-octobre-2026.pdf",
             "sampleSize": 973,
@@ -1631,25 +1965,6 @@
                 "score": 43
               }
             ]
-          },
-          {
-            "pollster": "Elabe",
-            "sourceUrl": "https://www.bfmtv.com/politique/elections/presidentielle/sondage-bfmtv-presidentielle-2027-edouard-philippe-raphael-glucksmann-et-jean-luc-melenchon-donnes-au-coude-a-coude-derriere-marine-le-pen_AN-202610170298.html",
-            "sampleSize": 1701,
-            "fieldworkStart": "2026-10-14",
-            "fieldworkEnd": "2026-10-16",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 53.5
-              },
-              {
-                "candidateId": "raphael-glucksmann",
-                "candidateName": "Raphaël Glucksmann",
-                "score": 46.5
-              }
-            ]
           }
         ]
       },
@@ -1667,6 +1982,44 @@
           }
         ],
         "polls": [
+          {
+            "pollster": "Harris Interactive",
+            "sourceUrl": "https://tolunacorporate.com/wp-content/uploads/2026/11/Rapport-Toluna-Barometre-Presidentielle-2027-Vague-10-M6-RTL-LExpress-23-novembre-2026.pdf",
+            "sampleSize": 2088,
+            "fieldworkStart": "2026-11-18",
+            "fieldworkEnd": "2026-11-19",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 65
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 35
+              }
+            ]
+          },
+          {
+            "pollster": "Harris Interactive",
+            "sourceUrl": "https://tolunacorporate.com/wp-content/uploads/2026/11/Rapport-Toluna-Barometre-Presidentielle-2027-Vague-9-M6-RTL-9-novembre-2026.pdf",
+            "sampleSize": 2101,
+            "fieldworkStart": "2026-11-03",
+            "fieldworkEnd": "2026-11-05",
+            "scores": [
+              {
+                "candidateId": "marine-le-pen",
+                "candidateName": "Marine Le Pen",
+                "score": 68
+              },
+              {
+                "candidateId": "jean-luc-melenchon",
+                "candidateName": "Jean-Luc Mélenchon",
+                "score": 32
+              }
+            ]
+          },
           {
             "pollster": "OpinionWay",
             "sourceUrl": "https://www.opinion-way.com/wp-content/uploads/2026/10/OpinionWay-pour-CNEWS-Les-intentions-de-vote-a-lelection-presidentielle-2027-22-octobre-2026.pdf",
@@ -1702,44 +2055,6 @@
                 "candidateId": "jean-luc-melenchon",
                 "candidateName": "Jean-Luc Mélenchon",
                 "score": 30
-              }
-            ]
-          },
-          {
-            "pollster": "Ifop",
-            "sourceUrl": "https://www.ifopgroup.com/wp-content/uploads/2026/10/122853-barometre-de-lelection-presidentielle-vague-7-resultats-densemble.pdf",
-            "sampleSize": 1928,
-            "fieldworkStart": "2026-10-17",
-            "fieldworkEnd": "2026-10-19",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 68
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 32
-              }
-            ]
-          },
-          {
-            "pollster": "Elabe",
-            "sourceUrl": "https://www.bfmtv.com/politique/elections/presidentielle/sondage-bfmtv-presidentielle-2027-edouard-philippe-raphael-glucksmann-et-jean-luc-melenchon-donnes-au-coude-a-coude-derriere-marine-le-pen_AN-202610170298.html",
-            "sampleSize": 1701,
-            "fieldworkStart": "2026-10-14",
-            "fieldworkEnd": "2026-10-16",
-            "scores": [
-              {
-                "candidateId": "marine-le-pen",
-                "candidateName": "Marine Le Pen",
-                "score": 69
-              },
-              {
-                "candidateId": "jean-luc-melenchon",
-                "candidateName": "Jean-Luc Mélenchon",
-                "score": 31
               }
             ]
           }
@@ -1848,6 +2163,98 @@
                 "candidateId": "bruno-retailleau",
                 "candidateName": "Bruno Retailleau",
                 "score": 43
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "no-longer-candidates",
+        "label": "No longer candidates",
+        "candidates": [
+          {
+            "id": "edouard-philippe",
+            "name": "Édouard Philippe"
+          },
+          {
+            "id": "jordan-bardella",
+            "name": "Jordan Bardella"
+          }
+        ],
+        "polls": [
+          {
+            "pollster": "Harris Interactive",
+            "sourceUrl": "https://tolunacorporate.com/wp-content/uploads/2026/05/Rapport-Toluna-Barometre-Presidentielle-2027-Vague-2-M6-RTL-Mai-2026.pdf",
+            "sampleSize": 1744,
+            "fieldworkStart": "2026-05-25",
+            "fieldworkEnd": "2026-05-27",
+            "scores": [
+              {
+                "candidateId": "jordan-bardella",
+                "candidateName": "Jordan Bardella",
+                "score": 68
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 32
+              }
+            ]
+          },
+          {
+            "pollster": "Harris Interactive",
+            "sourceUrl": "https://tolunacorporate.com/wp-content/uploads/2026/05/Rapport-Toluna-Barometre-Presidentielle-2027-Vague-2-M6-RTL-Mai-2026.pdf",
+            "sampleSize": 1744,
+            "fieldworkStart": "2026-05-25",
+            "fieldworkEnd": "2026-05-27",
+            "scores": [
+              {
+                "candidateId": "jordan-bardella",
+                "candidateName": "Jordan Bardella",
+                "score": 57
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 43
+              }
+            ]
+          },
+          {
+            "pollster": "Harris Interactive",
+            "sourceUrl": "https://tolunacorporate.com/wp-content/uploads/2026/05/Rapport-Toluna-Barometre-Presidentielle-2027-Vague-2-M6-RTL-Mai-2026.pdf",
+            "sampleSize": 1744,
+            "fieldworkStart": "2026-05-25",
+            "fieldworkEnd": "2026-05-27",
+            "scores": [
+              {
+                "candidateId": "jordan-bardella",
+                "candidateName": "Jordan Bardella",
+                "score": 54
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 46
+              }
+            ]
+          },
+          {
+            "pollster": "Odoxa",
+            "sourceUrl": "https://www.odoxa.fr/sondage/philippe-seffondre-melenchon-decolle-bardella-simpose/",
+            "sampleSize": 1005,
+            "fieldworkStart": "2026-05-20",
+            "fieldworkEnd": "2026-05-21",
+            "scores": [
+              {
+                "candidateId": "jordan-bardella",
+                "candidateName": "Jordan Bardella",
+                "score": 52
+              },
+              {
+                "candidateId": "edouard-philippe",
+                "candidateName": "Édouard Philippe",
+                "score": 48
               }
             ]
           }

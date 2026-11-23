@@ -1,5 +1,5 @@
 export const FUTURE_HORIZON_YEAR = 2032
-export const FUTURE_MODEL_UPDATED_AT = '2026-09-22'
+export const FUTURE_MODEL_UPDATED_AT = '2026-11-23'
 
 // Policy levers: how a programme is translated into model inputs.
 // Quiz-derived levers reuse the candidate stances (-2..+2); editorial levers are set per candidate.
@@ -137,23 +137,23 @@ export const futureIndicators = [
     higherIsBetter: false,
     bounds: [3, 16],
     baseline: {
-      value: 8.3,
-      date: '2026-06-30',
-      label: 'T2 2026',
-      source: src('Insee, Informations rapides n° 192', 'https://www.insee.fr/fr/statistiques/9032359', '2026-08-14'),
+      value: 8.2,
+      date: '2026-09-30',
+      label: 'T3 2026',
+      source: src('Insee, Informations rapides n° 270', 'https://www.insee.fr/fr/statistiques/9118603', '2026-11-10'),
     },
     history: [
       { year: 2017, value: 9.4 },
       { year: 2019, value: 8.4 },
       { year: 2022, value: 7.3 },
       { year: 2024, value: 7.4 },
-      { year: 2026, value: 8.3 },
+      { year: 2026, value: 8.2 },
     ],
     trend: {
       value: 8.0,
       sigma: 1.2,
       rationale:
-        'L’Insee anticipe 8,6 % fin 2026. Sans changement de politique, le modèle retient un retour progressif vers le chômage structurel estimé (7,5 à 8 %) d’ici 2032, avec une forte incertitude conjoncturelle.',
+        'Le chômage marque une pause au troisième trimestre 2026 (8,2 %, +0,4 point sur un an) après sa remontée du printemps. Sans changement de politique, le modèle retient un retour progressif vers le chômage structurel estimé (7,5 à 8 %) d’ici 2032, avec une forte incertitude conjoncturelle.',
     },
     effects: [
       { lever: 'fiscalImpulse', perUnit: -0.35, sigma: 0.2, refs: ['ofce', 'insee'], note: 'Multiplicateur budgétaire 0,8 et loi d’Okun (0,4 point de chômage par point de PIB).' },
@@ -173,17 +173,17 @@ export const futureIndicators = [
     higherIsBetter: true,
     bounds: [-2, 4],
     baseline: {
-      value: 0.4,
-      date: '2026-09-10',
-      label: 'prévision 2026',
-      source: src('Insee, Note de conjoncture, septembre 2026', 'https://www.insee.fr/fr/statistiques/8907421?sommaire=8907467', '2026-09-10'),
+      value: 0.2,
+      date: '2026-09-30',
+      label: 'acquis 2026 à fin T3',
+      source: src('Insee, Informations rapides n° 263 (PIB -0,1 % au T3)', 'https://www.insee.fr/fr/statistiques/9111036', '2026-10-30'),
     },
     history: [
       { year: 2017, value: 2.5 },
       { year: 2019, value: 1.9 },
       { year: 2022, value: 2.6 },
       { year: 2025, value: 0.9 },
-      { year: 2026, value: 0.4 },
+      { year: 2026, value: 0.2 },
     ],
     trend: {
       value: 0.9,
@@ -209,10 +209,10 @@ export const futureIndicators = [
     higherIsBetter: false,
     bounds: [90, 170],
     baseline: {
-      value: 115.6,
-      date: '2025-12-31',
-      label: 'fin 2025',
-      source: src('Insee, Informations rapides n° 78', 'https://www.insee.fr/fr/statistiques/8956575', '2026-03-27'),
+      value: 119.0,
+      date: '2026-06-30',
+      label: 'fin T2 2026',
+      source: src('Insee, Informations rapides n° 239', 'https://www.insee.fr/fr/statistiques/9053525', '2026-09-29'),
     },
     history: [
       { year: 2017, value: 98.1 },
@@ -220,12 +220,13 @@ export const futureIndicators = [
       { year: 2022, value: 111.4 },
       { year: 2024, value: 112.6 },
       { year: 2025, value: 115.6 },
+      { year: 2026, value: 119.0 },
     ],
     trend: {
-      value: 128,
+      value: 130,
       sigma: 5,
       rationale:
-        'Déficit ramené progressivement de 5,1 % à 4 % du PIB et écart taux d’intérêt-croissance proche de zéro : la dette continuerait de monter d’environ 2 points par an.',
+        'Dette à 119 % du PIB mi-2026 et 121,7 % prévus par le gouvernement pour 2027. Avec un déficit ramené progressivement vers 4 % du PIB et une croissance faible, elle continuerait de monter d’environ 2 points par an.',
     },
     effects: [
       { lever: 'fiscalImpulse', perUnit: 5, sigma: 1.5, refs: ['insee', 'bdf'], note: 'Un point de PIB de déficit supplémentaire chaque année pendant cinq ans, intérêts compris.' },

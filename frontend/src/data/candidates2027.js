@@ -2,7 +2,7 @@ import { lisnardResearch } from './davidLisnardResearch20261022.js'
 import { recentCandidates20261021 } from './recentCandidates20261021.js'
 import { recentCandidates20261109 } from './recentCandidates20261109.js'
 
-export const CANDIDATE_DATA_LAST_UPDATED = '2026-11-09'
+export const CANDIDATE_DATA_LAST_UPDATED = '2026-11-23'
 export const ELECTION_FIRST_ROUND_DATE = '2027-04-18'
 export const ELECTION_SECOND_ROUND_DATE = '2027-05-02'
 export const ELECTION_DECREE_DATE = '2026-07-01'
@@ -18,6 +18,46 @@ function wiki(slug) {
 }
 
 const shared = {
+  primaireAccord17Nov: src(
+    'France 24 avec AFP',
+    'https://www.france24.com/fr/france/20261117-equipes-attal-retailleau-lisnard-avancent-sur-une-primaire-droite-centre-sans-edouard-philippe-presidentielle-2027-election-candidats-lr-nouvelle-energie-renaissance',
+    '2026-11-18',
+  ),
+  primaireReunion26Nov: src(
+    'franceinfo',
+    'https://www.franceinfo.fr/politique/nouvelle-reunion-jeudi-prochain-entre-les-directeurs-de-campagne-de-gabriel-attal-bruno-retailleau-et-david-lisnard-pour-une-primaire-de-la-droite-et-du-centre_8294057.html',
+    '2026-11-21',
+  ),
+  philippeProgrammeFranceinfo: src(
+    'franceinfo',
+    'https://www.franceinfo.fr/politique/edouard-philippe/priorite-donnee-a-l-ecole-retablissement-des-comptes-publics-edouard-philippe-met-en-lumiere-plusieurs-mesures-de-son-programme-presidentiel_8287970.html',
+    '2026-11-18',
+  ),
+  philippeProgrammeAfp: src(
+    'AFP, via France 24',
+    'https://www.france24.com/fr/info-en-continu/20261118-pr%C3%A9sidentielle-en-recul-dans-les-sondages-philippe-mise-sur-un-projet-radical-et-s%C3%A9rieux',
+    '2026-11-18',
+  ),
+  ruffinRetrait: src(
+    'LCP avec AFP',
+    'https://lcp.fr/actualites/francois-ruffin-se-retire-de-la-presidentielle-2027-sans-soutenir-aucun-des-candidats-de',
+    '2026-11-21',
+  ),
+  villepinCandidatLcp: src(
+    'LCP',
+    'https://lcp.fr/actualites/presidentielle-2027-dominique-de-villepin-officiellement-candidat-a-l-elysee-445372',
+    '2026-11-20',
+  ),
+  villepinCandidatRts: src(
+    'RTS avec ATS',
+    'https://www.rts.ch/info/monde/2026/article/presidentielle-2027-dominique-de-villepin-est-candidat-29422066.html',
+    '2026-11-20',
+  ),
+  tondelierCoalition: src(
+    'Public Sénat',
+    'https://www.publicsenat.fr/actualites/politique/la-main-tendue-de-marine-tondelier-a-melenchon-peut-elle-faire-imploser-les-ecologistes',
+    '2026-11-19',
+  ),
   listeTouteleurope: src(
     'Toute l’Europe',
     'https://www.touteleurope.eu/vie-politique-des-etats-membres/presidentielle-2027-qui-sont-les-candidats-deja-declares/',
@@ -429,7 +469,7 @@ export const candidates2027 = [
   },
   {
     id: 'edouard-philippe',
-    dataLastUpdated: '2026-11-09',
+    dataLastUpdated: '2026-11-23',
     name: 'Édouard Philippe',
     bloc: 'Centre droit',
     party: 'Horizons',
@@ -445,8 +485,21 @@ export const candidates2027 = [
       'Né le 28 novembre 1970 à Rouen, Édouard Philippe est haut fonctionnaire de formation puis élu local au Havre.',
       'Premier ministre de mai 2017 à juillet 2020, il a ensuite structuré son parti Horizons et a été le premier grand candidat déclaré pour 2027, dès septembre 2024.',
       'À la rentrée 2026, il engrange le soutien de Gérald Darmanin et propose un rassemblement de la droite et du centre autour de sa candidature, sans passer par une primaire.',
+      'Le 18 novembre 2026, en recul dans les sondages, il présente le premier volume de son programme, « massif » et « sérieux » selon lui, et maintient son refus de la primaire en attendant une « décantation » d’ici fin février.',
     ],
     keyPositions: [
+      {
+        topic: 'Programme du 18 novembre : retraites et comptes publics',
+        summary:
+          'Âge légal à 65 ans pour 45 annuités, avec un régime par capitalisation qui « monte en puissance » à côté de la répartition ; déficit ramené « significativement sous la barre des 3 % », règle d’or dans la Constitution, suppression des 35 heures. Aucun chiffrage global publié.',
+        source: shared.philippeProgrammeFranceinfo,
+      },
+      {
+        topic: 'Programme du 18 novembre : État, école, immigration',
+        summary:
+          'Statut de fonctionnaire limité au régalien et aux enseignants ; une trentaine d’agences fusionnées, supprimées ou privatisées, dont France Travail ; suppression du Cese. Hausse de 20 % du salaire des enseignants. Titres de séjour divisés par deux, moratoire sur le regroupement familial, dénonciation de l’accord franco-algérien de 1968.',
+        source: shared.philippeProgrammeFranceinfo,
+      },
       {
         topic: 'Programme : immigration, retraites, dépenses',
         summary:
@@ -456,7 +509,7 @@ export const candidates2027 = [
       {
         topic: 'Primaire des démocrates',
         summary:
-          'Il reste seul des quatre principaux candidats de la droite et du centre à refuser la primaire : « Édouard Philippe ne participera pas à la primaire », affirme Maël de Calan début novembre 2026. Il propose plutôt qu’entre Noël et février les candidats les moins bien placés se retirent au profit du mieux placé.',
+          'Il reste seul des quatre principaux candidats de la droite et du centre à refuser la primaire, malgré l’accord de principe du 17 novembre 2026 entre Attal, Retailleau et Lisnard ; son équipe reste invitée aux discussions. Il propose plutôt qu’entre Noël et février les candidats les moins bien placés se retirent au profit du mieux placé.',
         source: shared.primaireRefusPhilippe,
       },
       {
@@ -507,12 +560,18 @@ export const candidates2027 = [
         description: 'Il appelle au rassemblement ; Bruno Retailleau décline.',
         source: shared.philippeRetailleauAfp,
       },
+      {
+        date: '2026-11-18',
+        title: 'Présentation du programme',
+        description: 'Premier volume de son projet présidentiel ; refus maintenu de la primaire et réunion publique annoncée le 24 janvier à Arras.',
+        source: shared.philippeProgrammeAfp,
+      },
     ],
-    sources: [shared.primaireRefusPhilippe, shared.philippeProgrammeEuronews, shared.primaireDemocratesReactions, philippeSources.tf1, shared.philippeRetailleauAfp, philippeSources.darmanin, philippeSources.gouv, philippeSources.wiki],
+    sources: [shared.philippeProgrammeFranceinfo, shared.philippeProgrammeAfp, shared.primaireAccord17Nov, shared.primaireRefusPhilippe, shared.philippeProgrammeEuronews, shared.primaireDemocratesReactions, philippeSources.tf1, shared.philippeRetailleauAfp, philippeSources.darmanin, philippeSources.gouv, philippeSources.wiki],
   },
   {
     id: 'bruno-retailleau',
-    dataLastUpdated: '2026-11-09',
+    dataLastUpdated: '2026-11-23',
     name: 'Bruno Retailleau',
     bloc: 'Droite',
     party: 'Les Républicains',
@@ -533,8 +592,8 @@ export const candidates2027 = [
       {
         topic: 'Primaire des démocrates',
         summary:
-          'Après avoir jugé « fantaisiste » la version initiale de Gabriel Attal, il accepte début novembre 2026 le principe d’une primaire de la droite et du centre, qui pourrait se tenir au plus tard dans la première quinzaine de février si Édouard Philippe y participe.',
-        source: shared.primaireAccelerationAfp,
+          'Après avoir proposé le 10 novembre 2026 un vote les 31 janvier et 7 février, il s’accorde le 17 novembre avec les équipes d’Attal et de Lisnard sur une primaire à deux tours les 17 et 24 ou les 24 et 31 janvier 2027, à 2 euros et surtout en ligne. Son camp assure que la présence d’Édouard Philippe n’est plus « un préalable ».',
+        source: shared.primaireAccord17Nov,
       },
       {
         topic: 'Désignation LR',
@@ -577,12 +636,18 @@ export const candidates2027 = [
         description: 'Il maintient une candidature LR distincte du bloc central.',
         source: shared.philippeRetailleauAfp,
       },
+      {
+        date: '2026-11-17',
+        title: 'Accord de principe sur une primaire en janvier',
+        description: 'Ses équipes, celles d’Attal et de Lisnard s’entendent sur deux tours fin janvier ; nouvelle réunion le 26 novembre.',
+        source: shared.primaireAccord17Nov,
+      },
     ],
-    sources: [shared.primaireAccelerationAfp, shared.primaireDemocratesReactions, shared.listeLcp, shared.philippeRetailleauAfp, retailleauSources.tf1, retailleauSources.lr, retailleauSources.senate, retailleauSources.wiki],
+    sources: [shared.primaireAccord17Nov, shared.primaireReunion26Nov, shared.primaireAccelerationAfp, shared.primaireDemocratesReactions, shared.listeLcp, shared.philippeRetailleauAfp, retailleauSources.tf1, retailleauSources.lr, retailleauSources.senate, retailleauSources.wiki],
   },
   {
     id: 'gabriel-attal',
-    dataLastUpdated: '2026-11-09',
+    dataLastUpdated: '2026-11-23',
     name: 'Gabriel Attal',
     bloc: 'Centre',
     party: 'Renaissance',
@@ -603,7 +668,7 @@ export const candidates2027 = [
       {
         topic: 'Primaire des démocrates',
         summary:
-          'Le 28 octobre 2026 sur TF1, il appelle à une « grande primaire des démocrates » pour éviter un second tour RN-LFI. Rejoint par Bruno Retailleau et David Lisnard, il estime le 6 novembre qu’elle pourrait aboutir « rapidement » et que ceux qui resteront à l’écart « porteront la responsabilité de la division ».',
+          'Le 28 octobre 2026 sur TF1, il appelle à une « grande primaire des démocrates » pour éviter un second tour RN-LFI. Le 17 novembre, ses équipes s’accordent avec celles de Retailleau et de Lisnard sur une primaire à deux tours fin janvier 2027, « la plus ouverte possible » mais fermée aux partis « extrêmes ». Selon l’Ifop pour Le Figaro, il arriverait en tête d’une primaire sans Édouard Philippe (38 %).',
         source: shared.primaireDemocratesLcp,
       },
       {
@@ -653,8 +718,14 @@ export const candidates2027 = [
         description: 'Après le ralliement de Bruno Retailleau au principe, il juge que les discussions s’accélèrent ; Édouard Philippe maintient son refus.',
         source: shared.primaireAccelerationAfp,
       },
+      {
+        date: '2026-11-17',
+        title: 'Accord de principe sur une primaire en janvier',
+        description: 'Dates envisagées : 17 et 24 ou 24 et 31 janvier 2027, participation de 2 euros ; nouvelle réunion le 26 novembre.',
+        source: shared.primaireAccord17Nov,
+      },
     ],
-    sources: [shared.primaireAccelerationAfp, shared.primaireDemocratesLcp, shared.listeTouteleurope, shared.listeLcp, attalSources.speech2027, attalSources.path2027, attalSources.assembly, attalSources.wiki],
+    sources: [shared.primaireAccord17Nov, shared.primaireReunion26Nov, shared.primaireAccelerationAfp, shared.primaireDemocratesLcp, shared.listeTouteleurope, shared.listeLcp, attalSources.speech2027, attalSources.path2027, attalSources.assembly, attalSources.wiki],
   },
   {
     id: 'jean-luc-melenchon',
@@ -927,6 +998,7 @@ export const candidates2027 = [
   },
   {
     id: 'david-lisnard',
+    dataLastUpdated: '2026-11-23',
     name: 'David Lisnard',
     bloc: 'Droite',
     party: 'Nouvelle Énergie',
@@ -1007,7 +1079,7 @@ export const candidates2027 = [
     status: 'conditional',
     statusLabel: 'Maintenue, référendum interne en décembre',
     summary:
-      'Désignée par les Écologistes en décembre 2025 pour une primaire unitaire aujourd’hui enterrée, elle est exclue de la primaire PS. Sa candidature est maintenue provisoirement ; un référendum interne des adhérents (10-13 décembre 2026) tranchera.',
+      'Désignée par les Écologistes en décembre 2025, exclue de la primaire PS, elle se dit le 18 novembre 2026 prête à une coalition autour de Jean-Luc Mélenchon tout en restant candidate. Les adhérents trancheront du 10 au 13 décembre entre candidature autonome, soutien à Mélenchon ou rapprochement avec Glucksmann.',
     themes: ['Écologie', 'Union de la gauche', 'Démocratie'],
     priority: 11,
     photoUrl: `${CLOUDINARY}/v1773268682/presidentielles/candidats/marine-tondelier.jpg`,
@@ -1018,6 +1090,12 @@ export const candidates2027 = [
       'Écartée de « Choisir 2027 », elle se dit « échaudée » par le « choix tragique » du PS ; le conseil fédéral des Écologistes maintient provisoirement sa candidature et renvoie la décision finale à un référendum interne du 10 au 13 décembre 2026.',
     ],
     keyPositions: [
+      {
+        topic: 'Coalition autour de Mélenchon',
+        summary:
+          'Le 18 novembre 2026 sur France 2, elle se dit prête à « travailler à une coalition autour de la candidature de Jean-Luc Mélenchon », sans ralliement : « Je ne vais pas changer de programme ». Yannick Jadot et Raphaël Glucksmann dénoncent ce tournant ; LFI salue une « bonne nouvelle ».',
+        source: shared.tondelierCoalition,
+      },
       {
         topic: 'Candidature en suspens',
         summary:
@@ -1055,23 +1133,35 @@ export const candidates2027 = [
         source: shared.primaireUnitaireWiki,
       },
       {
+        date: '2026-11-18',
+        title: 'Main tendue à Jean-Luc Mélenchon',
+        description: 'Sur France 2, elle propose une semaine de discussions pour un accord programmatique, gouvernemental et législatif.',
+        source: shared.tondelierCoalition,
+      },
+      {
+        date: '2026-11-26',
+        title: 'Conseil fédéral des Écologistes',
+        description: 'Il fixe les options soumises aux adhérents : candidature autonome, soutien à Mélenchon ou rapprochement avec Glucksmann.',
+        source: shared.tondelierCoalition,
+      },
+      {
         date: '2026-12-10',
         title: 'Référendum interne des Écologistes',
         description: 'Les adhérents décident, du 10 au 13 décembre, du maintien ou du retrait de sa candidature.',
         source: tondelierSources.referendum,
       },
     ],
-    sources: [tondelierSources.referendum, tondelierSources.cnews, shared.primaireUnitaireWiki, tondelierSources.designation, tondelierSources.tf1, tondelierSources.wiki],
+    sources: [shared.tondelierCoalition, tondelierSources.referendum, tondelierSources.cnews, shared.primaireUnitaireWiki, tondelierSources.designation, tondelierSources.tf1, tondelierSources.wiki],
   },
   {
     id: 'francois-ruffin',
     name: 'François Ruffin',
     bloc: 'Gauche',
     party: 'Debout !',
-    status: 'declared',
-    statusLabel: 'Déclaré (hors primaire)',
+    status: 'not_running',
+    statusLabel: 'Retiré le 21 novembre 2026',
     summary:
-      'Député de la Somme et fondateur de Debout !, candidat à la primaire unitaire aujourd’hui enterrée, il maintient sa candidature autonome en dehors de « Choisir 2027 », dont le scrutin a désigné Raphaël Glucksmann le 11 octobre.',
+      'Député de la Somme et fondateur de Debout !, il retire sa candidature le 21 novembre 2026, prenant acte de « l’impasse » d’une campagne mesurée entre 1 et 3 %, faute de grande primaire de la gauche. Il ne soutient aucun candidat.',
     themes: ['Pouvoir d’achat', 'Justice fiscale', 'Union de la gauche'],
     priority: 12,
     photoUrl: `${CLOUDINARY}/v1773268671/presidentielles/candidats/francois-ruffin.jpg`,
@@ -1080,8 +1170,14 @@ export const candidates2027 = [
       'Né en 1975, François Ruffin est journaliste de formation et député de la Somme.',
       'Il a lancé son mouvement Debout ! en juin 2025 et annoncé en janvier 2026 sa candidature à la primaire de la gauche unitaire.',
       'Cette primaire ayant été abandonnée de fait à l’été 2026, il poursuit une candidature autonome tout en critiquant le périmètre fermé de la primaire socialiste.',
+      'Le 21 novembre 2026, il retire sa candidature par un communiqué sur X : selon lui, « le duel des deux gauches irréconciliables est installé ». Son mouvement Debout ! continue.',
     ],
     keyPositions: [
+      {
+        topic: 'Retrait de candidature',
+        summary: '« Face au risque du pire, je retire ma candidature à l’élection présidentielle » : il ne soutient aucun candidat et souhaite « bon courage » à ceux de gauche encore en lice.',
+        source: shared.ruffinRetrait,
+      },
       {
         topic: 'Candidature maintenue',
         summary: 'Le 9 septembre 2026, il se dit « toujours prêt » à rejoindre la primaire social-démocrate et reproche à Glucksmann d’avoir « peur des électeurs ».',
@@ -1117,8 +1213,14 @@ export const candidates2027 = [
         description: 'Le vote des adhérents PS pour une primaire fermée met fin de fait au processus unitaire.',
         source: shared.primaireUnitaireWiki,
       },
+      {
+        date: '2026-11-21',
+        title: 'Retrait de candidature',
+        description: 'Il renonce à la présidentielle sans soutenir aucun candidat de gauche.',
+        source: shared.ruffinRetrait,
+      },
     ],
-    sources: [tondelierSources.cnews, ruffinSources.horsPrimaire, ruffinSources.parisien, ruffinSources.rtl, shared.primaireUnitaireWiki, ruffinSources.wiki],
+    sources: [shared.ruffinRetrait, tondelierSources.cnews, ruffinSources.horsPrimaire, ruffinSources.parisien, ruffinSources.rtl, shared.primaireUnitaireWiki, ruffinSources.wiki],
   },
   {
     id: 'olivier-faure',
@@ -1659,10 +1761,10 @@ export const candidates2027 = [
     name: 'Dominique de Villepin',
     bloc: 'Centre droit',
     party: 'La France humaniste',
-    status: 'intent',
-    statusLabel: 'Candidature pressentie',
+    status: 'declared',
+    statusLabel: 'Déclaré le 20 novembre 2026',
     summary:
-      'Ancien Premier ministre (2005-2007), il a lancé La France humaniste en juin 2025 pour préparer 2027. Non officiellement déclaré, il travaille à réunir les 500 parrainages.',
+      'Ancien Premier ministre (2005-2007) et fondateur de La France humaniste, il se déclare candidat le 20 novembre 2026, en alternative au macronisme, au RN et à LFI. Il refuse la primaire de la droite et du centre et doit encore réunir ses 500 parrainages.',
     themes: ['Diplomatie', 'Unité républicaine', 'Institutions'],
     priority: 24,
     photoUrl: `${CLOUDINARY}/v1790073776/presidentielles/candidats/dominique-de-villepin.jpg`,
@@ -1671,9 +1773,24 @@ export const candidates2027 = [
     biography: [
       'Né en 1953, Dominique de Villepin a été ministre des Affaires étrangères, de l’Intérieur, puis Premier ministre de 2005 à 2007.',
       'Revenu dans le débat public par ses prises de position internationales, il a lancé le 24 juin 2025 le mouvement La France humaniste.',
-      'À la rentrée 2026, il n’est pas formellement déclaré mais cherche à réunir les 500 présentations d’élus.',
+      'Le 20 novembre 2026, à 73 ans, il annonce sa candidature à la Maison de l’Amérique latine, à Paris. En 2012, il n’avait pas obtenu les 500 parrainages.',
     ],
     keyPositions: [
+      {
+        topic: 'Déclaration de candidature',
+        summary: '« Je suis candidat à l’élection présidentielle de 2027 ». Il qualifie le macronisme de « pouvoir zombie » et présente le RN et LFI comme « deux ennemis complémentaires », sans les mettre « sur la même ligne ».',
+        source: shared.villepinCandidatLcp,
+      },
+      {
+        topic: 'Comptes publics et retraites',
+        summary: 'Sa première mesure serait de « mettre de l’ordre dans les comptes publics » par une trajectoire pluriannuelle ; il écarte une nouvelle réforme des retraites imposée par un seul camp. Aucun chiffrage publié à l’annonce.',
+        source: shared.villepinCandidatLcp,
+      },
+      {
+        topic: 'Primaire',
+        summary: 'Il refuse de participer à la primaire de la droite et du centre.',
+        source: shared.villepinCandidatRts,
+      },
       {
         topic: 'La France humaniste',
         summary: 'Il lance en juin 2025 un « mouvement d’idées et de citoyens » comme étape vers 2027.',
@@ -1698,8 +1815,14 @@ export const candidates2027 = [
         description: 'Il crée son mouvement en vue de la présidentielle.',
         source: villepinSources.rts,
       },
+      {
+        date: '2026-11-20',
+        title: 'Déclaration de candidature',
+        description: 'Conférence de presse à Paris ; il est crédité de 1 à 3 % dans les sondages.',
+        source: shared.villepinCandidatLcp,
+      },
     ],
-    sources: [villepinSources.rts, shared.listeLcp, shared.listePublicSenat, villepinSources.wiki],
+    sources: [shared.villepinCandidatLcp, shared.villepinCandidatRts, villepinSources.rts, shared.listeLcp, shared.listePublicSenat, villepinSources.wiki],
   },
   {
     id: 'jordan-bardella',

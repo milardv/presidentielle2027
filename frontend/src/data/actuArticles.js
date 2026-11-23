@@ -2,8 +2,10 @@ import { budget2027Article } from './budget2027Article.js'
 import { primaireDemocratesArticle } from './primaireDemocratesArticle.js'
 import { programmeMelenchonArticle } from './programmeMelenchonArticle.js'
 import { primaireDroiteCentreDatesArticle } from './primaireDroiteCentreDatesArticle.js'
+import { semaineRecompositionArticle } from './semaineRecompositionArticle.js'
 
 export const actuArticles = [
+semaineRecompositionArticle,
 primaireDroiteCentreDatesArticle,
 programmeMelenchonArticle,
 primaireDemocratesArticle,

@@ -14,6 +14,10 @@ export const lisnardResearchSources = {
   rmc: source('Nouvelle Énergie · entretien BFMTV–RMC du 13 octobre', 'https://www.unenouvelleenergie.fr/david-lisnard-sur-bfmtv-et-rmc-lhyper-bureaucratisation-et-lhyper-centralisation-sont-en-train-de-flinguer-nos-enfants/', '2026-10-14'),
   lci: source('Le Parisien avec AFP · échange sur LCI', 'https://www.leparisien.fr/politique/je-men-fous-david-lisnard-sagace-apres-avoir-ete-interroge-sur-le-17-octobre-1961-20-10-2026-67QQ72XSNJGMBHDQG3MQNZYXKM.php', '2026-10-20'),
   primaire: source('Public Sénat · primaire de la droite et du centre', 'https://www.publicsenat.fr/actualites/politique/la-febrilite-est-de-leur-cote-pas-du-sien-sous-pression-du-camp-attal-et-retailleau-edouard-philippe-reste-droit-dans-ses-bottes-et-refuse-la-primaire', '2026-11-09'),
+  primaireAccord: source('France 24 avec AFP · accord de principe sur une primaire', 'https://www.france24.com/fr/france/20261117-equipes-attal-retailleau-lisnard-avancent-sur-une-primaire-droite-centre-sans-edouard-philippe-presidentielle-2027-election-candidats-lr-nouvelle-energie-renaissance', '2026-11-18'),
+  bfm22: source('AFP, via France 24 · entretien BFMTV du 22 novembre', 'https://www.france24.com/fr/info-en-continu/20261122-attaqu%C3%A9-par-le-rn-et-le-centre-lisnard-ne-l%C3%A2che-rien-sur-la-primaire', '2026-11-22'),
+  ifopPrimaire: source('Ifop pour Le Figaro · primaire de la droite et du centre', 'https://www.ifopgroup.com/article/les-francais-et-une-primaire-de-la-droite-et-du-centre/', '2026-11-18'),
+  harris10: source('Toluna Harris Interactive · vague 10', 'https://tolunacorporate.com/fr/intentions-de-vote-a-lelection-presidentielle-2027-vague-10/', '2026-11-23'),
   amfDebate: source('Le Monde · critiques à l’AMF et réponse de David Lisnard', 'https://www.lemonde.fr/politique/article/2026/10/21/des-maires-de-gauche-reprochent-a-david-lisnard-ses-propos-sur-le-massacre-du-17-octobre-1961_6798298_823448.html', '2026-10-21'),
 }
 const s = lisnardResearchSources
@@ -62,7 +66,9 @@ export const lisnardResearch = {
     { topic: 'Retraites', summary: 'Il défend un étage obligatoire de capitalisation. Les modalités de transition doivent être distinguées du principe annoncé.', source: s.crayon },
     { topic: 'École', summary: 'Il propose davantage d’autonomie pour les établissements et leurs recrutements, la fin de la sectorisation et un financement suivant le choix des familles.', source: s.rmc },
     { topic: 'Sécurité et manifestations', summary: 'Il distingue la liberté de manifester des dégradations et veut des interventions plus précoces contre les auteurs de violences.', source: s.bfm },
-    { topic: 'Désignation à droite', summary: 'Candidat déclaré depuis le 31 mars 2026, il demande une primaire ouverte de la droite et du centre. Début novembre 2026, il soutient la démarche relancée par Gabriel Attal et Bruno Retailleau, mais souhaite y inclure Sarah Knafo, ce que le camp d’Édouard Philippe juge incompatible avec le périmètre proposé par Gabriel Attal.', source: s.primaire },
+    { topic: 'Désignation à droite', summary: 'Ses équipes s’accordent le 17 novembre 2026 avec celles d’Attal et de Retailleau sur une primaire fin janvier. Il est le seul à vouloir y inclure Éric Zemmour, juge qu’une primaire sans Édouard Philippe n’aurait « aucun sens » et refuse de s’engager à soutenir le vainqueur. L’Ifop pour Le Figaro le place en tête d’une primaire avec Philippe (29 % contre 28 %).', source: s.bfm22 },
+    { topic: 'Retraites : 65 ans', summary: 'Le 22 novembre 2026 sur BFMTV, il propose de porter l’âge légal de départ à 65 ans, en plus de l’étage de capitalisation qu’il défend.', source: s.bfm22 },
+    { topic: 'Dynamique dans les sondages', summary: 'Dans la vague 10 de Toluna Harris Interactive (18-19 novembre 2026), il obtient 11 à 12 %, à égalité avec Raphaël Glucksmann pour la troisième place et devant Édouard Philippe (9 à 10 %) pour la première fois dans ce baromètre.', source: s.harris10 },
   ],
   timeline: [
     { date: '1969-02-02', title: 'Naissance à Limoges', description: 'Une enfance en Haute-Vienne avant une scolarité poursuivie à Cannes.', source: s.wiki },
@@ -79,6 +85,8 @@ export const lisnardResearch = {
     { id: 'lisnard-amf-20261021', type: 'quote', title: 'AMF : critiques et réponse sur la séparation des rôles', excerpt: 'Jean-François Debat et André Laignel critiquent ses déclarations et demandent une clarification entre candidature et représentation des maires. David Lisnard répond qu’il sépare ses positions personnelles de celles de l’AMF.', context: 'Positions contradictoires rapportées par Le Monde.', source: s.amfDebate },
     ...lisnardVideos.map((video) => ({ id: `lisnard-youtube-${video.videoId}`, type: 'video', title: video.title, excerpt: video.excerpt, context: video.context, source: source(`YouTube · ${video.channel}`, `https://www.youtube.com/watch?v=${video.videoId}`, video.date) })),
     { id: 'lisnard-france2-20260331', type: 'quote', title: 'France 2 : l’annonce de candidature et le départ de LR', excerpt: 'Au 20 heures du 31 mars, il se déclare candidat et annonce son départ des Républicains. Il défend une primaire ouverte à droite. LCP restitue l’annonce et les réactions le 1er avril.', context: 'Date de l’intervention distincte de celle de l’article.', source: s.candidature },
+    { date: '2026-11-17', title: 'Accord de principe sur une primaire', description: 'Ses équipes, celles d’Attal et de Retailleau retiennent deux tours fin janvier 2027, à 2 euros et surtout en ligne.', source: s.primaireAccord },
+    { date: '2026-11-23', title: 'Devant Philippe dans un baromètre', description: 'Toluna Harris Interactive le mesure à 11 à 12 %, à égalité avec Glucksmann, devant Philippe (9 à 10 %).', source: s.harris10 },
   ],
   sources: Object.values(s),
   dataLastUpdated: '2026-11-09',

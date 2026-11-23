@@ -2,6 +2,7 @@ const source = (label, url, date) => ({ label, url, date })
 const lcp = source('LCP · panorama des candidatures, vérifié le 21 octobre', 'https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373', '2026-10-14')
 const polony = source('Natacha Polony · annonce de candidature', 'https://www.npolony.fr/actualites', '2026-10-14')
 const becht = source('La Tribune · annonce de candidature', 'https://www.latribune.fr/article/la-tribune-dimanche/politique/presidentielle/14658207962183/hy9g7dp5b7wl.html', '2026-09-24')
+const hollandeLci = source('Epoch Times avec AFP · entretien sur LCI du 19 novembre', 'https://www.epochtimes.fr/ma-vie-est-accomplie-hollande-repousse-sa-decision-sur-la-presidentielle-et-laisse-jusqua-fevrier-a-glucksmann-pour-convaincre-3397341.html', '2026-11-20')
 const platret = source('Info Chalon · compte rendu de la réunion publique', 'https://www.info-chalon.com/articles/2026/10/09/114461/presidentielle-abrogation-des-35h-retablissement-des-frontieres-nationales-decheance-des-mandats-pour-les-ennemis-de-l-interieur-gilles-platret-s-elance-dans-la-presidentielle-2027/', '2026-10-09')
 
 export const recentCandidates20261021 = [
@@ -40,13 +41,20 @@ export const recentCandidates20261021 = [
   },
   {
     id: 'francois-hollande', name: 'François Hollande', bloc: 'Gauche', party: 'Parti socialiste',
-    status: 'intent', statusLabel: 'Pressenti — décision annoncée pour décembre ou janvier',
-    summary: 'L’ancien président prépare une éventuelle candidature et annonce une décision pour décembre 2026 ou janvier 2027. Il n’est pas déclaré à la date de vérification.',
+    dataLastUpdated: '2026-11-23',
+    status: 'intent', statusLabel: 'Pressenti — décision repoussée à fin janvier ou début février',
+    summary: 'L’ancien président repousse le 19 novembre 2026 sa décision à « fin janvier ou début février » et laisse jusque-là à Raphaël Glucksmann le temps de montrer qu’il peut se qualifier au second tour. Il n’est pas déclaré.',
     themes: ['Institutions', 'Europe', 'Social-démocratie'], priority: 30, photoUrl: '',
     currentRole: 'Député de la Corrèze, ancien président de la République',
     biography: ['François Hollande a été président de la République de 2012 à 2017.', 'Il est redevenu député de la Corrèze en 2024 et envisage une candidature pour 2027 sans l’avoir officialisée au 21 octobre 2026.'],
-    keyPositions: [],
-    timeline: [{ date: '2026-10-14', title: 'Une candidature toujours envisagée', description: 'Le panorama de LCP le classe parmi les personnalités qui préparent une éventuelle candidature et attendent avant de décider.', source: lcp }],
-    sources: [lcp],
+    keyPositions: [
+      { topic: 'Décision repoussée', summary: 'Sur LCI le 19 novembre 2026, il dit attendre que Raphaël Glucksmann démontre qu’il peut « être au second tour et l’emporter » ; il n’ira pas à son meeting de lancement du 6 décembre.', source: hollandeLci },
+      { topic: 'Programme de Mélenchon', summary: 'Il juge que le programme économique de LFI mènerait vers « l’incident de crédit en deux jours » et estime désormais possible une victoire de Marine Le Pen.', source: hollandeLci },
+    ],
+    timeline: [
+      { date: '2026-10-14', title: 'Une candidature toujours envisagée', description: 'Le panorama de LCP le classe parmi les personnalités qui préparent une éventuelle candidature et attendent avant de décider.', source: lcp },
+      { date: '2026-11-19', title: 'Décision repoussée', description: 'Sur LCI, il reporte son choix à fin janvier ou début février 2027.', source: hollandeLci },
+    ],
+    sources: [hollandeLci, lcp],
   },
 ]

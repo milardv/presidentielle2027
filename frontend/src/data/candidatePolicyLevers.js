@@ -19,13 +19,13 @@ export const candidatePolicyLeverDetails = {
     },
   },
   'edouard-philippe': {
-    notes: 'Priorité affichée au redressement des comptes, allongement de la durée d’activité, stabilité fiscale ; poursuite du plan de construction de places de prison.',
+    notes: 'Programme présenté le 18 novembre 2026 : déficit « significativement » sous 3 %, règle d’or, retraite à 65 ans pour 45 annuités avec capitalisation, fin des 35 heures, statut de fonctionnaire restreint, hausse de 20 % du salaire des enseignants. Aucun chiffrage global publié.',
     levers: {
-      fiscalImpulse: { value: -0.8, statement: 'Priorité affichée au redressement des comptes publics : consolidation d’environ 0,8 point de PIB par an.' },
-      retirementAge: { value: 1, statement: 'Allongement de la durée d’activité au-delà de la réforme de 2023.' },
+      fiscalImpulse: { value: -1, statement: 'Déficit ramené « significativement sous la barre des 3 % », règle d’or constitutionnelle et réduction « massive » de la dépense : consolidation estimée à environ 1 point de PIB par an.', topic: 'Programme du 18 novembre : retraites et comptes publics' },
+      retirementAge: { value: 1, statement: 'Âge légal porté à 65 ans pour 45 annuités, avec un régime par capitalisation.', topic: 'Programme du 18 novembre : retraites et comptes publics' },
       smicHike: { value: 0 },
       taxWealth: { value: 0 },
-      educationInvestment: { value: 0 },
+      educationInvestment: { value: 1, statement: 'École « première priorité » : hausse de 20 % du salaire des enseignants, autonomie accrue des établissements.', topic: 'Programme du 18 novembre : État, école, immigration' },
       healthInvestment: { value: 0 },
       prisonBuilding: { value: 1, statement: 'Poursuite du plan de 15 000 places de prison.' },
     },
@@ -107,7 +107,7 @@ export const candidatePolicyLeverDetails = {
     notes: 'Réduction forte de la dépense publique et du nombre de fonctionnaires, décentralisation, allongement de l’activité, programme pénitentiaire.',
     levers: {
       fiscalImpulse: { value: -1.2, statement: 'Réduction forte de la dépense publique et du nombre de fonctionnaires.' },
-      retirementAge: { value: 1, statement: 'Allongement de l’activité au-delà de 64 ans.' },
+      retirementAge: { value: 1, statement: 'Âge légal porté à 65 ans, annoncé sur BFMTV le 22 novembre 2026, avec un étage obligatoire de capitalisation.', topic: 'Retraites : 65 ans' },
       smicHike: { value: 0 },
       taxWealth: { value: 0 },
       educationInvestment: { value: -1, statement: 'Baisse des effectifs publics touchant aussi l’Éducation nationale.' },
@@ -141,7 +141,7 @@ export const candidatePolicyLeverDetails = {
     },
   },
   'francois-ruffin': {
-    notes: 'Retraite à 60 ans pour les métiers pénibles, SMIC à 1 600 € net, protectionnisme et services publics de proximité.',
+    notes: 'Candidature retirée le 21 novembre 2026 ; projection conservée pour mémoire. Retraite à 60 ans pour les métiers pénibles, SMIC à 1 600 € net, protectionnisme et services publics de proximité.',
     levers: {
       fiscalImpulse: { value: 2, statement: 'Services publics de proximité et protectionnisme.', topic: 'Candidature populaire' },
       retirementAge: { value: -4, statement: 'Retraite à 60 ans pour les métiers pénibles.' },
@@ -294,13 +294,75 @@ export const candidatePolicyLeverDetails = {
   'dominique-de-villepin': {
     notes: 'Gaullisme social et pro-européen : sérieux budgétaire, contribution accrue des plus aisés, priorité à l’école et à la diplomatie.',
     levers: {
-      fiscalImpulse: { value: -0.2, statement: 'Sérieux budgétaire avec priorité à l’école et à la diplomatie.', topic: 'La France humaniste' },
-      retirementAge: { value: 0 },
+      fiscalImpulse: { value: -0.3, statement: 'Première mesure annoncée le 20 novembre 2026 : « mettre de l’ordre dans les comptes publics » par une trajectoire pluriannuelle, sans chiffrage publié.', topic: 'Comptes publics et retraites' },
+      retirementAge: { value: 0, statement: 'Pas de nouvelle réforme des retraites imposée par un seul camp.', topic: 'Comptes publics et retraites' },
       smicHike: { value: 0 },
       taxWealth: { value: 1, statement: 'Contribution accrue des plus aisés.' },
       educationInvestment: { value: 1, statement: 'Priorité à l’école.', topic: 'La France humaniste' },
       healthInvestment: { value: 0 },
       prisonBuilding: { value: 1, statement: 'Poursuite du plan de places.' },
+    },
+  },
+  // 2026-11-23: candidates whose programme is not yet published. Levers stay neutral unless a sourced
+  // statement exists; quiz levers default to 0 (position not established).
+  'teddy-riner': {
+    notes: 'Programme non publié. Seules indications : réforme des retraites tenant compte de la démographie et de la pénibilité, répartition conservée avec « une part de capitalisation », inquiétude sur la dette. Leviers neutres faute de mesures chiffrées.',
+    levers: {
+      fiscalImpulse: { value: -0.2, statement: 'Insiste sur le poids de la dette dans sa vidéo d’annonce, sans mesure chiffrée.', topic: 'Dette et déclin' },
+      retirementAge: { value: 0, statement: 'Réforme tenant compte de la démographie et de la pénibilité, sans âge cible annoncé.', topic: 'Retraites' },
+      smicHike: { value: 0 },
+      taxWealth: { value: 0 },
+      educationInvestment: { value: 0 },
+      healthInvestment: { value: 0 },
+      prisonBuilding: { value: 0 },
+    },
+  },
+  'francois-hollande': {
+    notes: 'Non déclaré : leviers tirés de son bilan et de ses prises de position récentes (critique du programme économique de LFI, attachement à la trajectoire européenne). Hypothèse social-démocrate modérée, à réviser s’il se présente.',
+    levers: {
+      fiscalImpulse: { value: 0.3, statement: 'Hypothèse : relance modérée compatible avec les règles européennes ; il juge le programme de LFI porteur d’un « incident de crédit ».', topic: 'Programme de Mélenchon' },
+      retirementAge: { value: 0 },
+      smicHike: { value: 0 },
+      taxWealth: { value: 1, statement: 'Hypothèse : contribution accrue des très hauts patrimoines, dans la ligne de la gauche sociale-démocrate.' },
+      educationInvestment: { value: 1, statement: 'Hypothèse fondée sur son bilan (60 000 postes promis dans l’Éducation en 2012).' },
+      healthInvestment: { value: 1 },
+      prisonBuilding: { value: 1 },
+    },
+  },
+  'natacha-polony': {
+    notes: 'Programme non publié : candidature centrée sur la production en France et la souveraineté. Leviers neutres faute de mesures chiffrées.',
+    levers: {
+      fiscalImpulse: { value: 0 },
+      retirementAge: { value: 0 },
+      smicHike: { value: 0 },
+      taxWealth: { value: 0 },
+      educationInvestment: { value: 0 },
+      healthInvestment: { value: 0 },
+      prisonBuilding: { value: 0 },
+    },
+  },
+  'olivier-becht': {
+    notes: 'Programme non publié : démarche de refondation présentée comme transpartisane. Leviers neutres faute de mesures chiffrées.',
+    levers: {
+      fiscalImpulse: { value: 0 },
+      retirementAge: { value: 0 },
+      smicHike: { value: 0 },
+      taxWealth: { value: 0 },
+      educationInvestment: { value: 0 },
+      healthInvestment: { value: 0 },
+      prisonBuilding: { value: 0 },
+    },
+  },
+  'gilles-platret': {
+    notes: 'Mesures connues : abrogation des 35 heures et rétablissement des frontières nationales. Pas de chiffrage budgétaire publié.',
+    levers: {
+      fiscalImpulse: { value: -0.3, statement: 'Ligne de droite libérale (fin des 35 heures), sans chiffrage publié.', topic: 'Travail et frontières' },
+      retirementAge: { value: 0 },
+      smicHike: { value: 0 },
+      taxWealth: { value: 0 },
+      educationInvestment: { value: 0 },
+      healthInvestment: { value: 0 },
+      prisonBuilding: { value: 0 },
     },
   },
 }
